@@ -1,0 +1,17 @@
+# Ignore artifacts:
+**/coverage/*
+**/dist/*
+**/public/*
+**/build/*
+**/node_modules/*
+**/out/*
+**/.next/*
+**/.storybook/*
+**/.github/*
+
+# Ignore all HTML files:
+*.html
+
+# ...
+package-lock.json
+*.d.ts

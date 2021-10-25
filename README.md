@@ -1,4 +1,26 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mzawadie Storefront
+
+![1 copy 2x](https://user-images.githubusercontent.com/5421321/47798207-30aeea00-dd28-11e8-9398-3d8426836a83.png)
+
+_**Note:** This project is a demonstration on how Mzawadie can be used. It’s not ready to be a starter but rather show how different cases can be handled and could be used as a recipe book. There **will** be breaking changes and the code is constantly evolving, so use at your own risk._
+
+A GraphQL-powered, PWA, single-page application storefront for [Mzawadie](https://github.com/Emmanuelmichaelmaro/mzawadie-backend-django/).
+
+## Features
+
+- Headless ecommerce storefront built with [GraphQL](https://graphql.org/), [Apollo Client](https://www.apollographql.com/client), [React](https://reactjs.org/), [Next.js](https://nextjs.org/) and [Typescript](https://www.typescriptlang.org/)
+- Offline mode (beta)
+- Mzawadie GraphQL API integration
+- Single-page application experience
+- [Stripe Payment Gateway](https://stripe.com/payments/) integration
+
+## Demo
+
+See the [public demo](http://demo.mzawadie.co.tz) of Mzawadie Storefront!
+
+Or launch the demo on a free Heroku instance.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Getting Started
 

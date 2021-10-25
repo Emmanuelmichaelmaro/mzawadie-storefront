@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .pnp.js
+package-lock.json
 
 # testing
 /coverage
@@ -32,3 +33,47 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# User-specific stuff
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+.idea/**/usage.statistics.xml
+.idea/**/dictionaries
+.idea/**/shelf
+
+# AWS User-specific
+.idea/**/aws.xml
+
+# Generated files
+.idea/**/contentModel.xml
+
+# Sensitive or high-churn files
+.idea/**/dataSources/
+.idea/**/dataSources.ids
+.idea/**/dataSources.local.xml
+.idea/**/sqlDataSources.xml
+.idea/**/dynamic.xml
+.idea/**/uiDesigner.xml
+.idea/**/dbnavigator.xml
+
+# Editor-based Rest Client
+.idea/httpRequests
+
+!.dockerignore
+!.storybook
+!.circle
+!.eslintrc
+!.gitignore
+!.github
+!.babelrc
+!.plop
+!.jest
+!.linguirc
+!.prettierrc
+!.prettierignore
+!.tx
+!.env
+!.env.development
+!.env.production
+!.nvmrc
+schema.graphql
