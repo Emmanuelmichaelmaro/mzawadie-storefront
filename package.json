@@ -9,7 +9,8 @@
         "start": "next start -p 9000",
         "lint": "next lint --fix --no-cache",
         "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|scss)\"",
-        "prepare": "husky install"
+        "prepare": "husky install",
+        "generate": "graphql-codegen --config codegen.yml"
     },
     "lint-staged": {
         "*.+(ts|tsx|js|jsx)": [
@@ -25,15 +26,38 @@
         "*.+(ts|tsx|js|jsx|json|yml|yaml|css)": "prettier --write"
     },
     "dependencies": {
+        "@apollo/client": "^3.4.16",
+        "@apollo/link-error": "^2.0.0-beta.3",
+        "@apollo/react-common": "^3.1.4",
+        "@apollo/react-hooks": "^4.0.0",
+        "apollo-upload-client": "^16.0.0",
+        "clsx": "^1.1.1",
+        "deepmerge": "^4.2.2",
+        "graphql": "^15.6.1",
+        "graphql-upload": "^12.0.0",
+        "isomorphic-unfetch": "^3.1.0",
+        "lodash": "^4.17.21",
         "next": "11.1.2",
         "react": "17.0.2",
         "react-dom": "17.0.2"
     },
     "devDependencies": {
+        "@graphql-codegen/add": "^3.1.0",
+        "@graphql-codegen/cli": "^2.2.1",
+        "@graphql-codegen/fragment-matcher": "^3.1.0",
+        "@graphql-codegen/import-types-preset": "^2.1.6",
+        "@graphql-codegen/named-operations-object": "^2.1.0",
+        "@graphql-codegen/schema-ast": "^2.2.0",
+        "@graphql-codegen/time": "^3.1.0",
+        "@graphql-codegen/typescript": "^2.2.4",
+        "@graphql-codegen/typescript-operations": "^2.1.8",
+        "@graphql-codegen/typescript-react-apollo": "^3.1.6",
         "@trivago/prettier-plugin-sort-imports": "^2.0.4",
+        "@types/apollo-upload-client": "^14.1.0",
         "@types/react": "17.0.32",
         "eslint": "8.1.0",
         "eslint-config-next": "11.1.2",
+        "graphql-codegen-apollo-next-ssr": "^1.7.1",
         "husky": "^7.0.4",
         "lint-staged": "^11.2.4",
         "prettier": "^2.4.1",
