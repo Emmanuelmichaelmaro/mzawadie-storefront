@@ -10,7 +10,9 @@
         "lint": "next lint --fix --no-cache",
         "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|scss)\"",
         "prepare": "husky install",
-        "generate": "graphql-codegen --config codegen.yml"
+        "generate": "graphql-codegen --config codegen.yml",
+        "storybook": "start-storybook -p 6006",
+        "build-storybook": "build-storybook"
     },
     "lint-staged": {
         "*.+(ts|tsx|js|jsx)": [
@@ -39,9 +41,11 @@
         "lodash": "^4.17.21",
         "next": "11.1.2",
         "react": "17.0.2",
-        "react-dom": "17.0.2"
+        "react-dom": "17.0.2",
+        "sass": "^1.43.4"
     },
     "devDependencies": {
+        "@babel/core": "^7.15.8",
         "@graphql-codegen/add": "^3.1.0",
         "@graphql-codegen/cli": "^2.2.1",
         "@graphql-codegen/fragment-matcher": "^3.1.0",
@@ -52,15 +56,33 @@
         "@graphql-codegen/typescript": "^2.2.4",
         "@graphql-codegen/typescript-operations": "^2.1.8",
         "@graphql-codegen/typescript-react-apollo": "^3.1.6",
+        "@storybook/addon-actions": "^6.3.12",
+        "@storybook/addon-essentials": "^6.3.12",
+        "@storybook/addon-links": "^6.3.12",
+        "@storybook/addon-postcss": "^2.0.0",
+        "@storybook/preset-scss": "^1.0.3",
+        "@storybook/preset-typescript": "^3.0.0",
+        "@storybook/react": "^6.3.12",
         "@trivago/prettier-plugin-sort-imports": "^2.0.4",
         "@types/apollo-upload-client": "^14.1.0",
         "@types/react": "17.0.32",
+        "autoprefixer": "^10.3.7",
+        "babel-loader": "^8.2.3",
+        "css-loader": "^6.5.0",
         "eslint": "8.1.0",
         "eslint-config-next": "11.1.2",
         "graphql-codegen-apollo-next-ssr": "^1.7.1",
         "husky": "^7.0.4",
         "lint-staged": "^11.2.4",
+        "postcss": "^8.3.11",
+        "postcss-flexbugs-fixes": "^5.0.2",
+        "postcss-loader": "^6.2.0",
+        "postcss-preset-env": "^6.7.0",
         "prettier": "^2.4.1",
-        "typescript": "4.4.4"
+        "sass-loader": "^12.3.0",
+        "style-loader": "^3.3.1",
+        "tailwindcss": "^2.2.17",
+        "typescript": "4.4.4",
+        "url-loader": "^4.1.1"
     }
 }

@@ -44,13 +44,13 @@ const createApolloClient = (headers: IncomingHttpHeaders | null = null) => {
             }),
             // this uses apollo-link-http under the hood, so all the options here come from that package
             createUploadLink({
-                uri: "https://demo.saleor.io/graphql",
+                uri: "https://demo.saleor.io/graphql/",
+                credentials: "include",
                 // Make sure that CORS and cookies work
                 // fetchOptions: {
                 //     mode: "cors",
                 // },
-                credentials: "include",
-                fetch: enhancedFetch,
+                // fetch: enhancedFetch,
             }),
         ]),
         cache: new InMemoryCache(),
