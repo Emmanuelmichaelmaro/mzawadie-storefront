@@ -11,7 +11,7 @@ export interface HomeViewProps {
     data: HomePageProducts & { featuredProducts: FeaturedProducts };
 }
 
-export const HomeView: NextPage<HomeViewProps> = ({ data: { shop, featuredProducts, categories } }) => (
+const HomePage: NextPage<HomeViewProps> = ({ data: { shop, featuredProducts, categories } }) => (
     <div className="home-page">
         <MetaWrapper
             meta={{
@@ -23,3 +23,5 @@ export const HomeView: NextPage<HomeViewProps> = ({ data: { shop, featuredProduc
         </MetaWrapper>
     </div>
 );
+
+export default HomePage;

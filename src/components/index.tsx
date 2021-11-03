@@ -10,6 +10,6 @@ export { default as Dropdown } from "./Dropdown";
 export { default as TextField } from "./TextField";
 export { default as SelectField } from "./SelectField";
 export { default as Message } from "./Message";
-export { default as ProductPage } from "./ProductPage";
 export { default as ProductListItem } from "./ProductListItem";
 export { default as ProductDescription } from "./ProductDescription";
+export { default as Form } from "./Form";

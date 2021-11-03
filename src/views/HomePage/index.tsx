@@ -1,2 +1,2 @@
-export * from "./HomeView";
+export * from "./HomePage";
 export * from "./queries";

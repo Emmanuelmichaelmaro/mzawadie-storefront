@@ -6,6 +6,7 @@ import { useApollo } from "../lib/apollo";
 import "../styles/globals.css";
 import { CartOverlay, CartProvider } from "../components/Cart";
 import { OverlayProvider } from "../components/Overlay";
+import { Footer, MainMenu, NavigationOverlay, SearchOverlay } from "../components";
 
 const App = ({ Component, pageProps }: AppProps) => {
     const apolloClient = useApollo(pageProps);

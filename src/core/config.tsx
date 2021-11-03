@@ -11,3 +11,7 @@ export const META_DEFAULTS = {
     type: "website",
     url: !ssrMode ? window.location.origin : "",
 };
+
+export const PRODUCTS_PER_PAGE = 8;
+
+export const SUPPORT_EMAIL = "support@example.com";
