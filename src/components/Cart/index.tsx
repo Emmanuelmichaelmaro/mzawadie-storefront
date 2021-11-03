@@ -5,18 +5,20 @@ import React from "react";
 import ReactSVG from "react-svg";
 
 import { Button } from "..";
+import { PriceInterface, ProductVariantInterface } from "../../core/types";
+import { priceToString } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
+import { GET_PRODUCTS_VARIANTS } from "../ProductPage/queries";
 import { CartContext, CartInterface, CartLineInterface } from "./context";
-import { GET_VARIANTS } from "./queries";
 import "./scss/index.scss";
 
 export class CartProvider extends React.Component<{ children: any }, CartInterface> {
-    constructor(props: any) {
+    constructor(props) {
         super(props);
         let lines;
         try {
-            lines = JSON.parse(localStorage.getItem("cart") as string) || [];
+            lines = JSON.parse(localStorage.getItem("cart")) || [];
         } catch {
             lines = [];
         }
@@ -25,12 +27,14 @@ export class CartProvider extends React.Component<{ children: any }, CartInterfa
             changeQuantity: this.changeQuantity,
             clear: this.clear,
             getQuantity: this.getQuantity,
+            getTotal: this.getTotal,
+            getVariantQuantity: this.getVariantQuantity,
             lines,
             remove: this.remove,
         };
     }
 
-    changeQuantity = (variantId: string, quantity: number) => {
+    changeQuantity = (variantId, quantity) => {
         const newLine: CartLineInterface = {
             quantity,
             variantId,
@@ -44,7 +48,7 @@ export class CartProvider extends React.Component<{ children: any }, CartInterfa
         });
     };
 
-    add = (variantId: string, quantity = 1) => {
+    add = (variantId, quantity = 1) => {
         const line = this.state.lines.find((line) => line.variantId === variantId);
         const newQuantity = line ? line.quantity + quantity : quantity;
         this.changeQuantity(variantId, newQuantity);
@@ -54,9 +58,26 @@ export class CartProvider extends React.Component<{ children: any }, CartInterfa
 
     getQuantity = () => this.state.lines.reduce((sum, line) => sum + line.quantity, 0);
 
-    remove = (variantId: string) => this.changeQuantity(variantId, 0);
+    getTotal = (productsVariants: ProductVariantInterface[]): PriceInterface => {
+        const quantityMapping = this.state.lines.reduce((obj, line) => {
+            obj[line.variantId] = line.quantity;
+            return obj;
+        }, {});
+        const amount = productsVariants.reduce(
+            (sum, variant) => sum + variant.price.amount * quantityMapping[variant.id],
+            0
+        );
+        const { currency } = productsVariants[0].price;
+        return { amount, currency };
+    };
 
-    // @ts-ignore
+    getVariantQuantity = (variantId) => {
+        const line = this.state.lines.filter((line) => line.variantId === variantId)[0];
+        return line.quantity;
+    };
+
+    remove = (variantId) => this.changeQuantity(variantId, 0);
+
     componentDidUpdate(prevProps, prevState) {
         localStorage.setItem("cart", JSON.stringify(this.state.lines));
     }
@@ -90,74 +111,78 @@ export const CartOverlay: React.SFC = () => (
                                     />
                                 </div>
                                 {cart.lines.length ? (
-                                    <>
-                                        <Query
-                                            query={GET_VARIANTS}
-                                            // TODO: we don't have productVariants query definition yet, for now use only one
-                                            // https://github.com/mirumee/saleor/issues/2741
-                                            variables={{ id: cart.lines[0].variantId }}
-                                        >
-                                            {({ loading, error, data: { productVariant } }) => {
-                                                if (loading) {
-                                                    return "Loading";
-                                                }
-                                                if (error) {
-                                                    return `Error!: ${error}`;
-                                                }
-                                                return (
+                                    <Query
+                                        query={GET_PRODUCTS_VARIANTS}
+                                        variables={{
+                                            ids: cart.lines.map((line) => line.variantId),
+                                        }}
+                                    >
+                                        {({ loading, error, data }) => {
+                                            const productsVariants = data.productVariants
+                                                ? data.productVariants.edges.map((edge) => edge.node)
+                                                : [];
+                                            if (loading) {
+                                                return "Loading";
+                                            }
+                                            if (error) {
+                                                return `Error!: ${error}`;
+                                            }
+
+                                            return (
+                                                <>
                                                     <ul className="cart__list">
-                                                        {cart.lines.map((line) => (
+                                                        {productsVariants.map((variant) => (
                                                             <li
-                                                                key={line.variantId}
+                                                                key={variant.id}
                                                                 className="cart__list__item"
                                                             >
                                                                 <img
-                                                                    src={
-                                                                        productVariant.product
-                                                                            .thumbnailUrl
-                                                                    }
-                                                                    alt={productVariant.product.name}
+                                                                    src={variant.product.thumbnailUrl}
+                                                                    alt={variant.product.name}
                                                                 />
                                                                 <div className="cart__list__item__details">
                                                                     <p>
-                                                                        {productVariant.price.currency}
-                                                                        {productVariant.price.amount}
+                                                                        {variant.price.currency}
+                                                                        {variant.price.amount}
                                                                     </p>
-                                                                    <p>{productVariant.product.name}</p>
+                                                                    <p>{variant.product.name}</p>
                                                                     <span className="cart__list__item__details__variant">
+                                                                        <span>{variant.name}</span>
                                                                         <span>
-                                                                            {productVariant.name}
-                                                                        </span>
-                                                                        <span>
-                                                                            Qty: {line.quantity}
+                                                                            Qty:
+                                                                            {cart.getVariantQuantity(
+                                                                                variant.id
+                                                                            )}
                                                                         </span>
                                                                     </span>
                                                                     <ReactSVG
                                                                         path="../../images/garbage.svg"
                                                                         className="cart__list__item__details__delete-icon"
                                                                         onClick={() =>
-                                                                            cart.remove(
-                                                                                productVariant.id
-                                                                            )
+                                                                            cart.remove(variant.id)
                                                                         }
                                                                     />
                                                                 </div>
                                                             </li>
                                                         ))}
                                                     </ul>
-                                                );
-                                            }}
-                                        </Query>
-                                        <div className="cart__footer">
-                                            <div className="cart__footer__subtotoal">
-                                                <span>Subtotal</span>
-                                                <span>$100</span>
-                                            </div>
-                                            <div className="cart__footer__button">
-                                                <Button>Checkout</Button>
-                                            </div>
-                                        </div>
-                                    </>
+                                                    <div className="cart__footer">
+                                                        <div className="cart__footer__subtotoal">
+                                                            <span>Subtotal</span>
+                                                            <span>
+                                                                {priceToString(
+                                                                    cart.getTotal(productsVariants)
+                                                                )}
+                                                            </span>
+                                                        </div>
+                                                        <div className="cart__footer__button">
+                                                            <Button>Go to checkout</Button>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            );
+                                        }}
+                                    </Query>
                                 ) : (
                                     <div className="cart__empty">
                                         <h4>Yor bag is empty</h4>

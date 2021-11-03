@@ -4,6 +4,7 @@ import React from "react";
 
 import { Button, SelectField, TextField } from "..";
 import { ProductPriceInterface, ProductVariantInterface } from "../../core/types";
+import { priceToString } from "../../core/utils";
 import "./scss/index.scss";
 
 interface ProductDescriptionProps {
@@ -22,18 +23,13 @@ interface ProductDescriptionState {
     variants: { [x: string]: string[] };
 }
 
-class ProductDescription extends React.Component<
-    ProductDescriptionProps,
-    ProductDescriptionState
-    > {
+class ProductDescription extends React.Component<ProductDescriptionProps, ProductDescriptionState> {
     constructor(props) {
         super(props);
-        const pickers =
-            this.props.productVariants[0].attributes.length > 0 &&
-            this.createPickers();
+        const pickers = this.props.productVariants[0].attributes.length > 0 && this.createPickers();
         this.state = {
             ...pickers,
-            quantity: 1
+            quantity: 1,
         };
     }
 
@@ -41,7 +37,7 @@ class ProductDescription extends React.Component<
         const primaryPicker = {
             label: this.props.productVariants[0].attributes[0].attribute.name,
             selected: "",
-            values: []
+            values: [],
         };
 
         let secondaryPicker;
@@ -50,16 +46,16 @@ class ProductDescription extends React.Component<
             secondaryPicker = {
                 label: this.props.productVariants[0].attributes
                     .slice(1)
-                    .map(attribute => attribute.attribute.name)
+                    .map((attribute) => attribute.attribute.name)
                     .join(" / "),
                 selected: "",
-                values: []
+                values: [],
             };
         }
 
         const variants = {};
 
-        this.props.productVariants.map(variant => {
+        this.props.productVariants.map((variant) => {
             if (!primaryPicker.values.includes(variant.attributes[0].value.value)) {
                 primaryPicker.values.push(variant.attributes[0].value.value);
             }
@@ -67,7 +63,7 @@ class ProductDescription extends React.Component<
             if (secondaryPicker) {
                 const combinedValues = variant.attributes
                     .slice(1)
-                    .map(attribute => attribute.value.value)
+                    .map((attribute) => attribute.value.value)
                     .join(" / ");
 
                 if (!secondaryPicker.values.includes(combinedValues)) {
@@ -77,7 +73,7 @@ class ProductDescription extends React.Component<
                 if (variants[variant.attributes[0].value.value]) {
                     variants[variant.attributes[0].value.value] = [
                         ...variants[variant.attributes[0].value.value],
-                        combinedValues
+                        combinedValues,
                     ];
                 } else {
                     variants[variant.attributes[0].value.value] = [combinedValues];
@@ -93,11 +89,11 @@ class ProductDescription extends React.Component<
         return {
             primaryPicker,
             secondaryPicker,
-            variants
+            variants,
         };
     };
 
-    onPrimaryPickerChange = value => {
+    onPrimaryPickerChange = (value) => {
         const primaryPicker = this.state.primaryPicker;
         primaryPicker.selected = value;
         this.setState({ primaryPicker });
@@ -109,7 +105,7 @@ class ProductDescription extends React.Component<
         }
     };
 
-    onSecondaryPickerChange = value => {
+    onSecondaryPickerChange = (value) => {
         const secondaryPicker = this.state.secondaryPicker;
         secondaryPicker.selected = value;
         this.setState({ secondaryPicker });
@@ -119,15 +115,13 @@ class ProductDescription extends React.Component<
         let variant;
         if (!this.state.secondaryPicker && this.state.primaryPicker) {
             variant = this.props.productVariants.find(
-                variant => variant.name === `${this.state.primaryPicker.selected}`
+                (variant) => variant.name === `${this.state.primaryPicker.selected}`
             ).id;
         } else if (this.state.secondaryPicker && this.state.primaryPicker) {
             variant = this.props.productVariants.find(
-                variant =>
+                (variant) =>
                     variant.name ===
-                    `${this.state.primaryPicker.selected} / ${
-                        this.state.secondaryPicker.selected
-                    }`
+                    `${this.state.primaryPicker.selected} / ${this.state.secondaryPicker.selected}`
             ).id;
         } else {
             variant = this.props.productVariants[0].id;
@@ -141,48 +135,42 @@ class ProductDescription extends React.Component<
             <div className="product-description">
                 <h3>{name}</h3>
 
-                <h4>
-                    {locale
-                        ? price.amount.toLocaleString(locale, {
-                            currency: price.currency,
-                            style: "currency"
-                        })
-                        : `${price.currency} ${price.amount}`}
-                </h4>
+                <h4>{priceToString(price, locale)}</h4>
 
                 <div className="product-description__variant-picker">
                     {this.state.primaryPicker ? (
                         <SelectField
-                            onChange={e => this.onPrimaryPickerChange(e.value)}
+                            onChange={(e) => this.onPrimaryPickerChange(e.value)}
                             label={this.state.primaryPicker.label}
                             key={this.state.primaryPicker.label}
                             value={{
                                 label: this.state.primaryPicker.selected,
-                                value: this.state.primaryPicker.selected
+                                value: this.state.primaryPicker.selected,
                             }}
-                            options={this.state.primaryPicker.values.map(value => ({
+                            options={this.state.primaryPicker.values.map((value) => ({
                                 label: value,
-                                value
+                                value,
                             }))}
                         />
                     ) : null}
                     {this.state.secondaryPicker ? (
                         <SelectField
-                            onChange={e => this.onSecondaryPickerChange(e.value)}
+                            onChange={(e) => this.onSecondaryPickerChange(e.value)}
                             label={this.state.secondaryPicker.label}
                             key={this.state.secondaryPicker.label}
                             value={
                                 this.state.secondaryPicker.selected && {
                                     label: this.state.secondaryPicker.selected,
-                                    value: this.state.secondaryPicker.selected
+                                    value: this.state.secondaryPicker.selected,
                                 }
                             }
-                            options={this.state.secondaryPicker.values.map(value => ({
-                                isDisabled: !this.state.variants[
-                                    this.state.primaryPicker.selected
-                                    ].includes(value),
+                            options={this.state.secondaryPicker.values.map((value) => ({
+                                isDisabled:
+                                    !this.state.variants[this.state.primaryPicker.selected].includes(
+                                        value
+                                    ),
                                 label: value,
-                                value
+                                value,
                             }))}
                         />
                     ) : null}
@@ -190,7 +178,7 @@ class ProductDescription extends React.Component<
                         type="number"
                         label="Quantity"
                         value={this.state.quantity || ""}
-                        onChange={e => this.setState({ quantity: Number(e.target.value) })}
+                        onChange={(e) => this.setState({ quantity: Number(e.target.value) })}
                     />
                 </div>
 
