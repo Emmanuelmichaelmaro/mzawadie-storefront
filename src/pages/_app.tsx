@@ -4,13 +4,31 @@ import React from "react";
 
 import { useApollo } from "../lib/apollo";
 import "../styles/globals.css";
+import { CartOverlay, CartProvider } from "../components/Cart";
+import { OverlayProvider } from "../components/Overlay";
 
 const App = ({ Component, pageProps }: AppProps) => {
     const apolloClient = useApollo(pageProps);
 
     return (
         <ApolloProvider client={apolloClient}>
-            <Component {...pageProps} />
+            <CartProvider>
+                <OverlayProvider>
+                    <>
+                        <header>
+                            <MainMenu />
+                        </header>
+
+                        <Component {...pageProps} />
+
+                        <Footer />
+
+                        <CartOverlay />
+                        <NavigationOverlay />
+                        <SearchOverlay />
+                    </>
+                </OverlayProvider>
+            </CartProvider>
         </ApolloProvider>
     );
 };

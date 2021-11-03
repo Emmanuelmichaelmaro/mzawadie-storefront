@@ -11,9 +11,24 @@
         "module": "esnext",
         "moduleResolution": "node",
         "resolveJsonModule": true,
-        "isolatedModules": true,
+        "isolatedModules": false,
         "jsx": "preserve",
-        "baseUrl": "./"
+        "baseUrl": "./",
+        "paths": {
+            "@design/*": ["./src/@design/*"],
+            "@design/atoms": ["./src/@design/atoms/index.ts"],
+            "@design/molecules": ["./src/@design/molecules/index.ts"],
+            "@design/organisms": ["./src/@design/organisms/index.ts"],
+            "@design/templates": ["./src/@design/templates/index.ts"],
+            "@design/containers": ["./src/@design/containers/index.ts"],
+            "images/*": ["./src/images/*"],
+            "@hooks": ["./src/@next/hooks/index.ts"],
+            "@hooks/*": ["./src/@next/hooks/*"],
+            "@sdk": ["./src/@sdk/index.ts"],
+            "@sdk/*": ["./src/@sdk/*"],
+            "@types": ["./src/@types/index.ts"],
+            "@types/*": ["./src/@types/*"]
+        }
     },
     "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"]
