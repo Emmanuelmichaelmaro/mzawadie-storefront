@@ -4,7 +4,7 @@ import { Query } from "@apollo/client/react/components";
 import React from "react";
 import Media from "react-media";
 
-import { Breadcrumbs, Carousel, ProductDescription, ProductListItem } from "../../components";
+import { Breadcrumbs, Carousel, Loader, ProductDescription, ProductListItem } from "../../components";
 import { getDBIdFromGraphqlId, getGraphqlIdFromDBId, slugify } from "../../core/utils";
 import { smallScreen } from "../../styles/scss/variables.scss";
 import { GET_PRODUCT_DETAILS } from "./queries";
@@ -50,11 +50,13 @@ class ProductPage extends React.Component<any> {
             >
                 {({ loading, error, data: { product } }) => {
                     if (loading) {
-                        return "Loading";
+                        return <Loader full />;
                     }
+
                     if (error) {
                         return `Error!: ${error}`;
                     }
+
                     return (
                         <div className="product-page">
                             <div className="container">
@@ -82,23 +84,27 @@ class ProductPage extends React.Component<any> {
                             <div className="container">
                                 <div className="product-page__product">
                                     <Media query={{ maxWidth: smallScreen }}>
-                                        {matches =>
+                                        {(matches) =>
                                             matches ? (
                                                 <>
                                                     <div className="product-page__product__gallery">
                                                         <Carousel
                                                             renderCenterLeftControls={() => null}
                                                             renderCenterRightControls={() => null}
-                                                            renderBottomCenterControls={props => {
+                                                            renderBottomCenterControls={(props) => {
                                                                 const indexes = [];
 
-                                                                for (let i = 0; i < props.slideCount; i++) {
+                                                                for (
+                                                                    let i = 0;
+                                                                    i < props.slideCount;
+                                                                    i++
+                                                                ) {
                                                                     indexes.push(i);
                                                                 }
 
                                                                 return (
                                                                     <ul className="product-page__product__gallery__nav">
-                                                                        {indexes.map(index => (
+                                                                        {indexes.map((index) => (
                                                                             <li
                                                                                 key={index}
                                                                                 onClick={props.goToSlide.bind(
@@ -106,7 +112,8 @@ class ProductPage extends React.Component<any> {
                                                                                     index
                                                                                 )}
                                                                                 className={
-                                                                                    props.currentSlide === index
+                                                                                    props.currentSlide ===
+                                                                                    index
                                                                                         ? "active"
                                                                                         : ""
                                                                                 }
@@ -118,26 +125,32 @@ class ProductPage extends React.Component<any> {
                                                                 );
                                                             }}
                                                         >
-                                                            {product.images.edges.map(({ node: image }) => (
-                                                                <img src={image.url} key={image.id}  alt={image.name}/>
-                                                            ))}
+                                                            {product.images.edges.map(
+                                                                ({ node: image }) => (
+                                                                    <img
+                                                                        src={image.url}
+                                                                        key={image.id}
+                                                                        alt={image.name}
+                                                                    />
+                                                                )
+                                                            )}
                                                         </Carousel>
                                                     </div>
 
                                                     <div className="product-page__product__info">
                                                         <CartContext.Consumer>
-                                                            {cart => (
+                                                            {(cart) => (
                                                                 <ProductDescription
                                                                     name={product.name}
                                                                     price={product.price}
                                                                     productVariants={product.variants.edges.map(
-                                                                        edge => edge.node
+                                                                        (edge) => edge.node
                                                                     )}
                                                                     addToCart={cart.add}
                                                                 >
                                                                     <div
                                                                         dangerouslySetInnerHTML={{
-                                                                            __html: product.description
+                                                                            __html: product.description,
                                                                         }}
                                                                     />
                                                                 </ProductDescription>
@@ -156,7 +169,8 @@ class ProductPage extends React.Component<any> {
                                                                 src={image.url}
                                                                 key={image.id}
                                                                 ref={this.galleryImage}
-                                                                alt={image.name}/>
+                                                                alt={image.name}
+                                                            />
                                                         ))}
                                                     </div>
 
@@ -166,18 +180,18 @@ class ProductPage extends React.Component<any> {
                                                             ref={this.fixedElement}
                                                         >
                                                             <CartContext.Consumer>
-                                                                {cart => (
+                                                                {(cart) => (
                                                                     <ProductDescription
                                                                         name={product.name}
                                                                         price={product.price}
                                                                         productVariants={product.variants.edges.map(
-                                                                            edge => edge.node
+                                                                            (edge) => edge.node
                                                                         )}
                                                                         addToCart={cart.add}
                                                                     >
                                                                         <div
                                                                             dangerouslySetInnerHTML={{
-                                                                                __html: product.description
+                                                                                __html: product.description,
                                                                             }}
                                                                         />
                                                                     </ProductDescription>

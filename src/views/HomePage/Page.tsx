@@ -4,7 +4,7 @@ import { Query } from "@apollo/client/react/components";
 import Link from "next/link";
 import React from "react";
 
-import { Button, Carousel, ProductListItem } from "../../components";
+import { Button, Carousel, Loader, ProductListItem } from "../../components";
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { GET_PRODUCTS_AND_CATEGORIES } from "./queries";
 import "./scss/index.scss";
@@ -26,11 +26,13 @@ const Page: React.SFC = () => (
         <Query query={GET_PRODUCTS_AND_CATEGORIES}>
             {({ loading, error, data }) => {
                 if (loading) {
-                    return "Loading";
+                    return <Loader full />;
                 }
+
                 if (error) {
                     return `Error!: ${error}`;
                 }
+
                 return (
                     <>
                         <div className="home-page__featured">
