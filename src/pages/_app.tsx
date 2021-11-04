@@ -3,7 +3,7 @@ import type { AppProps } from "next/app";
 import React from "react";
 
 import { Footer, MainMenu, NavigationOverlay, SearchOverlay } from "../components";
-import { CartOverlay, CartProvider } from "../components/Cart";
+import { CartOverlay, CartProvider } from "../components/CartOverlay";
 import { LoginOverlay } from "../components/LoginOverlay";
 import { OverlayProvider } from "../components/Overlay";
 import UserProvider from "../components/User";

@@ -1,4 +1,5 @@
 export { default as AccountPage } from "./AccountPage";
+export { default as CartPage } from "./CartPage";
 export { default as CategoryPage } from "./CategoryPage";
 export { default as CheckoutPage } from "./CheckoutPage";
 export { default as ContentPage } from "./ContentPage";

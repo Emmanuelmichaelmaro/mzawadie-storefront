@@ -1,15 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import { Query } from "@apollo/client/react/components";
-import React from "react";
+import * as React from "react";
 
-import { ButtonProps, default as Button } from "../../components/Button";
-import { CartInterface } from "../../components/CartProvider/context";
 import { priceToString } from "../../core/utils";
-import { CREATE_CHECKOUT, GET_CHECKOUT } from "./queries";
-import "./scss/index.scss";
+import { GET_CHECKOUT } from "../CheckoutPage/queries";
 
-const CheckoutPage: React.SFC<any> = ({
+const CartPage: React.SFC<any> = ({
     match: {
         params: { token = "" },
     },
@@ -79,90 +76,4 @@ const CheckoutPage: React.SFC<any> = ({
     );
 };
 
-export interface GoToCheckoutState {
-    checkoutToken: string;
-    loading: boolean;
-    redirect: boolean;
-}
-
-export interface GoToCheckoutProps extends ButtonProps {
-    children: any;
-    apolloClient: ApolloClient<any>;
-    cart: CartInterface;
-}
-
-export class GoToCheckout extends React.Component<GoToCheckoutProps, GoToCheckoutState> {
-    constructor(props) {
-        super(props);
-        let checkoutToken;
-        try {
-            checkoutToken = localStorage.getItem("checkout");
-        } catch {
-            checkoutToken = null;
-        }
-        this.state = {
-            checkoutToken,
-            loading: false,
-            redirect: false,
-        };
-    }
-
-    handleCheckoutCreation = async () => {
-        const checkoutToken = localStorage.getItem("checkout");
-        const {
-            apolloClient,
-            cart: { lines },
-        } = this.props;
-        if (checkoutToken) {
-            this.setState({ redirect: true, loading: false, checkoutToken });
-        } else {
-            this.setState({ loading: true });
-            const { data } = await apolloClient.mutate({
-                mutation: CREATE_CHECKOUT,
-                variables: { checkoutInput: { lines } },
-            });
-            this.setState({
-                checkoutToken: data.checkoutCreate.checkout.token,
-                loading: false,
-                redirect: true,
-            });
-        }
-    };
-
-    getRedirection() {
-        return <Redirect to={`/checkout/${this.state.checkoutToken}/`} />;
-    }
-
-    componentDidUpdate(prevProps, prevState) {
-        const { checkoutToken } = this.state;
-        if (checkoutToken) {
-            localStorage.setItem("checkout", this.state.checkoutToken);
-        } else {
-            localStorage.removeItem("checkout");
-        }
-    }
-
-    render = () => {
-        const { children, cart, apolloClient, ...buttonProps } = this.props;
-        if (this.state.loading) {
-            return <Button {...buttonProps}>Loading</Button>;
-        }
-        if (this.state.checkoutToken && this.state.redirect) {
-            this.setState({ redirect: false });
-            return this.getRedirection();
-        }
-        return (
-            <Button
-                {...buttonProps}
-                onClick={(event) => {
-                    this.handleCheckoutCreation();
-                    event.preventDefault();
-                }}
-            >
-                {children}
-            </Button>
-        );
-    };
-}
-
-export default CheckoutPage;
+export default CartPage;

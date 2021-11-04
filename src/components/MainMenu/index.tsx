@@ -1,15 +1,15 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import React from "react";
 import ReactSVG from "react-svg";
 
 import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { mediumScreen, smallScreen } from "../App/scss/variables.scss";
-import { CartContext } from "../Cart/context";
+import { CartContext } from "../CartProvider/context";
 import { OverlayContext, OverlayTheme, OverlayType } from "../Overlay/context";
 import { UserContext } from "../User/context";
 import { GET_MAIN_MENU } from "./queries";
 import "./scss/index.scss";
-import React from "react";
 
 const MainMenu: React.SFC = () => (
     <OverlayContext.Consumer>
@@ -76,19 +76,25 @@ const MainMenu: React.SFC = () => (
                             query={{ minWidth: smallScreen }}
                             render={() => (
                                 <UserContext.Consumer>
-                                    {({ user }) => (
-                                        <li
-                                            className="main-menu__icon"
-                                            onClick={() =>
-                                                overlayContext.show(
-                                                    OverlayType.login,
-                                                    OverlayTheme.right
-                                                )
-                                            }
-                                        >
-                                            <ReactSVG path="../../images/user.svg" />
-                                        </li>
-                                    )}
+                                    {({ user }) =>
+                                        user ? (
+                                            <li className="main-menu__icon">
+                                                <ReactSVG path="../../images/profile-icon.svg" />
+                                            </li>
+                                        ) : (
+                                            <li
+                                                className="main-menu__icon"
+                                                onClick={() =>
+                                                    overlayContext.show(
+                                                        OverlayType.login,
+                                                        OverlayTheme.right
+                                                    )
+                                                }
+                                            >
+                                                <ReactSVG path="../../images/login-icon.svg" />
+                                            </li>
+                                        )
+                                    }
                                 </UserContext.Consumer>
                             )}
                         />

@@ -9,21 +9,20 @@ import { getDBIdFromGraphqlId, slugify } from "../../core/utils";
 import { Overlay } from "../Overlay";
 import { OverlayContext, OverlayType } from "../Overlay/context";
 import { GET_CATEGORIES } from "./queries";
-
 import "./scss/index.scss";
 
 const NavigationOverlay: React.SFC = () => (
     <OverlayContext.Consumer>
-        {overlayContext => {
+        {(overlayContext) => {
             if (overlayContext.type === OverlayType.navigation) {
                 return (
                     <Overlay context={overlayContext}>
-                        <div className="side-nav" onClick={e => e.stopPropagation()}>
+                        <div className="side-nav" onClick={(e) => e.stopPropagation()}>
                             <ul>
                                 <li>
                                     <Link href="/">Home</Link>
                                 </li>
-                                
+
                                 <Query query={GET_CATEGORIES}>
                                     {({ loading, error, data }) => {
                                         if (loading) {
@@ -37,7 +36,10 @@ const NavigationOverlay: React.SFC = () => (
                                                 <Link
                                                     to={`/category/${slugify(
                                                         category.name
-                                                    )}/${getDBIdFromGraphqlId(category.id, "Category")}/`}
+                                                    )}/${getDBIdFromGraphqlId(
+                                                        category.id,
+                                                        "Category"
+                                                    )}/`}
                                                 >
                                                     {category.name}
                                                 </Link>
@@ -45,13 +47,19 @@ const NavigationOverlay: React.SFC = () => (
                                         ));
                                     }}
                                 </Query>
-                                
-                                <li className="side-nav__icon-item">
-                                    <Link href="/">
-                                        <ReactSVG path="../../images/user.svg" />
-                                        My account
-                                    </Link>
-                                </li>
+
+                                <UserContext.Consumer>
+                                    {({ user }) =>
+                                        user ? (
+                                            <li className="side-nav__icon-item">
+                                                <a href="/">
+                                                    <ReactSVG path="../../images/login-icon.svg" />
+                                                    My account
+                                                </a>
+                                            </li>
+                                        ) : null
+                                    }
+                                </UserContext.Consumer>
                             </ul>
                         </div>
                     </Overlay>
