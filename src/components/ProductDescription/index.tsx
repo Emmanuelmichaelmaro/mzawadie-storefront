@@ -1,11 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
+import { priceToString } from "@mzawadie/core/utils";
 import React from "react";
 
 import { Button, SelectField, TextField } from "..";
 import { ProductPriceInterface, ProductVariantInterface } from "../../core/types";
-import { priceToString } from "../../core/utils";
-import "./scss/index.scss";
+import "./scss/index.module.scss";
 
 interface ProductDescriptionProps {
     productVariants: ProductVariantInterface[];
@@ -195,6 +194,7 @@ class ProductDescription extends React.Component<ProductDescriptionProps, Produc
                         this.state.secondaryPicker &&
                         this.state.secondaryPicker.selected === ""
                     }
+                    testingContext="productDescriptionAddToCartButton"
                 >
                     Add to cart
                 </Button>

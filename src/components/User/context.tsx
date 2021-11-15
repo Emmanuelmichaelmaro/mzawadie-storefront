@@ -1,5 +1,5 @@
-import React from "react";
 import { ApolloError } from "@apollo/client";
+import React from "react";
 
 interface UserInterface {
     email: string;
@@ -17,12 +17,12 @@ export interface UserContextInterface {
 
 /* tslint:disable:no-empty */
 export const UserContext = React.createContext<UserContextInterface>({
-    authenticate: token => {},
+    authenticate: (token) => {},
     errors: null,
     loading: false,
     login: (email, password) => {},
     logout: () => {},
     token: null,
-    user: null
+    user: null,
 });
 /* tslint:enable:no-empty */

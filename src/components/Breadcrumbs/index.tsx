@@ -1,22 +1,83 @@
+import { commonMessages, generateCategoryUrl, paths } from "@mzawadie/core";
+import { CategoryDetails } from "@mzawadie/sdk/lib/fragments/gqlTypes/CategoryDetails";
+import classNames from "classnames";
 import Link from "next/link";
-import React from "react";
+import * as React from "react";
+import { FormattedMessage } from "react-intl";
+import Media from "react-media";
 
-import "./scss/index.scss";
+import { smallScreen } from "@next/styles/constants";
+import "./scss/index.module.scss";
 
-const Breadcrumbs: React.SFC<{
-    breadcrumbs: Array<{ value: string; link: string }>;
+export interface Breadcrumb {
+    value: string;
+    link: string;
+}
+
+type BreadcrumbCategory = Pick<CategoryDetails, "id" | "slug" | "name">;
+
+export const extractBreadcrumbs = (category: BreadcrumbCategory, ancestors?: BreadcrumbCategory[]) => {
+    const constructLink = ({ id, slug, name }: BreadcrumbCategory) => ({
+        link: generateCategoryUrl(id, slug),
+        value: name,
+    });
+
+    let breadcrumbs = [constructLink(category)];
+
+    if (ancestors && ancestors.length) {
+        const ancestorsList = ancestors.map((category) => constructLink(category));
+        breadcrumbs = ancestorsList.concat(breadcrumbs);
+    }
+
+    return breadcrumbs;
+};
+
+const getBackLink = (breadcrumbs: Breadcrumb[]) =>
+    breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2].link : paths.home;
+
+const Breadcrumbs: React.FC<{
+    breadcrumbs: Breadcrumb[];
 }> = ({ breadcrumbs }) => (
-    <ul className="breadcrumbs">
-        <li>
-            <Link href="/">Home</Link>
-        </li>
+    <Media
+        query={{
+            minWidth: smallScreen,
+        }}
+    >
+        {(matches) =>
+            matches ? (
+                <ul className="breadcrumbs">
+                    <li>
+                        <Link href={paths.home}>
+                            <a>
+                                <FormattedMessage {...commonMessages.home} />
+                            </a>
+                        </Link>
+                    </li>
 
-        {breadcrumbs.map((breadcrumb) => (
-            <li key={breadcrumb.value}>
-                <Link href={breadcrumb.link}>{breadcrumb.value}</Link>
-            </li>
-        ))}
-    </ul>
+                    {breadcrumbs.map((breadcrumb, index) => (
+                        <li
+                            key={`${breadcrumb.value}-${index}`}
+                            className={classNames({
+                                breadcrumbs__active: index === breadcrumbs.length - 1,
+                            })}
+                        >
+                            <Link href={breadcrumb.link}>
+                                <a>{breadcrumb.value}</a>
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <div className="breadcrumbs">
+                    <Link href={getBackLink(breadcrumbs)}>
+                        <a>
+                            <FormattedMessage defaultMessage="Back" />
+                        </a>
+                    </Link>
+                </div>
+            )
+        }
+    </Media>
 );
 
 export default Breadcrumbs;

@@ -13,6 +13,4 @@ export interface MetaContextInterface {
     custom?: MetaProps[];
 }
 
-export const { Provider, Consumer } = React.createContext<MetaContextInterface>(
-    META_DEFAULTS
-);
+export const { Provider, Consumer } = React.createContext<MetaContextInterface>(META_DEFAULTS);

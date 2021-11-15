@@ -1,17 +1,14 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
 import React from "react";
 
-import "./scss/index.scss";
+import "./scss/index.module.scss";
 
-const Loader: React.SFC<{ full?: boolean }> = ({ full }) => {
+const Loader: React.FC<{ full?: boolean }> = ({ full }) => {
     const getHeight = () => {
         const headerHeight =
-            document.getElementById("header") &&
-            document.getElementById("header").offsetHeight;
+            document.getElementById("header") && document.getElementById("header").offsetHeight;
         const footerHeight =
-            document.getElementById("footer") &&
-            document.getElementById("footer").offsetHeight;
+            document.getElementById("footer") && document.getElementById("footer").offsetHeight;
         return window.innerHeight - headerHeight - footerHeight;
     };
 

@@ -1,6 +1,6 @@
 import { ApolloLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { ErrorResponse, onError } from "@apollo/link-error";
+import { ErrorResponse, onError } from "@apollo/client/link/error";
 import React from "react";
 
 export function getAuthToken(): string | null {
@@ -35,22 +35,26 @@ export const invalidTokenLinkWithTokenHandlerComponent = (
     const tokenExpirationHandler = (callback: any) => {
         tokenExpirationCallback = callback;
     };
+
     const extendedComponent = (props: any) => {
         return React.createElement(component, {
             ...props,
             tokenExpirationHandler,
         });
     };
+
     const link = onError((error: ResponseError) => {
         if (error.networkError && error.networkError.statusCode === 401) {
             tokenExpirationCallback();
         }
     });
+
     return { component: extendedComponent, link };
 };
 
 export const authLink = setContext((_, context) => {
     const authToken = getAuthToken();
+
     if (authToken) {
         return {
             ...context,

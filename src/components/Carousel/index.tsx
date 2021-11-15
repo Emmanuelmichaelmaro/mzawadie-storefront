@@ -1,10 +1,11 @@
+// @ts-nocheck
 import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
-import ReactSVG from "react-svg";
+import { ReactSVG } from "react-svg";
 
-import { mediumScreen, smallScreen } from "../../styles/scss/variables.scss";
-import "./scss/index.scss";
+import { largeScreen as mediumScreen, smallScreen } from "@next/styles/constants";
+import "./scss/index.module.scss";
 
 interface CarouselType extends CarouselProps {
     children: React.ReactNode;
@@ -14,13 +15,13 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
     const settings = {
         className: "carousel",
         renderBottomCenterControls: () => null,
-        renderCenterLeftControls: ({ previousSlide, currentSlide }) =>
+        renderCenterLeftControls: ({ previousSlide, currentSlide }: any) =>
             currentSlide !== 0 ? (
                 <div onClick={previousSlide} className="carousel__control carousel__control--left">
                     <ReactSVG path="../../images/carousel-arrow.svg" />
                 </div>
             ) : null,
-        renderCenterRightControls: ({ nextSlide, currentSlide, slideCount, slidesToShow }) =>
+        renderCenterRightControls: ({ nextSlide, currentSlide, slideCount, slidesToShow }: any) =>
             slideCount - slidesToShow !== currentSlide ? (
                 <div onClick={nextSlide} className="carousel__control carousel__control--right">
                     <ReactSVG path="../../images/carousel-arrow.svg" />
@@ -28,6 +29,7 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
             ) : null,
         ...rest,
     };
+
     return (
         <>
             <Media query={{ maxWidth: smallScreen }}>
