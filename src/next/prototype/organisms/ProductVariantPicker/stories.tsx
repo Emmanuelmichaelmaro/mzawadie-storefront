@@ -5,8 +5,10 @@ import styled from "styled-components";
 
 import ProductVariantPicker from "./ProductVariantPicker";
 import { productVariants } from "./fixtures";
+import { IntlProvider } from "react-intl";
 
 let portalRoot = document.getElementById("portal-root");
+
 if (!portalRoot) {
     portalRoot = document.createElement("div");
     portalRoot.setAttribute("id", "portal-root");
@@ -29,6 +31,9 @@ const PROPS = {
 
 storiesOf("@mzawadie/prototype/organisms/ProductVariantPicker", module)
     .addParameters({ component: ProductVariantPicker })
+    .addDecorator(story => (
+        <IntlProvider locale="en">{story()}</IntlProvider>
+    ))
     .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
     .add("with sidebar", () =>
         withContainer(

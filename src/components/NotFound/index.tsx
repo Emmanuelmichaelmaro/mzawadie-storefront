@@ -4,21 +4,21 @@ import React from "react";
 import { FormattedMessage } from "react-intl";
 
 import Button from "../Button";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface NotFoundProps {
     message?: string;
 }
 
 const NotFound: React.FC<NotFoundProps> = () => (
-    <div className="not-found-page">
-        <h2 className="not-found-page__header">
+    <div className={styles.not__found__page}>
+        <h2 className={styles.not__found__page__header}>
             <FormattedMessage defaultMessage="404" />
         </h2>
 
-        <div className="not-found-page__ruler" />
+        <div className={styles.not__found__page__ruler} />
 
-        <div className="not-found-page__message">
+        <div className={styles.not__found__page__message}>
             <p>
                 <FormattedMessage defaultMessage="We can’t seem to find a page you are looking for!" />{" "}
             </p>
@@ -30,7 +30,7 @@ const NotFound: React.FC<NotFoundProps> = () => (
             </p>
         </div>
 
-        <div className="not-found-page__button">
+        <div className={styles.not__found__page__button}>
             <Link href={paths.home}>
                 <a>
                     <Button testingContext="404pageGotoHomeButton" secondary>

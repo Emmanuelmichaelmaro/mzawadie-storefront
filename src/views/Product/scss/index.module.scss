@@ -1,6 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.product-page {
+.product__page {
     background-color: $white;
 
     .breadcrumbs {
@@ -44,7 +44,7 @@
                 }
             }
 
-            &--fixed {
+            &__fixed {
                 top: 0;
                 position: sticky;
                 width: auto;
@@ -69,7 +69,6 @@
                 width: 100%;
                 padding: 0;
                 margin-bottom: $spacer * 2;
-                padding: 0;
             }
 
             &__nav {

@@ -3,40 +3,13 @@
     "version": "1.0.0",
     "private": true,
     "author": "Emmanuel Maro <emmanuelmaro733@gmail.com>",
-    "browser": {
-        "fs": false,
-        "path": false,
-        "process": false,
-        "os": false
+    "license": "BSD-3-Clause",
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/Emmanuelmichaelmaro/mzawadie-storefront.git"
     },
-    "scripts": {
-        "dev": "next dev -p 9000",
-        "build": "next build",
-        "start": "next start -p 9000",
-        "lint": "next lint --fix --no-cache",
-        "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|scss)\"",
-        "prepare": "npm link @mzawadie/sdk && husky install",
-        "codegen-graphql": "graphql-codegen --config codegen.yml",
-        "codegen": "apollo codegen:generate --target=typescript --tagName=gql gqlTypes && npm run format",
-        "storybook": "start-storybook -p 6006",
-        "build-storybook": "build-storybook",
-        "generate": "plop",
-        "extract-json-messages": "rimraf dist/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /Projects/mzawadie/mzawadie-storefront/dev/null",
-        "transpile-messages": "node scripts/transpile-tx.js",
-        "extract-messages": "npm run extract-json-messages && npm run transpile-messages"
-    },
-    "lint-staged": {
-        "*.+(ts|tsx|js|jsx)": [
-            "eslint 'src/**/*.{ts,tsx,js,jsx}' --quiet --fix",
-            "git add"
-        ],
-        "*.+(json|css|md)": [
-            "prettier --write",
-            "git add"
-        ],
-        "*.+(ts|tsx|js|jsx|json|yml|yaml|css|md|html)": "prettier --write",
-        "*.js": "eslint --cache --fix",
-        "*.+(ts|tsx|js|jsx|json|yml|yaml|css)": "prettier --write"
+    "bugs": {
+        "url": "https://github.com/Emmanuelmichaelmaro/mzawadie-storefront/issues"
     },
     "dependencies": {
         "@apollo/client": "^3.4.17",
@@ -110,6 +83,9 @@
         "@storybook/addon-essentials": "^6.3.12",
         "@storybook/addon-links": "^6.3.12",
         "@storybook/addon-postcss": "^2.0.0",
+        "@storybook/addon-viewport": "^6.3.12",
+        "@storybook/builder-webpack5": "^6.3.12",
+        "@storybook/manager-webpack5": "^6.3.12",
         "@storybook/preset-scss": "^1.0.3",
         "@storybook/preset-typescript": "^3.0.0",
         "@storybook/react": "^6.3.12",
@@ -130,6 +106,7 @@
         "babel-plugin-react-intl": "^7.9.4",
         "babel-plugin-react-intl-auto": "^3.3.0",
         "babel-plugin-styled-components": "^1.13.3",
+        "babel-preset-react-app": "^10.0.0",
         "css-loader": "^4.3.0",
         "duplicate-package-checker-webpack-plugin": "^3.0.0",
         "eslint": "^7.32.0",
@@ -153,6 +130,7 @@
         "react-is": "^16.12.0",
         "rimraf": "^3.0.2",
         "sass-loader": "^10.1.1",
+        "storybook-addon-next-router": "^3.0.8",
         "style-loader": "^2.0.0",
         "tailwindcss": "^2.2.17",
         "tsconfig-paths-webpack-plugin": "^3.5.2",
@@ -161,5 +139,39 @@
         "webp-loader": "^0.6.0",
         "webpack-bundle-analyzer": "^4.5.0",
         "workbox-webpack-plugin": "^6.3.0"
+    },
+    "browser": {
+        "fs": false,
+        "path": false,
+        "process": false,
+        "os": false
+    },
+    "scripts": {
+        "dev": "next dev -p 9000",
+        "build": "next build",
+        "start": "next start -p 9000",
+        "lint": "next lint --fix --no-cache",
+        "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|scss)\"",
+        "prepare": "npm link @mzawadie/sdk && husky install",
+        "codegen": "apollo codegen:generate --target=typescript --tagName=gql gqlTypes && npm run format",
+        "generate": "plop",
+        "extract-json-messages": "rimraf dist/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /Projects/mzawadie/mzawadie-storefront/dev/null",
+        "transpile-messages": "node scripts/transpile-tx.js",
+        "extract-messages": "npm run extract-json-messages && npm run transpile-messages",
+        "storybook": "start-storybook -p 6006 -s ./public",
+        "build-storybook": "build-storybook -s public -w"
+    },
+    "lint-staged": {
+        "*.+(ts|tsx|js|jsx)": [
+            "eslint 'src/**/*.{ts,tsx,js,jsx}' --quiet --fix",
+            "git add"
+        ],
+        "*.+(json|css|md)": [
+            "prettier --write",
+            "git add"
+        ],
+        "*.+(ts|tsx|js|jsx|json|yml|yaml|css|md|html)": "prettier --write",
+        "*.js": "eslint --cache --fix",
+        "*.+(ts|tsx|js|jsx|json|yml|yaml|css)": "prettier --write"
     }
 }

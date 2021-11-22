@@ -1,11 +1,15 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
-import { ProductList } from "./index";
 import { PRODUCTS } from "./fixtures";
+import { ProductList } from "./index";
 
 storiesOf("@mzawadie/prototype/organisms/ProductList", module)
     .addParameters({ component: ProductList })
+    .addDecorator(story => (
+        <IntlProvider locale="en">{story()}</IntlProvider>
+    ))
     .add("default", () => (
         <ProductList
             products={PRODUCTS}

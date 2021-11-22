@@ -15,7 +15,7 @@ module.exports = (plop) => {
                 type: "list",
                 name: "componentType",
                 message: "Choose component type",
-                choices: getDirectories("src/prototype"),
+                choices: getDirectories("src/next/prototype"),
             },
             {
                 type: "input",
@@ -24,7 +24,7 @@ module.exports = (plop) => {
             },
         ],
         actions: (data) => {
-            const path = `src/prototype/${data.componentType}/`;
+            const path = `src/next/prototype/${data.componentType}/`;
             return [
                 {
                     type: "add",

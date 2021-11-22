@@ -4,7 +4,7 @@ import React from "react";
 
 import { NavLink, OverlayContextInterface } from "..";
 import NavItem from "./NavItem";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface NavDropdownProps extends MenuItem {
     overlay: OverlayContextInterface;
@@ -19,8 +19,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = (props) => {
     return (
         <ul
             className={classNames({
-                "main-menu__nav-dropdown": true,
-                "main-menu__nav-dropdown--active": showDropdown,
+                [styles.main__menu__nav__dropdown]: true,
+                [styles.main__menu__nav__dropdown__active]: showDropdown,
             })}
             onMouseOver={onShowDropdown}
             onMouseLeave={onHideDropdown}
@@ -31,8 +31,8 @@ export const NavDropdown: React.FC<NavDropdownProps> = (props) => {
 
             <li
                 className={classNames({
-                    "main-menu__nav-dropdown__body": true,
-                    "main-menu__nav-dropdown__body--visible": showDropdown,
+                    [styles.main__menu__nav__dropdown__body]: true,
+                    [styles.main__menu__nav__dropdown__body__visible]: showDropdown,
                 })}
             >
                 <ul>

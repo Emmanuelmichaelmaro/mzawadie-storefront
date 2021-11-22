@@ -2,15 +2,15 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { AddToCartButton } from "./index";
 import { IAddToCartButton } from "./AddToCartButton";
+import { AddToCartButton } from "./index";
 
 const DEFAULT_PROPS: IAddToCartButton = {
     disabled: false,
     onSubmit: () => undefined,
 };
 
-storiesOf("@components/molecules/AddToCartButton", module)
+storiesOf("@mzawadie/prototype/molecules/AddToCartButton", module)
     .addParameters({ component: AddToCartButton })
     .addDecorator((story) => <IntlProvider locale="en">story()</IntlProvider>)
     .add("default", () => <AddToCartButton {...DEFAULT_PROPS} />)

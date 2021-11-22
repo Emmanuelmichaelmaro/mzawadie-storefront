@@ -1,17 +1,18 @@
 // @ts-nocheck
-import { generateCategoryUrl, generateProductUrl, paths } from "@mzawadie/core";
+import { generateCategoryUrl, generateProductUrl } from "@mzawadie/core";
 import { ProductDescription } from "@mzawadie/prototype/molecules";
 import { ProductGallery } from "@mzawadie/prototype/organisms";
 import AddToCartSection from "@mzawadie/prototype/organisms/AddToCartSection";
 import { ProductDetails } from "@mzawadie/sdk/lib/fragments/gqlTypes/ProductDetails";
+import { smallScreen } from "@next/styles/constants";
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
 
 import { Breadcrumbs, OverlayContext, OverlayTheme, OverlayType } from "../../components";
-import { smallScreen } from "@next/styles/constants";
 import GalleryCarousel from "./GalleryCarousel";
 import OtherProducts from "./Other";
+import styles from "./scss/index.module.scss";
 import { IProps } from "./types";
 
 const populateBreadcrumbs = (product: ProductDetails) => [
@@ -72,35 +73,41 @@ const Page: React.FC<
     );
 
     return (
-        <div className="product-page">
-            <div className="container">
+        <div className={styles.product__page}>
+            <div className={styles.container}>
                 <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
             </div>
-            <div className="container">
-                <div className="product-page__product">
+
+            <div className={styles.container}>
+                <div className={styles.product__page__product}>
                     {/*<script className="structured-data-list" type="application/ld+json">*/}
                     {/*    {structuredData(product)}*/}
                     {/*</script>*/}
+
                     <Media query={{ maxWidth: smallScreen }}>
                         {(matches) =>
                             matches ? (
                                 <>
                                     <GalleryCarousel images={getImages()} />
-                                    <div className="product-page__product__info">
+
+                                    <div className={styles.product__page__product__info}>
                                         {addToCartSection}
                                     </div>
                                 </>
                             ) : (
                                 <>
                                     <div
-                                        className="product-page__product__gallery"
+                                        className={styles.product__page__product__gallery}
                                         ref={productGallery}
                                     >
                                         <ProductGallery images={getImages()} />
                                     </div>
-                                    <div className="product-page__product__info">
+
+                                    <div className={styles.product__page__product__info}>
                                         <div
-                                            className={classNames("product-page__product__info--fixed")}
+                                            className={classNames([
+                                                styles.product__page__product__info__fixed,
+                                            ])}
                                         >
                                             {addToCartSection}
                                         </div>
@@ -111,14 +118,16 @@ const Page: React.FC<
                     </Media>
                 </div>
             </div>
-            <div className="container">
-                <div className="product-page__product__description">
+
+            <div className={styles.container}>
+                <div className={styles.product__page__product__description}>
                     <ProductDescription
                         description={product.description}
                         attributes={product.attributes}
                     />
                 </div>
             </div>
+
             <OtherProducts products={product.category.products.edges} />
         </div>
     );

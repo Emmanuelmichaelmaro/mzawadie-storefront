@@ -44,7 +44,9 @@ module.exports = (nextConfig = {}, { nextComposePlugins, phase }) => {
                 );
             }
 
-            return typeof nextConfig.webpack === "function" ? nextConfig.webpack(config, options) : config;
+            return typeof nextConfig.webpack === "function"
+                ? nextConfig.webpack(config, options)
+                : config;
         },
     };
 };

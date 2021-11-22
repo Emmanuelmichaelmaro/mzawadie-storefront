@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unused-state */
 // @ts-nocheck
+import { ssrMode } from "@mzawadie/core";
 import * as React from "react";
 
 import {
@@ -9,7 +10,6 @@ import {
     OverlayTheme,
     OverlayType,
 } from "./context";
-import { ssrMode } from "@mzawadie/core";
 
 class Provider extends React.Component<{ pathname: string }, OverlayContextInterface> {
     notificationCloseDelay = 2500;
@@ -33,7 +33,9 @@ class Provider extends React.Component<{ pathname: string }, OverlayContextInter
 
     show = (type: OverlayType, theme?: OverlayTheme, context?: InnerOverlayContextInterface) => {
         this.setState({ type, theme, context });
-        !ssrMode ? document.body.style.overflow = type !== OverlayType.message ? "hidden" : "" : undefined;
+        !ssrMode
+            ? (document.body.style.overflow = type !== OverlayType.message ? "hidden" : "")
+            : undefined;
         if (type === OverlayType.message) {
             setTimeout(this.hide, this.notificationCloseDelay);
         }
@@ -41,7 +43,7 @@ class Provider extends React.Component<{ pathname: string }, OverlayContextInter
 
     hide = () => {
         this.setState({ type: null });
-        !ssrMode ? document.body.style.overflow = "" : undefined;
+        !ssrMode ? (document.body.style.overflow = "") : undefined;
     };
 
     render() {

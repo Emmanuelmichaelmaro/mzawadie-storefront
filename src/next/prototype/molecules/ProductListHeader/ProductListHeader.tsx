@@ -47,7 +47,9 @@ export const ProductListHeader: React.FC<IProps> = ({
                             <DropdownSelect
                                 onChange={onChange}
                                 options={sortOptions}
-                                value={sortOptions.find((option: any) => option.value === activeSortOption)}
+                                value={sortOptions.find(
+                                    (option: any) => option.value === activeSortOption
+                                )}
                             />
                         </S.Sort>
                     </S.Element>

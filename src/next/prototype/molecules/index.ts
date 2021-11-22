@@ -11,3 +11,4 @@ export * from "./TextField";
 export * from "./InputSelect";
 export * from "./AddToCartButton";
 export * from "./QuantityInput";
+export * from "./CartSummaryRow";

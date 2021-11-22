@@ -5,7 +5,7 @@ import { IFilters } from "@next/types";
 import { FilterQuerySet, SORT_OPTIONS } from "@next/utils/collections";
 import { NextPage } from "next";
 import React from "react";
-import { StringParam, useQueryParam } from "use-query-params";
+import { StringParam, useQueryParam, withDefault } from "use-query-params";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -19,8 +19,9 @@ export type CollectionViewProps = {
 };
 
 export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection }) => {
-    const [sort, setSort] = useQueryParam("sortBy", StringParam);
-    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", FilterQuerySet);
+    const [sort, setSort] = useQueryParam("sortBy", withDefault(StringParam, ""));
+    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", withDefault(FilterQuerySet, ""));
+
     const filters: IFilters = {
         attributes: attributeFilters,
         pageSize: PRODUCTS_PER_PAGE,
@@ -32,6 +33,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
     const { data, loadMore, loading } = useProductsQuery(filters, {
         collectionId: collection?.id,
     });
+
     const [products, pageInfo, numberOfProducts] = React.useMemo(
         () => [
             data?.products?.edges.map((e) => e.node) || [],
@@ -66,8 +68,8 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
                     collection ? (
                         <MetaWrapper
                             meta={{
-                                description: collection.details.seoDescription,
-                                title: collection.details.seoTitle,
+                                description: collection?.details.seoDescription,
+                                title: collection?.details.seoTitle,
                                 type: "product.collection",
                             }}
                         >
@@ -76,7 +78,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
                                 clearFilters={handleClearFilters}
                                 collection={collection}
                                 displayLoader={loading}
-                                hasNextPage={!!pageInfo?.hasNextPage}
+                                hasNextPage={pageInfo?.hasNextPage}
                                 sortOptions={SORT_OPTIONS}
                                 activeSortOption={filters.sortBy}
                                 filters={filters}

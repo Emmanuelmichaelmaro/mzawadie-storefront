@@ -39,7 +39,7 @@ const Modal: React.FC<IModalProps> = ({
                       <div className="modal">
                           <div className="modal__title">
                               <p>{title}</p>
-                              <ReactSVG path={closeImg} className="modal__close" onClick={hide} />
+                              <ReactSVG src={closeImg} className="modal__close" onClick={hide} />
                           </div>
 
                           <div className="modal__content">{children}</div>

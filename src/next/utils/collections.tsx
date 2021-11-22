@@ -51,6 +51,7 @@ export const FilterQuerySet = {
 
     decode(strValue: string) {
         const obj: UnknownObject<string[]> = {};
+        if (strValue === undefined) return obj;
         const propsWithValues = strValue.split(".").filter((n) => n);
         propsWithValues.map((value) => {
             const propWithValues = value.split("_").filter((n) => n);

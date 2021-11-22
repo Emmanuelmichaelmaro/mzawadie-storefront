@@ -17,38 +17,38 @@ export const Primary = styled.button<{
     fullWidth?: boolean;
     size: Size;
 }>`
-  background-color: ${(props) => props.theme.button.colors[props.color].background};
-  padding: ${(props) => padding[props.size]};
-  border: none;
-  transition: 0.3s;
-  outline: none;
-  cursor: pointer;
-  color: ${(props) => props.theme.button.colors[props.color].color};
-  width: ${(props) => (props.fullWidth ? "100%" : "auto")}
+    background-color: ${(props) => props.theme.button.colors[props.color].background};
+    padding: ${(props) => padding[props.size]};
+    border: none;
+    transition: 0.3s;
+    outline: none;
+    cursor: pointer;
+    color: ${(props) => props.theme.button.colors[props.color].color};
+    width: ${(props) => (props.fullWidth ? "100%" : "auto")}
 
-  &:hover {
-    background-color: ${(props) => props.theme.button.colors[props.color].hoverBackground};
-    color: ${(props) => props.theme.button.colors[props.color].hoverColor};
-  }
-
-  &:active {
-    background-color: ${(props) => props.theme.button.colors[props.color].activeBackground};
-    box-shadow: -3px 3px 14px 0px rgba(129, 67, 67, 0.2);
-  }
-
-  &:disabled {
-    background-color: ${(props) => props.theme.colors.disabled};
-
-    &,
     &:hover {
-      cursor: default;
+        background-color: ${(props) => props.theme.button.colors[props.color].hoverBackground};
+        color: ${(props) => props.theme.button.colors[props.color].hoverColor};
     }
-  }
 
-  ${media.smallScreen`
+    &:active {
+        background-color: ${(props) => props.theme.button.colors[props.color].activeBackground};
+        box-shadow: -3px 3px 14px 0px rgba(129, 67, 67, 0.2);
+    }
+
+    &:disabled {
+        background-color: ${(props) => props.theme.colors.disabled};
+
+        &,
+        &:hover {
+            cursor: default;
+        }
+    }
+
+    ${media.smallScreen`
     padding:  0.9rem 1rem;
     width: ${(props: { fullWidth: boolean }) => (props.fullWidth ? "100%" : "88%")};
-  `}
+    `}
 `;
 
 export const Secondary = styled(Primary)`

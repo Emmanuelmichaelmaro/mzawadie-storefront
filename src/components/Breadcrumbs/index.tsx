@@ -1,24 +1,24 @@
-import { commonMessages, generateCategoryUrl, paths } from "@mzawadie/core";
+import { commonMessages, generateCategoryUrl, generateCollectionUrl, paths } from "@mzawadie/core";
 import { CategoryDetails } from "@mzawadie/sdk/lib/fragments/gqlTypes/CategoryDetails";
+import { smallScreen } from "@next/styles/constants";
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 
-import { smallScreen } from "@next/styles/constants";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 export interface Breadcrumb {
     value: string;
     link: string;
 }
 
-type BreadcrumbCategory = Pick<CategoryDetails, "id" | "slug" | "name">;
+type BreadcrumbCategory = Pick<CategoryDetails, "__typename" | "id" | "slug" | "name">;
 
 export const extractBreadcrumbs = (category: BreadcrumbCategory, ancestors?: BreadcrumbCategory[]) => {
-    const constructLink = ({ id, slug, name }: BreadcrumbCategory) => ({
-        link: generateCategoryUrl(id, slug),
+    const constructLink = ({ id, slug, name, __typename }: BreadcrumbCategory) => ({
+        link: __typename === "Category" ? generateCategoryUrl(id, slug) : generateCollectionUrl(id, slug),
         value: name,
     });
 
@@ -45,7 +45,7 @@ const Breadcrumbs: React.FC<{
     >
         {(matches) =>
             matches ? (
-                <ul className="breadcrumbs">
+                <ul className={styles.breadcrumbs}>
                     <li>
                         <Link href={paths.home}>
                             <a>
@@ -68,7 +68,7 @@ const Breadcrumbs: React.FC<{
                     ))}
                 </ul>
             ) : (
-                <div className="breadcrumbs">
+                <div className={styles.breadcrumbs}>
                     <Link href={getBackLink(breadcrumbs)}>
                         <a>
                             <FormattedMessage defaultMessage="Back" />

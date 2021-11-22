@@ -1,8 +1,8 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { ProductTile } from "./index";
 import { PRODUCT } from "./fixtures";
+import { ProductTile } from "./index";
 
 storiesOf("@mzawadie/prototype/molecules/ProductTile", module)
     .addParameters({ component: ProductTile })

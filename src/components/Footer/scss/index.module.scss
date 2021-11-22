@@ -22,13 +22,13 @@
             }
         }
 
-        &-section {
-            &-header {
+        &__section {
+            &__header {
                 font-weight: $bold-font-weight;
                 margin-bottom: $spacer;
             }
 
-            &-content {
+            &__content {
                 p {
                     font-weight: $bold-font-weight;
                     margin-bottom: $spacer;
@@ -44,7 +44,7 @@
         }
     }
 
-    &-nav {
+    &__nav {
         background-color: $gray-light;
         padding: $spacer * 3 0 $spacer * 2;
 
@@ -58,13 +58,13 @@
         }
 
         &__section {
-            &-header {
+            &__header {
                 font-weight: $bold-font-weight;
                 margin-bottom: $spacer;
                 text-transform: uppercase;
             }
 
-            &-content {
+            &__content {
                 p {
                     margin-bottom: $spacer;
                     font-size: $small-font-size;

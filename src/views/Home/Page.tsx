@@ -9,7 +9,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { Button, ProductsFeatured } from "../../components";
 import noPhotoImg from "../../images/no-photo.svg";
 import { HomePageProducts_categories, HomePageProducts_shop } from "./gqlTypes/HomePageProducts";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 const Page: React.FC<{
     categories: HomePageProducts_categories | null;
@@ -25,7 +25,7 @@ const Page: React.FC<{
     return (
         <>
             <div
-                className="home-page__hero"
+                className={styles.home__page__hero}
                 style={
                     featuredProducts.backgroundImage
                         ? {
@@ -34,9 +34,9 @@ const Page: React.FC<{
                         : null
                 }
             >
-                <div className="home-page__hero-text">
+                <div className={styles.home__page__hero__text}>
                     <div>
-                        <span className="home-page__hero__title">
+                        <span className={styles.home__page__hero__title}>
                             <h1>
                                 <FormattedMessage defaultMessage="Final reduction" />
                             </h1>
@@ -44,7 +44,7 @@ const Page: React.FC<{
                     </div>
 
                     <div>
-                        <span className="home-page__hero__title">
+                        <span className={styles.home__page__hero__title}>
                             <h1>
                                 <FormattedMessage defaultMessage="Up to 70% off sale" />
                             </h1>
@@ -52,7 +52,7 @@ const Page: React.FC<{
                     </div>
                 </div>
 
-                <div className="home-page__hero-action">
+                <div className={styles.home__page__hero__action}>
                     {categoriesExist() && (
                         <Link
                             href={generateCategoryUrl(
@@ -76,13 +76,13 @@ const Page: React.FC<{
             />
 
             {categoriesExist() && (
-                <div className="home-page__categories">
+                <div className={styles.home__page__categories}>
                     <div className="container">
                         <h3>
                             <FormattedMessage defaultMessage="Shop by category" />
                         </h3>
 
-                        <div className="home-page__categories__list">
+                        <div className={styles.home__page__categories__list}>
                             {categories?.edges.map(({ node: category }) => (
                                 <div key={category.id}>
                                     <Link
@@ -92,9 +92,9 @@ const Page: React.FC<{
                                         <a>
                                             <div
                                                 className={classNames(
-                                                    "home-page__categories__list__image",
+                                                    [styles.home__page__categories__list__image],
                                                     {
-                                                        "home-page__categories__list__image--no-photo":
+                                                        [styles.home__page__categories__list__image__nophoto]:
                                                             !category.backgroundImage,
                                                     }
                                                 )}

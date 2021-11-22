@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 
 import { Carousel, ProductListItem } from "..";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface ProductsFeaturedProps {
     title?: string;
@@ -13,9 +13,10 @@ interface ProductsFeaturedProps {
 
 export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title, products }) =>
     products?.length ? (
-        <div className="products-featured">
-            <div className="container">
+        <div className={styles.products__featured}>
+            <div className={styles.container}>
                 <h3>{title}</h3>
+
                 <Carousel>
                     {products.map((product) => (
                         <Link href={generateProductUrl(product.id, product.slug)} key={product.id}>

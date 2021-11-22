@@ -3,20 +3,20 @@ import { ShopMenusQuery } from "@next/graphql/gqlTypes/ShopMenusQuery";
 import React from "react";
 
 import { NavLink } from "..";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 export type NavProps = { menu: ShopMenusQuery["footer"] };
 
 export const Nav: React.FC<NavProps> = ({ menu }) => (
-    <footer className="footer-nav">
-        <div className="container">
+    <footer className={styles.footer__nav}>
+        <div className={styles.container}>
             {menu?.items.map((item) => (
-                <div className="footer-nav__section" key={item.id}>
-                    <h4 className="footer-nav__section-header">
+                <div className={styles.footer__nav__section} key={item.id}>
+                    <h4 className={styles.footer__nav__section__header}>
                         <NavLink item={item} />
                     </h4>
 
-                    <div className="footer-nav__section-content">
+                    <div className={styles.footer__nav__section__content}>
                         {item.children.map((subItem) => (
                             <p key={subItem.id}>
                                 <NavLink item={subItem} />

@@ -1,4 +1,3 @@
-# Ignore artifacts:
 **/coverage/*
 **/dist/*
 **/public/*
@@ -6,7 +5,8 @@
 **/node_modules/*
 **/out/*
 **/.next/*
-**/.storybook/*
+/* **/.storybook/* */
+**/storybook-static/*
 **/.github/*
 
 # Ignore all HTML files:

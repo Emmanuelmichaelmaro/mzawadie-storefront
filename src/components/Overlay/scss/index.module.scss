@@ -11,19 +11,19 @@
     width: 100%;
     z-index: 2;
 
-    &--search,
-    &--main-menu-nav {
+    &__search,
+    &__main__menu__nav {
         top: 3.55rem;
     }
 
-    &--search {
+    &__search {
         .overlay__right {
             background-color: transparent;
             height: auto;
         }
     }
 
-    &--no-background {
+    &__no__background {
         background-color: transparent;
     }
 
@@ -53,16 +53,16 @@
         justify-content: space-between;
         text-transform: uppercase;
 
-        &-text {
+        &__text {
             margin: 0 $spacer;
             text-align: center;
 
-            &-items {
+            &__items {
                 color: $gray;
             }
         }
 
-        &__close-icon {
+        &__close__icon {
             cursor: pointer;
             margin: 0 $spacer;
 
@@ -79,7 +79,7 @@
             }
         }
 
-        &__cart-icon {
+        &__cart__icon {
             margin: 0 $spacer;
 
             div {

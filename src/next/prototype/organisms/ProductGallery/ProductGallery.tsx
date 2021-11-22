@@ -74,6 +74,7 @@ export const ProductGallery: React.FC<IProps> = ({ images }: IProps) => {
                         <Icon name="select_arrow" size={10} />
                     </S.TopButton>
                 )}
+
                 {!bottomImageInView && displayButtons && (
                     <S.BottomButton
                         onClick={() => {

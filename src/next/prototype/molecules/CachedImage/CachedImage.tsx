@@ -23,6 +23,7 @@ export const CachedImage: React.FC<IImage> = ({
 
     async function updateAvailability() {
         let _isUnavailable = false;
+
         if ("caches" in window) {
             if (!online) {
                 const match = await window.caches.match(url!);
@@ -46,11 +47,12 @@ export const CachedImage: React.FC<IImage> = ({
     }
 
     return (
-        <Image
+        <img
             {...props}
             src={url}
             srcSet={url2x ? `${url} 1x, ${url2x} 2x` : `${url} 1x`}
             alt={alt}
+            // layout="fill"
             // navigator.onLine is not always accurate
             onError={() => setUnavailable(true)}
         />

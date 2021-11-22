@@ -45,7 +45,8 @@ export const FilterSidebar: React.FC<IProps> = ({
                     />
                 </S.Header>
                 {attributes.map(({ id, slug, name, choices }) => {
-                    const values = (choices?.edges.map(({ node }: any) => node) || []) as IFilterAttribute[];
+                    const values = (choices?.edges.map(({ node }: any) => node) ||
+                        []) as IFilterAttribute[];
 
                     return (
                         <AttributeValuesChecklist

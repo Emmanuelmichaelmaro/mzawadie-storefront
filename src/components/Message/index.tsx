@@ -17,7 +17,7 @@ const Message: React.FC<MessageProps> = ({ title, status = "neutral", children, 
 
         {children ? <div className="message__content">{children}</div> : null}
 
-        <ReactSVG path={closeImg} className="message__close-icon" onClick={onClose} />
+        <ReactSVG src={closeImg} className="message__close-icon" onClick={onClose} />
     </div>
 );
 

@@ -6,7 +6,7 @@
         background-color: $white;
         box-shadow: $carousel-control-shadow;
 
-        &--right {
+        &__right {
             margin-right: -1.3rem;
 
             @media (max-width: $container-width) {
@@ -19,7 +19,7 @@
             }
         }
 
-        &--left {
+        &__left {
             margin-left: -1.3rem;
 
             @media (max-width: $container-width) {
@@ -32,7 +32,7 @@
         }
     }
 
-    .slider-slide {
+    .slider__slide {
         text-align: center;
     }
 }

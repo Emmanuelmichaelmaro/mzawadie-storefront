@@ -51,7 +51,7 @@ class Login extends React.Component<
                             </p>
 
                             <ReactSVG
-                                path={closeImg}
+                                src={closeImg}
                                 onClick={hide}
                                 className="overlay__header__close-icon"
                             />

@@ -15,10 +15,14 @@ package-lock.json
 
 # production
 /build
+/dist
 
 # misc
 .DS_Store
 *.pem
+
+# Storybook
+/storybook-static
 
 # debug
 npm-debug.log*
@@ -60,6 +64,16 @@ yarn-error.log*
 # Editor-based Rest Client
 .idea/httpRequests
 
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# Local History for Visual Studio Code
+.history/
+
 !.dockerignore
 !.storybook
 !.circle
@@ -78,3 +92,4 @@ yarn-error.log*
 schema.graphql
 
 **/graphql/*
+**/gqlTypes/*

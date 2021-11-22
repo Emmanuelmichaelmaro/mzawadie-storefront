@@ -1,6 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.product-list-item {
+.product__list__item {
     text-align: center;
 
     &__title {
@@ -10,7 +10,7 @@
         text-align: left;
     }
 
-    &__undiscounted_price {
+    &__undiscounted__price {
         text-decoration: line-through;
         color: $gray;
         font-size: $small-font-size;

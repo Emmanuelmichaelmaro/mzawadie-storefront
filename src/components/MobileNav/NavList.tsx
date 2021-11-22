@@ -66,7 +66,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 {parent ? (
                     <li className="side-nav__menu-item side-nav__menu-item-back">
                         <span onClick={this.handleGoBack}>
-                            <ReactSVG path={backImg} /> {parent.name}
+                            <ReactSVG src={backImg} /> {parent.name}
                         </span>
                     </li>
                 ) : (
@@ -74,7 +74,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                         <li className="side-nav__menu-item side-nav__menu-item--parent">
                             <Link href={paths.home}>
                                 <a className="side-nav__menu-item-logo">
-                                    <ReactSVG path={logoImg} onClick={hideOverlay} />
+                                    <ReactSVG src={logoImg} onClick={hideOverlay} />
                                 </a>
                             </Link>
 

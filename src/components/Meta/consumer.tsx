@@ -16,6 +16,7 @@ const Consumer: React.FC<{ children?: React.ReactNode }> = ({ children }) => (
                     <meta property="og:type" content={type} />
                     <meta property="og:image" content={image} />
                     {/*[{...custom}]*/}
+                    {/*{console.log(custom)}*/}
                 </Head>
                 {children}
             </>

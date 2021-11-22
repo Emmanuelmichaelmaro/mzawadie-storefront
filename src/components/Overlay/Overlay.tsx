@@ -3,7 +3,7 @@ import classNames from "classnames";
 import * as React from "react";
 
 import { OverlayContextInterface } from "./context";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface OverlayProps {
     context: OverlayContextInterface;
@@ -22,14 +22,14 @@ const Overlay: React.FC<OverlayProps> = ({
     testingContext,
 }) => (
     <div
-        className={classNames("overlay", {
-            [`overlay--${type}`]: !!type,
+        className={classNames([styles.overlay], {
+            [styles[`overlay__${type}`]]: !!type,
             [className]: !!className,
         })}
         data-test={testingContext}
         onClick={hide}
     >
-        <div className={`overlay__${theme}`} onClick={(e) => e.stopPropagation()}>
+        <div className={styles[`overlay__${theme}`]} onClick={(e) => e.stopPropagation()}>
             {children}
         </div>
     </div>

@@ -1,10 +1,11 @@
+import { mediumScreen } from "@next/styles/constants";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";
 
-import LogoSmall from "../../../../images/logo-small.svg";
+// @ts-ignore
+import LogoSmall from "images/logo-small.svg";
 import * as S from "./styles";
-import { mediumScreen } from "@next/styles/constants";
 
 export const DemoBanner: React.FC = () => {
     return (
@@ -12,7 +13,7 @@ export const DemoBanner: React.FC = () => {
             <S.BorderedWrapper>
                 {/* eslint-disable-next-line react/jsx-no-target-blank */}
                 <a target="_blank" href="https://saleor.io/">
-                    <S.LogoWrapper path={LogoSmall} />
+                    <S.LogoWrapper src={LogoSmall} />
                 </a>
 
                 <S.LinkList>

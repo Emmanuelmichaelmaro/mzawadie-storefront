@@ -2,8 +2,8 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { QuantityInput } from "./index";
 import { IQuantityInput } from "./QuantityInput";
+import { QuantityInput } from "./index";
 
 const DEFAULT_PROPS: IQuantityInput = {
     quantity: 1,
@@ -14,7 +14,7 @@ const DEFAULT_PROPS: IQuantityInput = {
     testingContext: "QuantityInput",
 };
 
-storiesOf("@components/molecules/QuantityInput", module)
+storiesOf("@mzawadie/prototype/molecules/QuantityInput", module)
     .addParameters({ component: QuantityInput })
     .addDecorator((story) => <IntlProvider locale="en">story()</IntlProvider>)
     .add("default", () => <QuantityInput {...DEFAULT_PROPS} />)

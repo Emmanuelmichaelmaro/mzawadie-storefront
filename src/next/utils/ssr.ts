@@ -25,7 +25,7 @@ export const getMzawadieApi = async () => {
     if (!CONNECTION) {
         const manager = new MzawadieManager(
             { apiUrl, channel: channelSlug },
-            { options: { ssrMode: true } }
+            { options: { ssrMode: true, connectToDevTools: true } }
         );
         CONNECTION = await manager.connect();
     }

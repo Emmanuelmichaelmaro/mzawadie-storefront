@@ -3,10 +3,11 @@ import { styled } from "@next/styles";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import { ProductGallery } from "./index";
 import { eightImages, oneImage, threeImages } from "./fixtures";
+import { ProductGallery } from "./index";
 
 const Container = styled.div``;
+
 storiesOf("@mzawadie/prototype/organisms/ProductGallery", module)
     .addParameters({ component: ProductGallery })
     .add("default", () => <ProductGallery images={oneImage} />)

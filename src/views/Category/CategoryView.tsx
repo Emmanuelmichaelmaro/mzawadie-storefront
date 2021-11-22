@@ -5,7 +5,7 @@ import { IFilters } from "@next/types";
 import { FilterQuerySet } from "@next/utils/collections";
 import { NextPage } from "next";
 import React, { useMemo } from "react";
-import { StringParam, useQueryParam } from "use-query-params";
+import { StringParam, useQueryParam, withDefault } from "use-query-params";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
@@ -19,8 +19,9 @@ export type CategoryViewProps = {
 };
 
 export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) => {
-    const [sort, setSort] = useQueryParam("sortBy", StringParam);
-    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", FilterQuerySet);
+    const [sort, setSort] = useQueryParam("sortBy", withDefault(StringParam, ""));
+    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", withDefault(FilterQuerySet, ""));
+
     const filters: IFilters = {
         attributes: attributeFilters,
         pageSize: PRODUCTS_PER_PAGE,
@@ -32,6 +33,7 @@ export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) =>
     const { data, loadMore, loading } = useProductsQuery(filters, {
         categoryId: category?.id,
     });
+
     const [products, pageInfo, numberOfProducts] = useMemo(
         () => [
             data?.products?.edges.map((e) => e.node) || [],
@@ -66,8 +68,8 @@ export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) =>
                     category ? (
                         <MetaWrapper
                             meta={{
-                                description: category.details.seoDescription,
-                                title: category.details.seoTitle,
+                                description: category?.details.seoDescription,
+                                title: category?.details.seoTitle,
                                 type: "product.category",
                             }}
                         >
@@ -76,7 +78,7 @@ export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) =>
                                 category={category}
                                 products={products}
                                 displayLoader={loading}
-                                hasNextPage={!!pageInfo?.hasNextPage}
+                                hasNextPage={pageInfo?.hasNextPage}
                                 numberOfProducts={numberOfProducts}
                                 activeSortOption={filters.sortBy}
                                 filters={filters}

@@ -1,7 +1,7 @@
+import { smallScreen } from "@next/styles/constants";
 import * as React from "react";
 import Media from "react-media";
 
-import { smallScreen } from "@next/styles/constants";
 import CostRow from "./CostRow";
 import ProductRow, { EditableProductRowProps, LineI } from "./ProductRow";
 import "./scss/index.module.scss";

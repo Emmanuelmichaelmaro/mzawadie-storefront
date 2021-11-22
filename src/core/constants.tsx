@@ -13,7 +13,7 @@ export const incrementalStaticRegenerationRevalidate = parseInt(
     10
 );
 
-export const staticPathsFetchBatch = 50;
+export const staticPathsFetchBatch = 10;
 
 export const staticPathsFallback = (
     exportMode ? false : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK

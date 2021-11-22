@@ -18,7 +18,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) =
                     </p>
 
                     <ReactSVG
-                        path={closeImg}
+                        src={closeImg}
                         onClick={overlay.hide}
                         className="overlay__header__close-icon"
                     />

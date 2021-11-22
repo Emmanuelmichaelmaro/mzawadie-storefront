@@ -14,26 +14,26 @@ import { positions, Provider as AlertProvider } from "react-alert";
 import { ThemeProvider } from "styled-components";
 
 import { version } from "../../package.json";
-import "../globalStyles/scss/index.scss";
+import styles from "../globalStyles/scss/index.scss";
 import { StorefrontApp } from "../views/App";
 
-declare global {
-    interface Window {
-        __APOLLO_CLIENT__: any;
-        version: any;
-    }
-}
-
-const attachClient = async () => {
-    const { apolloClient } = await getMzawadieApi();
-    window.__APOLLO_CLIENT__ = apolloClient;
-};
-
-if (!ssrMode) {
-    window.version = version;
-    if (process.env.NEXT_PUBLIC_ENABLE_APOLLO_DEVTOOLS === "true")
-        attachClient().then((r) => console.log(r));
-}
+// declare global {
+//     interface Window {
+//         __APOLLO_CLIENT__: any;
+//         version: any;
+//     }
+// }
+//
+// const attachClient = async () => {
+//     const { apolloClient } = await getMzawadieApi();
+//     window.__APOLLO_CLIENT__ = apolloClient;
+// };
+//
+// if (!ssrMode) {
+//     window.version = version;
+//     if (process.env.NEXT_PUBLIC_ENABLE_APOLLO_DEVTOOLS === "true")
+//         attachClient().then((r) => console.log(r));
+// }
 
 const mzawadieConfig: ConfigInput = { apiUrl, channel: channelSlug };
 
@@ -41,7 +41,8 @@ const notificationConfig = { position: positions.BOTTOM_RIGHT, timeout: 2500 };
 
 type AppProps = NextAppProps & ShopConfig & { messages: LocaleMessages };
 
-const App = ({ Component, pageProps, footer, mainMenu, messages, shopConfig }: AppProps) => {
+const App = ({ Component, pageProps, footer, mainMenu, shopConfig, messages }: AppProps) => {
+    // console.log(JSON.stringify(shopConfig, null, 4));
     return (
         <>
             <Head>
@@ -49,7 +50,7 @@ const App = ({ Component, pageProps, footer, mainMenu, messages, shopConfig }: A
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
                 />
-                <title>Demo PWA Storefront – Mzawadie Commerce</title>
+                <title>PWA Storefront – Mzawadie Commerce</title>
                 <link rel="preconnect" href={apiUrl} />
                 <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
                 <link rel="icon" type="image/png" href="/icons/icon-36x36.png" />

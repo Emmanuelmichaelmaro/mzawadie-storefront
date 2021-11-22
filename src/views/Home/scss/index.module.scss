@@ -1,6 +1,6 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.home-page {
+.home__page {
     &__hero {
         background-color: $blue-overlay;
         background-blend-mode: multiply;
@@ -9,7 +9,7 @@
         text-align: center;
         padding: 12rem 0;
 
-        &-text {
+        &__text {
             overflow: hidden;
         }
 
@@ -21,12 +21,12 @@
             justify-content: space-between;
             padding: $spacer;
 
-            &-text {
+            &__text {
                 margin-top: $spacer * 5;
                 width: 100%;
             }
 
-            &-action {
+            &__action {
                 margin-bottom: $spacer * 3;
                 width: 100%;
             }
@@ -51,7 +51,7 @@
                 text-transform: uppercase;
                 color: $blue;
                 font-size: $h1-font-size;
-                font-weight: 900;
+                //font-weight: 900;
 
                 @media (max-width: $small-screen) {
                     font-size: $h4-font-size;
@@ -116,7 +116,7 @@
                 background-position: center;
                 margin-bottom: 1rem;
 
-                &--no-photo {
+                &__nophoto {
                     background-color: $turquoise-light;
                     background-repeat: no-repeat;
                     background-size: contain;

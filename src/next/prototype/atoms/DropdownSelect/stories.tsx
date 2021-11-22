@@ -1,5 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { IntlProvider } from "react-intl";
 
 import { DropdownSelect } from "./index";
 
@@ -24,5 +25,6 @@ const Container = () => {
 };
 
 storiesOf("@mzawadie/prototype/atoms/DropdownSelect", module)
+    .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .addParameters({ component: DropdownSelect })
     .add("default", () => <Container />);

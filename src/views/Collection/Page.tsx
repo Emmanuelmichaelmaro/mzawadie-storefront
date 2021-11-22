@@ -12,7 +12,7 @@ import React, { useState } from "react";
 import { useIntl } from "react-intl";
 
 import { Breadcrumbs, extractBreadcrumbs, ProductsFeatured } from "../../components";
-import "../Category/scss/index.module.scss";
+import styles from "../Category/scss/index.module.scss";
 import { getActiveFilterAttributes } from "../Category/utils";
 
 export interface CollectionData {
@@ -57,8 +57,8 @@ export const Page: React.FC<PageProps> = ({
     const intl = useIntl();
 
     return (
-        <div className="collection">
-            <div className="container">
+        <div className={styles.collection}>
+            <div className={styles.container}>
                 <Breadcrumbs breadcrumbs={extractBreadcrumbs(details)} />
                 <FilterSidebar
                     show={showFilters}

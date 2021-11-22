@@ -5,11 +5,12 @@ import * as React from "react";
 
 import { Carousel } from "../../components";
 import noPhotoImg from "../../images/no-photo.svg";
+import styles from "./scss/index.module.scss";
 
 const GalleryCarousel: React.FC<{
     images: ProductDetails_images[];
 }> = ({ images }) => (
-    <div className="product-page__product__gallery">
+    <div className={styles.product__page__product__gallery}>
         <Carousel
             renderCenterLeftControls={() => null}
             renderCenterRightControls={() => null}
@@ -21,12 +22,12 @@ const GalleryCarousel: React.FC<{
                 }
 
                 return (
-                    <ul className="product-page__product__gallery__nav">
+                    <ul className={styles.product__page__product__gallery__nav}>
                         {indexes.map((index) => (
                             <li
                                 key={index}
                                 onClick={props.goToSlide.bind(null, index)}
-                                className={props.currentSlide === index ? "active" : ""}
+                                className={props.currentSlide === index ? `${styles.active}` : ""}
                             >
                                 <span />
                             </li>

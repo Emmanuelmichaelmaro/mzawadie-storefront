@@ -19,3 +19,6 @@ export * from "./ButtonLink";
 export * from "./Checkbox";
 export * from "./Input";
 export * from "./InputLabel";
+export * from "./CartFooter";
+export * from "./CartHeader";
+export * from "./CartCostsSummary";

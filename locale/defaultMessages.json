@@ -325,60 +325,45 @@
     "core_dot_intl_dot_prodListHeaderCommonMsg_dot_sortOptionsUpdatedAtDsc": {
         "string": "Last updated Descending"
     },
-    "prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_214739616": {
+    "next_dot_prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_214739616": {
         "string": "Play with <emphasis>GraphQL API</emphasis>"
     },
-    "prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2367386033": {
+    "next_dot_prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2367386033": {
         "string": "API"
     },
-    "prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2844777114": {
+    "next_dot_prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_2844777114": {
         "string": "Explore <emphasis>Store’s dashboard</emphasis>"
     },
-    "prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_3662390044": {
+    "next_dot_prototype_dot_atoms_dot_DemoBanner_dot_DemoBanner_dot_3662390044": {
         "string": "Dashboard"
     },
-    "prototype_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
+    "next_dot_prototype_dot_atoms_dot_DropdownSelect_dot_DropdownSelect_dot_3280510613": {
         "string": "Sort by:"
     },
-    "prototype_dot_atoms_dot_OfflinePlaceholder_dot_OfflinePlaceholder_dot_2175471916": {
+    "next_dot_prototype_dot_atoms_dot_OfflinePlaceholder_dot_OfflinePlaceholder_dot_2175471916": {
         "context": "offline placeholder",
         "string": "OFFLINE :("
     },
-    "prototype_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
+    "next_dot_prototype_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
         "string": "Add to basket"
     },
-    "prototype_dot_molecules_dot_AttributeValuesChecklist_dot_AttributeValuesChecklist_dot_2029012727": {
+    "next_dot_prototype_dot_molecules_dot_AttributeValuesChecklist_dot_AttributeValuesChecklist_dot_2029012727": {
         "string": "VIEW ALL OPTIONS"
     },
-    "prototype_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_2623707255": {
+    "next_dot_prototype_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_2623707255": {
         "string": "DESCRIPTION"
     },
-    "prototype_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_308156425": {
+    "next_dot_prototype_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_308156425": {
         "string": "ATTRIBUTES"
     },
-    "prototype_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_3317426832": {
+    "next_dot_prototype_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_3317426832": {
         "string": "Products found:"
     },
-    "prototype_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
+    "next_dot_prototype_dot_organisms_dot_ProductList_dot_ProductList_dot_2783099424": {
         "string": "More +"
     },
-    "prototype_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
+    "next_dot_prototype_dot_organisms_dot_ProductVariantPicker_dot_ProductVariantAttributeSelect_dot_1125254976": {
         "string": "Please select {selectLabel}"
-    },
-    "views_dot_App_dot_Notifications_dot_1053546789": {
-        "string": "To update the application to the latest version, please refresh the page!"
-    },
-    "views_dot_App_dot_Notifications_dot_1308518649": {
-        "string": "Refresh"
-    },
-    "views_dot_App_dot_Notifications_dot_1917823234": {
-        "string": "You are now logged in"
-    },
-    "views_dot_App_dot_Notifications_dot_2378877294": {
-        "string": "You are now logged out"
-    },
-    "views_dot_App_dot_Notifications_dot_795565": {
-        "string": "New version is available!"
     },
     "views_dot_Home_dot_Page_dot_2366307429": {
         "string": "Final reduction"

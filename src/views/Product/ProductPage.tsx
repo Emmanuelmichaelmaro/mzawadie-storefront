@@ -1,4 +1,5 @@
 // @ts-nocheck
+import { ssrMode } from "@mzawadie/core";
 import { Loader, OfflinePlaceholder } from "@mzawadie/prototype/atoms";
 import { useCart } from "@mzawadie/sdk";
 import { ProductDetails } from "@mzawadie/sdk/lib/fragments/gqlTypes/ProductDetails";
@@ -10,7 +11,6 @@ import React, { useEffect, useState } from "react";
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import Page from "./Page";
-import "./scss/index.module.scss";
 import { IProps } from "./types";
 
 const canDisplay = (product?: ProductDetails) =>
@@ -39,7 +39,7 @@ const extractMeta = (product: ProductDetails, url: string) => ({
     image: product?.thumbnail?.url || null,
     title: product.seoTitle || product.name,
     type: "product.item",
-    url: window.location.href,
+    url: ssrMode ? undefined : window.location.href,
 });
 
 const PageWithQueryAttributes: React.FC<IProps> = (props) => {
@@ -53,14 +53,17 @@ const PageWithQueryAttributes: React.FC<IProps> = (props) => {
         );
         push({ pathname, query }, newAsPath, { shallow: true });
     };
+
     const [queryAttributes, setQueryAttributes] = useState({});
 
     useEffect(() => {
         if (!Object.keys(query).length) {
             const queryAttributes: Record<string, string> = {};
+
             product.variants.forEach(({ attributes }) => {
                 attributes.forEach(({ attribute, values }) => {
                     const selectedAttributeValue = query[attribute.slug];
+
                     if (selectedAttributeValue && values[0].value === selectedAttributeValue) {
                         if (
                             !Object.keys(queryAttributes).length ||

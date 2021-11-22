@@ -9,6 +9,8 @@ body {
     font-size: $base-font-size;
     line-height: $base-line-height;
     color: $base-font-color;
+    overflow-x: hidden;
+    margin-right: calc(-1 * (100vw - 100%)) !important;
 
     * {
         box-sizing: border-box;
@@ -38,7 +40,15 @@ body {
         line-height: 1.5rem;
     }
 
-    #root {
+    strong {
+        font-weight: $bold-font-weight;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    #root, #__next {
         display: flex;
         min-height: 100vh;
         flex-direction: column;
