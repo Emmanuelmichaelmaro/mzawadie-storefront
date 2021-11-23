@@ -27,7 +27,7 @@ const getShoppingButton = () => (
 );
 
 const getCheckoutButton = (user?: UserDetails_me | null) => (
-    <Link href={user ? paths.checkout : paths.login} passHref>
+    <Link href={user ? paths.checkout : paths.accountLogin} passHref>
         <Button testingContext="proceedToCheckoutButton">
             <FormattedMessage defaultMessage="PROCEED TO CHECKOUT" />
         </Button>

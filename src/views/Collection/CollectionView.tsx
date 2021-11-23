@@ -20,7 +20,10 @@ export type CollectionViewProps = {
 
 export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection }) => {
     const [sort, setSort] = useQueryParam("sortBy", withDefault(StringParam, ""));
-    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", withDefault(FilterQuerySet, ""));
+    const [attributeFilters, setAttributeFilters] = useQueryParam(
+        "filters",
+        withDefault(FilterQuerySet, "")
+    );
 
     const filters: IFilters = {
         attributes: attributeFilters,

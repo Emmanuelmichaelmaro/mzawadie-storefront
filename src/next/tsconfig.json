@@ -3,5 +3,5 @@
     "compilerOptions": {
         "strict": true
     },
-    "include": ["../../editorjs.d.ts", "**/*"]
+    "include": ["../../editorjs.d.ts", "../../global.d.ts", "**/*"]
 }

@@ -6,7 +6,5 @@ import { CartEmpty } from ".";
 
 storiesOf("@mzawadie/prototype/templates/CartEmpty", module)
     .addParameters({ component: CartEmpty })
-    .addDecorator(story => (
-        <IntlProvider locale="en">{story()}</IntlProvider>
-    ))
+    .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <CartEmpty />);

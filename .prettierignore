@@ -5,7 +5,7 @@
 **/node_modules/*
 **/out/*
 **/.next/*
-/* **/.storybook/* */
+**/.storybook/*
 **/storybook-static/*
 **/.github/*
 

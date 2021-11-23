@@ -46,7 +46,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
                 overlay.hide();
             }}
             proceedToCheckout={() => {
-                push(user ? paths.checkout : paths.login);
+                push(user ? paths.checkout : paths.accountLogin);
                 overlay.hide();
             }}
         />

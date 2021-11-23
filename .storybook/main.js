@@ -17,21 +17,21 @@ module.exports = {
 
     webpackFinal: async (config, { configType }) => {
         (config.watch = true),
-        (config.watchOptions = {
-            ignored: "**/node_modules",
-        }),
-        config.module.rules.push({
-            test: /\.(ts|tsx|js|jsx)$/,
-            exclude: /node_modules/,
-            use: [
-                {
-                    loader: "babel-loader",
-                    options: {
-                        configFile: "./babel.config.js",
+            (config.watchOptions = {
+                ignored: "**/node_modules",
+            }),
+            config.module.rules.push({
+                test: /\.(ts|tsx|js|jsx)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: "babel-loader",
+                        options: {
+                            configFile: "./babel.config.js",
+                        },
                     },
-                },
-            ],
-        });
+                ],
+            });
 
         config.module.rules.push({
             test: /\.(scss|css)$/,
@@ -50,9 +50,7 @@ module.exports = {
         const shouldAnalyze = process.env.analyze === "true";
 
         if (shouldAnalyze) {
-            config.plugins.push(
-                new BundleAnalyzerPlugin(),
-            );
+            config.plugins.push(new BundleAnalyzerPlugin());
         }
 
         // split into more chunks

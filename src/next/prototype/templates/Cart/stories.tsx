@@ -6,7 +6,5 @@ import { Cart } from ".";
 
 storiesOf("@mzawadie/prototype/templates/Cart", module)
     .addParameters({ component: Cart })
-    .addDecorator(story => (
-        <IntlProvider locale="en">{story()}</IntlProvider>
-    ))
+    .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <Cart />);

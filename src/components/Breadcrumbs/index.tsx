@@ -18,7 +18,8 @@ type BreadcrumbCategory = Pick<CategoryDetails, "__typename" | "id" | "slug" | "
 
 export const extractBreadcrumbs = (category: BreadcrumbCategory, ancestors?: BreadcrumbCategory[]) => {
     const constructLink = ({ id, slug, name, __typename }: BreadcrumbCategory) => ({
-        link: __typename === "Category" ? generateCategoryUrl(id, slug) : generateCollectionUrl(id, slug),
+        link:
+            __typename === "Category" ? generateCategoryUrl(id, slug) : generateCollectionUrl(id, slug),
         value: name,
     });
 

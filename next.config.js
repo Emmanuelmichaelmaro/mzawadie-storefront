@@ -2,7 +2,7 @@
 const path = require("path");
 // const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 const withPlugins = require("next-compose-plugins");
-const withImages = require('next-images');
+const withImages = require("next-images");
 const withOptimizedImages = require("next-optimized-images");
 
 // const withBaseConfig = require("./config/next/config.base");
@@ -19,7 +19,7 @@ const nextConfig = {
         // https://nextjs.org/docs/basic-features/image-optimization#image-sizes
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
         // formats: ["image/avif", "image/webp"],
-    }
+    },
 };
 
 module.exports = withPlugins(

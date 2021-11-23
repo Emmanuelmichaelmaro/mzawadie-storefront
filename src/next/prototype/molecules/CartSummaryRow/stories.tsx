@@ -8,7 +8,5 @@ import { DEFAULT_PROPS } from "./fixtures";
 
 storiesOf("@mzawadie/prototype/molecules/CartSummaryRow", module)
     .addParameters({ component: CartSummaryRow })
-    .addDecorator(story => (
-        <IntlProvider locale="en">{story()}</IntlProvider>
-    ))
+    .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <CartSummaryRow {...DEFAULT_PROPS} />);

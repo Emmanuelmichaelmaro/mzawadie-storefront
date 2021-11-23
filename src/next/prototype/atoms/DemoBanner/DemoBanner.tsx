@@ -1,10 +1,10 @@
 import { mediumScreen } from "@next/styles/constants";
+// @ts-ignore
+import LogoSmall from "images/logo-small.svg";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";
 
-// @ts-ignore
-import LogoSmall from "images/logo-small.svg";
 import * as S from "./styles";
 
 export const DemoBanner: React.FC = () => {

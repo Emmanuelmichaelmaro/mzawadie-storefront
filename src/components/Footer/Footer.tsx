@@ -9,7 +9,7 @@ type FooterProps = NavProps;
 
 const Footer: React.FC<FooterProps> = ({ menu }) => (
     <div className="footer" id="footer">
-        <div className={`${styles.footer__favicons} ${styles.container}`}>
+        <div className={`${styles.footer__favicons} container`}>
             {SOCIAL_MEDIA.map((medium) => (
                 <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
             ))}

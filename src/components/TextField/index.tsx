@@ -1,7 +1,7 @@
-import * as React from "react";
+import React from "react";
 
 import { FormError } from "../Form";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 type Style = "white" | "grey";
 
@@ -21,10 +21,10 @@ export interface TextFieldProps extends React.InputHTMLAttributes<HTMLInputEleme
 }
 
 const generateClassName = ({ errors, iconLeft, styleType }: IClassNameArgs) => {
-    const baseClass = "input__field";
-    const errorsClass = errors && errors.length ? " input__field--error" : "";
-    const iconLeftClass = iconLeft ? " input__field--left-icon" : "";
-    const styleTypeClass = styleType === "grey" ? " input__field--grey" : "";
+    const baseClass = styles.input__field;
+    const errorsClass = errors && errors.length ? ` ${styles.input__field__error}` : "";
+    const iconLeftClass = iconLeft ? ` ${styles.input__field__left__icon}` : "";
+    const styleTypeClass = styleType === "grey" ? ` ${styles.input__field__grey}` : "";
 
     return baseClass.concat(errorsClass, iconLeftClass, styleTypeClass);
 };
@@ -38,21 +38,21 @@ const TextField: React.FC<TextFieldProps> = ({
     styleType = "white" as Style,
     ...rest
 }) => (
-    <div className="input">
-        {iconLeft ? <span className="input__icon-left">{iconLeft}</span> : null}
+    <div className={styles.input}>
+        {iconLeft ? <span className={styles.input__icon__left}>{iconLeft}</span> : null}
 
-        {iconRight ? <span className="input__icon-right">{iconRight}</span> : null}
+        {iconRight ? <span className={styles.input__icon__right}>{iconRight}</span> : null}
 
-        <div className="input__content">
+        <div className={styles.input__content}>
             <input {...rest} className={generateClassName({ errors, iconLeft, styleType })} />
-            {label ? <span className="input__label">{label}</span> : null}
+            {label ? <span className={styles.input__label}>{label}</span> : null}
         </div>
 
         {errors && (
-            <span className="input__error">{errors.map((error) => error.message).join(" ")}</span>
+            <span className={styles.input__error}>{errors.map((error) => error.message).join(" ")}</span>
         )}
 
-        {helpText && <span className="input__help-text">{helpText}</span>}
+        {helpText && <span className={styles.input__help__text}>{helpText}</span>}
     </div>
 );
 

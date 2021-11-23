@@ -9,7 +9,7 @@ export type NavProps = { menu: ShopMenusQuery["footer"] };
 
 export const Nav: React.FC<NavProps> = ({ menu }) => (
     <footer className={styles.footer__nav}>
-        <div className={styles.container}>
+        <div className={`${styles.container} container`}>
             {menu?.items.map((item) => (
                 <div className={styles.footer__nav__section} key={item.id}>
                     <h4 className={styles.footer__nav__section__header}>

@@ -7,9 +7,7 @@ import { ProductList } from "./index";
 
 storiesOf("@mzawadie/prototype/organisms/ProductList", module)
     .addParameters({ component: ProductList })
-    .addDecorator(story => (
-        <IntlProvider locale="en">{story()}</IntlProvider>
-    ))
+    .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (
         <ProductList
             products={PRODUCTS}

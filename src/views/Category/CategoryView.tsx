@@ -20,7 +20,10 @@ export type CategoryViewProps = {
 
 export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) => {
     const [sort, setSort] = useQueryParam("sortBy", withDefault(StringParam, ""));
-    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", withDefault(FilterQuerySet, ""));
+    const [attributeFilters, setAttributeFilters] = useQueryParam(
+        "filters",
+        withDefault(FilterQuerySet, "")
+    );
 
     const filters: IFilters = {
         attributes: attributeFilters,

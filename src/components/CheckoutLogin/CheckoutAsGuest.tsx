@@ -4,13 +4,14 @@ import { FormattedMessage } from "react-intl";
 
 import { Button, OverlayTheme, OverlayType } from "..";
 import { OverlayContextInterface } from "../Overlay";
+import styles from "./scss/index.module.scss";
 
 const CheckoutAsGuest: React.FC<{
     overlay: OverlayContextInterface;
     checkoutUrl: string;
 }> = ({ overlay, checkoutUrl }) => (
-    <div className="checkout-login__guest">
-        <h3 className="checkout__header">
+    <div className={styles.checkout__login__guest}>
+        <h3 className={styles.checkout__header}>
             <FormattedMessage defaultMessage="Continue as a guest" />
         </h3>
 

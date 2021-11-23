@@ -14,16 +14,9 @@ import { positions, Provider as AlertProvider } from "react-alert";
 import { ThemeProvider } from "styled-components";
 
 import { version } from "../../package.json";
-import styles from "../globalStyles/scss/index.scss";
+import "../globalStyles/scss/index.scss";
 import { StorefrontApp } from "../views/App";
 
-// declare global {
-//     interface Window {
-//         __APOLLO_CLIENT__: any;
-//         version: any;
-//     }
-// }
-//
 // const attachClient = async () => {
 //     const { apolloClient } = await getMzawadieApi();
 //     window.__APOLLO_CLIENT__ = apolloClient;

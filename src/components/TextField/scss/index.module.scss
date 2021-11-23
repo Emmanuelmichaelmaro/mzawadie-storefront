@@ -75,7 +75,7 @@
             }
         }
 
-        &--error {
+        &__error {
             border: 1px solid $rose;
             & + .input__label {
                 color: $rose;
@@ -86,7 +86,7 @@
             }
         }
 
-        &--left-icon {
+        &__left__icon {
             padding-left: $spacer * 3;
         }
     }
@@ -102,7 +102,7 @@
         z-index: 1;
         pointer-events: none;
         transition: all 0.4s ease;
-        &--focus {
+        &__focus {
             background-color: $white;
             @include focusedLabel();
         }
@@ -113,19 +113,19 @@
         font-size: $label-font-size;
     }
 
-    &__help-text {
+    &__help__text {
         color: $label-color;
         font-size: $label-font-size;
     }
 
-    &__icon-left {
+    &__icon__left {
         position: absolute;
         left: $spacer;
         z-index: 100;
         transform: translate(0, 105%);
     }
 
-    &__icon-right {
+    &__icon__right {
         position: absolute;
         z-index: 100;
         right: $spacer;

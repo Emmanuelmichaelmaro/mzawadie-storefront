@@ -6,7 +6,5 @@ import { CartHeader } from ".";
 
 storiesOf("@mzawadie/prototype/atoms/CartHeader", module)
     .addParameters({ component: CartHeader })
-    .addDecorator(story => (
-        <IntlProvider locale="en">{story()}</IntlProvider>
-    ))
+    .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <CartHeader />);

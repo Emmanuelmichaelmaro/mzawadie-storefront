@@ -26,7 +26,7 @@
                 border-left: 1px solid $white;
             }
 
-            &.active-tab {
+            &.active__tab {
                 border-bottom: 1px solid $turquoise;
             }
         }
@@ -45,7 +45,7 @@
             text-align: center;
         }
 
-        &__password-reminder {
+        &__password__reminder {
             color: $gray;
             font-size: $small-font-size;
             margin-top: $spacer * 2;

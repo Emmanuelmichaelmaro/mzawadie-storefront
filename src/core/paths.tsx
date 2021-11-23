@@ -6,16 +6,12 @@ const checkoutBaseUrl = `${baseUrl}checkout/`;
 
 export const paths = {
     notFound: `${baseUrl}404`,
-    accountConfirm: `${baseUrl}account-confirm`,
     cart: `${baseUrl}cart`,
     category: `${baseUrl}category/${slugUrl}`,
     collection: `${baseUrl}collection/${slugUrl}`,
     guestOrderDetail: `${baseUrl}order-history/:token`,
     home: baseUrl,
-    login: `${baseUrl}login`,
-    orderFinalized: `${baseUrl}order-finalized`,
     page: `${baseUrl}page/:slug`,
-    passwordReset: `${baseUrl}reset-password`,
     product: `${baseUrl}product/${slugUrl}`,
     search: `${baseUrl}search`,
     wishlist: `${baseUrl}wishlist`,
@@ -24,10 +20,14 @@ export const paths = {
      * Account section
      */
     account: accountBaseUrl,
+    accountLogin: `${accountBaseUrl}login`,
+    accountConfirm: `${accountBaseUrl}account-confirm`,
+    accountPasswordReset: `${accountBaseUrl}reset-password`,
     accountAddressBook: `${accountBaseUrl}address-book`,
     // FIXME: User order should be accessible via order id
     accountOrderDetail: `${accountBaseUrl}order-history/:token`,
     accountOrderHistory: `${accountBaseUrl}order-history`,
+    accountOrderFinalized: `${accountBaseUrl}order-finalized`,
 
     /**
      * Checkout

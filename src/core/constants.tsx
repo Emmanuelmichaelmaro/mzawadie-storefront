@@ -18,3 +18,9 @@ export const staticPathsFetchBatch = 10;
 export const staticPathsFallback = (
     exportMode ? false : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK
 ) as boolean | "blocking";
+
+export const paymentGatewayNames = {
+    dummy: "mzawadie.payments.dummy",
+    stripe: "mzawadie.payments.stripe",
+    adyen: "",
+};

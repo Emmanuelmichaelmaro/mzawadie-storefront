@@ -20,7 +20,7 @@ const PasswordResetForm: React.FC = () => (
                             passwordReset({
                                 variables: {
                                     email,
-                                    redirectUrl: `${window.location.origin}${paths.passwordReset}`,
+                                    redirectUrl: `${window.location.origin}${paths.accountPasswordReset}`,
                                 },
                             });
                         }}
