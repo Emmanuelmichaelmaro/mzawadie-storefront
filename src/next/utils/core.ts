@@ -29,4 +29,6 @@ export const generateCollectionUrl = (id: string, name: string) =>
 
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
+export const generateUserOrderDetailsUrl = (token: string) => `/account/order-history/${token}/`;
+
 export const generateGuestOrderDetailsUrl = (token: string) => `/order-history/${token}/`;

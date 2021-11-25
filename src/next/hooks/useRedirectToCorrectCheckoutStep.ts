@@ -9,6 +9,7 @@ export const useRedirectToCorrectCheckoutStep = (cartLoaded: boolean) => {
     const { pathname, replace } = useRouter();
     const { totalPrice, items } = useCart();
     const { checkout, payment } = useCheckout();
+
     const { recommendedStep, maxPossibleStep } = useCheckoutStepState(
         items,
         checkout,

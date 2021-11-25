@@ -37,8 +37,6 @@ import {
 const CHECKOUT_GATEWAY_FORM_ID = "gateway-form";
 
 const CheckoutPage: React.FC<NextPage> = () => {
-    const intl = useIntl();
-
     const { push, pathname, query } = useRouter();
 
     const { loaded: cartLoaded, shippingPrice, discount, subtotalPrice, totalPrice, items } = useCart();
@@ -52,17 +50,33 @@ const CheckoutPage: React.FC<NextPage> = () => {
         completeCheckout,
     } = useCheckout();
 
+    const intl = useIntl();
+
     const isFullyLoaded = cartLoaded && checkoutLoaded;
 
     const [submitInProgress, setSubmitInProgress] = useState(false);
+
+    const [paymentConfirmation, setPaymentConfirmation] = useState(false);
+
+    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<string | undefined>(
+        payment?.gateway
+    );
+
+    const [selectedPaymentGatewayToken, setSelectedPaymentGatewayToken] = useState<string | undefined>(
+        payment?.token
+    );
+
+    const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<IFormError[]>([]);
+
+    const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
+
+    const pageCompleteRef = useRef<SubpageCompleteHandler>(null);
 
     const steps = getAvailableSteps(items);
 
     const { activeStepIndex, activeStep } = getCurrentStep(pathname, steps);
 
     const handleStepSubmitSuccess = stepSubmitSuccessHandler(push, steps, activeStepIndex);
-
-    const pageCompleteRef = useRef<SubpageCompleteHandler>(null);
 
     const buttonText = getContinueButtonText(activeStep.step);
 
@@ -81,20 +95,6 @@ const CheckoutPage: React.FC<NextPage> = () => {
         changeSubmitProgress: setSubmitInProgress,
         onSubmitSuccess: handleStepSubmitSuccess,
     };
-
-    const [paymentConfirmation, setPaymentConfirmation] = useState(false);
-
-    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<string | undefined>(
-        payment?.gateway
-    );
-
-    const [selectedPaymentGatewayToken, setSelectedPaymentGatewayToken] = useState<string | undefined>(
-        payment?.token
-    );
-
-    const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<IFormError[]>([]);
-
-    const checkoutGatewayFormRef = useRef<HTMLFormElement>(null);
 
     const checkoutSubpage = useMemo(() => {
         const subpageMapping: Partial<Record<CheckoutStep, JSX.Element>> = {
@@ -122,18 +122,14 @@ const CheckoutPage: React.FC<NextPage> = () => {
         const paymentConfirmStepLink = CHECKOUT_STEPS.find(
             (step) => step.step === CheckoutStep.PaymentConfirm
         )?.link;
-
         const { dataError } = await createPayment({
             gateway,
             token,
             creditCard: cardData,
             returnUrl: `${window.location.origin}${paymentConfirmStepLink}`,
         });
-
         const errors = dataError?.error;
-
         setSubmitInProgress(false);
-
         if (errors) {
             setPaymentGatewayErrors(errors);
         } else {
@@ -165,9 +161,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     const handlePaymentGatewayError = (errors: IFormError[]) => {
         setSubmitInProgress(false);
         setPaymentGatewayErrors(errors);
-
         const paymentStepLink = steps.find((step) => step.step === CheckoutStep.Payment)?.link;
-
         if (paymentStepLink) {
             push(paymentStepLink);
         }
@@ -206,27 +200,22 @@ const CheckoutPage: React.FC<NextPage> = () => {
         setSubmitInProgress(true);
         setPaymentConfirmation(true);
         /**
-         * mzawadie API creates an order for not fully authorised payments, thus we accept all non negative payment result codes,
+         * Mzawadie API creates an order for not fully authorised payments, thus we accept all non negative payment result codes,
          * assuming the payment is completed, what means we can proceed further.
          * https://docs.adyen.com/checkout/drop-in-web?tab=http_get_1#step-6-present-payment-result
          */
         if (adyenNotNegativeConfirmationStatusCodes.includes(query.resultCode as string)) {
             const { data, dataError } = await completeCheckout();
             const errors = dataError?.error;
-
             setSubmitInProgress(false);
-
             if (errors) {
                 setPaymentGatewayErrors(errors);
-
                 const paymentStepLink = steps.find((step) => step.step === CheckoutStep.Payment)?.link;
-
                 if (paymentStepLink) {
                     push(paymentStepLink);
                 }
             } else {
                 setPaymentGatewayErrors([]);
-
                 handleStepSubmitSuccess(CheckoutStep.Review, {
                     id: data?.order?.id,
                     orderNumber: data?.order?.number,
@@ -239,9 +228,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
                     message: translateAdyenConfirmationError(query.resultCode as string, intl),
                 },
             ]);
-
             const paymentStepLink = steps.find((step) => step.step === CheckoutStep.Payment)?.link;
-
             if (paymentStepLink) {
                 push(paymentStepLink);
                 setSubmitInProgress(false);
@@ -260,7 +247,6 @@ const CheckoutPage: React.FC<NextPage> = () => {
         const paymentConfirmStepLink = CHECKOUT_STEPS.find(
             (step) => step.step === CheckoutStep.PaymentConfirm
         )?.link;
-
         if (
             !submitInProgress &&
             checkout &&
@@ -288,9 +274,9 @@ const CheckoutPage: React.FC<NextPage> = () => {
                     products={prepareCartSummaryProducts(items)}
                 />
             }
+            checkout={isFullyLoaded ? checkoutSubpage : <Loader />}
             paymentGateways={paymentGateways}
             hidePaymentGateways={steps[activeStepIndex].step !== CheckoutStep.Payment}
-            checkout={isFullyLoaded ? checkoutSubpage : <Loader />}
             button={
                 cartLoaded &&
                 buttonText && (

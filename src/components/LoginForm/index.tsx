@@ -16,7 +16,7 @@ const LoginForm: React.FC<ILoginForm> = ({ hide }) => {
     const [loading, setLoading] = React.useState(false);
     const [errors, setErrors] = React.useState(null);
 
-    const handleOnSubmit = async (evt: { preventDefault: () => void; }, { email, password }: any) => {
+    const handleOnSubmit = async (evt: { preventDefault: () => void }, { email, password }: any) => {
         evt.preventDefault();
 
         setLoading(true);

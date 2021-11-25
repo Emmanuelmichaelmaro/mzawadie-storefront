@@ -105,14 +105,14 @@ export const stepSubmitSuccessHandler =
         if (currentStep === CheckoutStep.Review) {
             push(
                 {
-                    pathname: paths.orderFinalized,
+                    pathname: paths.accountOrderFinalized,
                     query: data as ParsedUrlQueryInput,
                 },
                 /**
                  * Passing orderFinalized path as an `as` param makes query data hidden and
                  * behaves similar to history push state.
                  */
-                paths.orderFinalized
+                paths.accountOrderFinalized
             );
         } else {
             push(steps[activeStepIndex + 1].link);

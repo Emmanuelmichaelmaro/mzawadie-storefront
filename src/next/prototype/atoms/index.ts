@@ -30,3 +30,6 @@ export * from "./TileGrid";
 export * from "./Address";
 export * from "./AddNewTile";
 export * from "./SocialMediaIcon";
+export * from "./Attribute";
+export * from "./ShadowBox";
+export * from "./NavLink";

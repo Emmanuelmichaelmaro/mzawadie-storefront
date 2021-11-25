@@ -49,7 +49,9 @@ const TextField: React.FC<TextFieldProps> = ({
         </div>
 
         {errors && (
-            <span className={styles.input__error}>{errors.map((error) => error.message).join(" ")}</span>
+            <span className={styles.input__error}>
+                {errors.map((error) => error.message).join(" ")}
+            </span>
         )}
 
         {helpText && <span className={styles.input__help__text}>{helpText}</span>}

@@ -23,6 +23,9 @@
     "components_dot_CheckoutLogin_dot_SignInForm_dot_2856837597": {
         "string": "Registered user"
     },
+    "components_dot_LoginForm_dot_index_dot_1405865627": {
+        "string": "Sign in"
+    },
     "components_dot_MainMenu_dot_MainMenu_dot_4144939532": {
         "string": "Offline"
     },
@@ -329,6 +332,9 @@
     "next_dot_pages_dot_CheckoutPage_dot_subpages_dot_CheckoutAddressSubpage_dot_929802659": {
         "string": "Please provide shipping address."
     },
+    "next_dot_pages_dot_OrdersHistory_dot_OrdersHistory_dot_1138265409": {
+        "string": "Load more"
+    },
     "next_dot_prototype_dot_atoms_dot_AddNewTile_dot_AddNewTile_dot_2493765518": {
         "string": "Add new {type}"
     },
@@ -351,6 +357,33 @@
         "context": "offline placeholder",
         "string": "OFFLINE :("
     },
+    "next_dot_prototype_dot_molecules_dot_AccountMenuMobile_dot_AccountMenuMobile_dot_2132071990": {
+        "string": "Go to"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3253048083": {
+        "string": "Personal details"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_AccountTile_dot_3843483622": {
+        "string": "MY DATA"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_1254879564": {
+        "string": "New Password"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2218114941": {
+        "string": "Old Password"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2369435044": {
+        "string": "Required field"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_2799926859": {
+        "string": "Confirm Password"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_PasswordChangeForm_dot_4253911811": {
+        "string": "Passwords do not match"
+    },
+    "next_dot_prototype_dot_molecules_dot_AccountTabTiles_dot_PasswordTile_dot_3445609170": {
+        "string": "MY PASSWORD"
+    },
     "next_dot_prototype_dot_molecules_dot_AddToCartButton_dot_AddToCartButton_dot_81047562": {
         "string": "Add to basket"
     },
@@ -372,6 +405,18 @@
     "next_dot_prototype_dot_molecules_dot_AttributeValuesChecklist_dot_AttributeValuesChecklist_dot_2029012727": {
         "string": "VIEW ALL OPTIONS"
     },
+    "next_dot_prototype_dot_molecules_dot_OrderTable_dot_OrderTable_dot_1148029984": {
+        "string": "Value"
+    },
+    "next_dot_prototype_dot_molecules_dot_OrderTable_dot_OrderTable_dot_1633831221": {
+        "string": "Date of Order"
+    },
+    "next_dot_prototype_dot_molecules_dot_OrderTable_dot_OrderTable_dot_2387666633": {
+        "string": "Index Number"
+    },
+    "next_dot_prototype_dot_molecules_dot_OrderTable_dot_OrderTable_dot_724329054": {
+        "string": "Products Ordered"
+    },
     "next_dot_prototype_dot_molecules_dot_ProductDescription_dot_ProductDescription_dot_2623707255": {
         "string": "DESCRIPTION"
     },
@@ -380,6 +425,21 @@
     },
     "next_dot_prototype_dot_molecules_dot_ProductListHeader_dot_ProductListHeader_dot_3317426832": {
         "string": "Products found:"
+    },
+    "next_dot_prototype_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_1865992141": {
+        "string": "Please provide new password"
+    },
+    "next_dot_prototype_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_2266763214": {
+        "string": "Retype password"
+    },
+    "next_dot_prototype_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_2746979176": {
+        "string": "It seems that token for password reset is not valid anymore."
+    },
+    "next_dot_prototype_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_3951836694": {
+        "string": "SET NEW PASSWORD"
+    },
+    "next_dot_prototype_dot_molecules_dot_ResetPasswordForm_dot_ResetPasswordForm_dot_4028609483": {
+        "string": "Reset your password"
     },
     "next_dot_prototype_dot_organisms_dot_AddressForm_dot_AddressFormContent_dot_1139500589": {
         "string": "Country"
@@ -495,6 +555,26 @@
         "context": "Stripe payment gateway error",
         "string": "Payment submission error. Stripe gateway returned no payment method in payload."
     },
+    "next_dot_prototype_dot_organisms_dot_ThankYou_dot_ThankYou_dot_1995277831": {
+        "string": "Thank you"
+    },
+    "next_dot_prototype_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2116351823": {
+        "string": "for your order!"
+    },
+    "next_dot_prototype_dot_organisms_dot_ThankYou_dot_ThankYou_dot_2999163789": {
+        "string": "Your order number is"
+    },
+    "next_dot_prototype_dot_organisms_dot_ThankYou_dot_ThankYou_dot_3752098833": {
+        "string": "ORDER DETAILS"
+    },
+    "next_dot_prototype_dot_organisms_dot_ThankYou_dot_ThankYou_dot_messages_dot_unconfirmed": {
+        "context": "thank you subtitle",
+        "string": "Your order has been placed, it needs to be confirmed by the staff, we'll send you an email when it's done."
+    },
+    "next_dot_prototype_dot_organisms_dot_ThankYou_dot_ThankYou_dot_messages_dot_unfulfilled": {
+        "context": "thank you subtitle",
+        "string": "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped."
+    },
     "next_dot_prototype_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_2488840083": {
         "string": "looks empty"
     },
@@ -503,6 +583,19 @@
     },
     "next_dot_prototype_dot_templates_dot_CartEmpty_dot_CartEmpty_dot_3578601618": {
         "string": "Your Cart"
+    },
+    "views_dot_Account_dot_AddressBook_dot_AddressBook_dot_2776756156": {
+        "string": "Edit address"
+    },
+    "views_dot_Account_dot_User_dot_views_dot_OrderDetails_dot_Page_dot_2670827143": {
+        "context": "action in popup menu in order view",
+        "string": "Download invoice"
+    },
+    "views_dot_Account_dot_User_dot_views_dot_OrderDetails_dot_Page_dot_564769132": {
+        "string": "Your order number: {orderNum}"
+    },
+    "views_dot_Account_dot_User_dot_views_dot_OrderDetails_dot_Page_dot_624688748": {
+        "string": "Go back to Order History"
     },
     "views_dot_Home_dot_Page_dot_2366307429": {
         "string": "Final reduction"

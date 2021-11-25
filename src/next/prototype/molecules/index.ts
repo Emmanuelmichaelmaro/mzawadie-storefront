@@ -18,3 +18,8 @@ export * from "./CreditCardNumberWithIcon";
 export * from "./AddressSummary";
 export * from "./AddressTile";
 export * from "./AddressTileOption";
+export * from "./AccountTabTiles";
+export * from "./AccountMenu";
+export * from "./AccountMenuMobile";
+export * from "./ResetPasswordForm";
+export * from "./OrderTable";

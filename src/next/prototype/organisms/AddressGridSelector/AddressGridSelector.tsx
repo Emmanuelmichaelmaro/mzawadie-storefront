@@ -91,6 +91,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                     );
                 }}
             </Formik>
+
             {displayNewModal && (
                 <AddressFormModal
                     hideModal={() => {

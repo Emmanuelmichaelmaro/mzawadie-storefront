@@ -1,8 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
-import styles from "./scss/index.module.scss"
 
-const ForgottenPassword: React.FC<{ onClick: () => void; }> = ({ onClick }) => (
+import styles from "./scss/index.module.scss";
+
+const ForgottenPassword: React.FC<{ onClick: () => void }> = ({ onClick }) => (
     <>
         <div className={styles.login__content__password__reminder}>
             <p>

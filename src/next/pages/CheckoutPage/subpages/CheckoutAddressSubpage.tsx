@@ -26,6 +26,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandl
         const checkoutNewAddressFormId = "new-address-form";
 
         const { user } = useAuth();
+
         const {
             checkout,
             selectedShippingAddressId,
@@ -35,10 +36,13 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandl
             setBillingAddress,
             setBillingAsShippingAddress,
         } = useCheckout();
+
         const { items } = useCart();
+
         const { countries } = useContext(ShopContext);
 
         const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
+
         const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
 
         const intl = useIntl();
@@ -117,6 +121,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandl
             );
 
             const errors = dataError?.error;
+            console.log("Handle Shipping Errors: " + errors);
 
             if (errors) {
                 setShippingErrors(errors);
@@ -125,7 +130,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandl
                 setShippingErrors([]);
 
                 if (billingAsShippingState) {
-                    handleSetBillingAddress();
+                    await handleSetBillingAddress();
                 } else {
                     checkoutBillingAddressFormRef.current?.dispatchEvent(
                         new Event("submit", { cancelable: true })
@@ -182,6 +187,7 @@ const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandl
             }
 
             changeSubmitProgress(false);
+            console.log("Handle Billing Errors: " + errors);
 
             if (errors) {
                 setBillingErrors(errors);
