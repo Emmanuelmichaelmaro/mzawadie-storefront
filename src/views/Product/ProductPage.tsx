@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { ssrMode } from "@mzawadie/core";
 import { Loader, OfflinePlaceholder } from "@mzawadie/prototype/atoms";
-import { useCart } from "@mzawadie/sdk";
+import { useCart } from "@mzawadie/sdk/lib/src";
 import { ProductDetails } from "@mzawadie/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { NextPage } from "next";
 import { useRouter } from "next/router";

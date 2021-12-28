@@ -1,7 +1,7 @@
 import { paymentGatewayNames } from "@mzawadie/core";
 import { CheckoutReview } from "@mzawadie/prototype/organisms";
 import { statuses as dummyStatuses } from "@mzawadie/prototype/organisms/DummyPaymentGateway";
-import { OrderStatus, useCheckout } from "@mzawadie/sdk";
+import { OrderStatus, useCheckout } from "@mzawadie/sdk/lib/src";
 import { IFormError } from "@next/types";
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useState } from "react";
 

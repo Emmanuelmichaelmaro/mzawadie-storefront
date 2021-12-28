@@ -1,7 +1,7 @@
 import { ShopContext } from "@mzawadie/components/ShopProvider/context";
 import { commonMessages } from "@mzawadie/core";
 import { CheckoutAddress } from "@mzawadie/prototype/organisms";
-import { useAuth, useCart, useCheckout } from "@mzawadie/sdk";
+import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
 import { IAddress, IFormError } from "@next/types";
 import { filterNotEmptyArrayItems } from "@next/utils/misc";
 import React, {

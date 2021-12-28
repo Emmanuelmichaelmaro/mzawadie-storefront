@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { apiUrl, channelSlug } from "@mzawadie/core";
-import { ConnectResult, MzawadieManager } from "@mzawadie/sdk";
-import BaseList, { BaseListVariables } from "@mzawadie/sdk/lib/helpers/BaseList";
-import { GetShop } from "@mzawadie/sdk/lib/queries/gqlTypes/GetShop";
-import { getShop } from "@mzawadie/sdk/lib/queries/shop";
+import { ConnectResult, MzawadieManager } from "@mzawadie/sdk/lib/src";
+import BaseList, { BaseListVariables } from "@mzawadie/sdk/lib/src/helpers/BaseList";
+import { GetShop } from "@mzawadie/sdk/lib/src/queries/gqlTypes/GetShop";
+import { getShop } from "@mzawadie/sdk/lib/src/queries/shop";
 import { featuredProductsQuery, shopAttributesQuery, shopMenusQuery } from "@next/graphql";
 import { Attribute } from "@next/graphql/gqlTypes/Attribute";
 import {

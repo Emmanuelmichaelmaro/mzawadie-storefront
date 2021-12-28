@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Loader } from "@mzawadie/prototype/atoms";
-import { useAuth, useOrderDetails } from "@mzawadie/sdk";
+import { useAuth, useOrderDetails } from "@mzawadie/sdk/lib/src";
 import { NextPage } from "next";
 import * as React from "react";
 

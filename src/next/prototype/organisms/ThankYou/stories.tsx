@@ -1,4 +1,4 @@
-import { OrderStatus } from "@mzawadie/sdk";
+import { OrderStatus } from "@mzawadie/sdk/lib/src";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";

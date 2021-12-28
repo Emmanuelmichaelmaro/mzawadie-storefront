@@ -2,8 +2,8 @@ import { loadMessagesJson, Locale, LocaleMessages, LocaleProvider } from "@mzawa
 import { NextQueryParamProvider } from "@mzawadie/components/NextQueryParamProvider";
 import { apiUrl, channelSlug, ssrMode } from "@mzawadie/core";
 import { NotificationTemplate } from "@mzawadie/prototype/atoms";
-import { MzawadieProvider } from "@mzawadie/sdk";
-import { ConfigInput } from "@mzawadie/sdk/lib/types";
+import { MzawadieProvider } from "@mzawadie/sdk/lib/src";
+import { ConfigInput } from "@mzawadie/sdk/lib/src/types";
 import { defaultTheme, GlobalStyle } from "@next/styles";
 import { getMzawadieApi, getShopConfig, ShopConfig } from "@next/utils/ssr";
 import type { AppContext as NextAppContext, AppProps as NextAppProps } from "next/app";

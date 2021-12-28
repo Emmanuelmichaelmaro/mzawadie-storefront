@@ -1,6 +1,6 @@
 import { commonMessages } from "@mzawadie/core";
 import { CheckoutPayment } from "@mzawadie/prototype/organisms";
-import { useCheckout } from "@mzawadie/sdk";
+import { useCheckout } from "@mzawadie/sdk/lib/src";
 import { IFormError } from "@next/types";
 import React, {
     forwardRef,

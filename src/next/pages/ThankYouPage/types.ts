@@ -1,4 +1,4 @@
-import { OrderStatus } from "@mzawadie/sdk";
+import { OrderStatus } from "@mzawadie/sdk/lib/src";
 
 export type IProps = {
     query: {

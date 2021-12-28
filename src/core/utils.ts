@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ProductOrder } from "@mzawadie/sdk";
+import { ProductOrder } from "@mzawadie/sdk/lib/src";
 import { IFilterAttributes } from "@next/types";
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";

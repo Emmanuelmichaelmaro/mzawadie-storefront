@@ -1,8 +1,8 @@
 import { commonMessages, paths } from "@mzawadie/core";
 import { Redirect } from "@mzawadie/prototype/atoms";
 import { AccountMenu, AccountMenuMobile } from "@mzawadie/prototype/molecules";
-import { useAuth } from "@mzawadie/sdk";
-import { User } from "@mzawadie/sdk/lib/fragments/gqlTypes/User";
+import { useAuth } from "@mzawadie/sdk/lib/src";
+import { User } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/User";
 import { AccountTab, OrdersHistory } from "@next/pages";
 import { smallScreen } from "@next/styles/constants";
 import { NextPage } from "next";

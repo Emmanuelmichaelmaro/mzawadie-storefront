@@ -2,7 +2,7 @@ import Footer from "@mzawadie/components/Footer/Footer";
 import ShopProvider from "@mzawadie/components/ShopProvider";
 import { demoMode } from "@mzawadie/core";
 import { Loader } from "@mzawadie/prototype/atoms";
-import { useAuth } from "@mzawadie/sdk";
+import { useAuth } from "@mzawadie/sdk/lib/src";
 import { useDynamicRouteRedirect } from "@next/hooks";
 import { ShopConfig } from "@next/utils/ssr";
 import { useRouter } from "next/router";

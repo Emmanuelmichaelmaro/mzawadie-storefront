@@ -6,7 +6,7 @@ import {
     staticPathsFallback,
     staticPathsFetchBatch,
 } from "@mzawadie/core";
-import { VariantAttributeScope } from "@mzawadie/sdk";
+import { VariantAttributeScope } from "@mzawadie/sdk/lib/src";
 import { exhaustList, getMzawadieApi } from "@next/utils/ssr";
 import { GetStaticPaths, GetStaticProps } from "next";
 

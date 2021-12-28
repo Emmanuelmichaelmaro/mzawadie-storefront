@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { paths, commonMessages } from "@mzawadie/core";
 import { DemoBanner } from "@mzawadie/prototype/atoms";
-import { useAuth, useCart } from "@mzawadie/sdk";
+import { useAuth, useCart } from "@mzawadie/sdk/lib/src";
 import { ShopMenusQuery } from "@next/graphql/gqlTypes/ShopMenusQuery";
 import { largeScreen as mediumScreen, smallScreen } from "@next/styles/constants";
 import classNames from "classnames";

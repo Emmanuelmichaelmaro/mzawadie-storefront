@@ -3,9 +3,9 @@ import { Button, CartFooter, CartHeader, Loader } from "@mzawadie/prototype/atom
 import { TaxedMoney } from "@mzawadie/prototype/containers";
 import { CartRow } from "@mzawadie/prototype/organisms";
 import { Cart, CartEmpty } from "@mzawadie/prototype/templates";
-import { useAuth, useCart, useCheckout } from "@mzawadie/sdk";
-import { IItems } from "@mzawadie/sdk/lib/api/Cart/types";
-import { UserDetails_me } from "@mzawadie/sdk/lib/queries/gqlTypes/UserDetails";
+import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
+import { IItems } from "@mzawadie/sdk/lib/src/api/Cart/types";
+import { UserDetails_me } from "@mzawadie/sdk/lib/src/queries/gqlTypes/UserDetails";
 import { ITaxedMoney } from "@next/types";
 import { NextPage } from "next";
 import Link from "next/link";

@@ -1,4 +1,4 @@
-import { useCart, useCheckout } from "@mzawadie/sdk";
+import { useCart, useCheckout } from "@mzawadie/sdk/lib/src";
 import { checkIfShippingRequiredForProducts, CHECKOUT_STEPS } from "@next/pages/CheckoutPage/utils";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

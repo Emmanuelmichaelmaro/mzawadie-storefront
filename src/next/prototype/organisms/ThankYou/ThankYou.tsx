@@ -1,7 +1,7 @@
 import { checkoutMessages } from "@mzawadie/core";
 import { Button } from "@mzawadie/prototype/atoms";
 import { Container } from "@mzawadie/prototype/templates";
-import { OrderStatus } from "@mzawadie/sdk";
+import { OrderStatus } from "@mzawadie/sdk/lib/src";
 import Link from "next/link";
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";

@@ -1,4 +1,4 @@
-import { useCreateUserAddress, useUpdateUserAddress } from "@mzawadie/sdk";
+import { useCreateUserAddress, useUpdateUserAddress } from "@mzawadie/sdk/lib/src";
 import { CountryCode } from "@mzawadie/sdk/lib/gqlTypes/globalTypes";
 import React from "react";
 

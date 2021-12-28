@@ -7,7 +7,7 @@ import {
     AddressTypeEnum,
     useDefaultUserAddress,
     useDeleteUserAddresss,
-} from "@mzawadie/sdk";
+} from "@mzawadie/sdk/lib/src";
 import { User } from "@mzawadie/sdk/lib/fragments/gqlTypes/User";
 import { getUserDetailsQuery } from "@mzawadie/sdk/lib/queries/user";
 import React from "react";

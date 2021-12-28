@@ -1,6 +1,6 @@
 import { paths } from "@mzawadie/core";
 import { CartSidebar } from "@mzawadie/prototype/organisms";
-import { useAuth, useCart, useCheckout } from "@mzawadie/sdk";
+import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
 import { useRouter } from "next/router";
 import React from "react";
 

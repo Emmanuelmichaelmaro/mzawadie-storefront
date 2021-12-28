@@ -1,7 +1,7 @@
 import NotFound from "@mzawadie/components/NotFound";
 import { paths } from "@mzawadie/core";
 import { ThankYou } from "@mzawadie/prototype/organisms";
-import { useAuth } from "@mzawadie/sdk";
+import { useAuth } from "@mzawadie/sdk/lib/src";
 import { generateGuestOrderDetailsUrl, generateUserOrderDetailsUrl } from "@next/utils/core";
 import { NextPage } from "next";
 import React from "react";

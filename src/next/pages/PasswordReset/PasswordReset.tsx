@@ -1,6 +1,6 @@
 import { paths } from "@mzawadie/core";
 import { ResetPasswordForm } from "@mzawadie/prototype/molecules";
-import { setAuthToken, useSetPassword } from "@mzawadie/sdk";
+import { setAuthToken, useSetPassword } from "@mzawadie/sdk/lib/src";
 import { Formik } from "formik";
 import { NextPage } from "next";
 import { useRouter } from "next/router";

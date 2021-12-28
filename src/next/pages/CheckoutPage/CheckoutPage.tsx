@@ -8,8 +8,8 @@ import {
     adyenNotNegativeConfirmationStatusCodes,
 } from "@mzawadie/prototype/organisms";
 import { Checkout } from "@mzawadie/prototype/templates";
-import { useCart, useCheckout } from "@mzawadie/sdk";
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/mutations/gqlTypes/CompleteCheckout";
+import { useCart, useCheckout } from "@mzawadie/sdk/lib/src";
+import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
 import { useRedirectToCorrectCheckoutStep } from "@next/hooks";
 import { ICardData, IFormError, IPaymentSubmitResult } from "@next/types";
 import { NextPage } from "next";
