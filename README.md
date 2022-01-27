@@ -1,7 +1,5 @@
 # Mzawadie Storefront
 
-![1 copy 2x](https://user-images.githubusercontent.com/5421321/47798207-30aeea00-dd28-11e8-9398-3d8426836a83.png)
-
 _**Note:** This project is a demonstration on how Mzawadie can be used. It’s not ready to be a starter but rather show how different cases can be handled and could be used as a recipe book. There **will** be breaking changes and the code is constantly evolving, so use at your own risk._
 
 A GraphQL-powered, PWA, single-page application storefront for [Mzawadie](https://github.com/Emmanuelmichaelmaro/mzawadie-backend-django/).
@@ -35,10 +33,6 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
 ## Learn More
 

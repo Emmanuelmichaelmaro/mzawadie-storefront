@@ -3,7 +3,7 @@ import { NextQueryParamProvider } from "@mzawadie/components/NextQueryParamProvi
 import { apiUrl, channelSlug, ssrMode } from "@mzawadie/core";
 import { NotificationTemplate } from "@mzawadie/prototype/atoms";
 import { MzawadieProvider } from "@mzawadie/sdk/lib/src";
-import { ConfigInput } from "@mzawadie/sdk/lib/src/types";
+import { ApolloConfigInput, ConfigInput } from "@mzawadie/sdk/lib/src/types";
 import { defaultTheme, GlobalStyle } from "@next/styles";
 import { getMzawadieApi, getShopConfig, ShopConfig } from "@next/utils/ssr";
 import type { AppContext as NextAppContext, AppProps as NextAppProps } from "next/app";
@@ -17,18 +17,25 @@ import { version } from "../../package.json";
 import "../globalStyles/scss/index.scss";
 import { StorefrontApp } from "../views/App";
 
-// const attachClient = async () => {
-//     const { apolloClient } = await getMzawadieApi();
-//     window.__APOLLO_CLIENT__ = apolloClient;
-// };
-//
-// if (!ssrMode) {
-//     window.version = version;
-//     if (process.env.NEXT_PUBLIC_ENABLE_APOLLO_DEVTOOLS === "true")
-//         attachClient().then((r) => console.log(r));
-// }
+const attachClient = async () => {
+    const { apolloClient } = await getMzawadieApi();
+    window.__APOLLO_CLIENT__ = apolloClient;
+};
+
+if (!ssrMode) {
+    window.version = version;
+    if (process.env.NEXT_PUBLIC_ENABLE_APOLLO_DEVTOOLS === "true")
+        attachClient().then((r) => console.log(r));
+}
 
 const mzawadieConfig: ConfigInput = { apiUrl, channel: channelSlug };
+
+const apolloConfig: ApolloConfigInput = {
+    options: {
+        ssrMode: typeof window !== undefined,
+        connectToDevTools: true
+    }
+};
 
 const notificationConfig = { position: positions.BOTTOM_RIGHT, timeout: 2500 };
 
@@ -55,7 +62,7 @@ const App = ({ Component, pageProps, footer, mainMenu, shopConfig, messages }: A
                     <LocaleProvider messages={messages}>
                         <GlobalStyle />
                         <NextQueryParamProvider>
-                            <MzawadieProvider config={mzawadieConfig}>
+                            <MzawadieProvider apolloConfig={apolloConfig} config={mzawadieConfig}>
                                 <StorefrontApp
                                     footer={footer}
                                     mainMenu={mainMenu}

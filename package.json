@@ -14,6 +14,7 @@
     "dependencies": {
         "@apollo/client": "^3.4.17",
         "@babel/runtime": "^7.16.0",
+        "@mzawadie/sdk": "^1.0.10",
         "@stripe/react-stripe-js": "^1.6.0",
         "@stripe/stripe-js": "^1.21.1",
         "apollo": "^2.33.9",
@@ -152,12 +153,12 @@
         "os": false
     },
     "scripts": {
-        "dev": "next dev -p 9000",
+        "dev": "next dev",
         "build": "next build",
-        "start": "next start -p 9000",
+        "start": "next start",
         "lint": "next lint --fix --no-cache",
         "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|scss)\"",
-        "prepare": "npm link @mzawadie/sdk && husky install",
+        "prepare": "husky install",
         "codegen": "apollo codegen:generate --target=typescript --tagName=gql gqlTypes && npm run format",
         "generate": "plop",
         "extract-json-messages": "rimraf dist/locale && cross-env NODE_ENV=extract babel src 'src/**/*.{ts,tsx}' -o /Projects/mzawadie/mzawadie-storefront/dev/null",
