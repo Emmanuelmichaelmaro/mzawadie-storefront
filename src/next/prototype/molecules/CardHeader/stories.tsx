@@ -1,4 +1,4 @@
-import { IconButton } from "@mzawadie/prototype/atoms";
+import { IconButton } from "@mzawadie/ui-kit/atoms";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
@@ -14,7 +14,7 @@ const DEFAULT_PROPS = {
 
 const renderHeader = (props: IProps) => <CardHeader {...props}>{children}</CardHeader>;
 
-storiesOf("@mzawadie/prototype/molecules/CardHeader", module)
+storiesOf("@mzawadie/ui-kit/molecules/CardHeader", module)
     .addParameters({ component: CardHeader })
     .add("default", () => <CardHeader {...DEFAULT_PROPS} />)
     .add("with divider", () => {
@@ -29,21 +29,12 @@ storiesOf("@mzawadie/prototype/molecules/CardHeader", module)
         return renderHeader(PROPS);
     })
     .add("with custom close icon", () => {
-        const icon = (
-            <IconButton testingContext="test" name="edit" size={24} onClick={action("edit")} />
-        );
+        const icon = <IconButton testingContext="test" name="edit" size={24} onClick={action("edit")} />;
         const PROPS = { ...DEFAULT_PROPS, closeIcon: icon };
         return renderHeader(PROPS);
     })
     .add("with prefix", () => {
-        const icon = (
-            <IconButton
-                testingContext="test"
-                name="arrow_back"
-                size={24}
-                onClick={action("onArrowBack")}
-            />
-        );
+        const icon = <IconButton testingContext="test" name="arrow_back" size={24} onClick={action("onArrowBack")} />;
         const PROPS = { ...DEFAULT_PROPS, prfix: icon };
         return renderHeader(PROPS);
     })
@@ -53,9 +44,7 @@ storiesOf("@mzawadie/prototype/molecules/CardHeader", module)
         return renderHeader(PROPS);
     })
     .add("with big text size", () => {
-        const closeIcon = (
-            <IconButton testingContext="test" name="trash" size={30} onClick={action("trash")} />
-        );
+        const closeIcon = <IconButton testingContext="test" name="trash" size={30} onClick={action("trash")} />;
         const titleSize: TitleSize = "lg";
         const PROPS = { ...DEFAULT_PROPS, closeIcon, divider: true, titleSize };
         return renderHeader(PROPS);

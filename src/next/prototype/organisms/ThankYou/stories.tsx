@@ -5,7 +5,7 @@ import { IntlProvider } from "react-intl";
 
 import { ThankYou } from ".";
 
-storiesOf("@mzawadie/prototype/organisms/ThankYou", module)
+storiesOf("@mzawadie/ui-kit/organisms/ThankYou", module)
     .addParameters({ component: ThankYou })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

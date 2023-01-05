@@ -11,7 +11,7 @@ const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
 const onSubmit = action("onSubmit");
 
-storiesOf("@mzawadie/prototype/organisms/StripeCreditCardForm", module)
+storiesOf("@mzawadie/ui-kit/organisms/StripeCreditCardForm", module)
     .addParameters({ component: StripeCreditCardForm })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

@@ -1,6 +1,6 @@
 import { commonMessages, paths } from "@mzawadie/core";
-import { Icon } from "@mzawadie/prototype/atoms";
-import { useHandlerWhenClickedOutside } from "@next/hooks";
+import { Icon } from "@mzawadie/ui-kit/atoms";
+import { useHandlerWhenClickedOutside } from "@mzawadie/ui-kit/hooks";
 import Link from "next/link";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -8,10 +8,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import * as S from "./styles";
 import { IAccountMenuMobileProps } from "./types";
 
-export const AccountMenuMobile: React.FC<IAccountMenuMobileProps> = ({
-    links,
-    active,
-}: IAccountMenuMobileProps) => {
+export const AccountMenuMobile: React.FC<IAccountMenuMobileProps> = ({ links, active }: IAccountMenuMobileProps) => {
     const [showMenu, setShowMenu] = React.useState(false);
     const intl = useIntl();
 

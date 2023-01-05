@@ -24,7 +24,7 @@ const Container = () => {
     return <DropdownSelect options={options} value={value} onChange={setValue} />;
 };
 
-storiesOf("@mzawadie/prototype/atoms/DropdownSelect", module)
+storiesOf("@mzawadie/ui-kit/atoms/DropdownSelect", module)
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .addParameters({ component: DropdownSelect })
     .add("default", () => <Container />);

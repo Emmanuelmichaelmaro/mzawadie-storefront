@@ -1,6 +1,6 @@
 import { paymentErrorMessages } from "@mzawadie/core";
-import { ErrorMessage } from "@mzawadie/prototype/atoms";
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/mutations/gqlTypes/CompleteCheckout";
+import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
+import { ErrorMessage } from "@mzawadie/ui-kit/atoms";
 import { IFormError, IPaymentGatewayConfig, IPaymentSubmitResult } from "@next/types";
 import React, { useEffect, useRef, useState } from "react";
 import { useIntl } from "react-intl";
@@ -144,23 +144,15 @@ const AdyenPaymentGateway: React.FC<IProps> = ({
             } else if (!payment?.confirmationNeeded) {
                 submitPaymentSuccess(payment?.order);
             } else if (!dropin?.handleAction) {
-                onError([
-                    new Error(intl.formatMessage(paymentErrorMessages.cannotHandlePaymentConfirmation)),
-                ]);
+                onError([new Error(intl.formatMessage(paymentErrorMessages.cannotHandlePaymentConfirmation))]);
             } else if (!payment?.confirmationData) {
-                onError([
-                    new Error(intl.formatMessage(paymentErrorMessages.paymentNoConfirmationData)),
-                ]);
+                onError([new Error(intl.formatMessage(paymentErrorMessages.paymentNoConfirmationData))]);
             } else {
                 let paymentAction;
                 try {
                     paymentAction = JSON.parse(payment.confirmationData);
                 } catch (parseError) {
-                    onError([
-                        new Error(
-                            intl.formatMessage(paymentErrorMessages.paymentMalformedConfirmationData)
-                        ),
-                    ]);
+                    onError([new Error(intl.formatMessage(paymentErrorMessages.paymentMalformedConfirmationData))]);
                     return;
                 }
                 try {

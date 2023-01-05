@@ -14,11 +14,9 @@ const DEFAULT_PROPS = {
 const ContentLeft = () => <span>Content Left</span>;
 const ContentRight = () => <span>Content Right</span>;
 
-storiesOf("@mzawadie/prototype/molecules/TextField", module)
+storiesOf("@mzawadie/ui-kit/molecules/TextField", module)
     .addParameters({ component: TextField })
     .add("default", () => <TextField {...DEFAULT_PROPS} />)
-    .add("with errors", () => (
-        <TextField {...DEFAULT_PROPS} errors={[{ field: "field", message: "Some error" }]} />
-    ))
+    .add("with errors", () => <TextField {...DEFAULT_PROPS} errors={[{ field: "field", message: "Some error" }]} />)
     .add("with content left", () => <TextField {...DEFAULT_PROPS} contentLeft={<ContentLeft />} />)
     .add("with content right", () => <TextField {...DEFAULT_PROPS} contentRight={<ContentRight />} />);

@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 // @ts-nocheck
-import useClickedOutside from "@next/hooks/useClickedOutside";
+import useClickedOutside from "@mzawadie/ui-kit/hooks/useClickedOutside";
 import classNames from "classnames";
 import React from "react";
 
@@ -8,8 +8,7 @@ import SelectOptionsList from "./SelectOptionsList";
 import { IFilteredListArgs, ISelectChange, ISelectItem, ISelectProps } from "./customTypes";
 import "./scss/index.module.scss";
 
-const updateOptions = ({ label, value }: ISelectItem, onChange: ISelectChange) =>
-    onChange({ country: label, code: value });
+const updateOptions = ({ label, value }: ISelectItem, onChange: ISelectChange) => onChange({ country: label, code: value });
 
 const filterList = ({ searchPhrase, options }: IFilteredListArgs) =>
     options.filter(({ label }) => label.toLowerCase().includes(searchPhrase.toLowerCase()));
@@ -21,14 +20,7 @@ const findAutofilledOption = (options: ISelectItem[], inputValue: string) =>
     options.find(({ label }) => label.toLowerCase() === inputValue.toLowerCase());
 
 export const Select = (props: ISelectProps) => {
-    const {
-        autoComplete,
-        defaultValue = { label: "", value: "" },
-        label,
-        onChange,
-        options,
-        name,
-    } = props;
+    const { autoComplete, defaultValue = { label: "", value: "" }, label, onChange, options, name } = props;
     const [open, setOpen] = React.useState(false);
     const [searchPhrase, setSearchPhrase] = React.useState(defaultValue.label);
     const { clickedOutside, setElementRef } = useClickedOutside();
@@ -64,12 +56,7 @@ export const Select = (props: ISelectProps) => {
                 "select--open": shouldOpen,
             })}
         >
-            <input
-                className="select__hidden"
-                autoComplete={autoComplete}
-                name={name}
-                defaultValue={defaultValue.value}
-            />
+            <input className="select__hidden" autoComplete={autoComplete} name={name} defaultValue={defaultValue.value} />
             <div className="select__container">
                 <div className="select__title">
                     <input

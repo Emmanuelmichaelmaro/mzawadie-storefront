@@ -1,5 +1,5 @@
-import { NavLink, ShadowBox } from "@mzawadie/prototype/atoms";
-import { useHandlerWhenClickedOutside } from "@next/hooks";
+import { NavLink, ShadowBox } from "@mzawadie/ui-kit/atoms";
+import { useHandlerWhenClickedOutside } from "@mzawadie/ui-kit/hooks";
 import React from "react";
 
 import * as S from "./styles";

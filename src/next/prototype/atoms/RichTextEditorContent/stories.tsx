@@ -8,6 +8,6 @@ const props: RichTextEditorContentProps = {
     jsonData: fixtures.jsonData,
 };
 
-storiesOf("@mzawadie/prototype/atoms/RichTextEditorContent", module)
+storiesOf("@mzawadie/ui-kit/atoms/RichTextEditorContent", module)
     .addParameters({ component: RichTextEditorContent })
     .add("default", () => <RichTextEditorContent {...props} />);

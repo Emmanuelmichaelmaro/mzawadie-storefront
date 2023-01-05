@@ -1,5 +1,5 @@
-import { AddNewTile, TileGrid } from "@mzawadie/prototype/atoms";
-import { AddressTile } from "@mzawadie/prototype/molecules";
+import { AddNewTile, TileGrid } from "@mzawadie/ui-kit/atoms";
+import { AddressTile } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 
 import { IProps } from "./types";

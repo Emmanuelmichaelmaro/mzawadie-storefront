@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const BoldTitle = styled.div`
     font-weight: ${(props) => props.theme.typography.boldFontWeight};

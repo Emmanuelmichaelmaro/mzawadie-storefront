@@ -1,4 +1,4 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 import { ReactSVG } from "react-svg";
 
 export const NAVBAR_HEIGHT = "3.55rem";

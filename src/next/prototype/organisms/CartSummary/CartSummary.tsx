@@ -1,7 +1,7 @@
 import { commonMessages } from "@mzawadie/core";
-import { Icon } from "@mzawadie/prototype/atoms";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { CartSummaryRow } from "@mzawadie/prototype/molecules";
+import { Icon } from "@mzawadie/ui-kit/atoms";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { CartSummaryRow } from "@mzawadie/ui-kit/molecules";
 import React, { useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -22,20 +22,12 @@ const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => {
     const intl = useIntl();
     return (
         <S.Costs>
-            {subtotal && (
-                <CostLine name={intl.formatMessage(commonMessages.subtotal)} cost={subtotal} />
-            )}
+            {subtotal && <CostLine name={intl.formatMessage(commonMessages.subtotal)} cost={subtotal} />}
 
-            {shipping && (
-                <CostLine name={intl.formatMessage(commonMessages.shipping)} cost={shipping} />
-            )}
+            {shipping && <CostLine name={intl.formatMessage(commonMessages.shipping)} cost={shipping} />}
 
             {promoCode && promoCode.gross.amount > 0 && (
-                <CostLine
-                    name={intl.formatMessage(commonMessages.promoCode)}
-                    cost={promoCode}
-                    negative
-                />
+                <CostLine name={intl.formatMessage(commonMessages.promoCode)} cost={promoCode} negative />
             )}
 
             {total && <CostLine name={intl.formatMessage(commonMessages.total)} cost={total} last />}
@@ -46,21 +38,12 @@ const Costs = ({ subtotal, promoCode, shipping, total }: ICosts) => {
 /**
  * Cart summary displayed in checkout page
  */
-const CartSummary: React.FC<CartSummaryProps> = ({
-    subtotal,
-    total,
-    shipping,
-    promoCode,
-    products,
-}) => {
+const CartSummary: React.FC<CartSummaryProps> = ({ subtotal, total, shipping, promoCode, products }) => {
     const [mobileCartOpened, setMobileCartOpened] = useState(false);
 
     return (
         <S.Wrapper mobileCartOpened={mobileCartOpened}>
-            <S.Title
-                data-test="cartSummaryTitle"
-                onClick={() => setMobileCartOpened(!mobileCartOpened)}
-            >
+            <S.Title data-test="cartSummaryTitle" onClick={() => setMobileCartOpened(!mobileCartOpened)}>
                 <FormattedMessage defaultMessage="Cart Summary" />
 
                 <S.ArrowUp mobileCartOpened={mobileCartOpened}>

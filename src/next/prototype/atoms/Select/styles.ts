@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div`
     margin-bottom: ${(props) => props.theme.spacing.fieldSpacer};

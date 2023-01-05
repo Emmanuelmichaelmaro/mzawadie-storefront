@@ -1,6 +1,8 @@
 {
-    "extends": "next/core-web-vitals",
+    "extends": ["next", "next/core-web-vitals"],
     "rules": {
-        "react-hooks/exhaustive-deps": "off"
+        "react-hooks/exhaustive-deps": "off",
+        "scss.lint.unknownAtRules": "ignore",
+        "css.lint.unknownAtRules": "ignore"
     }
 }

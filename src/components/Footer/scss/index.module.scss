@@ -48,7 +48,7 @@
         background-color: $gray-light;
         padding: $spacer * 3 0 $spacer * 2;
 
-        .container {
+        &__container {
             display: flex;
             flex-wrap: wrap;
 

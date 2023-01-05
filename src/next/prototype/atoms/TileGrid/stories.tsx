@@ -13,7 +13,7 @@ const tile = (
 
 const tiles = [tile, tile, tile, tile, tile, tile];
 
-storiesOf("@mzawadie/prototype/atoms/TileGrid", module)
+storiesOf("@mzawadie/ui-kit/atoms/TileGrid", module)
     .addParameters({ component: TileGrid })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <TileGrid elements={tiles} />)

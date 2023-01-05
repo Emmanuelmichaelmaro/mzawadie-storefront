@@ -17,11 +17,7 @@ export const Icon: React.FC<IProps> = ({ size = 32, color, name }: IProps) => {
         <svg height={size} viewBox="0 0 32 32" width={size}>
             {icon &&
                 icon.map((path, index) => (
-                    <path
-                        d={path.d}
-                        fill={color ? getPathColor(color, index) : path.fill}
-                        key={index}
-                    />
+                    <path d={path.d} fill={color ? getPathColor(color, index) : path.fill} key={index} />
                 ))}
         </svg>
     );

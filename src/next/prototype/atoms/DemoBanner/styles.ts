@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { ReactSVG } from "react-svg";
 
 export const Wrapper = styled.section`

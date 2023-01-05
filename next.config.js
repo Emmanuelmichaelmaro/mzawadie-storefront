@@ -1,10 +1,11 @@
 /** @type {import('next').NextConfig} */
-const path = require("path");
-// const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
+const { PHASE_DEVELOPMENT_SERVER } = require("next/constants");
 const withPlugins = require("next-compose-plugins");
 const withImages = require("next-images");
 const withOptimizedImages = require("next-optimized-images");
+const withTM = require("next-transpile-modules")(["register-service-worker"]);
 
+// const withServiceWorkerConfig = require("./config/next/config.serviceWorker");
 // const withBaseConfig = require("./config/next/config.base");
 // const withDevConfig = require("./config/next/config.dev");
 // const withProdConfig = require("./config/next/config.prod");
@@ -26,7 +27,9 @@ module.exports = withPlugins(
     [
         withImages,
         [withOptimizedImages, { handleImages: ["jpeg", "png", "webp", "gif"] }],
+        withTM,
         // withBaseConfig,
+        // withServiceWorkerConfig,
         // [withDevConfig, {}, [PHASE_DEVELOPMENT_SERVER]],
         // [withProdConfig, {}, ["!" + PHASE_DEVELOPMENT_SERVER]],
     ],

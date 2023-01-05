@@ -15,6 +15,4 @@ const passwordResetMutation = gql`
     }
 `;
 
-export const TypedPasswordResetMutation = TypedMutation<ResetPassword, ResetPasswordVariables>(
-    passwordResetMutation
-);
+export const TypedPasswordResetMutation = TypedMutation<ResetPassword, ResetPasswordVariables>(passwordResetMutation);

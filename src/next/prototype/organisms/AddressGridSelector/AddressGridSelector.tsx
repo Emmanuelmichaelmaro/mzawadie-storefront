@@ -1,6 +1,6 @@
 import { checkoutMessages } from "@mzawadie/core";
-import { AddNewTile, ErrorMessage, TileGrid } from "@mzawadie/prototype/atoms";
-import { AddressTileOption } from "@mzawadie/prototype/molecules";
+import { AddNewTile, ErrorMessage, TileGrid } from "@mzawadie/ui-kit/atoms";
+import { AddressTileOption } from "@mzawadie/ui-kit/molecules";
 import { Formik } from "formik";
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
@@ -51,14 +51,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                     setSubmitting(false);
                 }}
             >
-                {({
-                    handleChange,
-                    handleSubmit,
-                    handleBlur,
-                    values,
-                    setFieldValue,
-                    setFieldTouched,
-                }) => {
+                {({ handleChange, handleSubmit, handleBlur, values, setFieldValue, setFieldTouched }) => {
                     return (
                         <form id={formId} ref={formRef} onSubmit={handleSubmit}>
                             <TileGrid
@@ -75,10 +68,7 @@ const AddressGridSelector: React.FC<IProps> = ({
                                                 inputName="addressTileOption"
                                                 address={address}
                                                 onChange={() => setFieldValue("addressTileOption", id)}
-                                                checked={
-                                                    !!values.addressTileOption &&
-                                                    values.addressTileOption === id
-                                                }
+                                                checked={!!values.addressTileOption && values.addressTileOption === id}
                                             />
                                         );
                                         return elements;

@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { InputSelect, TextField } from "@mzawadie/prototype/molecules";
+import { InputSelect, TextField } from "@mzawadie/ui-kit/molecules";
 import React, { useCallback } from "react";
 import { useIntl } from "react-intl";
 
@@ -20,18 +20,13 @@ export const AddressFormContent: React.FC<PropsWithFormik> = ({
     testingContext,
     includeEmail = false,
 }) => {
-    const basicInputProps = useCallback(
-        () => ({ onBlur: handleBlur, onChange: handleChange }),
-        [handleChange, handleBlur]
-    );
+    const basicInputProps = useCallback(() => ({ onBlur: handleBlur, onChange: handleChange }), [handleChange, handleBlur]);
     const intl = useIntl();
     const fieldErrors: any = {};
 
     if (errors) {
         errors.map(({ field, message }: { field: string; message: string }) => {
-            fieldErrors[field] = fieldErrors[field]
-                ? [...fieldErrors[field], { message }]
-                : [{ message }];
+            fieldErrors[field] = fieldErrors[field] ? [...fieldErrors[field], { message }] : [{ message }];
         });
     }
 

@@ -1,8 +1,8 @@
-import { ICheckoutModelLine } from "@mzawadie/sdk/lib/helpers";
+import { ICheckoutModelLine } from "@mzawadie/sdk/lib/src/helpers";
 import {
     ProductDetails_product_pricing,
     ProductDetails_product_variants_pricing,
-} from "@mzawadie/sdk/lib/queries/gqlTypes/ProductDetails";
+} from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 
@@ -56,19 +56,13 @@ export const canAddToCart = (
 ): boolean => {
     const cartItem = items?.find((item) => item.variant.id === variantId);
     const syncedQuantityWithCart = cartItem ? quantity + (cartItem?.quantity || 0) : quantity;
-    return (
-        isAvailableForPurchase && quantity > 0 && !!variantId && variantStock >= syncedQuantityWithCart
-    );
+    return isAvailableForPurchase && quantity > 0 && !!variantId && variantStock >= syncedQuantityWithCart;
 };
 
 /**
  * Returns how many items you can add to the cart. Takes in account quantity already in cart.
  */
-export const getAvailableQuantity = (
-    items: ICheckoutModelLine[],
-    variantId: string,
-    variantStock: number
-): number => {
+export const getAvailableQuantity = (items: ICheckoutModelLine[], variantId: string, variantStock: number): number => {
     const cartItem = items?.find((item) => item.variant.id === variantId);
     const quantityInCart = cartItem?.quantity || 0;
     return variantStock - quantityInCart;

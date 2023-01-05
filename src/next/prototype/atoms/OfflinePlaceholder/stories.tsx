@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 
 import { OfflinePlaceholder } from "./index";
 
-storiesOf("@mzawadie/prototype/atoms/OfflinePlaceholder", module)
+storiesOf("@mzawadie/ui-kit/atoms/OfflinePlaceholder", module)
     .addParameters({ component: OfflinePlaceholder })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <OfflinePlaceholder />);

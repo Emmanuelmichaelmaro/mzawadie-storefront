@@ -1,4 +1,4 @@
-import { AccountTabTiles } from "@mzawadie/prototype/molecules";
+import { AccountTabTiles } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 
 import * as S from "./styles";

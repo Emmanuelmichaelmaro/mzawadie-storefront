@@ -19,6 +19,6 @@ const DEFAULT_PROPS = {
     streetAddress2: "Second",
 };
 
-storiesOf("@mzawadie/prototype/atoms/Address", module)
+storiesOf("@mzawadie/ui-kit/atoms/Address", module)
     .addParameters({ component: Address })
     .add("default", () => <Address {...DEFAULT_PROPS} />);

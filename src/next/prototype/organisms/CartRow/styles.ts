@@ -1,4 +1,4 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 import { css } from "styled-components";
 
 import { ICartRowType } from "./types";
@@ -181,7 +181,7 @@ const responsiveTotalPrice = css`
     ${condenseTotalPrice}
   `};
 `;
-export const TotalPrice = styled(Price)<{ cartRowType: ICartRowType }>`
+export const TotalPrice = styled(Price) <{ cartRowType: ICartRowType }>`
     grid-area: totalPrice;
     ${(props) => (props.cartRowType === "condense" ? condenseTotalPrice : responsiveTotalPrice)}
 `;

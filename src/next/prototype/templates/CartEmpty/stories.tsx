@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 
 import { CartEmpty } from ".";
 
-storiesOf("@mzawadie/prototype/templates/CartEmpty", module)
+storiesOf("@mzawadie/ui-kit/templates/CartEmpty", module)
     .addParameters({ component: CartEmpty })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <CartEmpty />);

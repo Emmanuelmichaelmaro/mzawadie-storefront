@@ -1,5 +1,5 @@
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { Thumbnail } from "@mzawadie/prototype/molecules";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { Thumbnail } from "@mzawadie/ui-kit/molecules";
 import { FeaturedProduct } from "@next/graphql/gqlTypes/FeaturedProduct";
 import isEqual from "lodash/isEqual";
 import * as React from "react";

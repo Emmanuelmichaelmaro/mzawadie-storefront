@@ -14,7 +14,7 @@ interface ProductsFeaturedProps {
 export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title, products }) =>
     products?.length ? (
         <div className={styles.products__featured}>
-            <div className={styles.container}>
+            <div className="container">
                 <h3>{title}</h3>
 
                 <Carousel>

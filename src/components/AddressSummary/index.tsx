@@ -39,11 +39,7 @@ const AddressSummary: React.FC<{
                 <br />
                 {address.phone && (
                     <>
-                        <FormattedMessage
-                            {...commonMessages.phoneNumber}
-                            values={{ phone: address.phone }}
-                        />{" "}
-                        <br />
+                        <FormattedMessage {...commonMessages.phoneNumber} values={{ phone: address.phone }} /> <br />
                     </>
                 )}
                 {email && (

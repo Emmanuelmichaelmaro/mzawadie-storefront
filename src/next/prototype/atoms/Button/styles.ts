@@ -1,4 +1,4 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 
 import { Size } from "./types";
 
@@ -60,11 +60,11 @@ export const Secondary = styled(Primary)`
 export const Text = styled.span<{ size: Size }>`
     display: inline-block;
     font-size: ${({
-        size,
-        theme: {
-            button: { typography },
-        },
-    }) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
+    size,
+    theme: {
+        button: { typography },
+    },
+}) => fontSize(typography.fontSize, typography.smallFontSize)[size]};
     text-transform: uppercase;
     font-weight: ${(props) => props.theme.typography.boldFontWeight};
     line-height: ${(props) => props.theme.typography.baseLineHeight};

@@ -1,4 +1,4 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 
 export const Container = styled.div`
     width: ${(props) => `${props.theme.container.width}px`};

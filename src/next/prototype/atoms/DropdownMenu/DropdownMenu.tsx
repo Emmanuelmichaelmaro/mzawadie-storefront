@@ -1,4 +1,4 @@
-import { useHandlerWhenClickedOutside } from "@next/hooks";
+import { useHandlerWhenClickedOutside } from "@mzawadie/ui-kit/hooks";
 import React, { useState } from "react";
 
 import * as S from "./styles";

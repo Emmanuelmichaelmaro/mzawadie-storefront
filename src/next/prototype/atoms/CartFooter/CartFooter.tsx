@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
 import { ITaxedMoney } from "@next/types";
 import React from "react";
 import { FormattedMessage } from "react-intl";

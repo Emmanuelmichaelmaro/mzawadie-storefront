@@ -32,7 +32,7 @@ const renderModal = (props: IProps) => (
     </Modal>
 );
 
-storiesOf("@mzawadie/prototype/organisms/Modal", module)
+storiesOf("@mzawadie/ui-kit/organisms/Modal", module)
     .addParameters({ component: Modal })
     .add("Modal Form", () =>
         renderModal({

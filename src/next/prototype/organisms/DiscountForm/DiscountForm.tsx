@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { Button, Chip, ErrorMessage, Input } from "@mzawadie/prototype/atoms";
+import { Button, Chip, ErrorMessage, Input } from "@mzawadie/ui-kit/atoms";
 import { Formik } from "formik";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -51,12 +51,7 @@ export const DiscountForm: React.FC<IDiscountFormProps> = ({
                 const hasErrors = !!(values.errors && values.errors.length);
 
                 return (
-                    <S.DiscountForm
-                        id={formId}
-                        ref={formRef}
-                        onSubmit={handleSubmit}
-                        data-test="discountForm"
-                    >
+                    <S.DiscountForm id={formId} ref={formRef} onSubmit={handleSubmit} data-test="discountForm">
                         <S.Input>
                             <S.InputWithButton>
                                 <S.InputWrapper>

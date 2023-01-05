@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { TextField } from "@mzawadie/prototype/molecules";
+import { TextField } from "@mzawadie/ui-kit/molecules";
 import React, { useEffect, useState } from "react";
 import { useIntl } from "react-intl";
 

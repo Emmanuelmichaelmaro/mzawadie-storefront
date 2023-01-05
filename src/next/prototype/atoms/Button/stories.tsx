@@ -3,7 +3,7 @@ import React from "react";
 
 import { Button } from "./index";
 
-storiesOf("@mzawadie/prototype/atoms/Button", module)
+storiesOf("@mzawadie/ui-kit/atoms/Button", module)
     .addParameters({ component: Button })
     .add("Primary", () => (
         <Button fullWidth={false} testingContext="testButton">

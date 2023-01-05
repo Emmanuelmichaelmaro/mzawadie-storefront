@@ -1,6 +1,6 @@
 import { checkoutMessages } from "@mzawadie/core";
-import { Checkbox } from "@mzawadie/prototype/atoms";
-import { filterNotEmptyArrayItems } from "@next/utils/misc";
+import { Checkbox } from "@mzawadie/ui-kit/atoms";
+import { filterNotEmptyArrayItems } from "@mzawadie/ui-kit/utils/misc";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 

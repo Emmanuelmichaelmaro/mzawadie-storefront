@@ -1,4 +1,4 @@
-import { getBackgroundColor } from "@next/utils/styles";
+import { getBackgroundColor } from "@mzawadie/ui-kit/utils/styles";
 import { CardCvcElement, CardExpiryElement, CardNumberElement } from "@stripe/react-stripe-js";
 import {
     StripeCardCvcElementChangeEvent,
@@ -80,10 +80,7 @@ const StripeInputElement: React.FC<IStripeInputElementProps> = ({
         }
     }, [setActive, onBlur]);
     const handleStripeElementChange = (
-        event:
-            | StripeCardNumberElementChangeEvent
-            | StripeCardExpiryElementChangeEvent
-            | StripeCardCvcElementChangeEvent
+        event: StripeCardNumberElementChangeEvent | StripeCardExpiryElementChangeEvent | StripeCardCvcElementChangeEvent
     ) => {
         setFilled(!event?.empty);
         if (onChange) {

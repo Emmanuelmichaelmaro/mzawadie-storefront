@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { checkoutMessages, paths } from "@mzawadie/core";
-import { CartSummaryProps } from "@mzawadie/prototype/organisms";
-import { IItems } from "@mzawadie/sdk/lib/api/Cart/types";
+import { IItems } from "@mzawadie/sdk/lib/src/api/Cart/types";
+import { CartSummaryProps } from "@mzawadie/ui-kit/organisms";
 import { NextRouter } from "next/router";
 import { ParsedUrlQueryInput } from "querystring";
 import React from "react";

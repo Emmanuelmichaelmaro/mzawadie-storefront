@@ -26,7 +26,7 @@ const Container = () => {
     return <Select value={value} onChange={(value) => setValue(value)} {...DEFAULT_PROPS} />;
 };
 
-storiesOf("@mzawadie/prototype/atoms/Select", module)
+storiesOf("@mzawadie/ui-kit/atoms/Select", module)
     .addParameters({ component: Select })
     .add("sample select", () => {
         return <Container />;

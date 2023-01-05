@@ -1,4 +1,4 @@
-import { CCProviders } from "@mzawadie/prototype/atoms";
+import { CCProviders } from "@mzawadie/ui-kit/atoms";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
@@ -17,6 +17,4 @@ const DEFAULT_PROPS = {
     onRemove,
 };
 
-storiesOf("@mzawadie/prototype/molecules/CreditCardTile", module).add("default", () => (
-    <CreditCardTile {...DEFAULT_PROPS} />
-));
+storiesOf("@mzawadie/ui-kit/molecules/CreditCardTile", module).add("default", () => <CreditCardTile {...DEFAULT_PROPS} />);

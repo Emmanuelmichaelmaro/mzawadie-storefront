@@ -7,10 +7,14 @@ import {
     staticPathsFetchBatch,
 } from "@mzawadie/core";
 import { VariantAttributeScope } from "@mzawadie/sdk/lib/src";
-import { exhaustList, getMzawadieApi } from "@next/utils/ssr";
+import { exhaustList, getMzawadieApi } from "@mzawadie/ui-kit/utils/ssr";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { ProductPage, ProductPageProps } from "../../views/Product";
+import { ProductPage, ProductPageProps } from "../../apps/Product";
+
+export type OptionalQuery = {
+    variant?: string;
+};
 
 export default ProductPage;
 
@@ -30,9 +34,7 @@ export const getStaticPaths: GetStaticPaths<ProductPageProps["params"]> = async 
     return { paths, fallback: staticPathsFallback };
 };
 
-export const getStaticProps: GetStaticProps<ProductPageProps, ProductPageProps["params"]> = async ({
-    params,
-}) => {
+export const getStaticProps: GetStaticProps<ProductPageProps, ProductPageProps["params"]> = async ({ params }) => {
     const { api } = await getMzawadieApi();
     const { data } = await api.products.getDetails({
         slug: params?.slug[0],

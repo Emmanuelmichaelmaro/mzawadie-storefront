@@ -2,18 +2,7 @@ export const adyenPaymentMethods = {
     groups: [
         {
             name: "Credit Card",
-            types: [
-                "mc",
-                "visa",
-                "amex",
-                "maestro",
-                "amex_applepay",
-                "cup",
-                "diners",
-                "discover",
-                "jcb",
-                "mc_applepay",
-            ],
+            types: ["mc", "visa", "amex", "maestro", "amex_applepay", "cup", "diners", "discover", "jcb", "mc_applepay"],
         },
     ],
     paymentMethods: [

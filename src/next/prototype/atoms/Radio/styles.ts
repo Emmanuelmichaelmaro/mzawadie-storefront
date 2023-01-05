@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { css } from "styled-components";
 
 const inputStyle = css<{ checked: boolean }>`

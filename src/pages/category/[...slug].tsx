@@ -5,10 +5,10 @@ import {
     staticPathsFallback,
     staticPathsFetchBatch,
 } from "@mzawadie/core";
-import { exhaustList, getFeaturedProducts, getMzawadieApi, getShopAttributes } from "@next/utils/ssr";
+import { exhaustList, getFeaturedProducts, getMzawadieApi, getShopAttributes } from "@mzawadie/ui-kit/utils/ssr";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { CategoryView, CategoryViewProps } from "../../views/Category";
+import { CategoryView, CategoryViewProps } from "../../apps/Category";
 
 export default CategoryView;
 
@@ -27,9 +27,7 @@ export const getStaticPaths: GetStaticPaths<CategoryViewProps["params"]> = async
     return { paths, fallback: staticPathsFallback };
 };
 
-export const getStaticProps: GetStaticProps<CategoryViewProps, CategoryViewProps["params"]> = async ({
-    params,
-}) => {
+export const getStaticProps: GetStaticProps<CategoryViewProps, CategoryViewProps["params"]> = async ({ params }) => {
     let data = null;
     const { api } = await getMzawadieApi();
     const { data: details } = await api.categories.getDetails({ slug: params?.slug[0] });

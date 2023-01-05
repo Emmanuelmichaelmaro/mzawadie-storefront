@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 
 import { Tile } from ".";
 
-storiesOf("@mzawadie/prototype/atoms/Tile", module)
+storiesOf("@mzawadie/ui-kit/atoms/Tile", module)
     .addParameters({ component: Tile })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

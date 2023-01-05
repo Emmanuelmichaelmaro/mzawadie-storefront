@@ -1,5 +1,5 @@
 import { generateProductUrl } from "@mzawadie/core";
-import { Thumbnail } from "@mzawadie/prototype/molecules";
+import { Thumbnail } from "@mzawadie/ui-kit/molecules";
 import Link from "next/link";
 import React from "react";
 

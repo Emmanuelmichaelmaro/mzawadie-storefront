@@ -1,5 +1,5 @@
 import { paymentErrorMessages } from "@mzawadie/core";
-import { stripeErrorMessages } from "@mzawadie/prototype/organisms/StripePaymentGateway/intl";
+import { stripeErrorMessages } from "@mzawadie/ui-kit/organisms/StripePaymentGateway/intl";
 import { IFormError } from "@next/types";
 import { CardNumberElement, Elements } from "@stripe/react-stripe-js";
 import { loadStripe, PaymentMethod, Stripe, StripeElements } from "@stripe/stripe-js";
@@ -36,9 +36,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
             // loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
         }
 
-        const stripeApiKeyErrors = [
-            new Error(intl.formatMessage(stripeErrorMessages.gatewayMisconfiguration)),
-        ];
+        const stripeApiKeyErrors = [new Error(intl.formatMessage(stripeErrorMessages.gatewayMisconfiguration))];
 
         setSubmitErrors(stripeApiKeyErrors);
 
@@ -51,9 +49,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
         const cartNumberElement = elements?.getElement(CardNumberElement);
 
         if (!cartNumberElement) {
-            const stripeElementsErrors = [
-                new Error(intl.formatMessage(stripeErrorMessages.gatewayDisplayError)),
-            ];
+            const stripeElementsErrors = [new Error(intl.formatMessage(stripeErrorMessages.gatewayDisplayError))];
 
             setSubmitErrors(stripeElementsErrors);
 
@@ -83,9 +79,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
         }
 
         if (!payload?.paymentMethod) {
-            const stripePayloadErrors = [
-                new Error(intl.formatMessage(stripeErrorMessages.paymentSubmissionError)),
-            ];
+            const stripePayloadErrors = [new Error(intl.formatMessage(stripeErrorMessages.paymentSubmissionError))];
 
             setSubmitErrors(stripePayloadErrors);
 
@@ -125,9 +119,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
         }
 
         if (!stripe?.confirmCardPayment) {
-            onError([
-                new Error(intl.formatMessage(paymentErrorMessages.cannotHandlePaymentConfirmation)),
-            ]);
+            onError([new Error(intl.formatMessage(paymentErrorMessages.cannotHandlePaymentConfirmation))]);
             return;
         }
 
@@ -139,9 +131,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
         const { parseError, paymentAction } = parsePaymentConfirmationData(payment.confirmationData);
 
         if (parseError || !paymentAction) {
-            onError([
-                new Error(intl.formatMessage(paymentErrorMessages.paymentMalformedConfirmationData)),
-            ]);
+            onError([new Error(intl.formatMessage(paymentErrorMessages.paymentMalformedConfirmationData))]);
             return;
         }
 
@@ -150,11 +140,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
             return;
         }
 
-        const { confirmation, confirmationError } = await handleConfirmCardPayment(
-            stripe,
-            paymentAction,
-            paymentMethod
-        );
+        const { confirmation, confirmationError } = await handleConfirmCardPayment(stripe, paymentAction, paymentMethod);
 
         if (confirmationError) {
             // @ts-ignore
@@ -185,12 +171,7 @@ const StripePaymentGateway: React.FC<IStripePaymentGatewayProps> = ({
     return (
         <div data-test="stripeGateway">
             <Elements stripe={stripePromise}>
-                <StripeCreditCardForm
-                    formId={formId}
-                    formRef={formRef}
-                    errors={allErrors}
-                    onSubmit={handleFormSubmit}
-                />
+                <StripeCreditCardForm formId={formId} formRef={formRef} errors={allErrors} onSubmit={handleFormSubmit} />
             </Elements>
         </div>
     );

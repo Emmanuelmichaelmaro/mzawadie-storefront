@@ -11,7 +11,7 @@ const submitPayment = async () => Promise.resolve({});
 const submitPaymentSuccess = action("submitPaymentSuccess");
 const onError = action("onError");
 
-storiesOf("@mzawadie/prototype/organisms/StripePaymentGateway", module)
+storiesOf("@mzawadie/ui-kit/organisms/StripePaymentGateway", module)
     .addParameters({ component: StripePaymentGateway })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

@@ -1,4 +1,4 @@
-import { GetShop_shop_countries } from "@mzawadie/sdk/lib/queries/gqlTypes/GetShop";
+import { GetShop_shop_countries } from "@mzawadie/sdk/lib/src/queries/gqlTypes/GetShop";
 import { IAddressWithAddressType } from "@next/types";
 
 import { Address } from "./types";

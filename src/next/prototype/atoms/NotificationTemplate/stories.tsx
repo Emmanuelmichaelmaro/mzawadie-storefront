@@ -6,7 +6,7 @@ import { NotificationTemplate } from "./index";
 
 const onClick = action("onClick called");
 
-storiesOf("@mzawadie/prototype/atoms/NotificationTemplate", module)
+storiesOf("@mzawadie/ui-kit/atoms/NotificationTemplate", module)
     .addParameters({ component: NotificationTemplate })
     .add("default", () => (
         <NotificationTemplate

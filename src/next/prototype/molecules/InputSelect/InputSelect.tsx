@@ -1,4 +1,4 @@
-import { Icon, InputLabel, Select } from "@mzawadie/prototype/atoms";
+import { Icon, InputLabel, Select } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 import { components, ControlProps, InputProps, OptionProps } from "react-select";
 import { ThemeContext } from "styled-components";
@@ -55,8 +55,7 @@ export const InputSelect: React.FC<IProps> = ({ label, inputProps, ...props }: I
         IndicatorSeparator: () => null,
         IndicatorsContainer: ({ selectProps, hasValue, clearValue }: any) => {
             const showClearIndicator =
-                selectProps.isClearable ||
-                (selectProps.isMulti && selectProps.isClearable === undefined);
+                selectProps.isClearable || (selectProps.isMulti && selectProps.isClearable === undefined);
 
             if (showClearIndicator && hasValue) {
                 return (

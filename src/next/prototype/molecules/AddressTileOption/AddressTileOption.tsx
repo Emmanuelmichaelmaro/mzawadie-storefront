@@ -1,4 +1,4 @@
-import { Address } from "@mzawadie/prototype/atoms";
+import { Address } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import * as S from "./styles";
@@ -24,14 +24,7 @@ const AddressTileOption: React.FC<IAddressTileOptionProps> = ({
         >
             <Address {...address} />
 
-            <S.Input
-                {...props}
-                type="radio"
-                name={inputName}
-                value={id}
-                checked={checked}
-                onChange={onChange}
-            />
+            <S.Input {...props} type="radio" name={inputName} value={id} checked={checked} onChange={onChange} />
         </S.Label>
     );
 };

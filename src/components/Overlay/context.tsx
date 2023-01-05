@@ -26,11 +26,7 @@ export interface InnerOverlayContextInterface {
     data?: any;
 }
 
-export type ShowOverlayType = (
-    type: OverlayType,
-    theme?: OverlayTheme,
-    context?: InnerOverlayContextInterface
-) => void;
+export type ShowOverlayType = (type: OverlayType, theme?: OverlayTheme, context?: InnerOverlayContextInterface) => void;
 
 export interface OverlayContextInterface {
     type: OverlayType | null;

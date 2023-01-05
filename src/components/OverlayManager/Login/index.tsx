@@ -1,18 +1,10 @@
 // @ts-nocheck
-import { OfflinePlaceholder } from "@mzawadie/prototype/atoms";
+import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import { ReactSVG } from "react-svg";
 
-import {
-    LoginForm,
-    Offline,
-    Online,
-    Overlay,
-    OverlayContextInterface,
-    OverlayTheme,
-    OverlayType,
-} from "../..";
+import { LoginForm, Offline, Online, Overlay, OverlayContextInterface, OverlayTheme, OverlayType } from "../..";
 import closeImg from "../../../images/x.svg";
 import ForgottenPassword from "./ForgottenPassword";
 import RegisterForm from "./RegisterForm";
@@ -50,11 +42,7 @@ class Login extends React.Component<
                                 <FormattedMessage defaultMessage="Mzawadie account" />
                             </p>
 
-                            <ReactSVG
-                                src={closeImg}
-                                onClick={hide}
-                                className="overlay__header__close-icon"
-                            />
+                            <ReactSVG src={closeImg} onClick={hide} className="overlay__header__close-icon" />
                         </div>
 
                         <div className="login__tabs">

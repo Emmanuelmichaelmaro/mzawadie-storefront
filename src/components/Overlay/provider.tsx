@@ -33,9 +33,7 @@ class Provider extends React.Component<{ pathname: string }, OverlayContextInter
 
     show = (type: OverlayType, theme?: OverlayTheme, context?: InnerOverlayContextInterface) => {
         this.setState({ type, theme, context });
-        !ssrMode
-            ? (document.body.style.overflow = type !== OverlayType.message ? "hidden" : "")
-            : undefined;
+        !ssrMode ? (document.body.style.overflow = type !== OverlayType.message ? "hidden" : "") : undefined;
         if (type === OverlayType.message) {
             setTimeout(this.hide, this.notificationCloseDelay);
         }
@@ -47,9 +45,7 @@ class Provider extends React.Component<{ pathname: string }, OverlayContextInter
     };
 
     render() {
-        return (
-            <OverlayContext.Provider value={this.state}>{this.props.children}</OverlayContext.Provider>
-        );
+        return <OverlayContext.Provider value={this.state}>{this.props.children}</OverlayContext.Provider>;
     }
 }
 

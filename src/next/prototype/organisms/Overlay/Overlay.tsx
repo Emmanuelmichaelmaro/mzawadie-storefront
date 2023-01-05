@@ -42,11 +42,7 @@ export const Overlay: React.FC<IProps> = ({
                         data-test={testingContext}
                         data-test-id={testingContextId}
                     >
-                        <S.Lightbox
-                            {...animationProps}
-                            state={state}
-                            onClick={(e) => e.stopPropagation()}
-                        >
+                        <S.Lightbox {...animationProps} state={state} onClick={(e) => e.stopPropagation()}>
                             {children}
                         </S.Lightbox>
                     </S.Overlay>

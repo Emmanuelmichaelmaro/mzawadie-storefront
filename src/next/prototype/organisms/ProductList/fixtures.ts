@@ -1,4 +1,4 @@
-import { ProductList_products_edges_node } from "@mzawadie/sdk/lib/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductList";
 
 export const PRODUCTS: ProductList_products_edges_node[] = [
     {

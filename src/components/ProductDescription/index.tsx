@@ -96,10 +96,7 @@ class ProductDescription extends React.Component<ProductDescriptionProps, Produc
         const primaryPicker = this.state.primaryPicker;
         primaryPicker.selected = value;
         this.setState({ primaryPicker });
-        if (
-            this.state.secondaryPicker &&
-            !this.state.variants[value].includes(this.state.secondaryPicker.selected)
-        ) {
+        if (this.state.secondaryPicker && !this.state.variants[value].includes(this.state.secondaryPicker.selected)) {
             this.onSecondaryPickerChange("");
         }
     };
@@ -119,8 +116,7 @@ class ProductDescription extends React.Component<ProductDescriptionProps, Produc
         } else if (this.state.secondaryPicker && this.state.primaryPicker) {
             variant = this.props.productVariants.find(
                 (variant) =>
-                    variant.name ===
-                    `${this.state.primaryPicker.selected} / ${this.state.secondaryPicker.selected}`
+                    variant.name === `${this.state.primaryPicker.selected} / ${this.state.secondaryPicker.selected}`
             ).id;
         } else {
             variant = this.props.productVariants[0].id;
@@ -164,10 +160,7 @@ class ProductDescription extends React.Component<ProductDescriptionProps, Produc
                                 }
                             }
                             options={this.state.secondaryPicker.values.map((value) => ({
-                                isDisabled:
-                                    !this.state.variants[this.state.primaryPicker.selected].includes(
-                                        value
-                                    ),
+                                isDisabled: !this.state.variants[this.state.primaryPicker.selected].includes(value),
                                 label: value,
                                 value,
                             }))}
@@ -190,9 +183,7 @@ class ProductDescription extends React.Component<ProductDescriptionProps, Produc
                     className="product-description__action"
                     onClick={this.handleSubmit}
                     disabled={
-                        this.state.primaryPicker &&
-                        this.state.secondaryPicker &&
-                        this.state.secondaryPicker.selected === ""
+                        this.state.primaryPicker && this.state.secondaryPicker && this.state.secondaryPicker.selected === ""
                     }
                     testingContext="productDescriptionAddToCartButton"
                 >

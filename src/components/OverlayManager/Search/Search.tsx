@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { maybe, commonMessages, channelSlug, paths } from "@mzawadie/core";
-import { OfflinePlaceholder } from "@mzawadie/prototype/atoms";
+import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import classNames from "classnames";
 import { NextRouter, withRouter } from "next/router";
 import { stringify } from "query-string";
@@ -67,11 +67,7 @@ class Search extends React.Component<SearchProps, SearchState> {
 
     render() {
         return (
-            <Overlay
-                testingContext="searchOverlay"
-                context={this.props.overlay}
-                className="overlay--no-background"
-            >
+            <Overlay testingContext="searchOverlay" context={this.props.overlay} className="overlay--no-background">
                 <form
                     className={classNames("search", {
                         "search--has-results": this.hasSearchPhrase,
@@ -122,13 +118,8 @@ class Search extends React.Component<SearchProps, SearchState> {
                                                         <>
                                                             <ul>
                                                                 {data.products.edges.map(
-                                                                    (product: {
-                                                                        node: { id: any };
-                                                                    }) => (
-                                                                        <ProductItem
-                                                                            {...product}
-                                                                            key={product.node.id}
-                                                                        />
+                                                                    (product: { node: { id: any } }) => (
+                                                                        <ProductItem {...product} key={product.node.id} />
                                                                     )
                                                                 )}
                                                             </ul>

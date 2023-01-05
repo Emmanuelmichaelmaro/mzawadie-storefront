@@ -1,5 +1,5 @@
-import { styled } from "@next/styles";
-import { spacer } from "@next/styles/constants";
+import { styled } from "@mzawadie/ui-kit/styles";
+import { spacer } from "@mzawadie/ui-kit/styles/constants";
 
 export const Wrapper = styled.div`
     padding: ${(props) => `${props.theme.spacing.spacer} ${spacer / 2}rem`};

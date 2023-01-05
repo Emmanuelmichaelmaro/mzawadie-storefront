@@ -3,6 +3,6 @@ import React from "react";
 
 import { Loader } from "./index";
 
-storiesOf("@mzawadie/prototype/atoms/Loader", module)
+storiesOf("@mzawadie/ui-kit/atoms/Loader", module)
     .addParameters({ component: Loader })
     .add("default", () => <Loader fullScreen={false} />);
