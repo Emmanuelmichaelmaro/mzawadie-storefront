@@ -1,4 +1,4 @@
-import { RichTextEditorContent } from "@mzawadie/prototype/atoms";
+import { RichTextEditorContent } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 

@@ -6,7 +6,7 @@ import { IntlProvider } from "react-intl";
 import { CartSummary } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
 
-storiesOf("@mzawadie/prototype/organisms/CartSummary", module)
+storiesOf("@mzawadie/ui-kit/organisms/CartSummary", module)
     .addParameters({ component: CartSummary })
     .add("default", () => (
         <IntlProvider locale="en">

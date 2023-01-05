@@ -15,12 +15,7 @@ interface OverlayProps {
     testingContext: string;
 }
 
-const Overlay: React.FC<OverlayProps> = ({
-    children,
-    className,
-    context: { type, theme, hide },
-    testingContext,
-}) => (
+const Overlay: React.FC<OverlayProps> = ({ children, className, context: { type, theme, hide }, testingContext }) => (
     <div
         className={classNames([styles.overlay], {
             [styles[`overlay__${type}`]]: !!type,

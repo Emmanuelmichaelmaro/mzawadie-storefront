@@ -1,4 +1,4 @@
-import { CCProviders } from "@mzawadie/prototype/atoms";
+import { CCProviders } from "@mzawadie/ui-kit/atoms";
 
 export interface ICreditCardTileProps {
     nameOnCard: string;

@@ -16,6 +16,7 @@ package-lock.json
 # production
 /build
 /dist
+/lib
 
 # misc
 .DS_Store
@@ -88,8 +89,21 @@ yarn-error.log*
 !.prettierignore
 !.tx
 !.nvmrc
+!.env
+!.env.development
+!.env.production
+!.env.local
 
-schema.graphql
+*.graphql
 
 **/graphql/*
 **/gqlTypes/*
+
+public/sw.js
+public/sw.js.map
+public/worker-*.js
+public/worker-*.js.map
+
+cypress/videos
+cypress/screenshots
+cypress/fixtures/example.json

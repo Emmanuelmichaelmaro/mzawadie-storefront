@@ -1,7 +1,7 @@
 import {
     ProductDetails_product_variants_attributes_attribute,
     ProductDetails_product_variants_attributes_values,
-} from "@mzawadie/sdk/lib/queries/gqlTypes/ProductDetails";
+} from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
 import { ISelectOptions } from "@next/types";
 
 export interface IProductVariantsAttribute {

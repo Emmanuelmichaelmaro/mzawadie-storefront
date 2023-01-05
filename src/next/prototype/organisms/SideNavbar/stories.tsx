@@ -14,9 +14,7 @@ if (!portalRoot) {
     document.body.appendChild(portalRoot);
 }
 
-storiesOf("@mzawadie/prototype/organisms/SideNavbar", module)
+storiesOf("@mzawadie/ui-kit/organisms/SideNavbar", module)
     .addParameters({ component: SideNavbar })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
-    .add("default", () => (
-        <SideNavbar show onHide={action("hide")} target={portalRoot} items={items} />
-    ));
+    .add("default", () => <SideNavbar show onHide={action("hide")} target={portalRoot} items={items} />);

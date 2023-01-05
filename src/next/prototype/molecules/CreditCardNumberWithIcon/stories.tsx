@@ -3,6 +3,6 @@ import React from "react";
 
 import { CreditCardNumberWithIcon } from ".";
 
-storiesOf("@mzawadie/prototype/molecules/CreditCardNumberWithIcon", module).add("default", () => (
+storiesOf("@mzawadie/ui-kit/molecules/CreditCardNumberWithIcon", module).add("default", () => (
     <CreditCardNumberWithIcon creditCardProvider="visa" last4Digits={1234} />
 ));

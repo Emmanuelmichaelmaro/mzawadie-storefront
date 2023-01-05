@@ -1,8 +1,8 @@
 // @ts-nocheck
 import { generateProductUrl } from "@mzawadie/core/utils";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { Thumbnail } from "@mzawadie/prototype/molecules";
 import { ICheckoutModelLine } from "@mzawadie/sdk/repository";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { Thumbnail } from "@mzawadie/ui-kit/molecules";
 import Link from "next/link";
 import * as React from "react";
 import { ReactSVG } from "react-svg";

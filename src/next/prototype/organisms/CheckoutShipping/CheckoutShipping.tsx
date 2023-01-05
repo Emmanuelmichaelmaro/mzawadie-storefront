@@ -1,6 +1,6 @@
 import { checkoutMessages } from "@mzawadie/core";
-import { ErrorMessage, Radio } from "@mzawadie/prototype/atoms";
-import { Money } from "@mzawadie/prototype/containers";
+import { ErrorMessage, Radio } from "@mzawadie/ui-kit/atoms";
+import { Money } from "@mzawadie/ui-kit/containers";
 import { Formik } from "formik";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -37,26 +37,14 @@ const CheckoutShipping: React.FC<ICheckoutShippingProps> = ({
                     setSubmitting(false);
                 }}
             >
-                {({
-                    handleChange,
-                    handleSubmit,
-                    handleBlur,
-                    values,
-                    setFieldValue,
-                    setFieldTouched,
-                }) => {
+                {({ handleChange, handleSubmit, handleBlur, values, setFieldValue, setFieldTouched }) => {
                     return (
                         <S.ShippingMethodForm id={formId} ref={formRef} onSubmit={handleSubmit}>
                             {shippingMethods.map(({ id, name, price }, index) => {
                                 const checked = !!values.shippingMethod && values.shippingMethod === id;
 
                                 return (
-                                    <S.Tile
-                                        checked={checked}
-                                        key={id}
-                                        data-test="shippingMethodTile"
-                                        data-test-id={id}
-                                    >
+                                    <S.Tile checked={checked} key={id} data-test="shippingMethodTile" data-test-id={id}>
                                         <Radio
                                             name="shippingMethod"
                                             value={id}
@@ -65,17 +53,12 @@ const CheckoutShipping: React.FC<ICheckoutShippingProps> = ({
                                             onChange={() => setFieldValue("shippingMethod", id)}
                                         >
                                             <S.TileTitle>
-                                                <span data-test="checkoutShippingMethodOptionName">
-                                                    {name}
-                                                </span>
+                                                <span data-test="checkoutShippingMethodOptionName">{name}</span>
 
                                                 <S.Price>
                                                     {" "}
                                                     | +
-                                                    <Money
-                                                        data-test="checkoutShippingMethodOptionPrice"
-                                                        money={price}
-                                                    />
+                                                    <Money data-test="checkoutShippingMethodOptionPrice" money={price} />
                                                 </S.Price>
                                             </S.TileTitle>
                                         </Radio>

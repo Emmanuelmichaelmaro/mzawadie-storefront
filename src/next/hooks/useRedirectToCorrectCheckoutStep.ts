@@ -1,5 +1,5 @@
 import { useCart, useCheckout } from "@mzawadie/sdk/lib/src";
-import { checkIfShippingRequiredForProducts, CHECKOUT_STEPS } from "@next/pages/CheckoutPage/utils";
+import { checkIfShippingRequiredForProducts, CHECKOUT_STEPS } from "@mzawadie/ui-kit/pages/CheckoutPage/utils";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 
@@ -10,12 +10,7 @@ export const useRedirectToCorrectCheckoutStep = (cartLoaded: boolean) => {
     const { totalPrice, items } = useCart();
     const { checkout, payment } = useCheckout();
 
-    const { recommendedStep, maxPossibleStep } = useCheckoutStepState(
-        items,
-        checkout,
-        payment,
-        totalPrice
-    );
+    const { recommendedStep, maxPossibleStep } = useCheckoutStepState(items, checkout, payment, totalPrice);
 
     useEffect(() => {
         const stepFromPath = CHECKOUT_STEPS.find(({ link }) => link === pathname)?.step;
@@ -23,13 +18,10 @@ export const useRedirectToCorrectCheckoutStep = (cartLoaded: boolean) => {
         const isShippingRequired = checkIfShippingRequiredForProducts(items);
 
         const isIncorrectStep =
-            !stepFromPath ||
-            stepFromPath > maxPossibleStep ||
-            (pathname === CHECKOUT_STEPS[1].link && !isShippingRequired);
+            !stepFromPath || stepFromPath > maxPossibleStep || (pathname === CHECKOUT_STEPS[1].link && !isShippingRequired);
 
         const getStepLink = () =>
-            CHECKOUT_STEPS.find((stepObj) => stepObj.step === recommendedStep)?.link ||
-            CHECKOUT_STEPS[0].link;
+            CHECKOUT_STEPS.find((stepObj) => stepObj.step === recommendedStep)?.link || CHECKOUT_STEPS[0].link;
 
         if (cartLoaded && isIncorrectStep) {
             replace(getStepLink());

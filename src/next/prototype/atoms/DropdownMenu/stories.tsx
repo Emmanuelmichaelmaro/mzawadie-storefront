@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
@@ -22,7 +22,7 @@ const items = [
     { onClick, content: <span>LOG OUT</span> },
 ];
 
-storiesOf("@mzawadie/prototype/atoms/DropdownMenu", module)
+storiesOf("@mzawadie/ui-kit/atoms/DropdownMenu", module)
     .addParameters({ component: DropdownMenu })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("hoverable", () => (

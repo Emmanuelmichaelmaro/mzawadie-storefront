@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { Button } from "@mzawadie/prototype/atoms";
+import { Button } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 

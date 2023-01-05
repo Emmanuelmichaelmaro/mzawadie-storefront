@@ -1,4 +1,4 @@
-import { ProductList_products_edges_node } from "@mzawadie/sdk/lib/queries/gqlTypes/ProductList";
+import { ProductList_products_edges_node } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductList";
 
 type WithOptional<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
 

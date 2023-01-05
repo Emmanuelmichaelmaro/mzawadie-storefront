@@ -96,12 +96,7 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
                 )}
 
                 {displayedItems.map((item) => (
-                    <NavItem
-                        key={item.id}
-                        hideOverlay={hideOverlay}
-                        showSubItems={this.handleShowSubItems}
-                        {...item}
-                    />
+                    <NavItem key={item.id} hideOverlay={hideOverlay} showSubItems={this.handleShowSubItems} {...item} />
                 ))}
             </ul>
         );

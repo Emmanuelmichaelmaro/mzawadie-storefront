@@ -13,7 +13,7 @@ if (!portalRoot) {
     document.body.appendChild(portalRoot);
 }
 
-storiesOf("@mzawadie/prototype/organisms/AddressGridSelector", module)
+storiesOf("@mzawadie/ui-kit/organisms/AddressGridSelector", module)
     .addParameters({ component: AddressGridSelector })
     .add("default", () => (
         <IntlProvider locale="en">

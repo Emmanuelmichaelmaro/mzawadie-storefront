@@ -52,12 +52,7 @@ const Modal: React.FC<IModalProps> = ({
                               )}
 
                               {submitBtnText && (
-                                  <Button
-                                      type="submit"
-                                      form={formId}
-                                      disabled={loading}
-                                      className="modal__button"
-                                  >
+                                  <Button type="submit" form={formId} disabled={loading} className="modal__button">
                                       {loading ? "Loading" : submitBtnText}
                                   </Button>
                               )}

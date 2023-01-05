@@ -1,7 +1,7 @@
 import { checkoutMessages } from "@mzawadie/core";
-import { Button } from "@mzawadie/prototype/atoms";
-import { Container } from "@mzawadie/prototype/templates";
 import { OrderStatus } from "@mzawadie/sdk/lib/src";
+import { Button } from "@mzawadie/ui-kit/atoms";
+import { Container } from "@mzawadie/ui-kit/templates";
 import Link from "next/link";
 import React from "react";
 import { defineMessages, FormattedMessage } from "react-intl";
@@ -11,8 +11,7 @@ import { IThankYouProps } from "./types";
 
 export const messages = defineMessages({
     unfulfilled: {
-        defaultMessage:
-            "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.",
+        defaultMessage: "We’ve emailed you an order confirmation, and we’ll notify you when the order has been shipped.",
         description: "thank you subtitle",
     },
     unconfirmed: {
@@ -43,15 +42,12 @@ const ThankYou: React.FC<IThankYouProps> = ({
                 </S.ThankYouHeader>
 
                 <S.Paragraph>
-                    <FormattedMessage defaultMessage="Your order number is" />{" "}
-                    <span>{orderNumber}</span>
+                    <FormattedMessage defaultMessage="Your order number is" /> <span>{orderNumber}</span>
                 </S.Paragraph>
 
                 <S.Paragraph>
                     <FormattedMessage
-                        {...(orderStatus === OrderStatus.UNCONFIRMED
-                            ? messages.unconfirmed
-                            : messages.unfulfilled)}
+                        {...(orderStatus === OrderStatus.UNCONFIRMED ? messages.unconfirmed : messages.unfulfilled)}
                     />
                 </S.Paragraph>
 

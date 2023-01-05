@@ -1,7 +1,7 @@
-import { IItems, ITotalPrice } from "@mzawadie/sdk/lib/api/Cart/types";
-import { ICheckout, IPayment } from "@mzawadie/sdk/lib/api/Checkout/types";
-import { checkIfShippingRequiredForProducts, CheckoutStep } from "@next/pages/CheckoutPage/utils";
-import { isPriceEqual } from "@next/utils/money";
+import { IItems, ITotalPrice } from "@mzawadie/sdk/lib/src/api/Cart/types";
+import { ICheckout, IPayment } from "@mzawadie/sdk/lib/src/api/Checkout/types";
+import { checkIfShippingRequiredForProducts, CheckoutStep } from "@mzawadie/ui-kit/pages/CheckoutPage/utils";
+import { isPriceEqual } from "@mzawadie/ui-kit/utils/money";
 import { useEffect, useState } from "react";
 
 interface StepState {
@@ -50,8 +50,7 @@ export const useCheckoutStepState = (
     };
 
     const getRecommendedStep = (newMaxPossibleStep: CheckoutStep) => {
-        const isPaymentRecreateRequired =
-            newMaxPossibleStep > CheckoutStep.Shipping && !isCheckoutPriceEqualPaymentPrice;
+        const isPaymentRecreateRequired = newMaxPossibleStep > CheckoutStep.Shipping && !isCheckoutPriceEqualPaymentPrice;
 
         if (isPaymentRecreateRequired && isShippingRequiredForProducts) {
             return CheckoutStep.Shipping;

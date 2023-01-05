@@ -48,7 +48,7 @@ const DEFAULT_PROPS: IAddToCartSection = {
     isAvailableForPurchase: null,
 };
 
-storiesOf("@mzawadie/prototype/organisms/AddToCartSection", module).add("default", () => (
+storiesOf("@mzawadie/ui-kit/organisms/AddToCartSection", module).add("default", () => (
     <IntlProvider locale="en">
         <AddToCartSection {...DEFAULT_PROPS} />
     </IntlProvider>

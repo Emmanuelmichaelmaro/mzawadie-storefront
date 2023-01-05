@@ -1,6 +1,6 @@
-import { Button, Loader } from "@mzawadie/prototype/atoms";
-import { OrderTable } from "@mzawadie/prototype/molecules";
 import { useAuth, useOrdersByUser } from "@mzawadie/sdk/lib/src";
+import { Button, Loader } from "@mzawadie/ui-kit/atoms";
+import { OrderTable } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 

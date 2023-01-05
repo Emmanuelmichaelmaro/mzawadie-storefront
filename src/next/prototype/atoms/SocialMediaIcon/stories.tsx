@@ -10,8 +10,6 @@ const FACEBOOK_MEDIUM: Medium = {
     iconName: "social_facebook",
 };
 
-storiesOf("@mzawadie/prototype/atoms/SocialMediaIcon", module)
+storiesOf("@mzawadie/ui-kit/atoms/SocialMediaIcon", module)
     .addParameters({ component: SocialMediaIcon })
-    .add("sample medium", () => (
-        <SocialMediaIcon medium={FACEBOOK_MEDIUM} key={FACEBOOK_MEDIUM.ariaLabel} />
-    ));
+    .add("sample medium", () => <SocialMediaIcon medium={FACEBOOK_MEDIUM} key={FACEBOOK_MEDIUM.ariaLabel} />);

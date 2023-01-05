@@ -3,7 +3,7 @@ import React from "react";
 
 import { Radio } from ".";
 
-storiesOf("@mzawadie/prototype/atoms/Radio", module)
+storiesOf("@mzawadie/ui-kit/atoms/Radio", module)
     .addParameters({ component: Radio })
     .add("unchecked", () => (
         <Radio name="name" value="value" checked={false}>

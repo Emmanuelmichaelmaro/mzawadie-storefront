@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 import { TitleSize } from "./types";
 
@@ -17,8 +17,7 @@ export const Header = styled.div`
 `;
 
 export const Title = styled.h4<{ size: TitleSize }>`
-    font-size: ${({ size, theme: { typography } }) =>
-        size === "lg" ? typography.h4FontSize : typography.baseFontSize};
+    font-size: ${({ size, theme: { typography } }) => (size === "lg" ? typography.h4FontSize : typography.baseFontSize)};
     font-weight: ${(props) => props.theme.typography.boldFontWeight};
     color: ${(props) => props.theme.colors.baseFont};
     text-transform: uppercase;

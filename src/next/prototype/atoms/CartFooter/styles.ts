@@ -1,8 +1,8 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div<{
-    showShipping: boolean;
-    showDiscount: boolean;
+  showShipping: boolean;
+  showDiscount: boolean;
 }>`
     display: grid;
     font-size: ${(props) => props.theme.typography.h4FontSize};

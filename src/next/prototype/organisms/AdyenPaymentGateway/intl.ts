@@ -19,8 +19,7 @@ export const adyenConfirmationErrorMessages = defineMessages({
         description,
     },
     refused: {
-        defaultMessage:
-            "The payment was refused. Try the payment again using a different payment method or card.",
+        defaultMessage: "The payment was refused. Try the payment again using a different payment method or card.",
         description,
     },
     cancelled: {

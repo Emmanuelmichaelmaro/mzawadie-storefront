@@ -12,12 +12,9 @@ import {
     FeaturedProductsQuery_collection_products_edges_node,
     FeaturedProductsQueryVariables,
 } from "@next/graphql/gqlTypes/FeaturedProductsQuery";
-import {
-    ShopAttributesQuery,
-    ShopAttributesQueryVariables,
-} from "@next/graphql/gqlTypes/ShopAttributesQuery";
+import { ShopAttributesQuery, ShopAttributesQueryVariables } from "@next/graphql/gqlTypes/ShopAttributesQuery";
 import { ShopMenusQuery, ShopMenusQueryVariables } from "@next/graphql/gqlTypes/ShopMenusQuery";
-import { RequireOnlyOne } from "@next/utils/tsUtils";
+import { RequireOnlyOne } from "@mzawadie/ui-kit/utils/tsUtils";
 
 let CONNECTION: ConnectResult | null = null;
 
@@ -107,6 +104,7 @@ export const getShopMenus = async (): Promise<ShopMenusQuery> => {
             channel: channelSlug,
             footerSlug: "footer",
             mainMenuSlug: "navbar",
+            locale: "EN",
         },
     });
 
@@ -126,6 +124,7 @@ export const getShopConfig = async (): Promise<any> => {
                     channel: channelSlug,
                     footerSlug: "footer",
                     mainMenuSlug: "navbar",
+                    locale: "EN",
                 },
             })
             .then(({ data }) => data),

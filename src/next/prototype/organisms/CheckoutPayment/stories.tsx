@@ -17,7 +17,7 @@ const addPromoCode = action("addPromoCode has been called");
 const removeVoucherCode = action("removeVoucherCode has been called");
 const submitUnchangedDiscount = action("submitUnchangedDiscount has been called");
 
-storiesOf("@mzawadie/prototype/organisms/CheckoutPayment", module)
+storiesOf("@mzawadie/ui-kit/organisms/CheckoutPayment", module)
     .addParameters({ component: CheckoutPayment })
     .add("default", () => (
         <IntlProvider locale="en">

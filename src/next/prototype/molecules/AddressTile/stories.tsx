@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
@@ -37,7 +37,7 @@ const DEFAULT_PROPS = {
     setDefault,
 };
 
-storiesOf("@mzawadie/prototype/molecules/AddressTile", module)
+storiesOf("@mzawadie/ui-kit/molecules/AddressTile", module)
     .addParameters({ component: AddressTile })
     .add("default", () => (
         <IntlProvider locale="en">

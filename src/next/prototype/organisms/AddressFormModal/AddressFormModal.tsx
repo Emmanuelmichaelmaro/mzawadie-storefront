@@ -1,5 +1,5 @@
-import { useCreateUserAddress, useUpdateUserAddress } from "@mzawadie/sdk/lib/src";
 import { CountryCode } from "@mzawadie/sdk/lib/gqlTypes/globalTypes";
+import { useCreateUserAddress, useUpdateUserAddress } from "@mzawadie/sdk/lib/src";
 import React from "react";
 
 import { AddressForm } from "../AddressForm";
@@ -19,11 +19,9 @@ export const AddressFormModal: React.FC<IProps> = ({
     const [show, setShow] = React.useState(true);
     let errors: any[] | undefined = [];
 
-    const [setCreatUserAddress, { data: createData, error: addressCreateErrors }] =
-        useCreateUserAddress();
+    const [setCreatUserAddress, { data: createData, error: addressCreateErrors }] = useCreateUserAddress();
 
-    const [setUpdateUserAddress, { data: updateData, error: addressUpdateErrors }] =
-        useUpdateUserAddress();
+    const [setUpdateUserAddress, { data: updateData, error: addressUpdateErrors }] = useUpdateUserAddress();
 
     if (addressCreateErrors) {
         errors = addressCreateErrors.extraInfo.userInputErrors;

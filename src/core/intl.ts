@@ -224,8 +224,7 @@ export const paymentStatusMessages = defineMessages({
 
 export const paymentErrorMessages = defineMessages({
     paymentNoConfirmationData: {
-        defaultMessage:
-            "Payment needs confirmation but data required for confirmation not received from the server.",
+        defaultMessage: "Payment needs confirmation but data required for confirmation not received from the server.",
         description: "payment gateway error",
     },
     paymentMalformedConfirmationData: {

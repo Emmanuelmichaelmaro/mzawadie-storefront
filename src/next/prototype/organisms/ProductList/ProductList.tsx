@@ -1,6 +1,6 @@
 import { generateProductUrl, paths } from "@mzawadie/core";
-import { Button, Loader } from "@mzawadie/prototype/atoms";
-import { ProductTile } from "@mzawadie/prototype/molecules";
+import { Button, Loader } from "@mzawadie/ui-kit/atoms";
+import { ProductTile } from "@mzawadie/ui-kit/molecules";
 import Link from "next/link";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -36,11 +36,7 @@ export const ProductList: React.FC<IProps> = ({
                 <Loader />
             ) : (
                 canLoadMore && (
-                    <Button
-                        testingContext="loadMoreProductsButton"
-                        color="secondary"
-                        onClick={onLoadMore}
-                    >
+                    <Button testingContext="loadMoreProductsButton" color="secondary" onClick={onLoadMore}>
                         <FormattedMessage defaultMessage="More +" />
                     </Button>
                 )

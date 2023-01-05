@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { paths, commonMessages } from "@mzawadie/core";
-import { DemoBanner } from "@mzawadie/prototype/atoms";
 import { useAuth, useCart } from "@mzawadie/sdk/lib/src";
+import { DemoBanner } from "@mzawadie/ui-kit/atoms";
+import { largeScreen as mediumScreen, smallScreen } from "@mzawadie/ui-kit/styles/constants";
 import { ShopMenusQuery } from "@next/graphql/gqlTypes/ShopMenusQuery";
-import { largeScreen as mediumScreen, smallScreen } from "@next/styles/constants";
 import classNames from "classnames";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
@@ -38,8 +38,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
 
     const menuItems = menu?.items || [];
 
-    const cartItemsQuantity =
-        (items && items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) || 0;
+    const cartItemsQuantity = (items && items.reduce((prevVal, currVal) => prevVal + currVal.quantity, 0)) || 0;
 
     const handleSignOut = () => signOut();
 
@@ -87,15 +86,9 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                         })
                                     }
                                 >
-                                    <ReactSVG
-                                        src={hamburgerImg}
-                                        className={styles.main__menu__hamburger__icon}
-                                    />
+                                    <ReactSVG src={hamburgerImg} className={styles.main__menu__hamburger__icon} />
 
-                                    <ReactSVG
-                                        src={hamburgerHoverImg}
-                                        className={styles.main__menu__hamburger__hover}
-                                    />
+                                    <ReactSVG src={hamburgerHoverImg} className={styles.main__menu__hamburger__hover} />
                                 </li>
                             )}
                         />
@@ -106,19 +99,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                 menuItems.map((item) => {
                                     const hasSubNavigation = !!item?.children?.length;
                                     return (
-                                        <li
-                                            data-test="mainMenuItem"
-                                            className={styles.main__menu__item}
-                                            key={item.id}
-                                        >
+                                        <li data-test="mainMenuItem" className={styles.main__menu__item} key={item.id}>
                                             <NavDropdown
                                                 overlay={overlayContext}
-                                                showDropdown={
-                                                    activeDropdown === item.id && hasSubNavigation
-                                                }
-                                                onShowDropdown={() =>
-                                                    showDropdownHandler(item.id, hasSubNavigation)
-                                                }
+                                                showDropdown={activeDropdown === item.id && hasSubNavigation}
+                                                onShowDropdown={() => showDropdownHandler(item.id, hasSubNavigation)}
                                                 onHideDropdown={hideDropdownHandler}
                                                 {...item}
                                             />
@@ -128,79 +113,70 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                             }
                         />
 
-                        {/*            <Online>*/}
-                        {/*                <Media*/}
-                        {/*                    query={{ maxWidth: smallScreen }}*/}
-                        {/*                    render={() =>*/}
-                        {/*                        !loading && (*/}
-                        {/*                            <>*/}
-                        {/*                                {user ? (*/}
-                        {/*                                    <MenuDropdown*/}
-                        {/*                                        suffixClass="__rightdown"*/}
-                        {/*                                        head={*/}
-                        {/*                                            <li className="main-menu__icon main-menu__user--active">*/}
-                        {/*                                                <ReactSVG src={userImg} />*/}
-                        {/*                                            </li>*/}
-                        {/*                                        }*/}
-                        {/*                                        content={*/}
-                        {/*                                            <ul className="main-menu__dropdown">*/}
-                        {/*                                                <li data-test="mobileMenuMyAccountLink">*/}
-                        {/*                                                    <Link href={paths.account}>*/}
-                        {/*                                                        <a>*/}
-                        {/*                                                            <FormattedMessage*/}
-                        {/*                                                                {...commonMessages.myAccount}*/}
-                        {/*                                                            />*/}
-                        {/*                                                        </a>*/}
-                        {/*                                                    </Link>*/}
-                        {/*                                                </li>*/}
-                        {/*                                                <li data-test="mobileMenuOrderHistoryLink">*/}
-                        {/*                                                    <Link href={paths.accountOrderHistory}>*/}
-                        {/*                                                        <a>*/}
-                        {/*                                                            <FormattedMessage*/}
-                        {/*                                                                {...commonMessages.orderHistory}*/}
-                        {/*                                                            />*/}
-                        {/*                                                        </a>*/}
-                        {/*                                                    </Link>*/}
-                        {/*                                                </li>*/}
-                        {/*                                                <li data-test="mobileMenuAddressBookLink">*/}
-                        {/*                                                    <Link href={paths.accountAddressBook}>*/}
-                        {/*                                                        <a>*/}
-                        {/*                                                            <FormattedMessage*/}
-                        {/*                                                                {...commonMessages.addressBook}*/}
-                        {/*                                                            />*/}
-                        {/*                                                        </a>*/}
-                        {/*                                                    </Link>*/}
-                        {/*                                                </li>*/}
-                        {/*                                                <li*/}
-                        {/*                                                    onClick={handleSignOut}*/}
-                        {/*                                                    data-test="mobileMenuLogoutLink"*/}
-                        {/*                                                >*/}
-                        {/*                                                    <FormattedMessage*/}
-                        {/*                                                        {...commonMessages.logOut}*/}
-                        {/*                                                    />*/}
-                        {/*                                                </li>*/}
-                        {/*                                            </ul>*/}
-                        {/*                                        }*/}
-                        {/*                                    />*/}
-                        {/*                                ) : (*/}
-                        {/*                                    <li*/}
-                        {/*                                        data-test="mobileMenuLoginLink"*/}
-                        {/*                                        className="main-menu__icon"*/}
-                        {/*                                        onClick={() =>*/}
-                        {/*                                            overlayContext.show(*/}
-                        {/*                                                OverlayType.login,*/}
-                        {/*                                                OverlayTheme.left*/}
-                        {/*                                            )*/}
-                        {/*                                        }*/}
-                        {/*                                    >*/}
-                        {/*                                        <ReactSVG src={userImg} />*/}
-                        {/*                                    </li>*/}
-                        {/*                                )}*/}
-                        {/*                            </>*/}
-                        {/*                        )*/}
-                        {/*                    }*/}
-                        {/*                />*/}
-                        {/*            </Online>*/}
+                        <Online>
+                            <Media
+                                query={{ maxWidth: smallScreen }}
+                                render={() =>
+                                    !loading && (
+                                        <>
+                                            {user ? (
+                                                <MenuDropdown
+                                                    suffixClass="__rightdown"
+                                                    head={
+                                                        <li className="main-menu__icon main-menu__user--active">
+                                                            <ReactSVG src={userImg} />
+                                                        </li>
+                                                    }
+                                                    content={
+                                                        <ul className="main-menu__dropdown">
+                                                            <li data-test="mobileMenuMyAccountLink">
+                                                                <Link href={paths.account}>
+                                                                    <a>
+                                                                        <FormattedMessage {...commonMessages.myAccount} />
+                                                                    </a>
+                                                                </Link>
+                                                            </li>
+
+                                                            <li data-test="mobileMenuOrderHistoryLink">
+                                                                <Link href={paths.accountOrderHistory}>
+                                                                    <a>
+                                                                        <FormattedMessage
+                                                                            {...commonMessages.orderHistory}
+                                                                        />
+                                                                    </a>
+                                                                </Link>
+                                                            </li>
+
+                                                            <li data-test="mobileMenuAddressBookLink">
+                                                                <Link href={paths.accountAddressBook}>
+                                                                    <a>
+                                                                        <FormattedMessage {...commonMessages.addressBook} />
+                                                                    </a>
+                                                                </Link>
+                                                            </li>
+
+                                                            <li onClick={handleSignOut} data-test="mobileMenuLogoutLink">
+                                                                <FormattedMessage {...commonMessages.logOut} />
+                                                            </li>
+                                                        </ul>
+                                                    }
+                                                />
+                                            ) : (
+                                                <li
+                                                    data-test="mobileMenuLoginLink"
+                                                    className="main-menu__icon"
+                                                    onClick={() =>
+                                                        overlayContext.show(OverlayType.login, OverlayTheme.left)
+                                                    }
+                                                >
+                                                    <ReactSVG src={userImg} />
+                                                </li>
+                                            )}
+                                        </>
+                                    )
+                                }
+                            />
+                        </Online>
                     </ul>
                 </div>
 
@@ -234,9 +210,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                                             <li data-test="desktopMenuMyAccountLink">
                                                                 <Link href={paths.account}>
                                                                     <a>
-                                                                        <FormattedMessage
-                                                                            {...commonMessages.myAccount}
-                                                                        />
+                                                                        <FormattedMessage {...commonMessages.myAccount} />
                                                                     </a>
                                                                 </Link>
                                                             </li>
@@ -254,20 +228,13 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                                             <li data-test="desktopMenuAddressBookLink">
                                                                 <Link href={paths.accountAddressBook}>
                                                                     <a>
-                                                                        <FormattedMessage
-                                                                            {...commonMessages.addressBook}
-                                                                        />
+                                                                        <FormattedMessage {...commonMessages.addressBook} />
                                                                     </a>
                                                                 </Link>
                                                             </li>
 
-                                                            <li
-                                                                onClick={handleSignOut}
-                                                                data-test="desktopMenuLogoutLink"
-                                                            >
-                                                                <FormattedMessage
-                                                                    {...commonMessages.logOut}
-                                                                />
+                                                            <li onClick={handleSignOut} data-test="desktopMenuLogoutLink">
+                                                                <FormattedMessage {...commonMessages.logOut} />
                                                             </li>
                                                         </ul>
                                                     }
@@ -277,10 +244,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                                     data-test="desktopMenuLoginOverlayLink"
                                                     className={styles.main__menu__icon}
                                                     onClick={() =>
-                                                        overlayContext.show(
-                                                            OverlayType.login,
-                                                            OverlayTheme.right
-                                                        )
+                                                        overlayContext.show(OverlayType.login, OverlayTheme.right)
                                                     }
                                                 >
                                                     <ReactSVG src={userImg} />
@@ -302,9 +266,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                     <>
                                         <ReactSVG src={cartImg} />
                                         {cartItemsQuantity > 0 ? (
-                                            <span className={styles.main__menu__cart__quantity}>
-                                                {cartItemsQuantity}
-                                            </span>
+                                            <span className={styles.main__menu__cart__quantity}>{cartItemsQuantity}</span>
                                         ) : null}
                                     </>
                                 )}

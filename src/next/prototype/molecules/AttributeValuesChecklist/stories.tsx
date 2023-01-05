@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import React from "react";
@@ -11,7 +11,7 @@ const Container = styled.div`
     width: 350px;
 `;
 
-storiesOf("@mzawadie/prototype/molecules/AttributeValuesChecklist", module)
+storiesOf("@mzawadie/ui-kit/molecules/AttributeValuesChecklist", module)
     .addParameters({ component: AttributeValuesChecklist })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

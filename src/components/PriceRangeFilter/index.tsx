@@ -75,11 +75,7 @@ class PriceRangeFilter extends React.Component<PriceRangeFilterProps, PriceRange
                             : undefined
                     }
                 />
-                <div
-                    className={`price-filter__dropdown${
-                        this.state.active ? " price-filter__dropdown--visible" : ""
-                    }`}
-                >
+                <div className={`price-filter__dropdown${this.state.active ? " price-filter__dropdown--visible" : ""}`}>
                     <TextField
                         type="number"
                         placeholder="From"

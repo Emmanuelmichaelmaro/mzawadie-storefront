@@ -209,9 +209,7 @@ class Form<Values> extends React.Component<FormProps<Values>, FormState<Values>>
         return (
             <form ref={formRef} {...otherProps} onSubmit={this.handleSubmit} className={className}>
                 {nonFieldErrors ? (
-                    <span className="form-error">
-                        {nonFieldErrors.map((error) => error.message).join(" ")}
-                    </span>
+                    <span className="form-error">{nonFieldErrors.map((error) => error.message).join(" ")}</span>
                 ) : null}
                 {this.renderWrappedChildren(children)}
             </form>

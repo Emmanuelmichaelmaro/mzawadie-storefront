@@ -1,4 +1,4 @@
-import { DefaultTheme, media, styled } from "@next/styles";
+import { DefaultTheme, media, styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div<{ mobileCartOpened: boolean }>`
     background-color: ${(props) => props.theme.colors.light};

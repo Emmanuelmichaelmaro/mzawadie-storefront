@@ -92,16 +92,13 @@ export const generateCollectionUrl = (id: string, name: string) =>
 
 export const generatePageUrl = (slug: string) => `/page/${slug}/`;
 
-export const getValueOrEmpty = <T>(value: T): T | string =>
-    value === undefined || value === null ? "" : value;
+export const getValueOrEmpty = <T>(value: T): T | string => (value === undefined || value === null ? "" : value);
 
 interface AttributeDict {
     [attributeSlug: string]: string[];
 }
 
-export const convertToAttributeScalar = (
-    attributes: AttributeDict | IFilterAttributes
-): AttributeInput[] =>
+export const convertToAttributeScalar = (attributes: AttributeDict | IFilterAttributes): AttributeInput[] =>
     Object.entries(attributes)
         .map(([key, value]) => value.map((attribute: any) => ({ slug: key, values: [attribute] })))
         .reduce((prev, curr) => [...prev, ...curr], []);
@@ -216,9 +213,7 @@ export function matchPath<ParamKey extends string = string>(
         // instead of using params["*"] later because it will be decoded then
         if (paramName === "*") {
             let splatValue = captureGroups[index] || "";
-            pathnameBase = matchedPathname
-                .slice(0, matchedPathname.length - splatValue.length)
-                .replace(/(.)\/+$/, "$1");
+            pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
         }
 
         memo[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);

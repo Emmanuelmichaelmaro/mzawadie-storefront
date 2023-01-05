@@ -80,10 +80,7 @@ const generateSteps = (steps: ICheckoutStep[], currentActive: number, intl: Intl
 /**
  * Progress bar showing current step of checkout process.
  */
-const CheckoutProgressBar: React.FC<ICheckoutProgressBarProps> = ({
-    steps,
-    activeStep,
-}: ICheckoutProgressBarProps) => {
+const CheckoutProgressBar: React.FC<ICheckoutProgressBarProps> = ({ steps, activeStep }: ICheckoutProgressBarProps) => {
     const intl = useIntl();
     return <S.Wrapper>{generateSteps(steps, activeStep, intl)}</S.Wrapper>;
 };

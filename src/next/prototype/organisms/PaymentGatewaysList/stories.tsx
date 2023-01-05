@@ -12,7 +12,7 @@ const submitPaymentSuccess = action("submitPaymentSuccess");
 const selectPaymentGateway = action("selectPaymentGateway");
 const onError = action("onError");
 
-storiesOf("@mzawadie/prototype/organisms/PaymentGatewaysList", module)
+storiesOf("@mzawadie/ui-kit/organisms/PaymentGatewaysList", module)
     .addParameters({ component: PaymentGatewaysList })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

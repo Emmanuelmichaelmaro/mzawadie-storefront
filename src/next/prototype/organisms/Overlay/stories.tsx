@@ -28,7 +28,7 @@ const DEFAULT_PROPS = {
     target: portalRoot,
 };
 
-storiesOf("@mzawadie/prototype/organisms/Overlay", module)
+storiesOf("@mzawadie/ui-kit/organisms/Overlay", module)
     .addParameters({ component: Overlay })
     .add("Position center", () => (
         <Overlay {...DEFAULT_PROPS}>

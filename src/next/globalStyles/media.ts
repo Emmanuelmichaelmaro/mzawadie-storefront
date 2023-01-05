@@ -1,13 +1,6 @@
 import { css, SimpleInterpolation } from "styled-components";
 
-import {
-    largeScreen,
-    mediumScreen,
-    smallScreen,
-    xLargeScreen,
-    xxLargeScreen,
-    xxxLargeScreen,
-} from "./constants";
+import { largeScreen, mediumScreen, smallScreen, xLargeScreen, xxLargeScreen, xxxLargeScreen } from "./constants";
 
 const breakpoints = {
     largeScreen,
@@ -23,10 +16,7 @@ type Media = Record<Breakpoints, (l: TemplateStringsArray, ...p: any[]) => strin
 
 export const media = Object.keys(breakpoints).reduce(
     (acc, label) => {
-        acc[label as Breakpoints] = (
-            literals: TemplateStringsArray,
-            ...placeholders: SimpleInterpolation[]
-        ) =>
+        acc[label as Breakpoints] = (literals: TemplateStringsArray, ...placeholders: SimpleInterpolation[]) =>
             css`
                 @media (max-width: ${breakpoints[label as Breakpoints]}px) {
                     ${css(literals, ...placeholders)}

@@ -5,10 +5,10 @@ import {
     staticPathsFallback,
     staticPathsFetchBatch,
 } from "@mzawadie/core";
-import { exhaustList, getFeaturedProducts, getMzawadieApi, getShopAttributes } from "@next/utils/ssr";
+import { exhaustList, getFeaturedProducts, getMzawadieApi, getShopAttributes } from "@mzawadie/ui-kit/utils/ssr";
 import { GetStaticPaths, GetStaticProps } from "next";
 
-import { CollectionView, CollectionViewProps } from "../../views/Collection";
+import { CollectionView, CollectionViewProps } from "../../apps/Collection";
 
 export default CollectionView;
 
@@ -27,33 +27,32 @@ export const getStaticPaths: GetStaticPaths<CollectionViewProps["params"]> = asy
     return { paths, fallback: staticPathsFallback };
 };
 
-export const getStaticProps: GetStaticProps<CollectionViewProps, CollectionViewProps["params"]> =
-    async ({ params }) => {
-        let data = null;
-        const { api } = await getMzawadieApi();
-        const { data: details } = await api.collections.getDetails({ slug: params?.slug[0] });
+export const getStaticProps: GetStaticProps<CollectionViewProps, CollectionViewProps["params"]> = async ({ params }) => {
+    let data = null;
+    const { api } = await getMzawadieApi();
+    const { data: details } = await api.collections.getDetails({ slug: params?.slug[0] });
 
-        if (details) {
-            const { id } = details;
+    if (details) {
+        const { id } = details;
 
-            const [attributes, featuredProducts] = await Promise.all([
-                getShopAttributes({ collectionId: id }),
-                getFeaturedProducts(),
-            ]);
+        const [attributes, featuredProducts] = await Promise.all([
+            getShopAttributes({ collectionId: id }),
+            getFeaturedProducts(),
+        ]);
 
-            data = {
-                details,
-                featuredProducts,
-                attributes,
-                id,
-            };
-        }
-
-        return {
-            revalidate: incrementalStaticRegenerationRevalidate,
-            props: {
-                data,
-                params,
-            },
+        data = {
+            details,
+            featuredProducts,
+            attributes,
+            id,
         };
+    }
+
+    return {
+        revalidate: incrementalStaticRegenerationRevalidate,
+        props: {
+            data,
+            params,
+        },
     };
+};

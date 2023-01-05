@@ -1,4 +1,4 @@
-import { Address, DropdownMenu, IconButton, Tile } from "@mzawadie/prototype/atoms";
+import { Address, DropdownMenu, IconButton, Tile } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
@@ -16,12 +16,7 @@ const defaultBillingAddress = (
     </S.MenuItem>
 );
 
-export const AddressTile: React.FC<IAddressTileProps> = ({
-    onEdit,
-    onRemove,
-    setDefault,
-    address,
-}: IAddressTileProps) => {
+export const AddressTile: React.FC<IAddressTileProps> = ({ onEdit, onRemove, setDefault, address }: IAddressTileProps) => {
     const intl = useIntl();
     const header = (
         <S.HeaderContent>

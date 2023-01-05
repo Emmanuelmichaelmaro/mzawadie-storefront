@@ -1,9 +1,9 @@
 // @ts-nocheck
-import { Button, CartCostsSummary, Loader, OfflinePlaceholder } from "@mzawadie/prototype/atoms";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { CardHeader } from "@mzawadie/prototype/molecules";
-import { IItems } from "@mzawadie/sdk/lib/api/Cart/types";
-import { useHandlerWhenClickedOutside, useNetworkStatus } from "@next/hooks";
+import { IItems } from "@mzawadie/sdk/lib/src/api/Cart/types";
+import { Button, CartCostsSummary, Loader, OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { useHandlerWhenClickedOutside, useNetworkStatus } from "@mzawadie/ui-kit/hooks";
+import { CardHeader } from "@mzawadie/ui-kit/molecules";
 import { ITaxedMoney } from "@next/types";
 import cartImg from "images/cart.svg";
 import React from "react";
@@ -98,14 +98,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
     };
 
     return (
-        <Overlay
-            position="right"
-            duration={0}
-            show={show}
-            hide={hide}
-            target={target}
-            testingContext="cartOverlay"
-        >
+        <Overlay position="right" duration={0} show={show} hide={hide} target={target} testingContext="cartOverlay">
             <S.Wrapper ref={setElementRef()}>
                 <CardHeader divider onHide={hide} prefix={<ReactSVG src={cartImg} />}>
                     <span>
@@ -127,10 +120,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                     ) : (
                         <S.EmptyCart>
                             <S.EmptyCartTitle>
-                                <FormattedMessage
-                                    defaultMessage="Your cart is empty"
-                                    description="cart sidebar title"
-                                />
+                                <FormattedMessage defaultMessage="Your cart is empty" description="cart sidebar title" />
                             </S.EmptyCartTitle>
 
                             <S.EmptyCartDescription>
@@ -147,10 +137,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                                 fullWidth
                                 onClick={continueShopping}
                             >
-                                <FormattedMessage
-                                    defaultMessage="Continue shopping"
-                                    description="button"
-                                />
+                                <FormattedMessage defaultMessage="Continue shopping" description="button" />
                             </Button>
                         </S.EmptyCart>
                     )}
@@ -182,10 +169,7 @@ const CartSidebar: React.FC<ICartSidebar> = ({
                             fullWidth
                             onClick={proceedToCheckout}
                         >
-                            <FormattedMessage
-                                defaultMessage="Proceed to Checkout"
-                                description="button"
-                            />
+                            <FormattedMessage defaultMessage="Proceed to Checkout" description="button" />
                         </Button>
                     </S.Footer>
                 )}

@@ -1,16 +1,10 @@
-import { Icon } from "@mzawadie/prototype/atoms";
+import { Icon } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import * as S from "./styles";
 import { IProps } from "./types";
 
-export const OverlayItem: React.FC<IProps> = ({
-    children,
-    selected,
-    testingContextId,
-    disabled,
-    onClick,
-}: IProps) => {
+export const OverlayItem: React.FC<IProps> = ({ children, selected, testingContextId, disabled, onClick }: IProps) => {
     return (
         <S.Wrapper
             selected={!!selected}

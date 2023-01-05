@@ -1,4 +1,4 @@
-import { ButtonLink, Checkbox } from "@mzawadie/prototype/atoms";
+import { ButtonLink, Checkbox } from "@mzawadie/ui-kit/atoms";
 import React, { Fragment, useState } from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -23,12 +23,7 @@ export const AttributeValuesChecklist: React.FC<IProps> = ({
                     !viewAllOptions && index > valuesShowLimitNumber - 1 ? (
                         <Fragment key={index} />
                     ) : (
-                        <Checkbox
-                            key={index}
-                            name={name}
-                            checked={!!value.selected}
-                            onChange={() => onValueClick(value)}
-                        >
+                        <Checkbox key={index} name={name} checked={!!value.selected} onChange={() => onValueClick(value)}>
                             {value && value.name}
                         </Checkbox>
                     )

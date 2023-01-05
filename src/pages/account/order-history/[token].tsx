@@ -1,4 +1,4 @@
-import { OrderDetails, OrderDetailsProps } from "../../../views/Account/User/views";
+import { OrderDetails, OrderDetailsProps } from "../../../apps/Account/User/views";
 
 export default OrderDetails;
 

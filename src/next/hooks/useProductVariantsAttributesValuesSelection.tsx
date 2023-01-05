@@ -5,10 +5,7 @@ export const useProductVariantsAttributesValuesSelection = (
     productVariantsAttributes: IProductVariantsAttributes
 ): [
     IProductVariantsAttributesSelectedValues,
-    (
-        selectedProductVariantsAttributeId: string,
-        selectedProductVariantsAttributeValue: string | null
-    ) => void
+    (selectedProductVariantsAttributeId: string, selectedProductVariantsAttributeValue: string | null) => void
 ] => {
     const [productVariantsAttributesSelectedValues, setProductVariantsAttributesSelectedValues] =
         useState<IProductVariantsAttributesSelectedValues>({});

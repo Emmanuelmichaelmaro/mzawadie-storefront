@@ -1,7 +1,7 @@
 import { commonMessages } from "@mzawadie/core";
-import { IconButton } from "@mzawadie/prototype/atoms";
-import { AttributeValuesChecklist } from "@mzawadie/prototype/molecules";
-import { useHandlerWhenClickedOutside } from "@next/hooks";
+import { IconButton } from "@mzawadie/ui-kit/atoms";
+import { useHandlerWhenClickedOutside } from "@mzawadie/ui-kit/hooks";
+import { AttributeValuesChecklist } from "@mzawadie/ui-kit/molecules";
 import { IFilterAttribute, IFilters } from "@next/types";
 import React from "react";
 import { FormattedMessage } from "react-intl";
@@ -36,17 +36,10 @@ export const FilterSidebar: React.FC<IProps> = ({
                     <span>
                         <FormattedMessage {...commonMessages.filterHeader} />
                     </span>
-                    <IconButton
-                        testingContext="hideFilters"
-                        onClick={hide}
-                        name="x"
-                        size={18}
-                        color="000"
-                    />
+                    <IconButton testingContext="hideFilters" onClick={hide} name="x" size={18} color="000" />
                 </S.Header>
                 {attributes.map(({ id, slug, name, choices }) => {
-                    const values = (choices?.edges.map(({ node }: any) => node) ||
-                        []) as IFilterAttribute[];
+                    const values = (choices?.edges.map(({ node }: any) => node) || []) as IFilterAttribute[];
 
                     return (
                         <AttributeValuesChecklist

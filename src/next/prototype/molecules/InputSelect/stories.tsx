@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
@@ -31,7 +31,7 @@ const Container = () => {
     const [value, setValue] = React.useState();
     return <InputSelect value={value} onChange={(value) => setValue(value)} {...DEFAULT_PROPS} />;
 };
-storiesOf("@mzawadie/prototype/molecules/InputSelect", module)
+storiesOf("@mzawadie/ui-kit/molecules/InputSelect", module)
     .addParameters({ component: InputSelect })
     .add("default", () => (
         <Wrapper>

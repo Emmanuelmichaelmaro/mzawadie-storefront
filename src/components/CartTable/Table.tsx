@@ -1,4 +1,4 @@
-import { smallScreen } from "@next/styles/constants";
+import { smallScreen } from "@mzawadie/ui-kit/styles/constants";
 import * as React from "react";
 import Media from "react-media";
 
@@ -15,15 +15,7 @@ interface TableProps extends EditableProductRowProps {
     discountName?: string;
 }
 
-const Table: React.FC<TableProps> = ({
-    subtotal,
-    deliveryCost,
-    totalCost,
-    discount,
-    discountName,
-    lines,
-    ...rowProps
-}) => (
+const Table: React.FC<TableProps> = ({ subtotal, deliveryCost, totalCost, discount, discountName, lines, ...rowProps }) => (
     <Media query={{ minWidth: smallScreen }}>
         {(mediumScreen) => (
             <table className="cart-table">
@@ -38,33 +30,16 @@ const Table: React.FC<TableProps> = ({
                 </thead>
                 <tbody>
                     {lines.map((line) => (
-                        <ProductRow
-                            key={line.id}
-                            line={line}
-                            mediumScreen={mediumScreen}
-                            {...rowProps}
-                        />
+                        <ProductRow key={line.id} line={line} mediumScreen={mediumScreen} {...rowProps} />
                     ))}
                 </tbody>
                 <tfoot>
                     <CostRow mediumScreen={mediumScreen} heading="Subtotal" cost={subtotal} />
                     {discount && (
-                        <CostRow
-                            mediumScreen={mediumScreen}
-                            heading={`Discount: ${discountName}`}
-                            cost={discount}
-                        />
+                        <CostRow mediumScreen={mediumScreen} heading={`Discount: ${discountName}`} cost={discount} />
                     )}
-                    {deliveryCost && (
-                        <CostRow
-                            mediumScreen={mediumScreen}
-                            heading="Delivery Cost"
-                            cost={deliveryCost}
-                        />
-                    )}
-                    {totalCost && (
-                        <CostRow mediumScreen={mediumScreen} heading="Total Cost" cost={totalCost} />
-                    )}
+                    {deliveryCost && <CostRow mediumScreen={mediumScreen} heading="Delivery Cost" cost={deliveryCost} />}
+                    {totalCost && <CostRow mediumScreen={mediumScreen} heading="Total Cost" cost={totalCost} />}
                 </tfoot>
             </table>
         )}

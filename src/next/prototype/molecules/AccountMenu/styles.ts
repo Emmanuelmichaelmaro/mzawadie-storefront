@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div`
     background-color: ${(props) => props.theme.colors.light};

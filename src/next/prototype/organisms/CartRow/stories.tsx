@@ -13,7 +13,7 @@ const STORY_PROPS = {
     ...DEFAULT_PROPS,
 };
 
-storiesOf("@mzawadie/prototype/organisms/CartRow", module)
+storiesOf("@mzawadie/ui-kit/organisms/CartRow", module)
     .addParameters({ component: CartRow })
     .add("responsive", () => (
         <IntlProvider locale="en">

@@ -1,4 +1,4 @@
-import { DefaultTheme, styled } from "@next/styles";
+import { DefaultTheme, styled } from "@mzawadie/ui-kit/styles";
 
 type WrapperProps = {
     active?: boolean;

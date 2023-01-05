@@ -1,19 +1,12 @@
 // @ts-nocheck
-import { PlaceholderImage } from "@mzawadie/prototype/atoms";
-import { useNetworkStatus } from "@next/hooks";
+import { PlaceholderImage } from "@mzawadie/ui-kit/atoms";
+import { useNetworkStatus } from "@mzawadie/ui-kit/hooks";
 import { IImage } from "@next/types";
 import NoPhoto from "images/no-photo.svg";
 import Image from "next/image";
 import React from "react";
 
-export const CachedImage: React.FC<IImage> = ({
-    url,
-    url2x,
-    alt,
-    children,
-    defaultImage = NoPhoto,
-    ...props
-}: IImage) => {
+export const CachedImage: React.FC<IImage> = ({ url, url2x, alt, children, defaultImage = NoPhoto, ...props }: IImage) => {
     const [isUnavailable, setUnavailable] = React.useState(false);
     const { online } = useNetworkStatus();
 

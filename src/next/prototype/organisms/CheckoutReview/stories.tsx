@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 
 import { CheckoutReview } from ".";
 
-storiesOf("@mzawadie/prototype/organisms/CheckoutReview", module)
+storiesOf("@mzawadie/ui-kit/organisms/CheckoutReview", module)
     .addParameters({ component: CheckoutReview })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <CheckoutReview />);

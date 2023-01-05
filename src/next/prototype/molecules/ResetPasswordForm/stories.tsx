@@ -18,7 +18,7 @@ const DEFAULT_PROPS = {
     },
 };
 
-storiesOf("@mzawadie/prototype/molecules/ResetPasswordForm", module)
+storiesOf("@mzawadie/ui-kit/molecules/ResetPasswordForm", module)
     .addParameters({ component: ResetPasswordForm })
     .add("default", () => (
         <IntlProvider locale="en">

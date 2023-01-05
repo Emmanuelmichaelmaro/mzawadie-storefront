@@ -1,7 +1,7 @@
 import { paymentGatewayNames } from "@mzawadie/core";
-import { CheckoutReview } from "@mzawadie/prototype/organisms";
-import { statuses as dummyStatuses } from "@mzawadie/prototype/organisms/DummyPaymentGateway";
 import { OrderStatus, useCheckout } from "@mzawadie/sdk/lib/src";
+import { CheckoutReview } from "@mzawadie/ui-kit/organisms";
+import { statuses as dummyStatuses } from "@mzawadie/ui-kit/organisms/DummyPaymentGateway";
 import { IFormError } from "@next/types";
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useState } from "react";
 
@@ -19,10 +19,7 @@ interface CheckoutReviewSubpageProps extends SubpageBaseProps {
     paymentGatewayFormRef: React.RefObject<HTMLFormElement>;
 }
 
-const CheckoutReviewSubpageWithRef: RefForwardingComponent<
-    SubpageCompleteHandler,
-    CheckoutReviewSubpageProps
-> = (
+const CheckoutReviewSubpageWithRef: RefForwardingComponent<SubpageCompleteHandler, CheckoutReviewSubpageProps> = (
     { selectedPaymentGatewayToken, paymentGatewayFormRef, changeSubmitProgress, onSubmitSuccess },
     ref
 ) => {
@@ -46,9 +43,7 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
 
     const getPaymentMethodDescription = () => {
         if (payment?.gateway === paymentGatewayNames.dummy) {
-            return `Dummy: ${
-                dummyStatuses.find((status) => status.token === selectedPaymentGatewayToken)?.label
-            }`;
+            return `Dummy: ${dummyStatuses.find((status) => status.token === selectedPaymentGatewayToken)?.label}`;
         }
         if (payment?.gateway === paymentGatewayNames.adyen) {
             return `Adyen payments`;
@@ -64,13 +59,9 @@ const CheckoutReviewSubpageWithRef: RefForwardingComponent<
         let data;
         let dataError;
         if (payment?.gateway === paymentGatewayNames.adyen) {
-            paymentGatewayFormRef.current?.dispatchEvent(
-                new Event("submitComplete", { cancelable: true })
-            );
+            paymentGatewayFormRef.current?.dispatchEvent(new Event("submitComplete", { cancelable: true }));
         } else if (payment?.gateway === paymentGatewayNames.stripe) {
-            paymentGatewayFormRef.current?.dispatchEvent(
-                new Event("submitComplete", { cancelable: true })
-            );
+            paymentGatewayFormRef.current?.dispatchEvent(new Event("submitComplete", { cancelable: true }));
         } else {
             const response = await completeCheckout();
             data = response.data;

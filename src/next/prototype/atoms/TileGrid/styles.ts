@@ -1,4 +1,4 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 
 type TileProps = {
     columns: number;

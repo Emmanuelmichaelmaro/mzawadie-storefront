@@ -1,5 +1,5 @@
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { Thumbnail } from "@mzawadie/prototype/molecules";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { Thumbnail } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 
 import * as S from "./styles";

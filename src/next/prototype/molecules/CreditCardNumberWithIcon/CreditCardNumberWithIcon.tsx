@@ -1,13 +1,10 @@
-import { CreditCardIcon } from "@mzawadie/prototype/atoms";
+import { CreditCardIcon } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import * as S from "./styles";
 import { ICreditCardNumberWithIconProps } from "./types";
 
-export const CreditCardNumberWithIcon: React.FC<ICreditCardNumberWithIconProps> = ({
-    creditCardProvider,
-    last4Digits,
-}) => {
+export const CreditCardNumberWithIcon: React.FC<ICreditCardNumberWithIconProps> = ({ creditCardProvider, last4Digits }) => {
     return (
         <div>
             <CreditCardIcon creditCardProvider={creditCardProvider} />

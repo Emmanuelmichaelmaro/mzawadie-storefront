@@ -1,5 +1,5 @@
 import { checkoutMessages } from "@mzawadie/core";
-import { Checkbox } from "@mzawadie/prototype/atoms";
+import { Checkbox } from "@mzawadie/ui-kit/atoms";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 

@@ -14,7 +14,7 @@ const DEFAULT_PROPS: IQuantityInput = {
     testingContext: "QuantityInput",
 };
 
-storiesOf("@mzawadie/prototype/molecules/QuantityInput", module)
+storiesOf("@mzawadie/ui-kit/molecules/QuantityInput", module)
     .addParameters({ component: QuantityInput })
     .addDecorator((story) => <IntlProvider locale="en">story()</IntlProvider>)
     .add("default", () => <QuantityInput {...DEFAULT_PROPS} />)

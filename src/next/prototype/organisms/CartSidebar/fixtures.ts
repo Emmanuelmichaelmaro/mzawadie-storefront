@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ICheckoutModelLine, ICheckoutModelLineVariant } from "@mzawadie/sdk/lib/helpers";
+import { ICheckoutModelLine, ICheckoutModelLineVariant } from "@mzawadie/sdk/lib/src/helpers";
 import { ITaxedMoney } from "@next/types";
 
 import productImage from "./productImage.png";

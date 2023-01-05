@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { Button, ButtonLink } from "@mzawadie/prototype/atoms";
+import { Button, ButtonLink } from "@mzawadie/ui-kit/atoms";
 import { IFormError } from "@next/types";
 import { Formik } from "formik";
 import React from "react";
@@ -19,9 +19,7 @@ export const PasswordChangeForm: React.FC<{
     if (error) {
         error.map(({ field, message }: { field?: string; message?: string }) => {
             if (field && message) {
-                fieldErrors[field] = fieldErrors[field]
-                    ? [...fieldErrors[field], { message }]
-                    : [{ message }];
+                fieldErrors[field] = fieldErrors[field] ? [...fieldErrors[field], { message }] : [{ message }];
             }
         });
     }
@@ -73,16 +71,7 @@ export const PasswordChangeForm: React.FC<{
                     return errors;
                 }}
             >
-                {({
-                    handleChange,
-                    handleSubmit,
-                    handleBlur,
-                    values,
-                    errors,
-                    touched,
-                    isSubmitting,
-                    isValid,
-                }) => {
+                {({ handleChange, handleSubmit, handleBlur, values, errors, touched, isSubmitting, isValid }) => {
                     return (
                         <S.Form onSubmit={handleSubmit} data-test="changePasswordForm">
                             <TextField
@@ -130,21 +119,11 @@ export const PasswordChangeForm: React.FC<{
                             />
 
                             <S.FormButtons>
-                                <ButtonLink
-                                    testingContext="cancelButton"
-                                    type="button"
-                                    color="secondary"
-                                    onClick={hide}
-                                >
+                                <ButtonLink testingContext="cancelButton" type="button" color="secondary" onClick={hide}>
                                     <FormattedMessage {...commonMessages.cancel} />
                                 </ButtonLink>
 
-                                <Button
-                                    testingContext="submit"
-                                    type="submit"
-                                    disabled={isSubmitting || !isValid}
-                                    size="sm"
-                                >
+                                <Button testingContext="submit" type="submit" disabled={isSubmitting || !isValid} size="sm">
                                     <FormattedMessage {...commonMessages.save} />
                                 </Button>
                             </S.FormButtons>

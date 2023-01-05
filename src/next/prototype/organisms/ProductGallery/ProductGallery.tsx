@@ -1,5 +1,5 @@
-import { Icon } from "@mzawadie/prototype/atoms";
-import { CachedImage } from "@mzawadie/prototype/molecules";
+import { Icon } from "@mzawadie/ui-kit/atoms";
+import { CachedImage } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 import { useInView } from "react-intersection-observer";
 

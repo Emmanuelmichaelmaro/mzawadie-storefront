@@ -7,14 +7,7 @@ import { IProps } from "./types";
 /**
  * Cart template for cart page with list of products added by user.
  */
-const Cart: React.FC<IProps> = ({
-    breadcrumbs,
-    title,
-    cartHeader,
-    cartFooter,
-    cart,
-    button,
-}: IProps) => {
+const Cart: React.FC<IProps> = ({ breadcrumbs, title, cartHeader, cartFooter, cart, button }: IProps) => {
     return (
         <Container>
             <S.Wrapper>

@@ -1,4 +1,4 @@
-import { Button } from "@mzawadie/prototype/atoms";
+import { Button } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -9,13 +9,7 @@ export interface IAddToCartButton {
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({ onSubmit, disabled }) => {
     return (
-        <Button
-            fullWidth
-            testingContext="addProductToCartButton"
-            onClick={onSubmit}
-            color="primary"
-            disabled={disabled}
-        >
+        <Button fullWidth testingContext="addProductToCartButton" onClick={onSubmit} color="primary" disabled={disabled}>
             <FormattedMessage defaultMessage="Add to basket" />
         </Button>
     );

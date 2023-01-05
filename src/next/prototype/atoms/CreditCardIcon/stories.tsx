@@ -3,7 +3,7 @@ import React from "react";
 
 import { CreditCardIcon } from ".";
 
-storiesOf("@mzawadie/prototype/atoms/CreditCardIcon", module)
+storiesOf("@mzawadie/ui-kit/atoms/CreditCardIcon", module)
     .addParameters({ component: CreditCardIcon })
     .add("VISA", () => <CreditCardIcon creditCardProvider="visa" />)
     .add("MASTERCARD", () => <CreditCardIcon creditCardProvider="mastercard" />)

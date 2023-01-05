@@ -7,13 +7,7 @@ import { IProps } from "./types";
 const ENTER_KEY: number = 13;
 const SPACE_KEY: number = 32;
 
-export const Checkbox: React.FC<IProps> = ({
-    name,
-    checked,
-    onChange = () => null,
-    children,
-    ...props
-}: IProps) => {
+export const Checkbox: React.FC<IProps> = ({ name, checked, onChange = () => null, children, ...props }: IProps) => {
     const ref = React.useRef<HTMLDivElement>(null);
 
     return (
@@ -28,14 +22,7 @@ export const Checkbox: React.FC<IProps> = ({
             }}
         >
             <S.Label>
-                <input
-                    {...props}
-                    tabIndex={-1}
-                    type="checkbox"
-                    name={name}
-                    checked={checked}
-                    readOnly
-                />
+                <input {...props} tabIndex={-1} type="checkbox" name={name} checked={checked} readOnly />
                 <div
                     ref={ref}
                     tabIndex={0}

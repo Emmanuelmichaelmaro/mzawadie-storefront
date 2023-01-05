@@ -1,4 +1,4 @@
-import { IconButton } from "@mzawadie/prototype/atoms";
+import { IconButton } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import * as S from "./styles";
@@ -25,9 +25,7 @@ export const CardHeader: React.FC<IProps> = ({
                     <S.Paragraph>{children}</S.Paragraph>
                 )}
             </S.Header>
-            {defaultCloseIcon && (
-                <IconButton name="x" size={19} onClick={onHide} testingContext="closeOverlayButton" />
-            )}
+            {defaultCloseIcon && <IconButton name="x" size={19} onClick={onHide} testingContext="closeOverlayButton" />}
             {closeIcon}
         </S.Wrapper>
     );
