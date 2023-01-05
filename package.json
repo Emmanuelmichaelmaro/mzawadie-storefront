@@ -1,7 +1,6 @@
 {
     "name": "mzawadie-storefront",
-    "version": "1.0.0",
-    "private": true,
+    "version": "1.0.0-a.0",
     "author": "Emmanuel Maro <emmanuelmaro733@gmail.com>",
     "license": "BSD-3-Clause",
     "main": "dist/index.js",
