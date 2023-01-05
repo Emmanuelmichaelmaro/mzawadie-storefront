@@ -7,7 +7,7 @@ import { IBraintreePaymentGatewayProps } from "./BraintreePaymentGateway";
 
 const DEFAULT_PROPS: IBraintreePaymentGatewayProps = {};
 
-storiesOf("@mzawadie/prototype/organisms/BraintreePaymentGateway", module)
+storiesOf("@mzawadie/ui-kit/organisms/BraintreePaymentGateway", module)
     .addParameters({ component: BraintreePaymentGateway })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <BraintreePaymentGateway {...DEFAULT_PROPS} />);

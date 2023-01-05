@@ -1,4 +1,4 @@
-import { Radio } from "@mzawadie/prototype/atoms";
+import { Radio } from "@mzawadie/ui-kit/atoms";
 import { Formik } from "formik";
 import React from "react";
 
@@ -29,12 +29,7 @@ const DummyPaymentGateway: React.FC<IDummyPaymentGatewayProps> = ({
             }}
         >
             {({ handleChange, handleSubmit, handleBlur, values, isSubmitting, isValid }) => (
-                <S.Form
-                    id={formId}
-                    ref={formRef}
-                    onSubmit={handleSubmit}
-                    data-test="dummyPaymentGatewayForm"
-                >
+                <S.Form id={formId} ref={formRef} onSubmit={handleSubmit} data-test="dummyPaymentGatewayForm">
                     {statuses.map(({ token, label }) => {
                         return (
                             <S.Status key={token}>

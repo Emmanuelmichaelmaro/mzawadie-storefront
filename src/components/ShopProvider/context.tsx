@@ -1,4 +1,4 @@
-import { ShopConfig } from "@next/utils/ssr";
+import { ShopConfig } from "@mzawadie/ui-kit/utils/ssr";
 import { createContext } from "react";
 
 export const defaultCountry = {

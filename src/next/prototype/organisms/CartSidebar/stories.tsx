@@ -21,7 +21,7 @@ const continueShopping = action("continue shopping");
 const goToCart = action("go to cart");
 const proceedToCheckout = action("proceed to checkout");
 
-storiesOf("@mzawadie/prototype/organisms/CartSidebar", module)
+storiesOf("@mzawadie/ui-kit/organisms/CartSidebar", module)
     .addParameters({ component: CartSidebar })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

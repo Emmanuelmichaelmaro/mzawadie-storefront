@@ -1,4 +1,4 @@
-import { getBackgroundColor } from "@next/utils/styles";
+import { getBackgroundColor } from "@mzawadie/ui-kit/utils/styles";
 import React from "react";
 
 import { InputLabel } from "../InputLabel";

@@ -1,4 +1,4 @@
-import { ISelect } from "@mzawadie/prototype/atoms";
+import { ISelect } from "@mzawadie/ui-kit/atoms";
 import { IFormError } from "@next/types";
 
 export interface IProps extends ISelect {

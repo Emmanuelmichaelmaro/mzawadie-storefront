@@ -12,7 +12,7 @@ if (!portalRoot) {
     document.body.appendChild(portalRoot);
 }
 
-storiesOf("@mzawadie/prototype/organisms/SelectSidebar", module)
+storiesOf("@mzawadie/ui-kit/organisms/SelectSidebar", module)
     .addParameters({ component: SelectSidebar })
     .add("default", () => (
         <SelectSidebar

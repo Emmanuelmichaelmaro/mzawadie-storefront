@@ -13,7 +13,7 @@ if (!portalRoot) {
     document.body.appendChild(portalRoot);
 }
 
-storiesOf("@mzawadie/prototype/organisms/FilterSidebar", module)
+storiesOf("@mzawadie/ui-kit/organisms/FilterSidebar", module)
     .addParameters({ component: FilterSidebar })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

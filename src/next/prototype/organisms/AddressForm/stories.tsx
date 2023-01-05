@@ -41,7 +41,7 @@ const INITIAL_DATA = {
     address,
 };
 
-storiesOf("@mzawadie/prototype/organisms/AddressForm", module)
+storiesOf("@mzawadie/ui-kit/organisms/AddressForm", module)
     .addParameters({ component: AddressForm })
     .add("default", () => withContainer(<AddressForm {...PROPS} />))
     .add("with errors", () => withContainer(<AddressForm {...PROPS} {...ERRORS} />))

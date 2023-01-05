@@ -1,7 +1,7 @@
-import { Icon, Input } from "@mzawadie/prototype/atoms";
-import { InputSelect } from "@mzawadie/prototype/molecules";
-import { ProductDetails_product_variants } from "@mzawadie/sdk/lib/queries/gqlTypes/ProductDetails";
-import { useSelectableProductVariantsAttributeValues } from "@next/hooks";
+import { ProductDetails_product_variants } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
+import { Icon, Input } from "@mzawadie/ui-kit/atoms";
+import { useSelectableProductVariantsAttributeValues } from "@mzawadie/ui-kit/hooks";
+import { InputSelect } from "@mzawadie/ui-kit/molecules";
 import { IProductVariantsAttribute, IProductVariantsAttributesSelectedValues } from "@next/types";
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
@@ -39,8 +39,7 @@ export const ProductVariantAttributeSelect: React.FC<{
     const intl = useIntl();
 
     const selectedAttribute =
-        productVariantsAttributesSelectedValues &&
-        productVariantsAttributesSelectedValues[productVariantsAttributeId];
+        productVariantsAttributesSelectedValues && productVariantsAttributesSelectedValues[productVariantsAttributeId];
 
     const selectedValue = selectedAttribute && {
         disabled: false,
@@ -52,8 +51,7 @@ export const ProductVariantAttributeSelect: React.FC<{
     const attributeOptions = productVariantsAttribute.values
         .filter((value) => value)
         .map((value) => {
-            const selectableAttribute =
-                selectableProductVariantsAttributeValues[productVariantsAttributeId];
+            const selectableAttribute = selectableProductVariantsAttributeValues[productVariantsAttributeId];
             const isOptionDisabled = selectableAttribute && !selectableAttribute.values.includes(value);
 
             return {
@@ -115,11 +113,7 @@ export const ProductVariantAttributeSelect: React.FC<{
                     onChange={() => null}
                     contentRight={getRightInputContent(!!selectedValue)}
                     readOnly
-                    name={
-                        productVariantsAttribute.attribute.slug
-                            ? productVariantsAttribute.attribute.slug
-                            : ""
-                    }
+                    name={productVariantsAttribute.attribute.slug ? productVariantsAttribute.attribute.slug : ""}
                     data-test="variantPicker"
                 />
                 <SelectSidebar
@@ -137,9 +131,7 @@ export const ProductVariantAttributeSelect: React.FC<{
                     onSelect={handleSelectValueInSidebar}
                     target={selectSidebarTarget}
                     testingContextId={
-                        productVariantsAttribute.attribute.slug
-                            ? productVariantsAttribute.attribute.slug
-                            : ""
+                        productVariantsAttribute.attribute.slug ? productVariantsAttribute.attribute.slug : ""
                     }
                 />
             </>

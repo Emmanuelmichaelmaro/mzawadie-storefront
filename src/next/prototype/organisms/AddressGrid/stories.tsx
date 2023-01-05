@@ -56,7 +56,7 @@ const addressSimple = {
 
 const addresses = [DEFAULT_PROPS, addressSimple, DEFAULT_PROPS, DEFAULT_PROPS];
 
-storiesOf("@mzawadie/prototype/organisms/AddressGrid", module)
+storiesOf("@mzawadie/ui-kit/organisms/AddressGrid", module)
     .addParameters({ component: AddressGrid })
     .add("default", () => (
         <IntlProvider locale="en">

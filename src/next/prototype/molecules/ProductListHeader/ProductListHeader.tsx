@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { Chip, DropdownSelect, Icon } from "@mzawadie/prototype/atoms";
+import { Chip, DropdownSelect, Icon } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
@@ -47,9 +47,7 @@ export const ProductListHeader: React.FC<IProps> = ({
                             <DropdownSelect
                                 onChange={onChange}
                                 options={sortOptions}
-                                value={sortOptions.find(
-                                    (option: any) => option.value === activeSortOption
-                                )}
+                                value={sortOptions.find((option: any) => option.value === activeSortOption)}
                             />
                         </S.Sort>
                     </S.Element>
@@ -57,10 +55,7 @@ export const ProductListHeader: React.FC<IProps> = ({
             </S.Bar>
             <S.FiltersChipsWrapper>
                 {activeFiltersAttributes.map(({ attributeSlug, valueName, valueSlug }) => (
-                    <Chip
-                        key={valueSlug}
-                        onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}
-                    >
+                    <Chip key={valueSlug} onClose={() => onCloseFilterAttribute(attributeSlug, valueSlug)}>
                         {valueName}
                     </Chip>
                 ))}

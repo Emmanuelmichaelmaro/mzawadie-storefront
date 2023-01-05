@@ -5,7 +5,7 @@ import { IntlProvider } from "react-intl";
 import { CartCostsSummary } from ".";
 import { ALL_POSSIBLE_COSTS, BASIC_COSTS } from "./fixtures";
 
-storiesOf("@mzawadie/prototype/atoms/CartCostsSummary", module)
+storiesOf("@mzawadie/ui-kit/atoms/CartCostsSummary", module)
     .addParameters({ component: CartCostsSummary })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <CartCostsSummary {...BASIC_COSTS} />)

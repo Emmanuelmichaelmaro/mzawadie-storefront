@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { css, keyframes } from "styled-components";
 
 import { Position, TransitionState } from "./types";

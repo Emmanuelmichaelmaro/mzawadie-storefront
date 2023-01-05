@@ -1,10 +1,10 @@
 import { commonMessages } from "@mzawadie/core";
-import { ICheckoutModelLine } from "@mzawadie/sdk/lib/helpers";
+import { ICheckoutModelLine } from "@mzawadie/sdk/lib/src/helpers";
 import {
     ProductDetails_product_pricing,
     ProductDetails_product_variants,
     ProductDetails_product_variants_pricing,
-} from "@mzawadie/sdk/lib/queries/gqlTypes/ProductDetails";
+} from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
 import { IProductVariantsAttributesSelectedValues } from "@next/types";
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
@@ -49,25 +49,16 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
 
     const [quantity, setQuantity] = useState<number>(1);
     const [variantStock, setVariantStock] = useState<number>(0);
-    const [variantPricing, setVariantPricing] =
-        useState<ProductDetails_product_variants_pricing | null>(null);
+    const [variantPricing, setVariantPricing] = useState<ProductDetails_product_variants_pricing | null>(null);
 
     const availableQuantity = getAvailableQuantity(items, variantId, variantStock);
     const isOutOfStock = !!variantId && variantStock === 0;
     const noPurchaseAvailable = !isAvailableForPurchase && !availableForPurchase;
-    const purchaseAvailableDate =
-        !isAvailableForPurchase && availableForPurchase && Date.parse(availableForPurchase);
+    const purchaseAvailableDate = !isAvailableForPurchase && availableForPurchase && Date.parse(availableForPurchase);
     const isNoItemsAvailable = !!variantId && !isOutOfStock && !availableQuantity;
-    const isLowStock =
-        !!variantId && !isOutOfStock && !isNoItemsAvailable && availableQuantity < LOW_STOCK_QUANTITY;
+    const isLowStock = !!variantId && !isOutOfStock && !isNoItemsAvailable && availableQuantity < LOW_STOCK_QUANTITY;
 
-    const disableButton = !canAddToCart(
-        items,
-        !!isAvailableForPurchase,
-        variantId,
-        variantStock,
-        quantity
-    );
+    const disableButton = !canAddToCart(items, !!isAvailableForPurchase, variantId, variantStock, quantity);
 
     const renderErrorMessage = (message: string, testingContextId: string) => (
         <S.ErrorMessage data-test="stockErrorMessage" data-testId={testingContextId}>
@@ -99,10 +90,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
                 <S.ProductPricing>{getProductPrice(productPricing, variantPricing)}</S.ProductPricing>
             )}
             {noPurchaseAvailable &&
-                renderErrorMessage(
-                    intl.formatMessage(commonMessages.noPurchaseAvailable),
-                    "notAvailable"
-                )}
+                renderErrorMessage(intl.formatMessage(commonMessages.noPurchaseAvailable), "notAvailable")}
             {purchaseAvailableDate &&
                 renderErrorMessage(
                     intl.formatMessage(commonMessages.purchaseAvailableOn, {
@@ -118,13 +106,9 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
                     }),
                     "timeRestrictedAvailability"
                 )}
-            {isLowStock &&
-                renderErrorMessage(intl.formatMessage(commonMessages.lowStock), "lowStockWarning")}
+            {isLowStock && renderErrorMessage(intl.formatMessage(commonMessages.lowStock), "lowStockWarning")}
             {isNoItemsAvailable &&
-                renderErrorMessage(
-                    intl.formatMessage(commonMessages.noItemsAvailable),
-                    "noItemsAvailable"
-                )}
+                renderErrorMessage(intl.formatMessage(commonMessages.noItemsAvailable), "noItemsAvailable")}
             <S.VariantPicker>
                 <ProductVariantPicker
                     productVariants={productVariants}
@@ -144,10 +128,7 @@ const AddToCartSection: React.FC<IAddToCartSection> = ({
                     testingContext="addToCartQuantity"
                 />
             </S.QuantityInput>
-            <AddToCartButton
-                onSubmit={() => onAddToCart(variantId, quantity)}
-                disabled={disableButton}
-            />
+            <AddToCartButton onSubmit={() => onAddToCart(variantId, quantity)} disabled={disableButton} />
         </S.AddToCartSelection>
     );
 };

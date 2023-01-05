@@ -1,18 +1,15 @@
 import { generateProductUrl } from "@mzawadie/core";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { Thumbnail } from "@mzawadie/prototype/molecules";
-import { ProductVariant } from "@mzawadie/sdk/lib/fragments/gqlTypes/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@mzawadie/sdk/lib/queries/gqlTypes/OrderByToken";
+import { ProductVariant } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@mzawadie/sdk/lib/src/queries/gqlTypes/OrderByToken";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { Thumbnail } from "@mzawadie/ui-kit/molecules";
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
 
 // import { ProductVariant } from "../../checkout/types/ProductVariant";
 
-export type LineI = Omit<
-    ProductVariant,
-    "__typename" | "sku" | "stockQuantity" | "isAvailable" | "attributes"
-> & {
+export type LineI = Omit<ProductVariant, "__typename" | "sku" | "stockQuantity" | "isAvailable" | "attributes"> & {
     quantity: number;
     totalPrice: OrderByToken_orderByToken_lines_unitPrice;
     stockQuantity?: number;
@@ -27,11 +24,7 @@ export interface EditableProductRowProps {
     processing?: boolean;
 }
 
-const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({
-    mediumScreen,
-    processing,
-    line,
-}) => {
+const ProductRow: React.FC<ReadProductRowProps & EditableProductRowProps> = ({ mediumScreen, processing, line }) => {
     const productUrl = generateProductUrl(line.product.id, line.product.name);
 
     return (

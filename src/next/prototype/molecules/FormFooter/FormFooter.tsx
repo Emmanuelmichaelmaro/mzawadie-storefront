@@ -1,4 +1,4 @@
-import { Button, ButtonLink } from "@mzawadie/prototype/atoms";
+import { Button, ButtonLink } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import * as S from "./styles";
@@ -10,12 +10,7 @@ const getBtnAction = (btn: IButtonProps) => btn.action && { onClick: btn.action 
 
 const renderCancelBtn = (cancelBtn?: IButtonProps) =>
     cancelBtn && (
-        <ButtonLink
-            {...getBtnAction(cancelBtn)}
-            testingContext="cancelButton"
-            type="button"
-            color="secondary"
-        >
+        <ButtonLink {...getBtnAction(cancelBtn)} testingContext="cancelButton" type="button" color="secondary">
             {cancelBtn.text}
         </ButtonLink>
     );

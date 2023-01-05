@@ -1,9 +1,9 @@
 // @ts-nocheck
 import * as React from "react";
 
-import { Category_attributes_edges_node } from "../../views/Category/types/Category";
-import { Collection_attributes_edges_node } from "../../views/Collection/types/Collection";
-import { SearchProducts_attributes_edges_node } from "../../views/Search/types/SearchProducts";
+import { Category_attributes_edges_node } from "../../apps/Category/types/Category";
+import { Collection_attributes_edges_node } from "../../apps/Collection/types/Collection";
+import { SearchProducts_attributes_edges_node } from "../../apps/Search/types/SearchProducts";
 import PriceRangeFilter from "../PriceRangeFilter";
 import SelectField, { SelectValue } from "../SelectField";
 import "./scss/index.module.scss";
@@ -46,8 +46,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
                                 filters.attributes[attribute.slug]
                                     ? filters.attributes[attribute.slug].map((attributeValueSlug) => {
                                           const attributeValue = attribute.values.find(
-                                              (attributeValue) =>
-                                                  attributeValue.slug === attributeValueSlug
+                                              (attributeValue) => attributeValue.slug === attributeValueSlug
                                           );
                                           return {
                                               label: attributeValue.name,
@@ -72,11 +71,7 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
                     </div>
                 ))}
                 <div className="product-filters__grid__filter">
-                    <PriceRangeFilter
-                        from={filters.priceGte}
-                        to={filters.priceLte}
-                        onChange={onPriceChange}
-                    />
+                    <PriceRangeFilter from={filters.priceGte} to={filters.priceLte} onChange={onPriceChange} />
                 </div>
             </div>
         </div>

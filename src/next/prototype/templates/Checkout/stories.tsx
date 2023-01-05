@@ -16,7 +16,7 @@ const paymentGateways = <div style={style}>Payment gateways</div>;
 const cartSummary = <div style={style}>Cart summary</div>;
 const button = <button style={style}>Button</button>;
 
-storiesOf("@mzawadie/prototype/templates/Checkout", module)
+storiesOf("@mzawadie/ui-kit/templates/Checkout", module)
     .addParameters({ component: Checkout })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

@@ -6,11 +6,7 @@ import { IAttributeProps } from "./types";
 /**
  * The attribute
  */
-export const Attribute: React.FC<IAttributeProps> = ({
-    description,
-    attributeValue,
-    testingContext,
-}: IAttributeProps) => {
+export const Attribute: React.FC<IAttributeProps> = ({ description, attributeValue, testingContext }: IAttributeProps) => {
     return (
         <S.Wrapper>
             <S.Description>{description}</S.Description>

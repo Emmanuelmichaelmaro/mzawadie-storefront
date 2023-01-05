@@ -28,7 +28,7 @@ const steps = [
     },
 ];
 
-storiesOf("@mzawadie/prototype/molecules/CheckoutProgressBar", module)
+storiesOf("@mzawadie/ui-kit/molecules/CheckoutProgressBar", module)
     .addParameters({ component: CheckoutProgressBar })
     .add("first", () => {
         return (

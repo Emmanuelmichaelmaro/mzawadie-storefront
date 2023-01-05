@@ -1,4 +1,4 @@
-import { DefaultTheme, styled } from "@next/styles";
+import { DefaultTheme, styled } from "@mzawadie/ui-kit/styles";
 
 export const activeLabelStyles = (theme: DefaultTheme, labelBackground: string | null) => `
   left: 0.5rem;
@@ -17,14 +17,11 @@ const labelStyles = (theme: DefaultTheme) => `
 `;
 
 export const Label = styled.label<{
-    active: boolean;
-    labelBackground: string | null;
+  active: boolean;
+  labelBackground: string | null;
 }>`
     position: absolute;
-    ${(props) =>
-        props.active
-            ? activeLabelStyles(props.theme, props.labelBackground)
-            : labelStyles(props.theme)};
+    ${(props) => (props.active ? activeLabelStyles(props.theme, props.labelBackground) : labelStyles(props.theme))};
     transform: translateY(-50%);
     transition: all 0.3s ease, color 0s;
     pointer-events: none;

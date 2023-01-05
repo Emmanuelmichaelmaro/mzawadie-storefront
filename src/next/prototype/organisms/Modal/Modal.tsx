@@ -1,5 +1,5 @@
-import { CardHeader, FormFooter } from "@mzawadie/prototype/molecules";
-import { Overlay } from "@mzawadie/prototype/organisms";
+import { CardHeader, FormFooter } from "@mzawadie/ui-kit/molecules";
+import { Overlay } from "@mzawadie/ui-kit/organisms";
 import React from "react";
 
 import * as S from "./styles";
@@ -39,13 +39,7 @@ export const Modal: React.FC<IProps> = ({
     title,
 }: IProps) => {
     return (
-        <Overlay
-            testingContext={testingContext}
-            position="center"
-            show={show}
-            hide={hide}
-            target={target}
-        >
+        <Overlay testingContext={testingContext} position="center" show={show} hide={hide} target={target}>
             <S.Modal>
                 <CardHeader divider onHide={hide}>
                     {title}

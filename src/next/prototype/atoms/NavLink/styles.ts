@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const Link = styled.a<{ fullWidth: boolean; activeClassName?: string }>`
     position: relative;

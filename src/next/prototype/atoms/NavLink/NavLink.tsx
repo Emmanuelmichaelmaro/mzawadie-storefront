@@ -2,7 +2,7 @@
 // Use slugs everywhere (they are used partially right now)
 // NOTE: This component should only be used for navigation inside application
 // For external urls, use different component
-import { generateCategoryUrl, generateCollectionUrl, generatePageUrl } from "@next/utils/core";
+import { generateCategoryUrl, generateCollectionUrl, generatePageUrl } from "@mzawadie/ui-kit/utils/core";
 import Link from "next/link";
 import React from "react";
 

@@ -1,3 +1,3 @@
-import { CartPage } from "@next/pages";
+import { CartPage } from "@mzawadie/ui-kit/pages";
 
 export default CartPage;

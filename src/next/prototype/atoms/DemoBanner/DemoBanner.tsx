@@ -1,4 +1,4 @@
-import { mediumScreen } from "@next/styles/constants";
+import { mediumScreen } from "@mzawadie/ui-kit/styles/constants";
 // @ts-ignore
 import LogoSmall from "images/logo-small.svg";
 import React from "react";
@@ -38,9 +38,7 @@ export const DemoBanner: React.FC = () => {
                             <FormattedMessage
                                 defaultMessage="Explore <emphasis>Store’s dashboard</emphasis>"
                                 values={{
-                                    emphasis: (children: any) => (
-                                        <S.TextEmphasis>{children}</S.TextEmphasis>
-                                    ),
+                                    emphasis: (children: any) => <S.TextEmphasis>{children}</S.TextEmphasis>,
                                 }}
                             />
                         </S.Link>
@@ -51,9 +49,7 @@ export const DemoBanner: React.FC = () => {
                             <FormattedMessage
                                 defaultMessage="Play with <emphasis>GraphQL API</emphasis>"
                                 values={{
-                                    emphasis: (children: any) => (
-                                        <S.TextEmphasis>{children}</S.TextEmphasis>
-                                    ),
+                                    emphasis: (children: any) => <S.TextEmphasis>{children}</S.TextEmphasis>,
                                 }}
                             />
                         </S.Link>

@@ -1,5 +1,5 @@
-import { ProductDetails_product_variants } from "@mzawadie/sdk/lib/queries/gqlTypes/ProductDetails";
-import { useProductVariantsAttributes, useProductVariantsAttributesValuesSelection } from "@next/hooks";
+import { ProductDetails_product_variants } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
+import { useProductVariantsAttributes, useProductVariantsAttributesValuesSelection } from "@mzawadie/ui-kit/hooks";
 import { IProductVariantsAttributesSelectedValues } from "@next/types";
 import React, { useEffect } from "react";
 
@@ -67,15 +67,11 @@ const ProductVariantPicker: React.FC<IProductVariantPickerProps> = ({
                         productVariantsAttributeId={productVariantsAttributeId}
                         productVariantsAttribute={productVariantsAttribute}
                         defaultValue={queryAttributes[productVariantsAttributeId]}
-                        productVariantsAttributesSelectedValues={
-                            productVariantsAttributesSelectedValues
-                        }
+                        productVariantsAttributesSelectedValues={productVariantsAttributesSelectedValues}
                         onChangeSelection={(optionValue) =>
                             onAttributeChange(productVariantsAttributeId, optionValue, slug)
                         }
-                        onClearSelection={() =>
-                            onAttributeChange(productVariantsAttributeId, null, slug)
-                        }
+                        onClearSelection={() => onAttributeChange(productVariantsAttributeId, null, slug)}
                     />
                 );
             })}

@@ -1,28 +1,23 @@
 import { paths, paymentGatewayNames } from "@mzawadie/core";
-import { Button, Loader, Redirect } from "@mzawadie/prototype/atoms";
-import { CheckoutProgressBar } from "@mzawadie/prototype/molecules";
+import { useCart, useCheckout } from "@mzawadie/sdk/lib/src";
+import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
+import { Button, Loader, Redirect } from "@mzawadie/ui-kit/atoms";
+import { useRedirectToCorrectCheckoutStep } from "@mzawadie/ui-kit/hooks";
+import { CheckoutProgressBar } from "@mzawadie/ui-kit/molecules";
 import {
     PaymentGatewaysList,
     CartSummary,
     translateAdyenConfirmationError,
     adyenNotNegativeConfirmationStatusCodes,
-} from "@mzawadie/prototype/organisms";
-import { Checkout } from "@mzawadie/prototype/templates";
-import { useCart, useCheckout } from "@mzawadie/sdk/lib/src";
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
-import { useRedirectToCorrectCheckoutStep } from "@next/hooks";
+} from "@mzawadie/ui-kit/organisms";
+import { Checkout } from "@mzawadie/ui-kit/templates";
 import { ICardData, IFormError, IPaymentSubmitResult } from "@next/types";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 
-import {
-    CheckoutAddressSubpage,
-    CheckoutPaymentSubpage,
-    CheckoutReviewSubpage,
-    CheckoutShippingSubpage,
-} from "./subpages";
+import { CheckoutAddressSubpage, CheckoutPaymentSubpage, CheckoutReviewSubpage, CheckoutShippingSubpage } from "./subpages";
 import {
     CHECKOUT_STEPS,
     CheckoutStep,
@@ -58,13 +53,9 @@ const CheckoutPage: React.FC<NextPage> = () => {
 
     const [paymentConfirmation, setPaymentConfirmation] = useState(false);
 
-    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<string | undefined>(
-        payment?.gateway
-    );
+    const [selectedPaymentGateway, setSelectedPaymentGateway] = useState<string | undefined>(payment?.gateway);
 
-    const [selectedPaymentGatewayToken, setSelectedPaymentGatewayToken] = useState<string | undefined>(
-        payment?.token
-    );
+    const [selectedPaymentGatewayToken, setSelectedPaymentGatewayToken] = useState<string | undefined>(payment?.token);
 
     const [paymentGatewayErrors, setPaymentGatewayErrors] = useState<IFormError[]>([]);
 
@@ -81,9 +72,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     const buttonText = getContinueButtonText(activeStep.step);
 
     const shippingTaxedPrice =
-        checkout?.shippingMethod?.id && shippingPrice
-            ? { gross: shippingPrice, net: shippingPrice }
-            : null;
+        checkout?.shippingMethod?.id && shippingPrice ? { gross: shippingPrice, net: shippingPrice } : null;
 
     const promoTaxedPrice = discount && {
         gross: discount,
@@ -119,9 +108,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     }, [activeStep.step]);
 
     const handleProcessPayment = async (gateway: string, token?: string, cardData?: ICardData) => {
-        const paymentConfirmStepLink = CHECKOUT_STEPS.find(
-            (step) => step.step === CheckoutStep.PaymentConfirm
-        )?.link;
+        const paymentConfirmStepLink = CHECKOUT_STEPS.find((step) => step.step === CheckoutStep.PaymentConfirm)?.link;
         const { dataError } = await createPayment({
             gateway,
             token,
@@ -187,10 +174,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
         /**
          * Prevent proceeding in confirmation flow in case of gateways that don't support it to prevent unknown bugs.
          */
-        if (
-            payment?.gateway !== paymentGatewayNames.adyen &&
-            payment?.gateway !== paymentGatewayNames.stripe
-        ) {
+        if (payment?.gateway !== paymentGatewayNames.adyen && payment?.gateway !== paymentGatewayNames.stripe) {
             const paymentStepLink = steps.find((step) => step.step === CheckoutStep.Payment)?.link;
             if (paymentStepLink) {
                 push(paymentStepLink);
@@ -244,15 +228,8 @@ const CheckoutPage: React.FC<NextPage> = () => {
     useEffect(() => setSelectedPaymentGatewayToken(payment?.token), [payment?.token]);
 
     useEffect(() => {
-        const paymentConfirmStepLink = CHECKOUT_STEPS.find(
-            (step) => step.step === CheckoutStep.PaymentConfirm
-        )?.link;
-        if (
-            !submitInProgress &&
-            checkout &&
-            pathname === paymentConfirmStepLink &&
-            !paymentConfirmation
-        ) {
+        const paymentConfirmStepLink = CHECKOUT_STEPS.find((step) => step.step === CheckoutStep.PaymentConfirm)?.link;
+        if (!submitInProgress && checkout && pathname === paymentConfirmStepLink && !paymentConfirmation) {
             handlePaymentConfirm();
         }
     }, [pathname, query, submitInProgress, checkout]);
@@ -262,9 +239,7 @@ const CheckoutPage: React.FC<NextPage> = () => {
     ) : (
         <Checkout
             loading={submitInProgress}
-            navigation={
-                isFullyLoaded && <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />
-            }
+            navigation={isFullyLoaded && <CheckoutProgressBar steps={steps} activeStep={activeStepIndex} />}
             cartSummary={
                 <CartSummary
                     shipping={shippingTaxedPrice}

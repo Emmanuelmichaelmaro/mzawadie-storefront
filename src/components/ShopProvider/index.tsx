@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ShopConfig } from "@next/utils/ssr";
+import { ShopConfig } from "@mzawadie/ui-kit/utils/ssr";
 import React, { useState } from "react";
 
 import { defaultContext, ShopContext } from "./context";

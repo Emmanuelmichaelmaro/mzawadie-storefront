@@ -5,7 +5,7 @@ import { IntlProvider } from "react-intl";
 import { AddressTileOption } from ".";
 import { DEFAULT_PROPS } from "./fixtures";
 
-storiesOf("@mzawadie/prototype/molecules/AddressTileOption", module)
+storiesOf("@mzawadie/ui-kit/molecules/AddressTileOption", module)
     .addParameters({ component: AddressTileOption })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("unchecked", () => <AddressTileOption {...DEFAULT_PROPS} checked={false} />)

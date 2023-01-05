@@ -1,5 +1,5 @@
-import { NavLink as _NavLink } from "@mzawadie/prototype/atoms";
-import { styled } from "@next/styles";
+import { NavLink as _NavLink } from "@mzawadie/ui-kit/atoms";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { ReactSVG } from "react-svg";
 import { css } from "styled-components";
 

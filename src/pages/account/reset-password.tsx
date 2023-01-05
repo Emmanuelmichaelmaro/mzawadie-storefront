@@ -1,3 +1,3 @@
-import { PasswordReset } from "@next/pages";
+import { PasswordReset } from "@mzawadie/ui-kit/pages";
 
 export default PasswordReset;

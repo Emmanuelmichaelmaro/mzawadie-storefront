@@ -1,6 +1,6 @@
 import { checkoutMessages } from "@mzawadie/core";
-import { ErrorMessage } from "@mzawadie/prototype/atoms";
-import { AddressSummary } from "@mzawadie/prototype/molecules";
+import { ErrorMessage } from "@mzawadie/ui-kit/atoms";
+import { AddressSummary } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 

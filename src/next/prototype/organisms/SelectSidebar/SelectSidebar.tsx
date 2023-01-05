@@ -1,6 +1,6 @@
-import { ButtonLink } from "@mzawadie/prototype/atoms";
-import { CardHeader, OverlayItem } from "@mzawadie/prototype/molecules";
-import { useHandlerWhenClickedOutside } from "@next/hooks";
+import { ButtonLink } from "@mzawadie/ui-kit/atoms";
+import { useHandlerWhenClickedOutside } from "@mzawadie/ui-kit/hooks";
+import { CardHeader, OverlayItem } from "@mzawadie/ui-kit/molecules";
 import React from "react";
 
 import { Overlay } from "../index";

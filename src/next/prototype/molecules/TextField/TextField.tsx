@@ -1,4 +1,4 @@
-import { ErrorMessage, Input } from "@mzawadie/prototype/atoms";
+import { ErrorMessage, Input } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import * as S from "./styles";

@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div<{ selected: boolean; disabled: boolean }>`
     display: flex;
@@ -10,8 +10,8 @@ export const Wrapper = styled.div<{ selected: boolean; disabled: boolean }>`
     color: ${(props) => (props.disabled ? props.theme.colors.disabled : `unset`)};
 
     ${(props) =>
-        !props.disabled &&
-        `&:hover {
+    !props.disabled &&
+    `&:hover {
     background-color: ${props.theme.colors.primaryLight};
     color: ${props.theme.colors.primaryDark};
     font-weight: ${props.theme.typography.boldFontWeight};

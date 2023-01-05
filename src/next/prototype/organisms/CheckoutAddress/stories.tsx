@@ -17,7 +17,7 @@ const setShippingAddress = action("setShippingAddress has been called");
 const setBillingAddress = action("setBillingAddress has been called");
 const setBillingAsShippingAddress = action("setBillingAsShippingAddress has been called");
 
-storiesOf("@mzawadie/prototype/organisms/CheckoutAddress", module)
+storiesOf("@mzawadie/ui-kit/organisms/CheckoutAddress", module)
     .addParameters({ component: CheckoutAddress })
     .add("default", () => (
         <IntlProvider locale="en">

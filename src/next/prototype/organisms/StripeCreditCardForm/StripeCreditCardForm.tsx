@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { ErrorMessage, StripeInputElement } from "@mzawadie/prototype/atoms";
+import { ErrorMessage, StripeInputElement } from "@mzawadie/ui-kit/atoms";
 import { IFormError } from "@next/types";
 import { useElements, useStripe } from "@stripe/react-stripe-js";
 import { Formik } from "formik";

@@ -1,4 +1,4 @@
-import { Loader } from "@mzawadie/prototype/atoms";
+import { Loader } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import { Container } from "../Container";

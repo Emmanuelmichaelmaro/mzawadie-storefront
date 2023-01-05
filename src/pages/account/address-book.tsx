@@ -1,3 +1,3 @@
-import { AccountView } from "../../views/Account";
+import { AccountView } from "../../apps/Account";
 
 export default AccountView;

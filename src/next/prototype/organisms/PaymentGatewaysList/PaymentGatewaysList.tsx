@@ -1,5 +1,5 @@
 import { PROVIDERS } from "@mzawadie/core";
-import { ErrorMessage, Radio } from "@mzawadie/prototype/atoms";
+import { ErrorMessage, Radio } from "@mzawadie/ui-kit/atoms";
 import { ICardData } from "@next/types";
 import React from "react";
 
@@ -35,9 +35,7 @@ const PaymentGatewaysList: React.FC<IPaymentGatewaysListProps> = ({
                                         name="payment-method"
                                         value="dummy"
                                         checked={checked}
-                                        onChange={() =>
-                                            selectPaymentGateway && selectPaymentGateway(id)
-                                        }
+                                        onChange={() => selectPaymentGateway && selectPaymentGateway(id)}
                                         customLabel
                                     >
                                         <span data-test="checkoutPaymentGatewayDummyName">{name}</span>
@@ -48,9 +46,7 @@ const PaymentGatewaysList: React.FC<IPaymentGatewaysListProps> = ({
                                     <DummyPaymentGateway
                                         formRef={formRef}
                                         formId={formId}
-                                        processPayment={(token: string | undefined) =>
-                                            processPayment(id, token)
-                                        }
+                                        processPayment={(token: string | undefined) => processPayment(id, token)}
                                         initialStatus={selectedPaymentGatewayToken}
                                     />
                                 )}
@@ -66,9 +62,7 @@ const PaymentGatewaysList: React.FC<IPaymentGatewaysListProps> = ({
                                         name="payment-method"
                                         value="stripe"
                                         checked={checked}
-                                        onChange={() =>
-                                            selectPaymentGateway && selectPaymentGateway(id)
-                                        }
+                                        onChange={() => selectPaymentGateway && selectPaymentGateway(id)}
                                         customLabel
                                     >
                                         <span data-test="checkoutPaymentGatewayStripeName">{name}</span>
@@ -80,10 +74,9 @@ const PaymentGatewaysList: React.FC<IPaymentGatewaysListProps> = ({
                                         config={config}
                                         formRef={formRef}
                                         formId={formId}
-                                        processPayment={(
-                                            token: string | undefined,
-                                            cardData: ICardData | undefined
-                                        ) => processPayment(id, token, cardData)}
+                                        processPayment={(token: string | undefined, cardData: ICardData | undefined) =>
+                                            processPayment(id, token, cardData)
+                                        }
                                         submitPayment={submitPayment}
                                         submitPaymentSuccess={submitPaymentSuccess}
                                         errors={errors}

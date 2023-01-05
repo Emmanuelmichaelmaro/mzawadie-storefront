@@ -5,7 +5,7 @@ import { ErrorMessage } from "./index";
 
 const ERRORS = [{ field: "Field", message: "Error Message" }];
 
-storiesOf("@mzawadie/prototype/atoms/ErrorMessage", module)
+storiesOf("@mzawadie/ui-kit/atoms/ErrorMessage", module)
     .addParameters({ component: ErrorMessage })
     .add("default", () => <ErrorMessage errors={ERRORS} />)
     .add("with multiple errors", () => <ErrorMessage errors={[...ERRORS, ...ERRORS]} />);

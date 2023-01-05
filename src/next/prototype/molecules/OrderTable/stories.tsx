@@ -1,4 +1,4 @@
-import { OrdersByUser_me_orders_edges_node } from "@mzawadie/sdk/lib/queries/gqlTypes/OrdersByUser";
+import { OrdersByUser_me_orders_edges_node } from "@mzawadie/sdk/lib/src/queries/gqlTypes/OrdersByUser";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
@@ -71,7 +71,7 @@ const ORDERS = [
     },
 ] as OrdersByUser_me_orders_edges_node[];
 
-storiesOf("@mzawadie/prototype/molecules/OrderTable", module)
+storiesOf("@mzawadie/ui-kit/molecules/OrderTable", module)
     .addParameters({ component: OrderTable })
     .add("default", () => {
         // this is added to fix issue when running on machines with different locales

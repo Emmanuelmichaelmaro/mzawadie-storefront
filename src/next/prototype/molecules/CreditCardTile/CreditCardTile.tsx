@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { IconButton, Tile } from "@mzawadie/prototype/atoms";
+import { IconButton, Tile } from "@mzawadie/ui-kit/atoms";
 import React from "react";
 
 import { CreditCardNumberWithIcon } from "../CreditCardNumberWithIcon";
@@ -13,9 +13,7 @@ export const CreditCardTile: React.FC<ICreditCardTileProps> = ({
     last4Digits,
     creditCardProvider,
 }: ICreditCardTileProps) => {
-    const header = (
-        <CreditCardNumberWithIcon last4Digits={last4Digits} creditCardProvider={creditCardProvider} />
-    );
+    const header = <CreditCardNumberWithIcon last4Digits={last4Digits} creditCardProvider={creditCardProvider} />;
     const content = (
         <>
             <S.BoldTitle>Expires on</S.BoldTitle>
@@ -27,12 +25,7 @@ export const CreditCardTile: React.FC<ICreditCardTileProps> = ({
     const footer = (
         <S.FooterContent>
             <div>
-                <IconButton
-                    name="trash"
-                    onClick={onRemove}
-                    size={22}
-                    testingContext="removeCardButton"
-                />
+                <IconButton name="trash" onClick={onRemove} size={22} testingContext="removeCardButton" />
             </div>
         </S.FooterContent>
     );

@@ -1,4 +1,4 @@
-import { GetShop_shop_countries } from "@mzawadie/sdk/lib/queries/gqlTypes/GetShop";
+import { GetShop_shop_countries } from "@mzawadie/sdk/lib/src/queries/gqlTypes/GetShop";
 import { IAddress, IAddressWithAddressType, IFormError } from "@next/types";
 import React from "react";
 

@@ -1,6 +1,6 @@
 import { commonMessages, generateCategoryUrl, generateCollectionUrl, paths } from "@mzawadie/core";
-import { CategoryDetails } from "@mzawadie/sdk/lib/fragments/gqlTypes/CategoryDetails";
-import { smallScreen } from "@next/styles/constants";
+import { CategoryDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/CategoryDetails";
+import { smallScreen } from "@mzawadie/ui-kit/styles/constants";
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";
@@ -18,8 +18,7 @@ type BreadcrumbCategory = Pick<CategoryDetails, "__typename" | "id" | "slug" | "
 
 export const extractBreadcrumbs = (category: BreadcrumbCategory, ancestors?: BreadcrumbCategory[]) => {
     const constructLink = ({ id, slug, name, __typename }: BreadcrumbCategory) => ({
-        link:
-            __typename === "Category" ? generateCategoryUrl(id, slug) : generateCollectionUrl(id, slug),
+        link: __typename === "Category" ? generateCategoryUrl(id, slug) : generateCollectionUrl(id, slug),
         value: name,
     });
 

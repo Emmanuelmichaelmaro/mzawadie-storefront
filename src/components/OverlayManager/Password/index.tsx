@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { OfflinePlaceholder } from "@mzawadie/prototype/atoms";
+import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import { ReactSVG } from "react-svg";
@@ -17,11 +17,7 @@ const Password: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) =
                         <FormattedMessage defaultMessage="Reset your password" />
                     </p>
 
-                    <ReactSVG
-                        src={closeImg}
-                        onClick={overlay.hide}
-                        className="overlay__header__close-icon"
-                    />
+                    <ReactSVG src={closeImg} onClick={overlay.hide} className="overlay__header__close-icon" />
                 </div>
 
                 <div className="password-reset__content">

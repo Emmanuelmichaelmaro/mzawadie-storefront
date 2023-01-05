@@ -3,11 +3,9 @@ import React from "react";
 
 import { Input } from "./index";
 
-storiesOf("@mzawadie/prototype/atoms/Input", module)
+storiesOf("@mzawadie/ui-kit/atoms/Input", module)
     .addParameters({ component: Input })
     .add("default", () => <Input value="" label="Empty" />)
-    .add("with value", () => (
-        <Input label="Text goes here" value="Example text" contentRight={<div>Content right</div>} />
-    ))
+    .add("with value", () => <Input label="Text goes here" value="Example text" contentRight={<div>Content right</div>} />)
     .add("error", () => <Input value="Some text" label="Text goes here" error />)
     .add("disabled", () => <Input value="" label="Text goes here" disabled />);

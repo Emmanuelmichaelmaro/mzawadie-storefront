@@ -8,6 +8,8 @@ export const exportMode = process.env.NEXT_PUBLIC_EXPORT === "true";
 
 export const ssrMode = typeof window === "undefined";
 
+export const serviceWorkerTimeout = parseInt(process.env.SERVICE_WORKER_TIMEOUT || "", 10) || 60 * 1000;
+
 export const incrementalStaticRegenerationRevalidate = parseInt(
     process.env.NEXT_PUBLIC_INCREMENTAL_STATIC_REGENERATION_REVALIDATE!,
     10
@@ -15,9 +17,9 @@ export const incrementalStaticRegenerationRevalidate = parseInt(
 
 export const staticPathsFetchBatch = 10;
 
-export const staticPathsFallback = (
-    exportMode ? false : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK
-) as boolean | "blocking";
+export const staticPathsFallback = (exportMode ? false : process.env.NEXT_PUBLIC_STATIC_PATHS_FALLBACK) as
+    | boolean
+    | "blocking";
 
 export const paymentGatewayNames = {
     dummy: "mzawadie.payments.dummy",

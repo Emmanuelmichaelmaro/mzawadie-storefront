@@ -1,14 +1,8 @@
 import { commonMessages } from "@mzawadie/core";
-import { CheckoutPayment } from "@mzawadie/prototype/organisms";
 import { useCheckout } from "@mzawadie/sdk/lib/src";
+import { CheckoutPayment } from "@mzawadie/ui-kit/organisms";
 import { IFormError } from "@next/types";
-import React, {
-    forwardRef,
-    RefForwardingComponent,
-    useImperativeHandle,
-    useRef,
-    useState,
-} from "react";
+import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 
 import { SubpageBaseProps, SubpageCompleteHandler } from "../utils";
@@ -18,10 +12,10 @@ interface CheckoutPaymentSubpageProps extends SubpageBaseProps {
     onPaymentGatewayError: (errors: IFormError[]) => void;
 }
 
-const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
-    SubpageCompleteHandler,
-    CheckoutPaymentSubpageProps
-> = ({ paymentGatewayFormRef, changeSubmitProgress, onPaymentGatewayError }, ref) => {
+const CheckoutPaymentSubpageWithRef: RefForwardingComponent<SubpageCompleteHandler, CheckoutPaymentSubpageProps> = (
+    { paymentGatewayFormRef, changeSubmitProgress, onPaymentGatewayError },
+    ref
+) => {
     const { promoCodeDiscount, addPromoCode, removePromoCode } = useCheckout();
 
     const [promoCodeErrors, setPromoCodeErrors] = useState<IFormError[]>([]);
@@ -37,9 +31,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
             paymentGatewayFormRef.current.dispatchEvent(new Event("submit", { cancelable: true }));
         } else {
             changeSubmitProgress(false);
-            onPaymentGatewayError([
-                { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
-            ]);
+            onPaymentGatewayError([{ message: intl.formatMessage(commonMessages.choosePaymentMethod) }]);
         }
     });
 
@@ -55,9 +47,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
                 paymentGatewayFormRef.current.dispatchEvent(new Event("submit", { cancelable: true }));
             } else {
                 changeSubmitProgress(false);
-                onPaymentGatewayError([
-                    { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
-                ]);
+                onPaymentGatewayError([{ message: intl.formatMessage(commonMessages.choosePaymentMethod) }]);
             }
         }
     };
@@ -73,9 +63,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
                 paymentGatewayFormRef.current.dispatchEvent(new Event("submit", { cancelable: true }));
             } else {
                 changeSubmitProgress(false);
-                onPaymentGatewayError([
-                    { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
-                ]);
+                onPaymentGatewayError([{ message: intl.formatMessage(commonMessages.choosePaymentMethod) }]);
             }
         }
     };
@@ -84,9 +72,7 @@ const CheckoutPaymentSubpageWithRef: RefForwardingComponent<
             paymentGatewayFormRef.current.dispatchEvent(new Event("submit", { cancelable: true }));
         } else {
             changeSubmitProgress(false);
-            onPaymentGatewayError([
-                { message: intl.formatMessage(commonMessages.choosePaymentMethod) },
-            ]);
+            onPaymentGatewayError([{ message: intl.formatMessage(commonMessages.choosePaymentMethod) }]);
         }
     };
 

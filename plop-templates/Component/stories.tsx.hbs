@@ -7,7 +7,7 @@ import { I{{pascalCase name}}Props } from "./{{pascalCase name}}";
 
 const DEFAULT_PROPS: I{{ pascalCase name }}Props = {};
 
-storiesOf("@mzawadie/prototype/{{ componentType }}/{{pascalCase name}}", module)
+storiesOf("@mzawadie/ui-kit/{{ componentType }}/{{pascalCase name}}", module)
     .addParameters({ component: {{pascalCase name}} })
     .addDecorator(story => (
         <IntlProvider locale="en">{story()}</IntlProvider>

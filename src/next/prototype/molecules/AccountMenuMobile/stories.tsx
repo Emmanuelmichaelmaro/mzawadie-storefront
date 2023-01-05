@@ -1,5 +1,5 @@
 import { paths } from "@mzawadie/core";
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";
@@ -16,7 +16,7 @@ const active = paths.accountAddressBook;
 
 const DEFAULT_PROPS = { ...{ links, active } };
 
-storiesOf("@mzawadie/prototype/molecules/AccountMenuMobile", module)
+storiesOf("@mzawadie/ui-kit/molecules/AccountMenuMobile", module)
     .addParameters({ component: AccountMenuMobile })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

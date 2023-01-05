@@ -1,4 +1,4 @@
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/mutations/gqlTypes/CompleteCheckout";
+import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
 import { IFormError } from "@next/types";
 
 export interface IPaymentGatewayConfig {

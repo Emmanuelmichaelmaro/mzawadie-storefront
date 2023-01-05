@@ -9,12 +9,7 @@ import { RegisterAccount } from "./gqlTypes/RegisterAccount";
 import { TypedAccountRegisterMutation } from "./queries";
 import "./scss/index.module.scss";
 
-const showSuccessNotification = (
-    data: RegisterAccount,
-    hide: () => void,
-    alert: AlertManager,
-    intl: IntlShape
-) => {
+const showSuccessNotification = (data: RegisterAccount, hide: () => void, alert: AlertManager, intl: IntlShape) => {
     const successful = maybe(() => !data.accountRegister.errors.length);
 
     if (successful) {
@@ -37,9 +32,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
     const intl = useIntl();
 
     return (
-        <TypedAccountRegisterMutation
-            onCompleted={(data) => showSuccessNotification(data, hide, alert, intl)}
-        >
+        <TypedAccountRegisterMutation onCompleted={(data) => showSuccessNotification(data, hide, alert, intl)}>
             {(registerCustomer, { loading, data }) => {
                 return (
                     <Form

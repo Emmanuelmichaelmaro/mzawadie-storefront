@@ -102,7 +102,7 @@ const items = [
     },
 ];
 
-storiesOf("@mzawadie/prototype/organisms/TopNavbar", module)
+storiesOf("@mzawadie/ui-kit/organisms/TopNavbar", module)
     .addParameters({ component: TopNavbar })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => <TopNavbar items={items} />);

@@ -1,5 +1,5 @@
-import { PlaceholderImage } from "@mzawadie/prototype/atoms";
-import { maybe } from "@next/utils/misc";
+import { PlaceholderImage } from "@mzawadie/ui-kit/atoms";
+import { maybe } from "@mzawadie/ui-kit/utils/misc";
 import React from "react";
 
 import { CachedImage } from "../index";

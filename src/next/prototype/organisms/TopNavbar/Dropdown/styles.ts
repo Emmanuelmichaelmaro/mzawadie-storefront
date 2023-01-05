@@ -1,5 +1,5 @@
-import { NavLink } from "@mzawadie/prototype/atoms";
-import { styled } from "@next/styles";
+import { NavLink } from "@mzawadie/ui-kit/atoms";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div`
     display: flex;
@@ -27,7 +27,7 @@ export const RowItem = styled.div`
     padding: 20px 40px;
 `;
 
-export const SubLink = styled(NavLink)<{ light?: boolean }>`
+export const SubLink = styled(NavLink) <{ light?: boolean }>`
     text-transform: capitalize;
     padding-bottom: 20px;
     ${({ light, theme }) =>

@@ -45,3 +45,5 @@ export { default as Modal } from "./Modal";
 export { default as Error } from "./Error";
 export { default as NotificationTemplate } from "./NotificationTemplate";
 export * from "./NextQueryParamProvider";
+export { default as Box } from "./Box";
+export type { BoxProps } from "./Box";

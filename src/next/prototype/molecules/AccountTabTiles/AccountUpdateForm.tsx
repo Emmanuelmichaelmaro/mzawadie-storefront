@@ -1,5 +1,5 @@
 import { commonMessages } from "@mzawadie/core";
-import { Button, ButtonLink } from "@mzawadie/prototype/atoms";
+import { Button, ButtonLink } from "@mzawadie/ui-kit/atoms";
 import { Formik } from "formik";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -57,21 +57,11 @@ export const AccountUpdateForm: React.FC<{
                             </S.ContentEditOneLine>
 
                             <S.FormButtons>
-                                <ButtonLink
-                                    testingContext="cancelButton"
-                                    type="button"
-                                    color="secondary"
-                                    onClick={hide}
-                                >
+                                <ButtonLink testingContext="cancelButton" type="button" color="secondary" onClick={hide}>
                                     <FormattedMessage {...commonMessages.cancel} />
                                 </ButtonLink>
 
-                                <Button
-                                    testingContext="submit"
-                                    type="submit"
-                                    disabled={isSubmitting || !isValid}
-                                    size="sm"
-                                >
+                                <Button testingContext="submit" type="submit" disabled={isSubmitting || !isValid} size="sm">
                                     <FormattedMessage {...commonMessages.save} />
                                 </Button>
                             </S.FormButtons>

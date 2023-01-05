@@ -1,4 +1,4 @@
-import { SortOptions } from "@next/utils/collections";
+import { SortOptions } from "@mzawadie/ui-kit/utils/collections";
 
 interface ActiveFiltersAttribute {
     attributeSlug: string;

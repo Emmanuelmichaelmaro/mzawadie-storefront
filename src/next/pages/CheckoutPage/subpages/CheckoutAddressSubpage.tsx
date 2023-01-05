@@ -1,9 +1,9 @@
 import { ShopContext } from "@mzawadie/components/ShopProvider/context";
 import { commonMessages } from "@mzawadie/core";
-import { CheckoutAddress } from "@mzawadie/prototype/organisms";
 import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
+import { CheckoutAddress } from "@mzawadie/ui-kit/organisms";
+import { filterNotEmptyArrayItems } from "@mzawadie/ui-kit/utils/misc";
 import { IAddress, IFormError } from "@next/types";
-import { filterNotEmptyArrayItems } from "@next/utils/misc";
 import React, {
     forwardRef,
     RefForwardingComponent,
@@ -17,222 +17,210 @@ import { useIntl } from "react-intl";
 
 import { CheckoutStep, SubpageBaseProps, SubpageCompleteHandler } from "../utils";
 
-const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandler, SubpageBaseProps> =
-    ({ changeSubmitProgress, onSubmitSuccess }, ref) => {
-        const checkoutShippingAddressFormId = "shipping-address-form";
-        const checkoutShippingAddressFormRef = useRef<HTMLFormElement>(null);
-        const checkoutBillingAddressFormId = "billing-address-form";
-        const checkoutBillingAddressFormRef = useRef<HTMLFormElement>(null);
-        const checkoutNewAddressFormId = "new-address-form";
+const CheckoutAddressSubpageWithRef: RefForwardingComponent<SubpageCompleteHandler, SubpageBaseProps> = (
+    { changeSubmitProgress, onSubmitSuccess },
+    ref
+) => {
+    const checkoutShippingAddressFormId = "shipping-address-form";
+    const checkoutShippingAddressFormRef = useRef<HTMLFormElement>(null);
+    const checkoutBillingAddressFormId = "billing-address-form";
+    const checkoutBillingAddressFormRef = useRef<HTMLFormElement>(null);
+    const checkoutNewAddressFormId = "new-address-form";
 
-        const { user } = useAuth();
+    const { user } = useAuth();
 
-        const {
-            checkout,
-            selectedShippingAddressId,
-            selectedBillingAddressId,
-            billingAsShipping,
-            setShippingAddress,
-            setBillingAddress,
-            setBillingAsShippingAddress,
-        } = useCheckout();
+    const {
+        checkout,
+        selectedShippingAddressId,
+        selectedBillingAddressId,
+        billingAsShipping,
+        setShippingAddress,
+        setBillingAddress,
+        setBillingAsShippingAddress,
+    } = useCheckout();
 
-        const { items } = useCart();
+    const { items } = useCart();
 
-        const { countries } = useContext(ShopContext);
+    const { countries } = useContext(ShopContext);
 
-        const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
+    const [shippingErrors, setShippingErrors] = useState<IFormError[]>([]);
 
-        const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
+    const [billingErrors, setBillingErrors] = useState<IFormError[]>([]);
 
-        const intl = useIntl();
+    const intl = useIntl();
 
-        const isShippingRequiredForProducts =
-            items && items.some(({ variant }) => variant.product?.productType.isShippingRequired);
+    const isShippingRequiredForProducts =
+        items && items.some(({ variant }) => variant.product?.productType.isShippingRequired);
 
-        const checkoutShippingAddress = checkout?.shippingAddress
-            ? {
-                  ...checkout?.shippingAddress,
-                  email: checkout?.email || user?.email,
-              }
-            : undefined;
+    const checkoutShippingAddress = checkout?.shippingAddress
+        ? {
+              ...checkout?.shippingAddress,
+              email: checkout?.email || user?.email,
+          }
+        : undefined;
 
-        const checkoutBillingAddress = checkout?.billingAddress
-            ? {
-                  ...checkout?.billingAddress,
-                  email: checkout?.email || user?.email,
-              }
-            : undefined;
+    const checkoutBillingAddress = checkout?.billingAddress
+        ? {
+              ...checkout?.billingAddress,
+              email: checkout?.email || user?.email,
+          }
+        : undefined;
 
-        useImperativeHandle(ref, () => () => {
-            if (isShippingRequiredForProducts) {
-                checkoutShippingAddressFormRef.current?.dispatchEvent(
-                    new Event("submit", { cancelable: true })
-                );
+    useImperativeHandle(ref, () => () => {
+        if (isShippingRequiredForProducts) {
+            checkoutShippingAddressFormRef.current?.dispatchEvent(new Event("submit", { cancelable: true }));
+        } else {
+            checkoutBillingAddressFormRef.current?.dispatchEvent(new Event("submit", { cancelable: true }));
+        }
+    });
+
+    const [billingAsShippingState, setBillingAsShippingState] = useState(billingAsShipping);
+
+    useEffect(() => {
+        setBillingAsShippingState(billingAsShipping);
+    }, [billingAsShipping]);
+
+    const handleSetShippingAddress = async (address?: IAddress, email?: string, userAddressId?: string) => {
+        if (!address && !billingAsShippingState) {
+            setShippingErrors([
+                {
+                    message: intl.formatMessage({
+                        defaultMessage: "Please provide shipping address.",
+                    }),
+                },
+            ]);
+            return;
+        }
+
+        const shippingEmail = user?.email || email || "";
+
+        if (!shippingEmail) {
+            setShippingErrors([
+                {
+                    field: "email",
+                    message: intl.formatMessage(commonMessages.provideEmailAddress),
+                },
+            ]);
+            return;
+        }
+
+        changeSubmitProgress(true);
+
+        const { dataError } = await setShippingAddress(
+            {
+                ...address,
+                id: userAddressId,
+            },
+            shippingEmail
+        );
+
+        const errors = dataError?.error;
+        console.log("Handle Shipping Errors: " + errors);
+
+        if (errors) {
+            setShippingErrors(errors);
+            changeSubmitProgress(false);
+        } else {
+            setShippingErrors([]);
+
+            if (billingAsShippingState) {
+                await handleSetBillingAddress();
             } else {
-                checkoutBillingAddressFormRef.current?.dispatchEvent(
-                    new Event("submit", { cancelable: true })
-                );
+                checkoutBillingAddressFormRef.current?.dispatchEvent(new Event("submit", { cancelable: true }));
             }
-        });
+        }
+    };
 
-        const [billingAsShippingState, setBillingAsShippingState] = useState(billingAsShipping);
+    const handleSetBillingAddress = async (address?: IAddress, email?: string, userAddressId?: string) => {
+        if (!address && !billingAsShippingState) {
+            setBillingErrors([
+                {
+                    message: intl.formatMessage({
+                        defaultMessage: "Please provide billing address.",
+                    }),
+                },
+            ]);
+            changeSubmitProgress(false);
+            return;
+        }
 
-        useEffect(() => {
-            setBillingAsShippingState(billingAsShipping);
-        }, [billingAsShipping]);
+        const billingEmail = user?.email || email;
 
-        const handleSetShippingAddress = async (
-            address?: IAddress,
-            email?: string,
-            userAddressId?: string
-        ) => {
-            if (!address && !billingAsShippingState) {
-                setShippingErrors([
-                    {
-                        message: intl.formatMessage({
-                            defaultMessage: "Please provide shipping address.",
-                        }),
-                    },
-                ]);
-                return;
-            }
+        if (!billingEmail && !billingAsShippingState && !isShippingRequiredForProducts) {
+            setBillingErrors([
+                {
+                    field: "email",
+                    message: intl.formatMessage(commonMessages.provideEmailAddress),
+                },
+            ]);
+            return;
+        }
 
-            const shippingEmail = user?.email || email || "";
+        let errors;
 
-            if (!shippingEmail) {
-                setShippingErrors([
-                    {
-                        field: "email",
-                        message: intl.formatMessage(commonMessages.provideEmailAddress),
-                    },
-                ]);
-                return;
-            }
+        changeSubmitProgress(true);
 
-            changeSubmitProgress(true);
-
-            const { dataError } = await setShippingAddress(
+        if (billingAsShippingState && isShippingRequiredForProducts) {
+            const { dataError } = await setBillingAsShippingAddress();
+            errors = dataError?.error;
+        } else {
+            const { dataError } = await setBillingAddress(
                 {
                     ...address,
                     id: userAddressId,
                 },
-                shippingEmail
+                billingEmail
             );
+            errors = dataError?.error;
+        }
 
-            const errors = dataError?.error;
-            console.log("Handle Shipping Errors: " + errors);
+        changeSubmitProgress(false);
+        console.log("Handle Billing Errors: " + errors);
 
-            if (errors) {
-                setShippingErrors(errors);
-                changeSubmitProgress(false);
-            } else {
-                setShippingErrors([]);
-
-                if (billingAsShippingState) {
-                    await handleSetBillingAddress();
-                } else {
-                    checkoutBillingAddressFormRef.current?.dispatchEvent(
-                        new Event("submit", { cancelable: true })
-                    );
-                }
-            }
-        };
-
-        const handleSetBillingAddress = async (
-            address?: IAddress,
-            email?: string,
-            userAddressId?: string
-        ) => {
-            if (!address && !billingAsShippingState) {
-                setBillingErrors([
-                    {
-                        message: intl.formatMessage({
-                            defaultMessage: "Please provide billing address.",
-                        }),
-                    },
-                ]);
-                changeSubmitProgress(false);
-                return;
-            }
-
-            const billingEmail = user?.email || email;
-
-            if (!billingEmail && !billingAsShippingState && !isShippingRequiredForProducts) {
-                setBillingErrors([
-                    {
-                        field: "email",
-                        message: intl.formatMessage(commonMessages.provideEmailAddress),
-                    },
-                ]);
-                return;
-            }
-
-            let errors;
-
-            changeSubmitProgress(true);
-
-            if (billingAsShippingState && isShippingRequiredForProducts) {
-                const { dataError } = await setBillingAsShippingAddress();
-                errors = dataError?.error;
-            } else {
-                const { dataError } = await setBillingAddress(
-                    {
-                        ...address,
-                        id: userAddressId,
-                    },
-                    billingEmail
-                );
-                errors = dataError?.error;
-            }
-
-            changeSubmitProgress(false);
-            console.log("Handle Billing Errors: " + errors);
-
-            if (errors) {
-                setBillingErrors(errors);
-            } else {
-                setBillingErrors([]);
-                onSubmitSuccess(CheckoutStep.Shipping);
-            }
-        };
-
-        const userAddresses = user?.addresses?.filter(filterNotEmptyArrayItems).map((address) => ({
-            address: {
-                ...address,
-                isDefaultBillingAddress: address.isDefaultBillingAddress || false,
-                isDefaultShippingAddress: address.isDefaultShippingAddress || false,
-                phone: address.phone || undefined,
-            },
-            id: address?.id || "",
-            onSelect: () => null,
-        }));
-
-        return (
-            <CheckoutAddress
-                shippingErrors={shippingErrors}
-                billingErrors={billingErrors}
-                shippingFormId={checkoutShippingAddressFormId}
-                shippingFormRef={checkoutShippingAddressFormRef}
-                billingFormId={checkoutBillingAddressFormId}
-                billingFormRef={checkoutBillingAddressFormRef}
-                checkoutShippingAddress={checkoutShippingAddress}
-                checkoutBillingAddress={checkoutBillingAddress}
-                billingAsShippingAddress={billingAsShippingState}
-                email={checkout?.email}
-                userAddresses={userAddresses}
-                selectedUserShippingAddressId={selectedShippingAddressId}
-                selectedUserBillingAddressId={selectedBillingAddressId}
-                countries={countries}
-                userId={user?.id}
-                newAddressFormId={checkoutNewAddressFormId}
-                shippingAddressRequired={!!isShippingRequiredForProducts}
-                setShippingAddress={handleSetShippingAddress}
-                setBillingAddress={handleSetBillingAddress}
-                setBillingAsShippingAddress={setBillingAsShippingState}
-            />
-        );
+        if (errors) {
+            setBillingErrors(errors);
+        } else {
+            setBillingErrors([]);
+            onSubmitSuccess(CheckoutStep.Shipping);
+        }
     };
+
+    const userAddresses = user?.addresses?.filter(filterNotEmptyArrayItems).map((address) => ({
+        address: {
+            ...address,
+            isDefaultBillingAddress: address.isDefaultBillingAddress || false,
+            isDefaultShippingAddress: address.isDefaultShippingAddress || false,
+            phone: address.phone || undefined,
+        },
+        id: address?.id || "",
+        onSelect: () => null,
+    }));
+
+    return (
+        <CheckoutAddress
+            shippingErrors={shippingErrors}
+            billingErrors={billingErrors}
+            shippingFormId={checkoutShippingAddressFormId}
+            shippingFormRef={checkoutShippingAddressFormRef}
+            billingFormId={checkoutBillingAddressFormId}
+            billingFormRef={checkoutBillingAddressFormRef}
+            checkoutShippingAddress={checkoutShippingAddress}
+            checkoutBillingAddress={checkoutBillingAddress}
+            billingAsShippingAddress={billingAsShippingState}
+            email={checkout?.email}
+            userAddresses={userAddresses}
+            selectedUserShippingAddressId={selectedShippingAddressId}
+            selectedUserBillingAddressId={selectedBillingAddressId}
+            countries={countries}
+            userId={user?.id}
+            newAddressFormId={checkoutNewAddressFormId}
+            shippingAddressRequired={!!isShippingRequiredForProducts}
+            setShippingAddress={handleSetShippingAddress}
+            setBillingAddress={handleSetBillingAddress}
+            setBillingAsShippingAddress={setBillingAsShippingState}
+        />
+    );
+};
 
 const CheckoutAddressSubpage = forwardRef(CheckoutAddressSubpageWithRef);
 

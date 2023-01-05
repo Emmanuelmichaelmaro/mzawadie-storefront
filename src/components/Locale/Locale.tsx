@@ -14,12 +14,7 @@ const LocaleProvider: React.FC<LocaleProviderProps> = ({ children, messages }) =
     const locale = Locale.EN;
 
     return (
-        <IntlProvider
-            defaultLocale={DEFAULT_LOCALE}
-            locale={locale}
-            messages={getKeyValueJson(messages)}
-            key={locale}
-        >
+        <IntlProvider defaultLocale={DEFAULT_LOCALE} locale={locale} messages={getKeyValueJson(messages)} key={locale}>
             {children}
         </IntlProvider>
     );

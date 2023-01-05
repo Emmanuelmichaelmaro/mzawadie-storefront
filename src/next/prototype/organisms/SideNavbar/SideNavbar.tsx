@@ -1,6 +1,6 @@
 import { paths } from "@mzawadie/core";
-import { Icon } from "@mzawadie/prototype/atoms";
-import { largeScreen } from "@next/styles/constants";
+import { Icon } from "@mzawadie/ui-kit/atoms";
+import { largeScreen } from "@mzawadie/ui-kit/styles/constants";
 import LogoSmall from "images/logo-small.svg";
 import Link from "next/link";
 import React from "react";
@@ -54,12 +54,7 @@ const transitionStyles = {
     unmounted: { left: "100%" },
 };
 
-export const SideNavbar: React.FC<ISideNavbarProps> = ({
-    show,
-    onHide,
-    items,
-    target,
-}: ISideNavbarProps) => {
+export const SideNavbar: React.FC<ISideNavbarProps> = ({ show, onHide, items, target }: ISideNavbarProps) => {
     const [view, _setView] = React.useState<ISideNavbarState>({
         buffer: { index: null, depth: null },
         depth: null,
@@ -77,13 +72,7 @@ export const SideNavbar: React.FC<ISideNavbarProps> = ({
     const handleHide = () => onHide(false);
 
     return (
-        <Overlay
-            position="left"
-            show={show}
-            hide={handleHide}
-            target={target}
-            testingContext="navigationMenu"
-        >
+        <Overlay position="left" show={show} hide={handleHide} target={target} testingContext="navigationMenu">
             <S.Wrapper>
                 <S.Menu>
                     <TopBar onHide={handleHide}>

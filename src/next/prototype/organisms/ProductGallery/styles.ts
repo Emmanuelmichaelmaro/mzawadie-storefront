@@ -1,4 +1,4 @@
-import { styled } from "@next/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div`
     display: grid;
@@ -13,8 +13,7 @@ export const Thumbnail = styled.div<{ activeThumbnail: boolean }>`
     display: flex;
     border-width: 4px;
     border-style: solid;
-    border-color: ${(props) =>
-        props.activeThumbnail === true ? props.theme.colors.thumbnailBorder : "transparent"};
+    border-color: ${(props) => (props.activeThumbnail === true ? props.theme.colors.thumbnailBorder : "transparent")};
     justify-content: center;
     height: 100px;
     overflow: hidden;

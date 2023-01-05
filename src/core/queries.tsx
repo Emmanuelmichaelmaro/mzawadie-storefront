@@ -44,10 +44,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             skip,
             variables,
             onCompleted,
-        } = props as JSX.LibraryManagedAttributes<
-            QueryProps<TData, TVariables>,
-            TypedQueryInnerProps<TData, TVariables>
-        >;
+        } = props as JSX.LibraryManagedAttributes<QueryProps<TData, TVariables>, TypedQueryInnerProps<TData, TVariables>>;
         return (
             <Query
                 query={query}

@@ -1,4 +1,4 @@
-import { media, styled } from "@next/styles";
+import { media, styled } from "@mzawadie/ui-kit/styles";
 
 export const Wrapper = styled.div`
     margin: 100px 0 100px 0;

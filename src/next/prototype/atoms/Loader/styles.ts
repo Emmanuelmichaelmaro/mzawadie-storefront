@@ -1,5 +1,5 @@
-import { styled } from "@next/styles";
-import { getContentWindowHeight } from "@next/utils/styles";
+import { styled } from "@mzawadie/ui-kit/styles";
+import { getContentWindowHeight } from "@mzawadie/ui-kit/utils/styles";
 import { keyframes } from "styled-components";
 
 const firstItem = keyframes`

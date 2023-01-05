@@ -1,4 +1,4 @@
-import { useHandlerWhenClickedOutside } from "@next/hooks";
+import { useHandlerWhenClickedOutside } from "@mzawadie/ui-kit/hooks";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { components } from "react-select";

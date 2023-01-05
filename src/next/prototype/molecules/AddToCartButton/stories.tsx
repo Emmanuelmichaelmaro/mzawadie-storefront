@@ -10,7 +10,7 @@ const DEFAULT_PROPS: IAddToCartButton = {
     onSubmit: () => undefined,
 };
 
-storiesOf("@mzawadie/prototype/molecules/AddToCartButton", module)
+storiesOf("@mzawadie/ui-kit/molecules/AddToCartButton", module)
     .addParameters({ component: AddToCartButton })
     .addDecorator((story) => <IntlProvider locale="en">story()</IntlProvider>)
     .add("default", () => <AddToCartButton {...DEFAULT_PROPS} />)

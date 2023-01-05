@@ -1,11 +1,11 @@
 import { checkoutMessages, paths } from "@mzawadie/core";
-import { Button, CartFooter, CartHeader, Loader } from "@mzawadie/prototype/atoms";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { CartRow } from "@mzawadie/prototype/organisms";
-import { Cart, CartEmpty } from "@mzawadie/prototype/templates";
 import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
 import { IItems } from "@mzawadie/sdk/lib/src/api/Cart/types";
 import { UserDetails_me } from "@mzawadie/sdk/lib/src/queries/gqlTypes/UserDetails";
+import { Button, CartFooter, CartHeader, Loader } from "@mzawadie/ui-kit/atoms";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { CartRow } from "@mzawadie/ui-kit/organisms";
+import { Cart, CartEmpty } from "@mzawadie/ui-kit/templates";
 import { ITaxedMoney } from "@next/types";
 import { NextPage } from "next";
 import Link from "next/link";
@@ -95,16 +95,7 @@ const generateCart = (
 export const CartPage: React.FC<NextPage> = () => {
     const { user } = useAuth();
     const { checkout } = useCheckout();
-    const {
-        loaded,
-        removeItem,
-        updateItem,
-        items,
-        totalPrice,
-        subtotalPrice,
-        shippingPrice,
-        discount,
-    } = useCart();
+    const { loaded, removeItem, updateItem, items, totalPrice, subtotalPrice, shippingPrice, discount } = useCart();
 
     const shippingTaxedPrice =
         checkout?.shippingMethod?.id && shippingPrice
@@ -125,12 +116,7 @@ export const CartPage: React.FC<NextPage> = () => {
                 title={title}
                 button={getCheckoutButton(user)}
                 cartHeader={cartHeader}
-                cartFooter={prepareCartFooter(
-                    totalPrice,
-                    shippingTaxedPrice,
-                    promoTaxedPrice,
-                    subtotalPrice
-                )}
+                cartFooter={prepareCartFooter(totalPrice, shippingTaxedPrice, promoTaxedPrice, subtotalPrice)}
                 cart={items && generateCart(items, removeItem, updateItem)}
             />
         ) : (

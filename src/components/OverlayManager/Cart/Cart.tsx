@@ -1,6 +1,6 @@
 import { paths } from "@mzawadie/core";
-import { CartSidebar } from "@mzawadie/prototype/organisms";
 import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
+import { CartSidebar } from "@mzawadie/ui-kit/organisms";
 import { useRouter } from "next/router";
 import React from "react";
 
@@ -10,8 +10,7 @@ const Cart: React.FC<{ overlay: OverlayContextInterface }> = ({ overlay }) => {
     const { push } = useRouter();
     const { user } = useAuth();
     const { checkout } = useCheckout();
-    const { items, updateItem, removeItem, subtotalPrice, shippingPrice, discount, totalPrice } =
-        useCart();
+    const { items, updateItem, removeItem, subtotalPrice, shippingPrice, discount, totalPrice } = useCart();
 
     const shippingTaxedPrice =
         checkout?.shippingMethod?.id && shippingPrice

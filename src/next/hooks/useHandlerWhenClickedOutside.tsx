@@ -1,4 +1,4 @@
-import { maybe } from "@next/utils/tsUtils";
+import { maybe } from "@mzawadie/ui-kit/utils/tsUtils";
 import React from "react";
 
 export const useHandlerWhenClickedOutside = (callback: () => void) => {

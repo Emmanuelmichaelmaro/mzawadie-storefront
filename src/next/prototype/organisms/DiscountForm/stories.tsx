@@ -4,7 +4,7 @@ import { IntlProvider } from "react-intl";
 
 import { DiscountForm } from ".";
 
-storiesOf("@mzawadie/prototype/organisms/DiscountForm", module)
+storiesOf("@mzawadie/ui-kit/organisms/DiscountForm", module)
     .addParameters({ component: DiscountForm })
     .add("default", () => (
         <IntlProvider locale="en">

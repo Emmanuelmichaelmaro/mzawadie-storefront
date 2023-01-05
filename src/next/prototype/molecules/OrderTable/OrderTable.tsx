@@ -1,6 +1,6 @@
 import { commonMessages, generateProductUrl, paths, translateOrderStatus } from "@mzawadie/core";
-import { TaxedMoney } from "@mzawadie/prototype/containers";
-import { generateGuestOrderDetailsUrl } from "@next/utils/core";
+import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { generateGuestOrderDetailsUrl } from "@mzawadie/ui-kit/utils/core";
 import Link from "next/link";
 import React from "react";
 import { FormattedDate, FormattedMessage, useIntl } from "react-intl";
@@ -59,19 +59,11 @@ export const OrderTable: React.FC<IOrderTableProps> = ({ orders, isGuest }: IOrd
 
                                 return (
                                     <Link
-                                        href={
-                                            isGuest
-                                                ? generateGuestOrderDetailsUrl(token)
-                                                : paths.accountOrderDetail
-                                        }
+                                        href={isGuest ? generateGuestOrderDetailsUrl(token) : paths.accountOrderDetail}
                                         key={number!}
                                         passHref
                                     >
-                                        <S.Row
-                                            data-test="orderEntry"
-                                            data-test-id={number!}
-                                            key={number!}
-                                        >
+                                        <S.Row data-test="orderEntry" data-test-id={number!} key={number!}>
                                             <S.IndexNumber>{number!}</S.IndexNumber>
 
                                             {matches ? (
@@ -104,9 +96,7 @@ export const OrderTable: React.FC<IOrderTableProps> = ({ orders, isGuest }: IOrd
                                                 ""
                                             )}
 
-                                            <S.Status>
-                                                {translateOrderStatus(statusDisplay!, intl)}
-                                            </S.Status>
+                                            <S.Status>{translateOrderStatus(statusDisplay!, intl)}</S.Status>
                                         </S.Row>
                                     </Link>
                                 );

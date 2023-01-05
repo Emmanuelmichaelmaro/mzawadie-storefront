@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { largeScreen as mediumScreen, smallScreen } from "@next/styles/constants";
+import { largeScreen as mediumScreen, smallScreen } from "@mzawadie/ui-kit/styles/constants";
 import NukaCarousel, { CarouselProps } from "nuka-carousel";
 import * as React from "react";
 import Media from "react-media";
@@ -17,19 +17,13 @@ const Carousel: React.SFC<CarouselType> = ({ children, ...rest }) => {
         renderBottomCenterControls: () => null,
         renderCenterLeftControls: ({ previousSlide, currentSlide }: any) =>
             currentSlide !== 0 ? (
-                <div
-                    onClick={previousSlide}
-                    className={`${styles.carousel__control} ${styles.carousel__control__left}`}
-                >
+                <div onClick={previousSlide} className={`${styles.carousel__control} ${styles.carousel__control__left}`}>
                     <ReactSVG src="../../images/carousel-arrow.svg" />
                 </div>
             ) : null,
         renderCenterRightControls: ({ nextSlide, currentSlide, slideCount, slidesToShow }: any) =>
             slideCount - slidesToShow !== currentSlide ? (
-                <div
-                    onClick={nextSlide}
-                    className={`${styles.carousel__control} ${styles.carousel__control__right}`}
-                >
+                <div onClick={nextSlide} className={`${styles.carousel__control} ${styles.carousel__control__right}`}>
                     <ReactSVG src="../../images/carousel-arrow.svg" />
                 </div>
             ) : null,

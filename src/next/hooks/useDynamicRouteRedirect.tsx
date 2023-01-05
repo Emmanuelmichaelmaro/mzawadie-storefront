@@ -12,10 +12,7 @@ export const useDynamicRouteRedirect = () => {
     const { asPath, pathname, replace } = useRouter();
 
     const shouldRedirect = useMemo(
-        () =>
-            exportMode &&
-            pathname === paths.home &&
-            DYNAMIC_REDIRECT_PATHS.some((path) => matchPath(asPath, { path })),
+        () => exportMode && pathname === paths.home && DYNAMIC_REDIRECT_PATHS.some((path) => matchPath(asPath, { path })),
         [asPath, pathname]
     );
 

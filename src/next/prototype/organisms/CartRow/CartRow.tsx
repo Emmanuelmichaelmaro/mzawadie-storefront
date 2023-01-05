@@ -1,6 +1,6 @@
 import { commonMessages, generateProductUrl } from "@mzawadie/core";
-import { ErrorMessage, Icon, IconButton, Input } from "@mzawadie/prototype/atoms";
-import { CachedImage } from "@mzawadie/prototype/molecules";
+import { ErrorMessage, Icon, IconButton, Input } from "@mzawadie/ui-kit/atoms";
+import { CachedImage } from "@mzawadie/ui-kit/molecules";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -68,14 +68,8 @@ export const CartRow: React.FC<IProps> = ({
         setTempQuantity(quantity.toString());
     }, [quantity]);
 
-    const add = React.useCallback(
-        () => quantity < maxQuantity && onQuantityChange(quantity + 1),
-        [quantity]
-    );
-    const subtract = React.useCallback(
-        () => quantity > 1 && onQuantityChange(quantity - 1),
-        [quantity]
-    );
+    const add = React.useCallback(() => quantity < maxQuantity && onQuantityChange(quantity + 1), [quantity]);
+    const subtract = React.useCallback(() => quantity > 1 && onQuantityChange(quantity - 1), [quantity]);
     const handleQuantityChange = (evt: React.ChangeEvent<any>) => {
         const newQuantity = parseInt(evt.target.value, 10);
 
@@ -113,8 +107,7 @@ export const CartRow: React.FC<IProps> = ({
 
                 <S.Sku>
                     <S.LightFont>
-                        <FormattedMessage {...commonMessages.sku} />:{" "}
-                        <span data-test="itemSKU">{sku || "-"}</span>
+                        <FormattedMessage {...commonMessages.sku} />: <span data-test="itemSKU">{sku || "-"}</span>
                     </S.LightFont>
                 </S.Sku>
 
@@ -122,8 +115,7 @@ export const CartRow: React.FC<IProps> = ({
                     {attributes.map(({ attribute, values }, attributeIndex) => (
                         <S.SingleAttribute key={attribute.id}>
                             <span data-test="itemSingleAttribute" data-test-id={attributeIndex}>
-                                <S.LightFont>{attribute.name}:</S.LightFont>{" "}
-                                {values.map((value) => value.name).join(", ")}
+                                <S.LightFont>{attribute.name}:</S.LightFont> {values.map((value) => value.name).join(", ")}
                             </span>
                         </S.SingleAttribute>
                     ))}

@@ -33,7 +33,7 @@ const submitPayment = async () => Promise.resolve({});
 const submitPaymentSuccess = action("submitPaymentSuccess");
 const onError = action("onError");
 
-storiesOf("@mzawadie/prototype/organisms/AdyenPaymentGateway", module)
+storiesOf("@mzawadie/ui-kit/organisms/AdyenPaymentGateway", module)
     .addParameters({ component: AdyenPaymentGateway })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => (

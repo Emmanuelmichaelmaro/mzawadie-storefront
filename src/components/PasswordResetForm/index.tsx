@@ -25,13 +25,7 @@ const PasswordResetForm: React.FC = () => (
                             });
                         }}
                     >
-                        <TextField
-                            name="email"
-                            autoComplete="email"
-                            label="Email Address"
-                            type="email"
-                            required
-                        />
+                        <TextField name="email" autoComplete="email" label="Email Address" type="email" required />
 
                         <div className="password-reset-form__button">
                             <Button type="submit" {...(loading && { disabled: true })}>

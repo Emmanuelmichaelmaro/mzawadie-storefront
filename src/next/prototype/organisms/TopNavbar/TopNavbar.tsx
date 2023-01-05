@@ -2,9 +2,9 @@
 // are not yet implemented (ie wishlist)
 // Replace it with MainMenu component once all the blocks are finished
 import { NavLink } from "@mzawadie/components/NavLink";
-import { Icon } from "@mzawadie/prototype/atoms";
-import { largeScreen, smallScreen } from "@next/styles/constants";
-import { maybe } from "@next/utils/misc";
+import { Icon } from "@mzawadie/ui-kit/atoms";
+import { largeScreen, smallScreen } from "@mzawadie/ui-kit/styles/constants";
+import { maybe } from "@mzawadie/ui-kit/utils/misc";
 import LogoSmall from "images/logo-small.svg";
 import Logo from "images/logo.svg";
 import React from "react";
@@ -31,9 +31,7 @@ const isMenuVisible = (node: Element) => {
     return false;
 };
 
-const useElementWidthChanged = (
-    callback?: () => void
-): [any, { width: number; node: Element | null }] => {
+const useElementWidthChanged = (callback?: () => void): [any, { width: number; node: Element | null }] => {
     const [width, setWidth] = React.useState(0);
     const nodeRef = React.useRef<Element | null>(null);
     let resizeTimer: any;
@@ -97,9 +95,7 @@ export const TopNavbar: React.FC<ITopNavbarProps> = ({ items }: ITopNavbarProps)
                         {items.map((item: any, index: any) => (
                             <li key={item.id}>
                                 {item.children.length > 0 ? (
-                                    <S.Button onClick={() => setCurrentElement(index)}>
-                                        {item.name}
-                                    </S.Button>
+                                    <S.Button onClick={() => setCurrentElement(index)}>{item.name}</S.Button>
                                 ) : (
                                     <NavLink item={item} />
                                 )}
@@ -142,9 +138,7 @@ export const TopNavbar: React.FC<ITopNavbarProps> = ({ items }: ITopNavbarProps)
                 </S.Actions>
             </S.Wrapper>
 
-            {currentElement !== null && (
-                <Dropdown item={items[currentElement]} onHide={() => setCurrentElement(null)} />
-            )}
+            {currentElement !== null && <Dropdown item={items[currentElement]} onHide={() => setCurrentElement(null)} />}
         </>
     );
 };

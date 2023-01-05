@@ -29,12 +29,10 @@ const PROPS = {
     queryAttributes: {},
 };
 
-storiesOf("@mzawadie/prototype/organisms/ProductVariantPicker", module)
+storiesOf("@mzawadie/ui-kit/organisms/ProductVariantPicker", module)
     .addParameters({ component: ProductVariantPicker })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("default", () => withContainer(<ProductVariantPicker {...PROPS} />))
     .add("with sidebar", () =>
-        withContainer(
-            <ProductVariantPicker selectSidebar selectSidebarTarget={portalRoot} {...PROPS} />
-        )
+        withContainer(<ProductVariantPicker selectSidebar selectSidebarTarget={portalRoot} {...PROPS} />)
     );

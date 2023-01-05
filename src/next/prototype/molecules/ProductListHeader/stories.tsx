@@ -25,7 +25,7 @@ const DEFAULT_PROPS = {
     ],
 };
 
-storiesOf("@mzawadie/prototype/molecules/ProductListHeader", module)
+storiesOf("@mzawadie/ui-kit/molecules/ProductListHeader", module)
     .addParameters({ component: ProductListHeader })
     .add("default", () => (
         <IntlProvider locale="en">

@@ -8,7 +8,7 @@ import { StripeInputElement } from ".";
 
 const stripePromise = loadStripe("pk_test_6pRNASCoBOKtIshFeQd4XMUh");
 
-storiesOf("@mzawadie/prototype/atoms/StripeInputElement", module)
+storiesOf("@mzawadie/ui-kit/atoms/StripeInputElement", module)
     .addParameters({ component: StripeInputElement })
     .addDecorator((story) => <IntlProvider locale="en">{story()}</IntlProvider>)
     .add("cart number input", () => (

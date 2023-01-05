@@ -1,8 +1,8 @@
 import { incrementalStaticRegenerationRevalidate } from "@mzawadie/core";
-import { getFeaturedProducts } from "@next/utils/ssr";
+import { getFeaturedProducts } from "@mzawadie/ui-kit/utils/ssr";
 import { GetStaticProps } from "next";
 
-import { SearchPage, SearchPageProps } from "../views/Search";
+import { SearchPage, SearchPageProps } from "../apps/Search";
 
 export default SearchPage;
 

@@ -8,13 +8,11 @@ export const stripeErrorMessages = defineMessages({
         description,
     },
     paymentSubmissionError: {
-        defaultMessage:
-            "Payment submission error. Stripe gateway returned no payment method in payload.",
+        defaultMessage: "Payment submission error. Stripe gateway returned no payment method in payload.",
         description,
     },
     gatewayDisplayError: {
-        defaultMessage:
-            "Stripe payment gateway couldn't be displayed. Stripe elements were not provided.",
+        defaultMessage: "Stripe payment gateway couldn't be displayed. Stripe elements were not provided.",
         description,
     },
     paymentMethodNotCreated: {
