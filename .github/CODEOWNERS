@@ -1,2 +1,4 @@
-# Restrict Test Environment Deployment Workflows to be Approved by Cloud Team
-.github/workflows/test-env* @mirumee/saleor-cloud
+# Restrict Test Environment Deployment Workflows to be Approved by Team
+.github/workflows/test-env* @emmanuelmichaelmaro
+# Restrict Production Environment Deployment Workflows to be Approved by Team
+.github/workflows/prod-env* @emmanuelmichaelmaro
