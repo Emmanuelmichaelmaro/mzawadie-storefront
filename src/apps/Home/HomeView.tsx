@@ -8,7 +8,7 @@ import { HomePageProducts } from "./gqlTypes/HomePageProducts";
 import styles from "./scss/index.module.scss";
 
 export interface HomeViewProps {
-    data: HomePageProducts & { featuredProducts: FeaturedProducts };
+    data: HomePageProducts & { featuredProducts: any };
 }
 
 export const HomeView: NextPage<HomeViewProps> = ({ data: { shop, featuredProducts, categories } }) => (

@@ -1,5 +1,6 @@
-import { commonMessages, generateCategoryUrl, generateCollectionUrl, paths } from "@mzawadie/core";
-import { CategoryDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/CategoryDetails";
+// @ts-nocheck
+import { Category_category } from "@mzawadie/apps/Category/gqlTypes/Category";
+import { commonMessages, getDBIdFromGraphqlId, paths, slugify } from "@mzawadie/core";
 import { smallScreen } from "@mzawadie/ui-kit/styles/constants";
 import classNames from "classnames";
 import Link from "next/link";
@@ -14,18 +15,17 @@ export interface Breadcrumb {
     link: string;
 }
 
-type BreadcrumbCategory = Pick<CategoryDetails, "__typename" | "id" | "slug" | "name">;
-
-export const extractBreadcrumbs = (category: BreadcrumbCategory, ancestors?: BreadcrumbCategory[]) => {
-    const constructLink = ({ id, slug, name, __typename }: BreadcrumbCategory) => ({
-        link: __typename === "Category" ? generateCategoryUrl(id, slug) : generateCollectionUrl(id, slug),
-        value: name,
+export const extractBreadcrumbs = (category: Category_category) => {
+    const constructLink = (item) => ({
+        link: [`/category`, `/${slugify(item.name)}`, `/${getDBIdFromGraphqlId(item.id, "Category")}/`].join(""),
+        value: item.name,
     });
 
+    // console.log('\x1b[33m%s\x1b[0m', JSON.stringify(category, null, 4));
     let breadcrumbs = [constructLink(category)];
 
-    if (ancestors && ancestors.length) {
-        const ancestorsList = ancestors.map((category) => constructLink(category));
+    if (category.ancestors?.edges.length) {
+        const ancestorsList = category.ancestors.edges.map((edge) => constructLink(edge.node));
         breadcrumbs = ancestorsList.concat(breadcrumbs);
     }
 

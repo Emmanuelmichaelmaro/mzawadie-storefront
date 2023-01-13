@@ -1,9 +1,9 @@
 import { TaxedMoney } from "@mzawadie/ui-kit/containers";
 import { Thumbnail } from "@mzawadie/ui-kit/molecules";
-import { FeaturedProduct } from "@next/graphql/gqlTypes/FeaturedProduct";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 
+import { FeaturedProduct } from "../../next/gqlTypes/FeaturedProduct";
 import styles from "./scss/index.module.scss";
 
 interface ProductListItemProps {

@@ -1,8 +1,34 @@
 {
     "extends": ["next", "next/core-web-vitals"],
     "rules": {
+        "prettier/prettier": ["error"],
+        "react/jsx-one-expression-per-line": "off",
+        "react/jsx-props-no-spreading": "off",
+        "react/jsx-wrap-multilines": "off",
+        "react/prop-types": "off",
         "react-hooks/exhaustive-deps": "off",
         "scss.lint.unknownAtRules": "ignore",
-        "css.lint.unknownAtRules": "ignore"
+        "css.lint.unknownAtRules": "ignore",
+        "import/no-cycle": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": [
+                    "**/stories.tsx",
+                    "**/test.ts",
+                    "**/*.test.ts",
+                    "**/test.tsx",
+                    "**/tests.tsx",
+                    "config/**/*",
+                    "*.config.js",
+                    "src/@next/pages/baseStory.ts",
+                    "cypress/**/*"
+                ]
+            }
+        ],
+        "import/no-internal-modules": "off",
+        "import/no-named-as-default": "off",
+        "import/order": "off",
+        "import/prefer-default-export": "off"
     }
 }

@@ -1,6 +1,5 @@
 // @ts-nocheck
 import { generateCategoryUrl } from "@mzawadie/core/utils";
-import { FeaturedProducts } from "@mzawadie/ui-kit/utils/ssr";
 import classNames from "classnames";
 import Link from "next/link";
 import React from "react";
@@ -13,11 +12,19 @@ import styles from "./scss/index.module.scss";
 
 const Page: React.FC<{
     categories: HomePageProducts_categories | null;
-    featuredProducts: FeaturedProducts;
+    featuredProducts: any;
     shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts, shop }) => {
+}> = ({ categories, featuredProducts }) => {
     const categoriesExist = () => {
         return categories && categories.edges && categories.edges.length > 0;
+    };
+
+    const productsExist = () => {
+        return (
+            featuredProducts.collection &&
+            featuredProducts.collection.products.edges &&
+            featuredProducts.collection.products.edges.length > 0
+        );
     };
 
     const intl = useIntl();
@@ -27,9 +34,9 @@ const Page: React.FC<{
             <div
                 className={styles.home__page__hero}
                 style={
-                    featuredProducts.backgroundImage
+                    featuredProducts.collection.backgroundImage
                         ? {
-                              backgroundImage: `url(${featuredProducts.backgroundImage.url})`,
+                              backgroundImage: `url(${featuredProducts.collection.backgroundImage.url})`,
                           }
                         : null
                 }
@@ -65,10 +72,12 @@ const Page: React.FC<{
                 </div>
             </div>
 
-            <ProductsFeatured
-                products={featuredProducts.products}
-                title={intl.formatMessage({ defaultMessage: "Featured" })}
-            />
+            {productsExist() && (
+                <ProductsFeatured
+                    products={featuredProducts.collection.products}
+                    title={intl.formatMessage({ defaultMessage: "Featured" })}
+                />
+            )}
 
             {categoriesExist() && (
                 <div className={styles.home__page__categories}>

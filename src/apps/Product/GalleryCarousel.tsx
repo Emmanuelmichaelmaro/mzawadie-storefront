@@ -1,6 +1,5 @@
 import { ProductDetails_images } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
 import { CachedImage } from "@mzawadie/ui-kit/molecules";
-import Image from "next/image";
 import * as React from "react";
 
 import { Carousel } from "../../components";

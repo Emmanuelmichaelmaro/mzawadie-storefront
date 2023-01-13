@@ -26,3 +26,9 @@ export const paymentGatewayNames = {
     stripe: "mzawadie.payments.stripe",
     adyen: "",
 };
+
+export const sentryDsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+
+const sampleRate = parseFloat(process.env.NEXT_PUBLIC_SENTRY_APM || "");
+
+export const sentrySampleRate = isNaN(sampleRate) ? 0 : sampleRate;

@@ -1,12 +1,11 @@
 import { gql } from "@apollo/client";
-import { attributeFragment, productPricingFragment } from "@next/graphql";
 
 import { TypedQuery } from "../../core/queries";
+import { productPricingFragment } from "../Product/queries";
 import { SearchProducts, SearchProductsVariables } from "./gqlTypes/SearchProducts";
 
 export const searchProductsQuery = gql`
     ${productPricingFragment}
-    ${attributeFragment}
     query SearchProducts(
         $query: String!
         $channel: String!
@@ -50,7 +49,18 @@ export const searchProductsQuery = gql`
         attributes(filter: { filterableInStorefront: true }, first: 100) {
             edges {
                 node {
-                    ...Attribute
+                    id
+                    name
+                    slug
+                    choices(first: 10) {
+                        edges {
+                            node {
+                                id
+                                name
+                                slug
+                            }
+                        }
+                    }
                 }
             }
         }

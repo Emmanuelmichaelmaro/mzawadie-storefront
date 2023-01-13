@@ -44,7 +44,8 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             skip,
             variables,
             onCompleted,
-        } = props as JSX.LibraryManagedAttributes<QueryProps<TData, TVariables>, TypedQueryInnerProps<TData, TVariables>>;
+        } = props;
+
         return (
             <Query
                 query={query}
@@ -56,7 +57,9 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             >
                 {(queryData: QueryResult<TData, TVariables> & LoadMore<TData, TVariables>) => {
                     const { error, loading, data, fetchMore } = queryData;
+
                     const hasData = maybe(() => !!Object.keys(data).length, false);
+
                     const loadMore = (
                         mergeFunc: (previousResults: TData, fetchMoreResult: TData) => TData,
                         extraVariables: RequireAtLeastOne<TVariables>

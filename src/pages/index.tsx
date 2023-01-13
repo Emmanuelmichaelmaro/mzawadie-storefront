@@ -1,10 +1,12 @@
 // @ts-nocheck
 import { channelSlug, incrementalStaticRegenerationRevalidate } from "@mzawadie/core";
-import { getFeaturedProducts, getMzawadieApi } from "@mzawadie/ui-kit/utils/ssr";
+import { getMzawadieApi } from "@mzawadie/ui-kit/utils/ssr";
 import type { GetStaticProps } from "next";
+import { FeaturedProductsQuery, FeaturedProductsQueryVariables } from "src/next/gqlTypes/FeaturedProductsQuery";
+import { featuredProductsQuery } from "src/next/queries";
 
 import { homePageProductsQuery, HomeView, HomeViewProps } from "../apps/Home";
-import { HomePageProducts } from "../apps/Home/gqlTypes/HomePageProducts";
+import { HomePageProducts, HomePageProductsVariables } from "../apps/Home/gqlTypes/HomePageProducts";
 
 export default HomeView;
 
@@ -13,12 +15,17 @@ export const getStaticProps: GetStaticProps<HomeViewProps> = async () => {
 
     const [data, featuredProducts] = await Promise.all([
         apolloClient
-            .query<HomePageProducts>({
+            .query<HomePageProducts, HomePageProductsVariables>({
                 query: homePageProductsQuery,
                 variables: { channel: channelSlug },
             })
             .then(({ data }) => data),
-        getFeaturedProducts(),
+        apolloClient
+            .query<FeaturedProductsQuery, FeaturedProductsQueryVariables>({
+                query: featuredProductsQuery,
+                variables: { channel: channelSlug },
+            })
+            .then(({ data: featuredProducts }) => featuredProducts),
     ]);
 
     return {

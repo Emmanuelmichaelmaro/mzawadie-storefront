@@ -1,8 +1,8 @@
-import { MenuItem } from "@next/graphql/gqlTypes/MenuItem";
 import classNames from "classnames";
 import React from "react";
 
 import { NavLink, OverlayContextInterface } from "..";
+import { MenuItem } from "../../next/gqlTypes/MenuItem";
 import NavItem from "./NavItem";
 import styles from "./scss/index.module.scss";
 

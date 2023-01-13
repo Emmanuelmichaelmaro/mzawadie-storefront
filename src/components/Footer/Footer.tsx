@@ -14,6 +14,7 @@ export const Footer: React.FC<FooterProps> = ({ menu }) => (
                 <SocialMediaIcon medium={medium} key={medium.ariaLabel} />
             ))}
         </div>
+
         <Nav menu={menu} />
     </div>
 );

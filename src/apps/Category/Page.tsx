@@ -1,19 +1,26 @@
 // @ts-nocheck
-import { commonMessages } from "@mzawadie/core";
+import { commonMessages, maybe } from "@mzawadie/core";
 import { BaseCategory } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/BaseCategory";
 import { CategoryDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/CategoryDetails";
 import { ProductList_products_edges_node } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductList";
 import { ProductListHeader } from "@mzawadie/ui-kit/molecules";
 import { FilterSidebar, ProductList } from "@mzawadie/ui-kit/organisms";
-import { SORT_OPTIONS } from "@mzawadie/ui-kit/utils/collections";
 import { FeaturedProducts } from "@mzawadie/ui-kit/utils/ssr";
-import { Attribute } from "@next/graphql/gqlTypes/Attribute";
+import { IFilterAttributes } from "@next/types";
 import React from "react";
 import { useIntl } from "react-intl";
+import { Attribute } from "src/next/gqlTypes/Attribute";
 
 import { Breadcrumbs, extractBreadcrumbs, ProductsFeatured } from "../../components";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 import { Filters, getActiveFilterAttributes } from "./utils";
+
+interface SortItem {
+    label: string;
+    value?: string;
+}
+
+interface SortOptions extends Array<SortItem> {}
 
 export interface CategoryData {
     details: CategoryDetails;
@@ -27,9 +34,11 @@ interface PageProps {
     activeFilters: number;
     activeSortOption: string;
     displayLoader: boolean;
+    attributes: IFilterAttributes[];
     filters: Filters;
     hasNextPage: boolean;
     products: ProductList_products_edges_node[];
+    sortOptions: SortOptions;
     numberOfProducts: number;
     clearFilters: () => void;
     onLoadMore: () => void;
@@ -40,25 +49,32 @@ interface PageProps {
 export const Page: React.FC<PageProps> = ({
     activeFilters,
     activeSortOption,
-    category: { attributes, details, ancestors, featuredProducts },
+    attributes,
+    category,
     numberOfProducts,
     products,
     displayLoader,
     hasNextPage,
+    sortOptions,
     clearFilters,
     onLoadMore,
     filters,
     onOrder,
     onAttributeFiltersChange,
 }) => {
-    const hasProducts = products.length > 0;
+    const canDisplayProducts = maybe(() => !!products.edges && products.totalCount !== undefined);
+
+    const hasProducts = canDisplayProducts && !!products.totalCount;
+
     const [showFilters, setShowFilters] = React.useState(false);
+
     const intl = useIntl();
 
     return (
-        <div className="category">
-            <div className="container">
-                <Breadcrumbs breadcrumbs={extractBreadcrumbs(details, ancestors)} />
+        <div className={styles.category}>
+            <div className={styles.categry__container}>
+                <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+
                 <FilterSidebar
                     show={showFilters}
                     hide={() => setShowFilters(false)}
@@ -66,6 +82,7 @@ export const Page: React.FC<PageProps> = ({
                     attributes={attributes}
                     filters={filters}
                 />
+
                 <ProductListHeader
                     activeSortOption={activeSortOption}
                     openFiltersMenu={() => setShowFilters(true)}
@@ -73,22 +90,24 @@ export const Page: React.FC<PageProps> = ({
                     activeFilters={activeFilters}
                     activeFiltersAttributes={getActiveFilterAttributes(filters?.attributes, attributes)}
                     clearFilters={clearFilters}
-                    sortOptions={SORT_OPTIONS}
+                    sortOptions={sortOptions}
                     onChange={onOrder}
                     onCloseFilterAttribute={onAttributeFiltersChange}
                 />
 
-                <ProductList
-                    products={products}
-                    canLoadMore={hasNextPage}
-                    loading={displayLoader}
-                    onLoadMore={onLoadMore}
-                />
+                {canDisplayProducts && (
+                    <ProductList
+                        products={products.edges.map((edge) => edge.node)}
+                        canLoadMore={hasNextPage}
+                        loading={displayLoader}
+                        onLoadMore={onLoadMore}
+                    />
+                )}
             </div>
 
             {!displayLoader && !hasProducts && (
                 <ProductsFeatured
-                    products={featuredProducts.products}
+                    products={category.featuredProducts.products}
                     title={intl.formatMessage(commonMessages.youMightLike)}
                 />
             )}

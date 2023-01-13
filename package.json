@@ -192,6 +192,7 @@
     },
     "scripts": {
         "dev": "next dev",
+        "dev:server": "node server.js",
         "build": "cross-env NODE_OPTIONS=--max_old_space_size=3072 && next build",
         "build:start": "npm run build && next start",
         "build:export": "cross-env NEXT_EXPORT=true npm run build && cross-env NEXT_EXPORT=true next export -o dist",
@@ -200,7 +201,6 @@
         "lint": "next lint --fix",
         "format": "prettier --write \"**/*.+(ts|tsx|js|jsx|json|yml|yaml|css|scss)\"",
         "prepare": "husky install",
-        "pre-commit": "next lint --fix && git add -A .",
         "graphql-clear-types": "rimraf ./src/**/gqlTypes",
         "graphql-generate-types": "dotenv -c -- graphql-codegen --config codegen.yml",
         "codegen": "apollo codegen:generate --target=typescript --tagName=gql gqlTypes && npm run format",

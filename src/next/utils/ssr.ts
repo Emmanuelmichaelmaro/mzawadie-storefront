@@ -4,17 +4,18 @@ import { ConnectResult, MzawadieManager } from "@mzawadie/sdk/lib/src";
 import BaseList, { BaseListVariables } from "@mzawadie/sdk/lib/src/helpers/BaseList";
 import { GetShop } from "@mzawadie/sdk/lib/src/queries/gqlTypes/GetShop";
 import { getShop } from "@mzawadie/sdk/lib/src/queries/shop";
-import { featuredProductsQuery, shopAttributesQuery, shopMenusQuery } from "@next/graphql";
-import { Attribute } from "@next/graphql/gqlTypes/Attribute";
-import {
-    FeaturedProductsQuery,
-    FeaturedProductsQuery_collection,
-    FeaturedProductsQuery_collection_products_edges_node,
-    FeaturedProductsQueryVariables,
-} from "@next/graphql/gqlTypes/FeaturedProductsQuery";
-import { ShopAttributesQuery, ShopAttributesQueryVariables } from "@next/graphql/gqlTypes/ShopAttributesQuery";
-import { ShopMenusQuery, ShopMenusQueryVariables } from "@next/graphql/gqlTypes/ShopMenusQuery";
 import { RequireOnlyOne } from "@mzawadie/ui-kit/utils/tsUtils";
+
+import { Attribute } from "../gqlTypes/Attribute";
+import {
+    FeaturedProductsQuery_collection_products_edges_node,
+    FeaturedProductsQuery_collection,
+    FeaturedProductsQuery,
+    FeaturedProductsQueryVariables,
+} from "../gqlTypes/FeaturedProductsQuery";
+import { ShopAttributesQuery, ShopAttributesQueryVariables } from "../gqlTypes/ShopAttributesQuery";
+import { ShopMenusQuery, ShopMenusQueryVariables } from "../gqlTypes/ShopMenusQuery";
+import { featuredProductsQuery, shopAttributesQuery, shopMenusQuery } from "../queries";
 
 let CONNECTION: ConnectResult | null = null;
 
@@ -40,6 +41,7 @@ export const exhaustList = async <TQuery, TObject, TVariables extends BaseListVa
     new Promise((resolve, reject) => {
         (async function fetch(listApi, triesLeft) {
             const result = await listApi;
+
             const { pageInfo, next } = result;
 
             if (!pageInfo?.hasNextPage) {

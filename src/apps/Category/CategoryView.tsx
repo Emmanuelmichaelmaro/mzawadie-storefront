@@ -1,26 +1,26 @@
 // @ts-nocheck
-import { PRODUCTS_PER_PAGE } from "@mzawadie/core";
-import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
-import { FilterQuerySet } from "@mzawadie/ui-kit/utils/collections";
+import { FilterQuerySet, SORT_OPTIONS } from "@mzawadie/ui-kit/utils/collections";
 import { IFilters } from "@next/types";
 import { NextPage } from "next";
 import React, { useMemo } from "react";
-import { StringParam, useQueryParam, withDefault } from "use-query-params";
+import { StringParam, useQueryParam } from "use-query-params";
 
-import { MetaWrapper, NotFound } from "../../components";
+import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
+import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { useProductsQuery } from "../Product/queries";
 import { CategoryData, Page } from "./Page";
-import { useProductsQuery } from "./queries";
 import { filtersChangeHandler } from "./utils";
 
 export type CategoryViewProps = {
-    params: { slug: string } | undefined;
+    params: { id: string; slug: string } | undefined | null;
     data: ({ id: string } & CategoryData) | undefined | null;
 };
 
 export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) => {
-    const [sort, setSort] = useQueryParam("sortBy", withDefault(StringParam, ""));
-    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", withDefault(FilterQuerySet, ""));
+    const [sort, setSort] = useQueryParam("sortBy", StringParam);
+
+    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", FilterQuerySet);
 
     const filters: IFilters = {
         attributes: attributeFilters,
@@ -47,7 +47,7 @@ export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) =>
 
     const handleLoadMore = () =>
         loadMore(
-            (prev, next) => ({
+            (prev: any, next: any) => ({
                 products: {
                     ...prev.products,
                     edges: [...prev.products.edges, ...next.products.edges],
@@ -64,24 +64,26 @@ export const CategoryView: NextPage<CategoryViewProps> = ({ data: category }) =>
                     category ? (
                         <MetaWrapper
                             meta={{
-                                description: category?.details.seoDescription,
-                                title: category?.details.seoTitle,
+                                description: category.details.seoDescription,
+                                title: category.details.seoTitle,
                                 type: "product.category",
                             }}
                         >
                             <Page
-                                clearFilters={handleClearFilters}
                                 category={category}
                                 products={products}
                                 displayLoader={loading}
-                                hasNextPage={pageInfo?.hasNextPage}
+                                hasNextPage={!!pageInfo?.hasNextPage}
                                 numberOfProducts={numberOfProducts}
                                 activeSortOption={filters.sortBy}
                                 filters={filters}
+                                activeFilters={Object.keys(filters?.attributes || {}).length}
+                                clearFilters={handleClearFilters}
                                 onAttributeFiltersChange={handleFiltersChange}
                                 onLoadMore={handleLoadMore}
-                                activeFilters={Object.keys(filters?.attributes || {}).length}
                                 onOrder={handleOrderChange}
+                                attributes={category.attributes}
+                                sortOptions={SORT_OPTIONS}
                             />
                         </MetaWrapper>
                     ) : (

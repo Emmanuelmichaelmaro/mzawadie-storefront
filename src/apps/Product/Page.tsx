@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { generateCategoryUrl, generateProductUrl } from "@mzawadie/core";
+import { structuredData } from "@mzawadie/core/SEO/Product/structuredData";
 import { ProductDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
 import { ProductDescription } from "@mzawadie/ui-kit/molecules";
 import { ProductGallery } from "@mzawadie/ui-kit/organisms";
@@ -17,11 +18,11 @@ import { IProps } from "./types";
 
 const populateBreadcrumbs = (product: ProductDetails) => [
     {
-        link: generateCategoryUrl(product.category?.id, product.category.slug),
+        link: generateCategoryUrl(product.category?.id, product.category?.name),
         value: product.category.name,
     },
     {
-        link: generateProductUrl(product.id, product.slug),
+        link: generateProductUrl(product.id, product.name),
         value: product.name,
     },
 ];
@@ -79,10 +80,11 @@ const Page: React.FC<
             </div>
 
             <div className={styles.container}>
+                {console.log('\x1b[33m%s\x1b[0m', JSON.stringify(product, null, 4))}
                 <div className={styles.product__page__product}>
-                    {/*<script className="structured-data-list" type="application/ld+json">*/}
-                    {/*    {structuredData(product)}*/}
-                    {/*</script>*/}
+                    {/* <script className="structured-data-list" type="application/ld+json">
+                        {structuredData(product)}
+                    </script> */}
 
                     <Media query={{ maxWidth: smallScreen }}>
                         {(matches) =>

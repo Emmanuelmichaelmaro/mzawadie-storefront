@@ -1,5 +1,6 @@
 // @ts-nocheck
-import { ssrMode } from "@mzawadie/core";
+import { MetaWrapper } from "@mzawadie/components/Meta";
+import NotFound from "@mzawadie/components/NotFound";
 import { useCart } from "@mzawadie/sdk/lib/src";
 import { ProductDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
 import { Loader, OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
@@ -8,7 +9,6 @@ import { useRouter } from "next/router";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
-import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import Page from "./Page";
 import { IProps } from "./types";
@@ -38,11 +38,12 @@ const extractMeta = (product: ProductDetails, url: string) => ({
     image: product?.thumbnail?.url || null,
     title: product.seoTitle || product.name,
     type: "product.item",
-    url: ssrMode ? undefined : window.location.href,
+    url: window.location.href,
 });
 
 const PageWithQueryAttributes: React.FC<IProps> = (props) => {
     const { product } = props;
+
     const { pathname, push, query, asPath } = useRouter();
 
     const onAttributeChangeHandler = (slug: string | null, value: string) => {
@@ -56,7 +57,7 @@ const PageWithQueryAttributes: React.FC<IProps> = (props) => {
         if (!Object.keys(query).length) {
             const queryAttributes: Record<string, string> = {};
 
-            product.variants.forEach(({ attributes }) => {
+            product.variants?.forEach(({ attributes }) => {
                 attributes.forEach(({ attribute, values }) => {
                     const selectedAttributeValue = query[attribute.slug];
 
@@ -76,13 +77,13 @@ const PageWithQueryAttributes: React.FC<IProps> = (props) => {
 
             setQueryAttributes(queryAttributes);
         }
-    }, [product.variants.length]);
+    }, [product.variants?.length]);
 
     return <Page {...props} queryAttributes={queryAttributes} onAttributeChangeHandler={onAttributeChangeHandler} />;
 };
 
 export type ProductPageProps = {
-    params: { slug: string } | undefined;
+    params: { id: number; slug: string } | undefined;
     data: ProductDetails | undefined | null;
 };
 

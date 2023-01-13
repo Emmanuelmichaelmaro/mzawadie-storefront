@@ -6,7 +6,7 @@ import { Collection_attributes_edges_node } from "../../apps/Collection/types/Co
 import { SearchProducts_attributes_edges_node } from "../../apps/Search/types/SearchProducts";
 import PriceRangeFilter from "../PriceRangeFilter";
 import SelectField, { SelectValue } from "../SelectField";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 export interface AttributeList {
     [attributeSlug: string]: string[];
@@ -36,11 +36,11 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
     onAttributeFiltersChange,
     onPriceChange,
 }) => (
-    <div className="product-filters">
+    <div className={styles.product - filters}>
         <div className="container">
-            <div className="product-filters__grid">
+            <div className={styles.product - filters__grid}>
                 {attributes.map((attribute) => (
-                    <div key={attribute.id} className="product-filters__grid__filter">
+                    <div key={attribute.id} className={styles.product - filters__grid__filter}>
                         <SelectField
                             value={
                                 filters.attributes[attribute.slug]
@@ -70,7 +70,8 @@ export const ProductFilters: React.FC<ProductFiltersProps> = ({
                         />
                     </div>
                 ))}
-                <div className="product-filters__grid__filter">
+
+                <div className={styles.product - filters__grid__filter}>
                     <PriceRangeFilter from={filters.priceGte} to={filters.priceLte} onChange={onPriceChange} />
                 </div>
             </div>

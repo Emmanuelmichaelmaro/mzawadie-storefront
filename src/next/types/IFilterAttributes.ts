@@ -1,5 +1,6 @@
-import { Attribute, Attribute_choices_edges_node } from "@next/graphql/gqlTypes/Attribute";
 import { NonNullableType } from "@mzawadie/ui-kit/utils/tsUtils";
+
+import { Attribute_choices_edges_node, Attribute } from "../gqlTypes/Attribute";
 
 export type IFilterAttribute = {
     selected?: boolean;

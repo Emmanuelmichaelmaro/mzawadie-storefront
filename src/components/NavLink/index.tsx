@@ -1,7 +1,7 @@
 import { generateCategoryUrl, generateCollectionUrl, generatePageUrl } from "@mzawadie/core";
-import { MenuItem } from "@next/graphql/gqlTypes/MenuItem";
 import Link from "next/link";
 import * as React from "react";
+import { MenuItem } from "src/next/gqlTypes/MenuItem";
 
 interface NavLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
     item: MenuItem;

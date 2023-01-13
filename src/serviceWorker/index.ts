@@ -87,6 +87,7 @@ precacheAndRoute([...(self.__WB_MANIFEST || []), ...documentURLsToCache, ...docu
  * On re-deploy delete all cached runtime requests.
  */
 self.addEventListener("activate", (event: ExtendableEvent) => {
+    // @ts-ignore
     event.waitUntil(deleteEntriesForCache(CACHE_NAME_RUNTIME));
 });
 

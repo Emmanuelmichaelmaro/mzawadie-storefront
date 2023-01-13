@@ -20,8 +20,11 @@ export interface SearchPageProps {
 
 export const SearchPage: NextPage<SearchPageProps> = ({ data: featuredProducts }) => {
     const [sort, setSort] = useQueryParam("sortBy", StringParam);
+
     const [search, setSearch] = useQueryParam("q", StringParam);
+
     const [attributeFilters, setAttributeFilters] = useQueryParam("filters", FilterQuerySet);
+
     const filters: IFilters = {
         attributes: attributeFilters,
         pageSize: PRODUCTS_PER_PAGE,
@@ -42,7 +45,7 @@ export const SearchPage: NextPage<SearchPageProps> = ({ data: featuredProducts }
 
     return (
         <NetworkStatus>
-            {(isOnline: any) => (
+            {(isOnline) => (
                 <TypedSearchProductsQuery variables={variables} errorPolicy="all" loaderFull>
                     {({ loading, data, loadMore }) => {
                         const canDisplayFilters = !!data?.attributes?.edges && !!data?.products?.edges;
@@ -64,16 +67,16 @@ export const SearchPage: NextPage<SearchPageProps> = ({ data: featuredProducts }
                             return (
                                 <Page
                                     clearFilters={clearFilters}
-                                    attributes={data.attributes.edges.map(({ node }) => node)}
+                                    attributes={data.attributes.edges.map((edge) => edge.node)}
                                     displayLoader={loading}
-                                    hasNextPage={data.products?.pageInfo?.hasNextPage ?? false}
+                                    hasNextPage={maybe(() => data.products.pageInfo.hasNextPage, false)}
                                     sortOptions={SORT_OPTIONS}
                                     setSearch={setSearch}
                                     search={search}
                                     activeSortOption={filters.sortBy}
                                     filters={filters}
                                     products={data.products}
-                                    featuredProducts={featuredProducts.products}
+                                    featuredProducts={featuredProducts.collection.products.edges.map((e) => e.node)}
                                     onAttributeFiltersChange={filtersChangeHandler(
                                         filters,
                                         attributeFilters,
@@ -101,3 +104,5 @@ export const SearchPage: NextPage<SearchPageProps> = ({ data: featuredProducts }
         </NetworkStatus>
     );
 };
+
+export default SearchPage;

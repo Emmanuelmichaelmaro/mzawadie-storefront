@@ -105,6 +105,7 @@ const localeData: Record<Locale, string | undefined> = {
 
 export const loadMessagesJson = async (locale: Locale | undefined = Locale.EN) => {
     const filename = localeData[locale];
+
     let localeJson = LOCALE_CACHE[locale];
 
     if (!localeJson && filename !== undefined) {
@@ -121,6 +122,7 @@ const sepRegExp = new RegExp(dotSeparator, "g");
 export function getKeyValueJson(messages: LocaleMessages | undefined): Record<string, string> {
     if (messages) {
         const keyValueMessages: Record<string, string> = {};
+
         return Object.entries(messages).reduce((acc, [id, msg]) => {
             acc[id.replace(sepRegExp, ".")] = msg.string;
             return acc;

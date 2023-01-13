@@ -1,7 +1,7 @@
 // @ts-nocheck
+import { UnknownObject } from "@mzawadie/ui-kit/utils/tsUtils";
 import { Attribute } from "@next/graphql/gqlTypes/Attribute";
 import { IFilters } from "@next/types";
-import { UnknownObject } from "@mzawadie/ui-kit/utils/tsUtils";
 
 export interface Filters {
     attributes: AttributeList;
@@ -20,31 +20,31 @@ export const filtersChangeHandler =
         attributeFilters: UnknownObject<string[]>,
         setAttributeFilters: (newValue: UnknownObject<string[]>) => void
     ) =>
-        (name: string, value: string) => {
-            if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
-                if (attributeFilters[name].includes(value)) {
-                    if (filters.attributes[name].length === 1) {
-                        const att = { ...attributeFilters };
-                        delete att[name];
-                        setAttributeFilters({
-                            ...att,
-                        });
-                    } else {
-                        setAttributeFilters({
-                            ...attributeFilters,
-                            [name]: attributeFilters[name].filter((item) => item !== value),
-                        });
-                    }
+    (name: string, value: string) => {
+        if (attributeFilters && attributeFilters.hasOwnProperty(name)) {
+            if (attributeFilters[name].includes(value)) {
+                if (filters.attributes[name].length === 1) {
+                    const att = { ...attributeFilters };
+                    delete att[name];
+                    setAttributeFilters({
+                        ...att,
+                    });
                 } else {
                     setAttributeFilters({
                         ...attributeFilters,
-                        [name]: [...attributeFilters[name], value],
+                        [name]: attributeFilters[name].filter((item) => item !== value),
                     });
                 }
             } else {
-                setAttributeFilters({ ...attributeFilters, [name]: [value] });
+                setAttributeFilters({
+                    ...attributeFilters,
+                    [name]: [...attributeFilters[name], value],
+                });
             }
-        };
+        } else {
+            setAttributeFilters({ ...attributeFilters, [name]: [value] });
+        }
+    };
 
 export const getActiveFilterAttributes = (filterAttributes: AttributeList | undefined, attributes: Attribute[]) => {
     const getAttribute = (attributeSlug: string, valueSlug: string) => {
@@ -55,10 +55,10 @@ export const getActiveFilterAttributes = (filterAttributes: AttributeList | unde
 
         return valueName
             ? {
-                attributeSlug,
-                valueName,
-                valueSlug,
-            }
+                  attributeSlug,
+                  valueName,
+                  valueSlug,
+              }
             : undefined;
     };
 

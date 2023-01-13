@@ -1,9 +1,80 @@
+// @ts-nocheck
 import { gql } from "@apollo/client";
-import { basicProductFragment, productPricingFragment, taxedPriceFragment } from "@next/graphql";
+import {
+    channelSlug,
+    convertSortByFromString,
+    convertToAttributeScalar,
+    PRODUCTS_PER_PAGE,
+    RequireOnlyOne,
+    TypedQuery,
+} from "@mzawadie/core";
+import { ProductList, ProductListVariables } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductList";
+import { productList } from "@mzawadie/sdk/lib/src/queries/products";
+import { IFilters } from "@next/types";
 
-import { TypedQuery } from "../../core/queries";
+import { useTypedQuery } from "../../next/queries";
 import { ProductDetails, ProductDetailsVariables } from "./gqlTypes/ProductDetails";
 import { VariantList, VariantListVariables } from "./gqlTypes/VariantList";
+
+export const priceFragment = gql`
+    fragment Price on Money {
+        amount
+        currency
+    }
+`;
+
+export const taxedPriceFragment = gql`
+    fragment Price on TaxedMoney {
+        gross {
+            amount
+            currency
+        }
+        net {
+            amount
+            currency
+        }
+    }
+`;
+
+export const basicProductFragment = gql`
+    fragment BasicProductFields on Product {
+        id
+        name
+        slug
+        thumbnail {
+            url
+            alt
+        }
+        thumbnail2x: thumbnail(size: 510) {
+            url
+        }
+    }
+`;
+
+export const productPricingFragment = gql`
+    ${taxedPriceFragment}
+    fragment ProductPricingField on Product {
+        pricing {
+            onSale
+            priceRangeUndiscounted {
+                start {
+                    ...Price
+                }
+                stop {
+                    ...Price
+                }
+            }
+            priceRange {
+                start {
+                    ...Price
+                }
+                stop {
+                    ...Price
+                }
+            }
+        }
+    }
+`;
 
 export const selectedAttributeFragment = gql`
     fragment SelectedAttributeFields on SelectedAttribute {
@@ -33,10 +104,10 @@ export const productVariantFragment = gql`
         pricing {
             onSale
             priceUndiscounted {
-                ...TaxedPrice
+                ...Price
             }
             price {
-                ...TaxedPrice
+                ...Price
             }
         }
         attributes(variantSelection: VARIANT_SELECTION) {
@@ -118,3 +189,35 @@ export const productVariantsQuery = gql`
 export const TypedProductDetailsQuery = TypedQuery<ProductDetails, ProductDetailsVariables>(productDetailsQuery);
 
 export const TypedProductVariantsQuery = TypedQuery<VariantList, VariantListVariables>(productVariantsQuery);
+
+export const useProductsQuery = (
+    filters: IFilters,
+    ids: RequireOnlyOne<{
+        categoryId: string | undefined;
+        collectionId: string | undefined;
+    }>
+) => {
+    const { categoryId, collectionId } = ids;
+
+    const variables: ProductListVariables = {
+        filter: {
+            price: {
+                lte: filters.priceLte,
+                gte: filters.priceGte,
+            },
+            collections: collectionId ? [collectionId] : [],
+            categories: categoryId ? [categoryId] : [],
+            channel: channelSlug,
+            attributes: filters.attributes ? convertToAttributeScalar(filters.attributes) : {},
+        },
+        channel: channelSlug,
+        first: PRODUCTS_PER_PAGE,
+        sortBy: convertSortByFromString(filters.sortBy),
+    };
+
+    return useTypedQuery<ProductList, ProductListVariables>(productList, {
+        variables,
+        fetchPolicy: "cache-and-network",
+        skip: !(categoryId || collectionId),
+    });
+};

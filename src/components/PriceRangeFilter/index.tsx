@@ -4,7 +4,7 @@ import * as React from "react";
 import { components } from "react-select";
 
 import { SelectField, TextField } from "..";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface PriceRangeFilterProps {
     from: number;
@@ -61,7 +61,7 @@ class PriceRangeFilter extends React.Component<PriceRangeFilterProps, PriceRange
         const { from, onChange, to } = this.props;
 
         return (
-            <div className="price-filter" ref={this.filterRef} onClick={this.handleClick}>
+            <div className={styles.price - filter} ref={this.filterRef} onClick={this.handleClick}>
                 <SelectField
                     placeholder="Price range"
                     menuIsOpen={false}
@@ -75,13 +75,19 @@ class PriceRangeFilter extends React.Component<PriceRangeFilterProps, PriceRange
                             : undefined
                     }
                 />
-                <div className={`price-filter__dropdown${this.state.active ? " price-filter__dropdown--visible" : ""}`}>
+
+                <div
+                    className={`${price - filter__dropdown}${
+                        this.state.active ? `${styles.price - filter__dropdown}--visible` : ""
+                    }`}
+                >
                     <TextField
                         type="number"
                         placeholder="From"
                         onChange={(event) => onChange("priceGte", event.target.value as any)}
                         value={getValueOrEmpty(from)}
                     />
+
                     <TextField
                         type="number"
                         placeholder="To"

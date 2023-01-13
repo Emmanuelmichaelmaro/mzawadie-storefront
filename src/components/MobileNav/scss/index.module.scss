@@ -87,7 +87,7 @@
             }
         }
 
-        &--has-subnavigation,
+        &__has-subnavigation,
         &--parent {
             grid-template-columns: 1fr $item-height;
         }

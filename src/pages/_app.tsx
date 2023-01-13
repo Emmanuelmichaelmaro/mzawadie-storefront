@@ -9,6 +9,7 @@ import { defaultTheme, GlobalStyle } from "@mzawadie/ui-kit/styles";
 import { getMzawadieApi, getShopConfig, ShopConfig } from "@mzawadie/ui-kit/utils/ssr";
 import type { AppContext as NextAppContext, AppProps as NextAppProps } from "next/app";
 import NextApp from "next/app";
+import Head from "next/head";
 import React from "react";
 import { positions, Provider as AlertProvider } from "react-alert";
 import { ThemeProvider } from "styled-components";
@@ -59,6 +60,22 @@ const App = ({ Component, pageProps, footer, mainMenu, shopConfig, messages }: A
     // console.log(JSON.stringify(shopConfig, null, 4));
     return (
         <>
+            <Head>
+                <meta
+                    name="viewport"
+                    content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover"
+                />
+                <title>PWA Storefront – Mzawadie Commerce</title>
+                <link rel="preconnect" href={apiUrl} />
+                <link href="https://rsms.me/inter/inter.css" rel="stylesheet" />
+                <link
+                    href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;800&display=swap"
+                    rel="stylesheet"
+                />
+                <link rel="icon" type="image/png" href="/icons/icon-36x36.png" />
+                <link rel="manifest" href="/manifest.json" />
+            </Head>
+
             <ThemeProvider theme={defaultTheme}>
                 <AlertProvider template={NotificationTemplate as any} {...notificationConfig}>
                     <ServiceWorkerProvider timeout={serviceWorkerTimeout}>

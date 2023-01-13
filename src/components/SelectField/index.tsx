@@ -5,7 +5,7 @@ import Select from "react-select";
 // @ts-ignore
 import { Props as SelectProps } from "react-select/lib/Select";
 
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 type Style = "white" | "grey";
 
@@ -23,11 +23,12 @@ type GenericSelectField<TValue> = React.StatelessComponent<SelectFieldProps<TVal
 
 const SelectField: GenericSelectField<SelectValue> = ({ label = "", styleType = "white", ...rest }) => (
     <div
-        className={classNames("react-select-wrapper", {
-            "react-select-wrapper--grey": styleType === "grey",
+        className={classNames([`${styles.react__select__wrapper}`], {
+            [`${styles.react__select__wrapper}--grey`]: styleType === "grey",
         })}
     >
-        {label ? <span className="input__label">{label}</span> : null}
+        {label ? <span className={styles.input__label}>{label}</span> : null}
+
         <Select classNamePrefix="react-select" {...rest} />
     </div>
 );

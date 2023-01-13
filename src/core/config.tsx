@@ -1,4 +1,5 @@
 import { ssrMode } from "./constants";
+import { generatePageUrl } from "./utils";
 
 export const META_DEFAULTS = {
     custom: [],
@@ -11,6 +12,13 @@ export const META_DEFAULTS = {
 };
 
 export const BASE_URL = "/";
+
+export const STATIC_PAGES = [
+    {
+        label: "About",
+        url: generatePageUrl("about"),
+    },
+];
 
 export const PRODUCTS_PER_PAGE = 8;
 

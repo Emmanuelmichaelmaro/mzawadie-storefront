@@ -1,7 +1,7 @@
-import { MenuItem } from "@next/graphql/gqlTypes/MenuItem";
 import React from "react";
 
 import { NavLink } from "..";
+import { MenuItem } from "../../next/gqlTypes/MenuItem";
 
 interface NavNestedItemProps extends MenuItem {
     children?: NavNestedItemProps[];

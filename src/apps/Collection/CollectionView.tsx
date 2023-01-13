@@ -1,16 +1,16 @@
 // @ts-nocheck
-import { PRODUCTS_PER_PAGE } from "@mzawadie/core";
 import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import { FilterQuerySet, SORT_OPTIONS } from "@mzawadie/ui-kit/utils/collections";
 import { IFilters } from "@next/types";
 import { NextPage } from "next";
-import React from "react";
-import { StringParam, useQueryParam, withDefault } from "use-query-params";
+import * as React from "react";
+import { StringParam, useQueryParam } from "use-query-params";
 
 import { MetaWrapper, NotFound } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
-import { useProductsQuery } from "../Category/queries";
+import { PRODUCTS_PER_PAGE } from "../../core/config";
 import { filtersChangeHandler } from "../Category/utils";
+import { useProductsQuery } from "../Product/queries";
 import { CollectionData, Page } from "./Page";
 
 export type CollectionViewProps = {
@@ -19,8 +19,9 @@ export type CollectionViewProps = {
 };
 
 export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection }) => {
-    const [sort, setSort] = useQueryParam("sortBy", withDefault(StringParam, ""));
-    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", withDefault(FilterQuerySet, ""));
+    const [sort, setSort] = useQueryParam("sortBy", StringParam);
+
+    const [attributeFilters, setAttributeFilters] = useQueryParam("filters", FilterQuerySet);
 
     const filters: IFilters = {
         attributes: attributeFilters,
@@ -47,7 +48,7 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
 
     const handleLoadMore = () =>
         loadMore(
-            (prev, next) => ({
+            (prev: any, next: any) => ({
                 products: {
                     ...prev.products,
                     edges: [...prev.products.edges, ...next.products.edges],
@@ -64,17 +65,18 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
                     collection ? (
                         <MetaWrapper
                             meta={{
-                                description: collection?.details.seoDescription,
-                                title: collection?.details.seoTitle,
+                                description: collection.details.seoDescription,
+                                title: collection.details.seoTitle,
                                 type: "product.collection",
                             }}
                         >
                             <Page
+                                attributes={collection.attributes}
                                 numberOfProducts={numberOfProducts}
                                 clearFilters={handleClearFilters}
                                 collection={collection}
                                 displayLoader={loading}
-                                hasNextPage={pageInfo?.hasNextPage}
+                                hasNextPage={!!pageInfo?.hasNextPage}
                                 sortOptions={SORT_OPTIONS}
                                 activeSortOption={filters.sortBy}
                                 filters={filters}
