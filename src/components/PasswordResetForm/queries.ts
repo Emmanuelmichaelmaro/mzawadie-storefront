@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client";
+import gql from "graphql-tag";
 
 import { TypedMutation } from "../../core/mutations";
 import { ResetPassword, ResetPasswordVariables } from "./gqlTypes/ResetPassword";

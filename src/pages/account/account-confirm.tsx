@@ -1,3 +1,3 @@
-import { AccountConfirmView } from "../../apps/Account";
+import { AccountConfirmView } from "@mzawadie/apps/Account";
 
 export default AccountConfirmView;

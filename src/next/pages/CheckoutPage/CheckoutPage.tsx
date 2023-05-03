@@ -1,6 +1,4 @@
 import { paths, paymentGatewayNames } from "@mzawadie/core";
-import { useCart, useCheckout } from "@mzawadie/sdk/lib/src";
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
 import { Button, Loader, Redirect } from "@mzawadie/ui-kit/atoms";
 import { useRedirectToCorrectCheckoutStep } from "@mzawadie/ui-kit/hooks";
 import { CheckoutProgressBar } from "@mzawadie/ui-kit/molecules";
@@ -12,6 +10,8 @@ import {
 } from "@mzawadie/ui-kit/organisms";
 import { Checkout } from "@mzawadie/ui-kit/templates";
 import { ICardData, IFormError, IPaymentSubmitResult } from "@next/types";
+import { useCart, useCheckout } from "@saleor/sdk";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useMemo, useRef, useState } from "react";

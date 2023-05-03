@@ -1,8 +1,8 @@
-import { ProductDetails_product_variants } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
 import { Icon, Input } from "@mzawadie/ui-kit/atoms";
 import { useSelectableProductVariantsAttributeValues } from "@mzawadie/ui-kit/hooks";
 import { InputSelect } from "@mzawadie/ui-kit/molecules";
 import { IProductVariantsAttribute, IProductVariantsAttributesSelectedValues } from "@next/types";
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect } from "react";
 import { useIntl } from "react-intl";
 

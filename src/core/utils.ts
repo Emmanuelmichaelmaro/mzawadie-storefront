@@ -1,6 +1,6 @@
 // @ts-nocheck
-import { ProductOrder } from "@mzawadie/sdk/lib/src";
 import { IFilterAttributes } from "@next/types";
+import { ProductOrder } from "@saleor/sdk";
 import { History, LocationState } from "history";
 import { Base64 } from "js-base64";
 import { each } from "lodash";

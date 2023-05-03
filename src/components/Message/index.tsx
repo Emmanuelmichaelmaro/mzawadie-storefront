@@ -1,9 +1,9 @@
 // @ts-nocheck
+import closeImg from "@images/x.svg";
 import React from "react";
 import { ReactSVG } from "react-svg";
 
-import closeImg from "../../images/x.svg";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface MessageProps {
     title: string | undefined;
@@ -12,12 +12,12 @@ interface MessageProps {
 }
 
 const Message: React.FC<MessageProps> = ({ title, status = "neutral", children, onClose }) => (
-    <div className={`message message__status-${status}`}>
-        <p className="message__title">{title}</p>
+    <div className={`${styles.message} ${styles.message__status}-${status}`}>
+        <p className={styles.message__title}>{title}</p>
 
-        {children ? <div className="message__content">{children}</div> : null}
+        {children ? <div className={styles.message__content}>{children}</div> : null}
 
-        <ReactSVG src={closeImg} className="message__close-icon" onClick={onClose} />
+        <ReactSVG src={closeImg} className={styles.message__close__icon} onClick={onClose} />
     </div>
 );
 

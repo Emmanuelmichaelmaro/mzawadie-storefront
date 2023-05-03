@@ -1,4 +1,4 @@
-import { OrderStatus } from "@mzawadie/sdk/lib/src";
+import { OrderStatus } from "@saleor/sdk";
 import { UrlObject } from "url";
 
 export interface IThankYouProps {

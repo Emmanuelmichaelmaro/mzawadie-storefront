@@ -1,14 +1,9 @@
-import {
-    ApolloQueryResult,
-    DocumentNode,
-    gql,
-    OperationVariables,
-    QueryHookOptions,
-    QueryResult,
-    useQuery,
-} from "@apollo/client";
+import { ApolloQueryResult, OperationVariables } from "apollo-client";
+import { DocumentNode } from "graphql";
+import gql from "graphql-tag";
+import { QueryHookOptions, QueryResult, useQuery } from "react-apollo";
 
-import { featuredProductsFragment, attributeFragment, menuItemFragment } from "./fragments";
+import { attributeFragment, featuredProductsFragment, menuItemFragment } from "./fragments";
 
 type LoadMore<TData> = (
     mergeFn: (prev: TData, next: TData) => TData,
@@ -49,12 +44,8 @@ export const shopAttributesQuery = gql`
     ${attributeFragment}
     query ShopAttributesQuery($channel: String!, $collectionId: ID, $categoryId: ID) {
         attributes(
-            filter: {
-                channel: $channel
-                inCollection: $collectionId
-                inCategory: $categoryId
-                filterableInStorefront: true
-            }
+            channel: $channel
+            filter: { inCollection: $collectionId, inCategory: $categoryId, filterableInStorefront: true }
             first: 100
         ) {
             edges {

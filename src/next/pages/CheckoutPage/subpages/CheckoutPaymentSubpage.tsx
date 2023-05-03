@@ -1,7 +1,7 @@
 import { commonMessages } from "@mzawadie/core";
-import { useCheckout } from "@mzawadie/sdk/lib/src";
 import { CheckoutPayment } from "@mzawadie/ui-kit/organisms";
 import { IFormError } from "@next/types";
+import { useCheckout } from "@saleor/sdk";
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 

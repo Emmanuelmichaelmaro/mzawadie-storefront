@@ -12,7 +12,7 @@ import Page from "./Page";
 import { Article_page } from "./gqlTypes/Article";
 
 export interface ArticleViewProps {
-    params: { slug: string };
+    params: { id: string; slug: string };
     data: {
         article: Article_page | null;
         featuredProducts: FeaturedProducts;
@@ -22,7 +22,7 @@ export interface ArticleViewProps {
 export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
     const { pathname } = useRouter();
 
-    const [canDisplay, headerImage] = useMemo(() => [data?.article, data?.featuredProducts?.backgroundImage.url], [data]);
+    const [canDisplay, headerImage] = useMemo(() => [data?.article, data?.featuredProducts?.backgroundImage?.url], [data]);
 
     const navigation = STATIC_PAGES.map((page) => ({
         ...page,
@@ -44,7 +44,7 @@ export const ArticleView: NextPage<ArticleViewProps> = ({ data }) => {
             }}
         >
             <Page
-                breadcrumbs={getBreadcrumbs(data.article)}
+                breadcrumbs={getBreadcrumbs(data?.article)}
                 headerImage={headerImage}
                 navigation={navigation}
                 page={data.article}

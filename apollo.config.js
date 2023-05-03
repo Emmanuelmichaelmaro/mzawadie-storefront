@@ -10,11 +10,8 @@ module.exports = {
         addTypename: true,
         excludes: ["**/__tests__/**/*"],
         includes: ["src/**/*.ts", "src/**/*.tsx"],
-        name: "dashboard",
         service: {
-            name: "mzawadie",
-            localSchemaFile: "schema.graphql",
-            // url: config.NEXT_PUBLIC_API_URI,
+            url: config.NEXT_PUBLIC_API_URI,
         },
     },
 };

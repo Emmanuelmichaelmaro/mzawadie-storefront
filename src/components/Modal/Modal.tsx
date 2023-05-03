@@ -1,12 +1,13 @@
 // @ts-nocheck
+import closeImg from "@images/modal-close.svg";
 import { ssrMode } from "@mzawadie/core";
-import closeImg from "images/modal-close.svg";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { ReactSVG } from "react-svg";
 
 import { Button } from "..";
-import "./scss/index.module.scss";
+import overlayStyles from "../Overlay/scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface IModalProps {
     target?: HTMLElement | null;
@@ -34,25 +35,25 @@ const Modal: React.FC<IModalProps> = ({
 }) =>
     target && show
         ? ReactDOM.createPortal(
-              <div className="overlay overlay--modal">
-                  <div className="overlay__modal">
-                      <div className="modal">
-                          <div className="modal__title">
+              <div className={`${overlayStyles.overlay} ${overlayStyles.overlay}--modal`}>
+                  <div className={overlayStyles.overlay__modal}>
+                      <div className={styles.modal}>
+                          <div className={styles.modal__title}>
                               <p>{title}</p>
-                              <ReactSVG src={closeImg} className="modal__close" onClick={hide} />
+                              <ReactSVG src={closeImg} className={styles.modal__close} onClick={hide} />
                           </div>
 
-                          <div className="modal__content">{children}</div>
+                          <div className={styles.modal__content}>{children}</div>
 
-                          <div className="modal__footer">
+                          <div className={styles.modal__footer}>
                               {cancelBtnText && (
-                                  <button className="modal__cancelBtn" onClick={hide}>
+                                  <button className={styles.modal__cancelBtn} onClick={hide}>
                                       {cancelBtnText}
                                   </button>
                               )}
 
                               {submitBtnText && (
-                                  <Button type="submit" form={formId} disabled={loading} className="modal__button">
+                                  <Button type="submit" form={formId} disabled={loading} className={styles.modal__button}>
                                       {loading ? "Loading" : submitBtnText}
                                   </Button>
                               )}

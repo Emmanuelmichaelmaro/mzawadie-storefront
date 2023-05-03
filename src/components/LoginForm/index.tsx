@@ -1,5 +1,5 @@
 import { commonMessages, demoMode } from "@mzawadie/core";
-import { useAuth } from "@mzawadie/sdk/lib/src";
+import { useAuth } from "@saleor/sdk";
 import React from "react";
 import { useIntl } from "react-intl";
 

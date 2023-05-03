@@ -1,12 +1,12 @@
 // @ts-nocheck
+import backImg from "@images/arrow-back.svg";
+import logoImg from "@images/logo.svg";
 import { commonMessages, paths } from "@mzawadie/core";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import { ReactSVG } from "react-svg";
 
-import backImg from "../../images/arrow-back.svg";
-import logoImg from "../../images/logo.svg";
 import NavItem, { INavItem } from "./NavItem";
 import styles from "./scss/index.module.scss";
 
@@ -70,28 +70,28 @@ class NavList extends React.PureComponent<NavListProps, NavListState> {
         return (
             <ul>
                 {parent ? (
-                    <li className={(styles.side - nav__menu - item, styles.side - nav__menu - item - back)}>
+                    <li className={(styles.side__nav__menu__item, styles.side__nav__menu__item__back)}>
                         <span onClick={this.handleGoBack}>
                             <ReactSVG src={backImg} /> {parent.name}
                         </span>
                     </li>
                 ) : (
                     <>
-                        <li className={`${styles.side - nav__menu - item} ${styles.side - nav__menu - item}--parent`}>
+                        <li className={`${styles.side__nav__menu__item} ${styles.side__nav__menu__item}--parent`}>
                             <Link href={paths.home}>
-                                <a className={styles.side - nav__menu - item - logo}>
+                                <a className={styles.side__nav__menu__item__logo}>
                                     <ReactSVG src={logoImg} onClick={hideOverlay} />
                                 </a>
                             </Link>
 
-                            <span className={styles.side - nav__menu - item - close} onClick={hideOverlay}>
+                            <span className={styles.side__nav__menu__item__close} onClick={hideOverlay}>
                                 <span />
                             </span>
                         </li>
 
-                        <li className={styles.side - nav__menu - item}>
+                        <li className={styles.side__nav__menu__item}>
                             <Link href={paths.home}>
-                                <a className={styles.side - nav__menu - item - link}>
+                                <a className={styles.side__nav__menu__item__link}>
                                     <span onClick={hideOverlay}>
                                         <FormattedMessage {...commonMessages.home} />
                                     </span>

@@ -4,11 +4,12 @@
     display: inline-flex;
     flex-wrap: wrap;
     margin: $spacer 0;
+    padding-inline-start: initial;
 
     li {
         &:not(:last-of-type) {
             &:after {
-                content: url("../../../images/breadcrumbs-arrow.svg");
+                content: url("../../../../public/images/breadcrumbs-arrow.svg");
                 display: inline-block;
                 margin: 0 $spacer / 2;
             }
@@ -27,7 +28,7 @@
         }
     }
 
-    &__active {
+    &:active {
         a {
             color: $base-font-color;
             font-weight: $bold-font-weight;

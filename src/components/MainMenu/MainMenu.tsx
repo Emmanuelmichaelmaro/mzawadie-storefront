@@ -1,23 +1,23 @@
 // @ts-nocheck
+import cartImg from "@images/cart.svg";
+import hamburgerHoverImg from "@images/hamburger-hover.svg";
+import hamburgerImg from "@images/hamburger.svg";
+import logoImg from "@images/logo.svg";
+import searchImg from "@images/search.svg";
+import userImg from "@images/user.svg";
 import { paths, commonMessages } from "@mzawadie/core";
-import { useAuth, useCart } from "@mzawadie/sdk/lib/src";
 import { DemoBanner } from "@mzawadie/ui-kit/atoms";
 import { largeScreen as mediumScreen, smallScreen } from "@mzawadie/ui-kit/styles/constants";
-import { ShopMenusQuery } from "@next/graphql/gqlTypes/ShopMenusQuery";
+import { useAuth, useCart } from "@saleor/sdk";
 import classNames from "classnames";
 import Link from "next/link";
 import React, { useContext, useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-media";
 import { ReactSVG } from "react-svg";
+import { ShopMenusQuery } from "src/next/gqlTypes/ShopMenusQuery";
 
 import { MenuDropdown, Offline, Online, OverlayContext, OverlayTheme, OverlayType } from "..";
-import cartImg from "../../images/cart.svg";
-import hamburgerHoverImg from "../../images/hamburger-hover.svg";
-import hamburgerImg from "../../images/hamburger.svg";
-import logoImg from "../../images/logo.svg";
-import searchImg from "../../images/search.svg";
-import userImg from "../../images/user.svg";
 import { NavDropdown } from "./NavDropdown";
 import styles from "./scss/index.module.scss";
 
@@ -86,9 +86,9 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                         })
                                     }
                                 >
-                                    <ReactSVG src={hamburgerImg} className={styles.main__menu__hamburger__icon} />
+                                    <ReactSVG src={hamburgerImg} className={`${styles.main__menu__hamburger}__icon`} />
 
-                                    <ReactSVG src={hamburgerHoverImg} className={styles.main__menu__hamburger__hover} />
+                                    <ReactSVG src={hamburgerHoverImg} className={`${styles.main__menu__hamburger}__hover`} />
                                 </li>
                             )}
                         />
@@ -164,7 +164,7 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                                             ) : (
                                                 <li
                                                     data-test="mobileMenuLoginLink"
-                                                    className="main-menu__icon"
+                                                    className={styles.main__menu__icon}
                                                     onClick={() =>
                                                         overlayContext.show(OverlayType.login, OverlayTheme.left)
                                                     }
@@ -181,11 +181,11 @@ export const MainMenu: React.FC<MainMenuProps> = ({ demoMode, menu, loading }) =
                 </div>
 
                 <div className={styles.main__menu__center}>
-                    <Link href={paths.home}>
+                    {/* <Link href={paths.home}>
                         <a>
                             <ReactSVG src={logoImg} />
                         </a>
-                    </Link>
+                    </Link> */}
                 </div>
 
                 <div className={styles.main__menu__right}>

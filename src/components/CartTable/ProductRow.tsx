@@ -1,8 +1,8 @@
 import { generateProductUrl } from "@mzawadie/core";
-import { ProductVariant } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductVariant";
-import { OrderByToken_orderByToken_lines_unitPrice } from "@mzawadie/sdk/lib/src/queries/gqlTypes/OrderByToken";
 import { TaxedMoney } from "@mzawadie/ui-kit/containers";
 import { Thumbnail } from "@mzawadie/ui-kit/molecules";
+import { ProductVariant } from "@saleor/sdk/lib/fragments/gqlTypes/ProductVariant";
+import { OrderByToken_orderByToken_lines_unitPrice } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
 import classNames from "classnames";
 import Link from "next/link";
 import * as React from "react";

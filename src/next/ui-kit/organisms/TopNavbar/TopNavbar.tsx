@@ -1,12 +1,12 @@
 // This component relies on parts of the application that are
 // are not yet implemented (ie wishlist)
 // Replace it with MainMenu component once all the blocks are finished
+import LogoSmall from "@images/logo-small.svg";
+import Logo from "@images/logo.svg";
 import { NavLink } from "@mzawadie/components/NavLink";
 import { Icon } from "@mzawadie/ui-kit/atoms";
 import { largeScreen, smallScreen } from "@mzawadie/ui-kit/styles/constants";
 import { maybe } from "@mzawadie/ui-kit/utils/misc";
-import LogoSmall from "images/logo-small.svg";
-import Logo from "images/logo.svg";
 import React from "react";
 import Media from "react-responsive";
 

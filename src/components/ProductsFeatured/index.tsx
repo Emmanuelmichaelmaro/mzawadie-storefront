@@ -12,13 +12,13 @@ interface ProductsFeaturedProps {
 }
 
 export const ProductsFeatured: React.FC<ProductsFeaturedProps> = ({ title, products }) =>
-    products?.edges.length ? (
+    products?.edges?.length ? (
         <div className={styles.products__featured}>
             <div className="container">
                 <h3>{title}</h3>
 
                 <Carousel>
-                    {products?.edges.map(({ node: product }) => (
+                    {products?.edges?.map(({ node: product }) => (
                         <Link href={generateProductUrl(product.id, product.slug)} key={product.id}>
                             <a>
                                 <ProductListItem product={product} />

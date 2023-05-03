@@ -1,5 +1,5 @@
-import { gql } from "@apollo/client";
 import { basicProductFragment, productPricingFragment } from "@mzawadie/apps/Product/queries";
+import gql from "graphql-tag";
 
 export const featuredProductFragment = gql`
     ${basicProductFragment}
@@ -39,7 +39,7 @@ export const attributeFragment = gql`
         id
         name
         slug
-        choices {
+        choices(first: 100) {
             edges {
                 node {
                     id

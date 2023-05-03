@@ -7,6 +7,54 @@
         justify-content: center;
     }
 
+    &__newsletter,
+    submit,
+    &__button__main,
+    &__copyright {
+        padding-left: 0;
+    }
+
+    &__copyright {
+        text-align: center !important;
+        // background-color: #f7eee2;
+        padding-bottom: 1.25pc;
+        padding-right: 0;
+        padding-top: 1.25pc;
+
+        &__content {
+            text-decoration: none;
+            color: #c4c4c4;
+            span {
+                color: #27272f;
+                font-weight: 600;
+                text-transform: uppercase;
+                padding-left: 5px;
+                &__tranform__none {
+                    text-transform: none;
+                }
+            }
+        }
+    }
+
+    &__newsletter {
+        margin-bottom: -5px;
+        border-image: none;
+        border-top: 1px solid #f6f6f6;
+        border-top-color: #e8dac7;
+        border-top-style: solid;
+        border-top-width: .010416667in;
+        background-size: auto;
+        background-repeat: no-repeat;
+        background-color: #f7eee2;
+        background-image: url("http://demo1.cloodo.com/html/oars/img/newsletter-bg.png");
+        padding-bottom: 3.75pc;
+        padding-top: 3.75pc;
+
+        &__title {
+            margin-bottom: 0;
+        }
+    }
+
     &__menu {
         background-color: $gray-light;
         padding: $spacer * 3 0 $spacer * 2;

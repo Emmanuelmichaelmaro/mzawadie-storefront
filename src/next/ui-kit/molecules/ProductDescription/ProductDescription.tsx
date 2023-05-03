@@ -29,6 +29,7 @@ export const ProductDescription: React.FC<IProps> = ({ description, attributes }
                 >
                     <FormattedMessage defaultMessage="DESCRIPTION" />
                 </S.TabTitle>
+
                 <S.TabTitle
                     active={activeTab === TABS.ATTRIBUTES}
                     onMouseEnter={(evt) => {
@@ -43,9 +44,11 @@ export const ProductDescription: React.FC<IProps> = ({ description, attributes }
                     <FormattedMessage defaultMessage="ATTRIBUTES" />
                 </S.TabTitle>
             </S.Tabs>
+
             <div hidden={activeTab !== TABS.DESCRIPTION}>
                 <RichTextEditorContent jsonData={description} />
             </div>
+
             <div hidden={activeTab !== TABS.ATTRIBUTES}>
                 <S.AttributeList>
                     {attributes &&

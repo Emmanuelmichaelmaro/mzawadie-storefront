@@ -1,21 +1,18 @@
 // @ts-nocheck
-import { commonMessages, getDBIdFromGraphqlId, maybe } from "@mzawadie/core";
+import { commonMessages, generateCollectionUrl } from "@mzawadie/core";
 import { ProductListHeader } from "@mzawadie/ui-kit/molecules";
 import { FilterSidebar, ProductList } from "@mzawadie/ui-kit/organisms";
-import { IFilterAttributes, IFilters } from "@next/types";
-import React from "react";
+import { SortOptions } from "@mzawadie/ui-kit/utils/collections";
+import { FeaturedProducts } from "@mzawadie/ui-kit/utils/ssr";
+import { IFilters } from "@next/types";
+import { CollectionDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CollectionDetails";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
+import React, { useState } from "react";
 import { useIntl } from "react-intl";
+import { Attribute } from "src/next/gqlTypes/Attribute";
 
-import { Breadcrumbs, ProductsFeatured } from "../../components";
-import { Collection_collection } from "./gqlTypes/Collection";
-import { CollectionProducts_collection_products } from "./gqlTypes/CollectionProducts";
-
-interface SortItem {
-    label: string;
-    value?: string;
-}
-
-interface SortOptions extends Array<SortItem> {}
+import { Breadcrumbs, ProductsFeatured, extractBreadcrumbs } from "../../components";
+import { getActiveFilterAttributes } from "../Category/utils";
 
 export interface CollectionData {
     details: CollectionDetails;
@@ -25,14 +22,13 @@ export interface CollectionData {
 
 interface PageProps {
     activeFilters: number;
-    attributes: IFilterAttributes[];
     activeSortOption: string;
-    collection: Collection_collection;
+    collection: CollectionData;
     displayLoader: boolean;
     filters: IFilters;
     hasNextPage: boolean;
     numberOfProducts: number;
-    products: CollectionProducts_collection_products;
+    products: ProductList_products_edges_node[];
     sortOptions: SortOptions;
     clearFilters: () => void;
     onLoadMore: () => void;
@@ -43,55 +39,35 @@ interface PageProps {
 export const Page: React.FC<PageProps> = ({
     activeFilters,
     activeSortOption,
-    attributes,
-    collection,
+    collection: { details, attributes, featuredProducts },
     displayLoader,
     hasNextPage,
     clearFilters,
     onLoadMore,
     products,
-    numberOfProducts,
     filters,
     onOrder,
+    numberOfProducts,
     sortOptions,
     onAttributeFiltersChange,
 }) => {
-    const canDisplayProducts = maybe(() => !!products.edges && products.totalCount !== undefined);
-
-    const hasProducts = canDisplayProducts && !!products.totalCount;
+    const hasProducts = products.length > 0;
 
     const [showFilters, setShowFilters] = React.useState(false);
 
     const intl = useIntl();
 
-    const breadcrumbs = [
+    const populateBreadcrumbs = (collection: CollectionDetails) => [
         {
-            link: [`/collection`, `/${collection.slug}`, `/${getDBIdFromGraphqlId(collection.id, "Collection")}/`].join(""),
+            link: generateCollectionUrl(collection?.id, collection?.name),
             value: collection.name,
         },
     ];
 
-    const getAttribute = (attributeSlug: string, valueSlug: string) => {
-        return {
-            attributeSlug,
-            valueName: attributes.find(({ slug }) => attributeSlug === slug).values.find(({ slug }) => valueSlug === slug)
-                .name,
-            valueSlug,
-        };
-    };
-
-    const activeFiltersAttributes =
-        filters &&
-        filters.attributes &&
-        Object.keys(filters.attributes).reduce(
-            (acc, key) => acc.concat(filters.attributes[key].map((valueSlug) => getAttribute(key, valueSlug))),
-            []
-        );
-
     return (
         <div className="collection">
             <div className="container">
-                <Breadcrumbs breadcrumbs={breadcrumbs} />
+                <Breadcrumbs breadcrumbs={populateBreadcrumbs(details)} />
 
                 <FilterSidebar
                     show={showFilters}
@@ -104,26 +80,29 @@ export const Page: React.FC<PageProps> = ({
                 <ProductListHeader
                     activeSortOption={activeSortOption}
                     openFiltersMenu={() => setShowFilters(true)}
-                    numberOfProducts={products ? products.totalCount : 0}
+                    numberOfProducts={numberOfProducts}
                     activeFilters={activeFilters}
-                    activeFiltersAttributes={activeFiltersAttributes}
+                    activeFiltersAttributes={getActiveFilterAttributes(filters?.attributes, attributes)}
                     clearFilters={clearFilters}
                     sortOptions={sortOptions}
                     onChange={onOrder}
                     onCloseFilterAttribute={onAttributeFiltersChange}
                 />
 
-                {canDisplayProducts && (
-                    <ProductList
-                        products={products.edges.map((edge) => edge.node)}
-                        canLoadMore={hasNextPage}
-                        loading={displayLoader}
-                        onLoadMore={onLoadMore}
-                    />
-                )}
+                <ProductList
+                    products={products}
+                    canLoadMore={hasNextPage}
+                    loading={displayLoader}
+                    onLoadMore={onLoadMore}
+                />
             </div>
 
-            {!hasProducts && <ProductsFeatured title={intl.formatMessage(commonMessages.youMightLike)} />}
+            {!displayLoader && !hasProducts && (
+                <ProductsFeatured
+                    products={featuredProducts.products}
+                    title={intl.formatMessage(commonMessages.youMightLike)}
+                />
+            )}
         </div>
     );
 };

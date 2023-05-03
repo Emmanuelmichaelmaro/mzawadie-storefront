@@ -1,5 +1,4 @@
 // @ts-nocheck
-import { maybe } from "@apollo/client/utilities";
 import Loader from "@mzawadie/components/Loader";
 import { MetaWrapper } from "@mzawadie/components/Meta";
 import NetworkStatus from "@mzawadie/components/NetworkStatus";
@@ -11,6 +10,7 @@ import {
     convertSortByFromString,
     channelSlug,
     prodListHeaderCommonMsg,
+    maybe,
 } from "@mzawadie/core";
 import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import { FilterQuerySet } from "@mzawadie/ui-kit/utils/collections";

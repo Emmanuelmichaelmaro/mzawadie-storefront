@@ -1,9 +1,10 @@
-import { ProductDetails_images } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
+// @ts-nocheck
+import noPhotoImg from "@images/no-photo.svg";
+import Carousel from "@mzawadie/components/Carousel";
 import { CachedImage } from "@mzawadie/ui-kit/molecules";
+import { ProductDetails_images } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import * as React from "react";
 
-import { Carousel } from "../../components";
-import noPhotoImg from "../../images/no-photo.svg";
 import styles from "./scss/index.module.scss";
 
 const GalleryCarousel: React.FC<{
@@ -13,7 +14,7 @@ const GalleryCarousel: React.FC<{
         <Carousel
             renderCenterLeftControls={() => null}
             renderCenterRightControls={() => null}
-            renderBottomCenterControls={(props) => {
+            renderBottomCenterControls={(props: any) => {
                 const indexes = [];
 
                 for (let i = 0; i < props.slideCount; i++) {

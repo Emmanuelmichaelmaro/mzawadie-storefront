@@ -9,12 +9,21 @@
 
 export interface SearchResults_products_edges_node_thumbnail {
     __typename: "Image";
+    /**
+     * The URL of the image.
+     */
     url: string;
+    /**
+     * Alt text for an image.
+     */
     alt: string | null;
 }
 
 export interface SearchResults_products_edges_node_thumbnail2x {
     __typename: "Image";
+    /**
+     * The URL of the image.
+     */
     url: string;
 }
 
@@ -36,24 +45,45 @@ export interface SearchResults_products_edges_node {
 
 export interface SearchResults_products_edges {
     __typename: "ProductCountableEdge";
+    /**
+     * The item at the end of the edge.
+     */
     node: SearchResults_products_edges_node;
 }
 
 export interface SearchResults_products_pageInfo {
     __typename: "PageInfo";
+    /**
+     * When paginating forwards, the cursor to continue.
+     */
     endCursor: string | null;
+    /**
+     * When paginating forwards, are there more items?
+     */
     hasNextPage: boolean;
+    /**
+     * When paginating backwards, are there more items?
+     */
     hasPreviousPage: boolean;
+    /**
+     * When paginating backwards, the cursor to continue.
+     */
     startCursor: string | null;
 }
 
 export interface SearchResults_products {
     __typename: "ProductCountableConnection";
     edges: SearchResults_products_edges[];
+    /**
+     * Pagination data for this connection.
+     */
     pageInfo: SearchResults_products_pageInfo;
 }
 
 export interface SearchResults {
+    /**
+     * List of the shop's products. Requires one of the following permissions to include the unpublished items: MANAGE_ORDERS, MANAGE_DISCOUNTS, MANAGE_PRODUCTS.
+     */
     products: SearchResults_products | null;
 }
 

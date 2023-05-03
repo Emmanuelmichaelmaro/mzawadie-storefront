@@ -1,10 +1,11 @@
 // @ts-nocheck
-import { ApolloQueryResult, DocumentNode, ErrorPolicy, FetchPolicy, QueryResult } from "@apollo/client";
-import { Query } from "@apollo/client/react/components";
-import { Error } from "@mzawadie/components/Error";
-import Loader from "@mzawadie/components/Loader";
-import React from "react";
+import { ApolloQueryResult, ErrorPolicy, FetchPolicy } from "apollo-client";
+import { DocumentNode } from "graphql";
+import * as React from "react";
+import { Query, QueryProps, QueryResult } from "react-apollo";
 
+import { Error } from "../components/Error";
+import Loader from "../components/Loader";
 import { RequireAtLeastOne } from "./tsUtils";
 import { maybe } from "./utils";
 
@@ -30,7 +31,6 @@ interface TypedQueryInnerProps<TData, TVariables> {
 }
 
 export function TypedQuery<TData, TVariables>(query: DocumentNode) {
-    // eslint-disable-next-line react/display-name
     return (props: TypedQueryInnerProps<TData, TVariables>) => {
         const {
             children,
@@ -44,8 +44,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             skip,
             variables,
             onCompleted,
-        } = props;
-
+        } = props as JSX.LibraryManagedAttributes<QueryProps<TData, TVariables>, TypedQueryInnerProps<TData, TVariables>>;
         return (
             <Query
                 query={query}
@@ -57,9 +56,7 @@ export function TypedQuery<TData, TVariables>(query: DocumentNode) {
             >
                 {(queryData: QueryResult<TData, TVariables> & LoadMore<TData, TVariables>) => {
                     const { error, loading, data, fetchMore } = queryData;
-
                     const hasData = maybe(() => !!Object.keys(data).length, false);
-
                     const loadMore = (
                         mergeFunc: (previousResults: TData, fetchMoreResult: TData) => TData,
                         extraVariables: RequireAtLeastOne<TVariables>

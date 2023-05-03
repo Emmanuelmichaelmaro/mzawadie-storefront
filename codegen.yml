@@ -1,6 +1,9 @@
 overwrite: true
 schema:
     - ${NEXT_PUBLIC_API_URI}
+hooks:
+    afterAllFileWrite:
+        - prettier --write
 documents: "src/**/*.{ts,graphql}"
 generates:
     src/next/graphql/schema.tsx:
@@ -9,7 +12,7 @@ generates:
                   content: |-
                       // THIS FILE IS GENERATED WITH `pnpm generate`
                       import "graphql/language/ast";
-                      import * as Scalar from './scalars';
+                      import * as Scalar from '../../../scalars';
             - "typescript"
             - "typescript-operations"
             - "typescript-react-apollo"
@@ -22,6 +25,8 @@ generates:
                 DateTime: string
             dedupeOperationSuffix: true # Prevent suffix duplication in generated names
             enumsAsTypes: true
+            noNamespaces: true
+            withHooks: true
     ./graphql.schema.json:
         plugins:
             - "introspection"

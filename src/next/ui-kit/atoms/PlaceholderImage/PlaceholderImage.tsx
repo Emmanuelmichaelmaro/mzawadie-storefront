@@ -1,5 +1,5 @@
 // @ts-ignore
-import NoPhoto from "images/no-photo.svg";
+import NoPhoto from "@images/no-photo.svg";
 import Image from "next/image";
 import React from "react";
 

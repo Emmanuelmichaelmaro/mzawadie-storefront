@@ -1,7 +1,7 @@
 import { paymentErrorMessages } from "@mzawadie/core";
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
 import { ErrorMessage } from "@mzawadie/ui-kit/atoms";
 import { IFormError, IPaymentGatewayConfig, IPaymentSubmitResult } from "@next/types";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import React, { useEffect, useRef, useState } from "react";
 import { useIntl } from "react-intl";
 

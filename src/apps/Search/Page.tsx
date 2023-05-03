@@ -1,8 +1,9 @@
 // @ts-nocheck
+import categoryStyles from "@mzawadie/apps/Category/scss/index.module.scss";
 import { commonMessages, maybe } from "@mzawadie/core";
 import { ProductListHeader } from "@mzawadie/ui-kit/molecules";
 import { FilterSidebar, ProductList } from "@mzawadie/ui-kit/organisms";
-import { IFilterAttributes, IFilters } from "@next/types";
+import { IFilters } from "@next/types";
 import * as React from "react";
 import { useIntl } from "react-intl";
 
@@ -11,23 +12,16 @@ import { FeaturedProduct } from "../../next/gqlTypes/FeaturedProduct";
 import { SearchProducts_products } from "./gqlTypes/SearchProducts";
 import styles from "./scss/index.module.scss";
 
-interface SortItem {
-    label: string;
-    value?: string;
-}
-
-interface SortOptions extends Array<SortItem> {}
-
 interface PageProps {
     activeFilters: number;
-    attributes: IFilterAttributes[];
+    attributes: Attribute[];
     activeSortOption: string;
     displayLoader: boolean;
     filters: IFilters;
     hasNextPage: boolean;
+    featuredProducts: FeaturedProduct[];
     search?: string;
     setSearch?: (newValue: string, updateType?: "replace" | "replaceIn" | "push" | "pushIn") => void;
-    featuredProducts?: FeaturedProduct[];
     products: SearchProducts_products;
     sortOptions: SortOptions;
     clearFilters: () => void;
@@ -47,11 +41,11 @@ const Page: React.FC<PageProps> = ({
     clearFilters,
     onLoadMore,
     products,
-    featuredProducts,
     filters,
     onOrder,
     sortOptions,
     onAttributeFiltersChange,
+    featuredProducts,
 }) => {
     const canDisplayProducts = maybe(() => !!products.edges && products.totalCount !== undefined);
 
@@ -64,8 +58,10 @@ const Page: React.FC<PageProps> = ({
     const getAttribute = (attributeSlug: string, valueSlug: string) => {
         return {
             attributeSlug,
-            valueName: attributes.find(({ slug }) => attributeSlug === slug).values.find(({ slug }) => valueSlug === slug)
-                .name,
+            valueName: attributes
+                .find(({ slug }) => attributeSlug === slug)
+                .choices.edges.map(({ node }) => node)
+                .find(({ slug }) => valueSlug === slug).name,
             valueSlug,
         };
     };
@@ -79,10 +75,10 @@ const Page: React.FC<PageProps> = ({
         );
 
     return (
-        <div className={styles.category}>
+        <div className={categoryStyles.category}>
             <div className={styles.search__page}>
                 <div className={styles.search__page__header}>
-                    <div className={`${styles.search__page__header__input} container`}>
+                    <div className={`${search__page__header__input} ${container}`}>
                         <DebounceChange
                             debounce={(evt) => setSearch((evt.target.value as string).toLowerCase())}
                             value={search}

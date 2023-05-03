@@ -1,11 +1,11 @@
 // @ts-nocheck
 import { generateCategoryUrl, generateProductUrl } from "@mzawadie/core";
 import { structuredData } from "@mzawadie/core/SEO/Product/structuredData";
-import { ProductDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
 import { ProductDescription } from "@mzawadie/ui-kit/molecules";
 import { ProductGallery } from "@mzawadie/ui-kit/organisms";
 import AddToCartSection from "@mzawadie/ui-kit/organisms/AddToCartSection";
 import { smallScreen } from "@mzawadie/ui-kit/styles/constants";
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import classNames from "classnames";
 import React from "react";
 import Media from "react-media";
@@ -75,16 +75,15 @@ const Page: React.FC<
 
     return (
         <div className={styles.product__page}>
-            <div className={styles.container}>
+            <div className="container">
                 <Breadcrumbs breadcrumbs={populateBreadcrumbs(product)} />
             </div>
 
-            <div className={styles.container}>
-                {console.log('\x1b[33m%s\x1b[0m', JSON.stringify(product, null, 4))}
+            <div className="container">
                 <div className={styles.product__page__product}>
-                    {/* <script className="structured-data-list" type="application/ld+json">
+                    <script className="structured-data-list" type="application/ld+json">
                         {structuredData(product)}
-                    </script> */}
+                    </script>
 
                     <Media query={{ maxWidth: smallScreen }}>
                         {(matches) =>
@@ -112,7 +111,7 @@ const Page: React.FC<
                 </div>
             </div>
 
-            <div className={styles.container}>
+            <div className="container">
                 <div className={styles.product__page__product__description}>
                     <ProductDescription description={product.description} attributes={product.attributes} />
                 </div>

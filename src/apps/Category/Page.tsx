@@ -1,12 +1,12 @@
 // @ts-nocheck
-import { commonMessages, maybe } from "@mzawadie/core";
-import { BaseCategory } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/BaseCategory";
-import { CategoryDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/CategoryDetails";
-import { ProductList_products_edges_node } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductList";
+import { commonMessages } from "@mzawadie/core";
 import { ProductListHeader } from "@mzawadie/ui-kit/molecules";
 import { FilterSidebar, ProductList } from "@mzawadie/ui-kit/organisms";
+import { SORT_OPTIONS } from "@mzawadie/ui-kit/utils/collections";
 import { FeaturedProducts } from "@mzawadie/ui-kit/utils/ssr";
-import { IFilterAttributes } from "@next/types";
+import { BaseCategory } from "@saleor/sdk/lib/fragments/gqlTypes/BaseCategory";
+import { CategoryDetails } from "@saleor/sdk/lib/fragments/gqlTypes/CategoryDetails";
+import { ProductList_products_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/ProductList";
 import React from "react";
 import { useIntl } from "react-intl";
 import { Attribute } from "src/next/gqlTypes/Attribute";
@@ -14,13 +14,6 @@ import { Attribute } from "src/next/gqlTypes/Attribute";
 import { Breadcrumbs, extractBreadcrumbs, ProductsFeatured } from "../../components";
 import styles from "./scss/index.module.scss";
 import { Filters, getActiveFilterAttributes } from "./utils";
-
-interface SortItem {
-    label: string;
-    value?: string;
-}
-
-interface SortOptions extends Array<SortItem> {}
 
 export interface CategoryData {
     details: CategoryDetails;
@@ -34,11 +27,9 @@ interface PageProps {
     activeFilters: number;
     activeSortOption: string;
     displayLoader: boolean;
-    attributes: IFilterAttributes[];
     filters: Filters;
     hasNextPage: boolean;
     products: ProductList_products_edges_node[];
-    sortOptions: SortOptions;
     numberOfProducts: number;
     clearFilters: () => void;
     onLoadMore: () => void;
@@ -49,22 +40,18 @@ interface PageProps {
 export const Page: React.FC<PageProps> = ({
     activeFilters,
     activeSortOption,
-    attributes,
-    category,
+    category: { attributes, details, ancestors, featuredProducts },
     numberOfProducts,
     products,
     displayLoader,
     hasNextPage,
-    sortOptions,
     clearFilters,
     onLoadMore,
     filters,
     onOrder,
     onAttributeFiltersChange,
 }) => {
-    const canDisplayProducts = maybe(() => !!products.edges && products.totalCount !== undefined);
-
-    const hasProducts = canDisplayProducts && !!products.totalCount;
+    const hasProducts = products.length > 0;
 
     const [showFilters, setShowFilters] = React.useState(false);
 
@@ -72,8 +59,8 @@ export const Page: React.FC<PageProps> = ({
 
     return (
         <div className={styles.category}>
-            <div className={styles.categry__container}>
-                <Breadcrumbs breadcrumbs={extractBreadcrumbs(category)} />
+            <div className={`container`}>
+                <Breadcrumbs breadcrumbs={extractBreadcrumbs(details, ancestors)} />
 
                 <FilterSidebar
                     show={showFilters}
@@ -90,24 +77,22 @@ export const Page: React.FC<PageProps> = ({
                     activeFilters={activeFilters}
                     activeFiltersAttributes={getActiveFilterAttributes(filters?.attributes, attributes)}
                     clearFilters={clearFilters}
-                    sortOptions={sortOptions}
+                    sortOptions={SORT_OPTIONS}
                     onChange={onOrder}
                     onCloseFilterAttribute={onAttributeFiltersChange}
                 />
 
-                {canDisplayProducts && (
-                    <ProductList
-                        products={products.edges.map((edge) => edge.node)}
-                        canLoadMore={hasNextPage}
-                        loading={displayLoader}
-                        onLoadMore={onLoadMore}
-                    />
-                )}
+                <ProductList
+                    products={products}
+                    canLoadMore={hasNextPage}
+                    loading={displayLoader}
+                    onLoadMore={onLoadMore}
+                />
             </div>
 
             {!displayLoader && !hasProducts && (
                 <ProductsFeatured
-                    products={category.featuredProducts.products}
+                    products={featuredProducts.products}
                     title={intl.formatMessage(commonMessages.youMightLike)}
                 />
             )}

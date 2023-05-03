@@ -4,14 +4,16 @@ import { CartTable } from "@mzawadie/components/CartTable";
 import { LineI } from "@mzawadie/components/CartTable/ProductRow";
 import NotFound from "@mzawadie/components/NotFound";
 import { paths, checkoutMessages, translateOrderStatus, translatePaymentStatus } from "@mzawadie/core";
-import { OrderDetail_lines } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/OrderDetail";
-import { OrderByToken_orderByToken } from "@mzawadie/sdk/lib/src/queries/gqlTypes/OrderByToken";
-import { UserOrderByToken_orderByToken } from "@mzawadie/sdk/lib/src/queries/gqlTypes/UserOrderByToken";
 import { DropdownMenu, IconButton } from "@mzawadie/ui-kit/atoms";
 import { TaxedMoney } from "@mzawadie/ui-kit/containers";
+import { OrderDetail_lines } from "@saleor/sdk/lib/fragments/gqlTypes/OrderDetail";
+import { OrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/OrderByToken";
+import { UserOrderByToken_orderByToken } from "@saleor/sdk/lib/queries/gqlTypes/UserOrderByToken";
 import Link from "next/link";
 import * as React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
+
+import styles from "./scss/index.module.scss";
 
 const extractOrderLines = (lines: OrderDetail_lines[]): LineI[] => {
     return lines
@@ -35,13 +37,13 @@ const Page: React.FC<{
         <>
             {!guest && (
                 <Link href={paths.accountOrderHistory}>
-                    <a className="order-details__link">
+                    <a className={styles.order__details__link}>
                         <FormattedMessage defaultMessage="Go back to Order History" />
                     </a>
                 </Link>
             )}
 
-            <div className="order-details__header">
+            <div className={styles.order__details__header}>
                 <div>
                     <h3>
                         <FormattedMessage
@@ -50,14 +52,14 @@ const Page: React.FC<{
                         />
                     </h3>
 
-                    <p className="order-details__status">
+                    <p className={styles.order__details__status}>
                         {translatePaymentStatus(order.paymentStatusDisplay, intl)} /{" "}
                         {translateOrderStatus(order?.statusDisplay, intl)}
                     </p>
                 </div>
 
                 {"invoices" in order && order?.invoices?.length > 0 && (
-                    <div className="order-details__header-menu">
+                    <div className={styles.order__details__header__menu}>
                         <DropdownMenu
                             type="clickable"
                             header={<IconButton testingContext="expandButton" name="expand" size={28} />}
@@ -86,11 +88,12 @@ const Page: React.FC<{
                 subtotal={<TaxedMoney taxedMoney={order.subtotal} />}
             />
 
-            <div className="order-details__summary">
+            <div className={styles.order__details__summary}>
                 <div>
                     <h4>
                         <FormattedMessage {...checkoutMessages.shippingAddress} />
                     </h4>
+
                     <AddressSummary address={order.shippingAddress} email={order.userEmail} />
                 </div>
             </div>
@@ -99,4 +102,5 @@ const Page: React.FC<{
         <NotFound />
     );
 };
+
 export default Page;

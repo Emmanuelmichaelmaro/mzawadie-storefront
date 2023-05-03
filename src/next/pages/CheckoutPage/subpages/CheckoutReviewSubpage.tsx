@@ -1,8 +1,8 @@
 import { paymentGatewayNames } from "@mzawadie/core";
-import { OrderStatus, useCheckout } from "@mzawadie/sdk/lib/src";
 import { CheckoutReview } from "@mzawadie/ui-kit/organisms";
 import { statuses as dummyStatuses } from "@mzawadie/ui-kit/organisms/DummyPaymentGateway";
 import { IFormError } from "@next/types";
+import { OrderStatus, useCheckout } from "@saleor/sdk";
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useState } from "react";
 
 import { CheckoutStep, SubpageBaseProps, SubpageCompleteHandler } from "../utils";

@@ -10,11 +10,7 @@ module.exports = {
     // ],
     stories: ["../src/next/**/stories.tsx"],
     addons: ["@storybook/addon-links", "storybook-addon-next-router", "@storybook/addon-essentials"],
-    core: {
-        builder: "webpack5",
-    },
     typescript: { reactDocgen: false },
-
     webpackFinal: async (config, { configType }) => {
         (config.watch = true),
             (config.watchOptions = {

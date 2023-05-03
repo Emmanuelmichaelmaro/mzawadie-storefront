@@ -1,8 +1,8 @@
 // @ts-nocheck
+import NoPhoto from "@images/no-photo.svg";
 import { PlaceholderImage } from "@mzawadie/ui-kit/atoms";
 import { useNetworkStatus } from "@mzawadie/ui-kit/hooks";
 import { IImage } from "@next/types";
-import NoPhoto from "images/no-photo.svg";
 import Image from "next/image";
 import React from "react";
 

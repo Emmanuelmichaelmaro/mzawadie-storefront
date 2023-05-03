@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { channelSlug, getGraphqlIdFromDBId, maybe } from "@mzawadie/core";
-import { useCart } from "@mzawadie/sdk/lib/src";
 import { Loader, OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
+import { useCart } from "@saleor/sdk";
 import { isEmpty } from "lodash";
 import { NextPage } from "next";
 import { useRouter } from "next/router";

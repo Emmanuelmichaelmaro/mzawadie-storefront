@@ -1,6 +1,6 @@
 import { paths } from "@mzawadie/core";
-import { useAuth } from "@mzawadie/sdk/lib/src";
 import { Redirect } from "@mzawadie/ui-kit/atoms";
+import { useAuth } from "@saleor/sdk";
 import React, { useContext, useState } from "react";
 
 import { Offline, OfflinePlaceholder, Online, OverlayContext } from "..";

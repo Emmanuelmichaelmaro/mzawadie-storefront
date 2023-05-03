@@ -1,7 +1,7 @@
+import LogoSmall from "@images/logo-small.svg";
 import { paths } from "@mzawadie/core";
 import { Icon } from "@mzawadie/ui-kit/atoms";
 import { largeScreen } from "@mzawadie/ui-kit/styles/constants";
-import LogoSmall from "images/logo-small.svg";
 import Link from "next/link";
 import React from "react";
 import Media from "react-responsive";

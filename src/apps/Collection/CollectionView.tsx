@@ -1,20 +1,19 @@
 // @ts-nocheck
-import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import { FilterQuerySet, SORT_OPTIONS } from "@mzawadie/ui-kit/utils/collections";
 import { IFilters } from "@next/types";
 import { NextPage } from "next";
 import * as React from "react";
 import { StringParam, useQueryParam } from "use-query-params";
 
-import { MetaWrapper, NotFound } from "../../components";
+import { MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import { PRODUCTS_PER_PAGE } from "../../core/config";
+import { useProductsQuery } from "../Category/queries";
 import { filtersChangeHandler } from "../Category/utils";
-import { useProductsQuery } from "../Product/queries";
 import { CollectionData, Page } from "./Page";
 
 export type CollectionViewProps = {
-    params: { slug: string } | undefined;
+    params: { id: string; slug: string } | undefined;
     data: ({ id: string } & CollectionData) | undefined | null;
 };
 
@@ -48,11 +47,11 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
 
     const handleLoadMore = () =>
         loadMore(
-            (prev: any, next: any) => ({
+            (prev, next) => ({
                 products: {
                     ...prev.products,
-                    edges: [...prev.products.edges, ...next.products.edges],
-                    pageInfo: next.products.pageInfo,
+                    edges: [...prev.products?.edges, ...next.products?.edges],
+                    pageInfo: next.products?.pageInfo,
                 },
             }),
             pageInfo.endCursor
@@ -71,7 +70,6 @@ export const CollectionView: NextPage<CollectionViewProps> = ({ data: collection
                             }}
                         >
                             <Page
-                                attributes={collection.attributes}
                                 numberOfProducts={numberOfProducts}
                                 clearFilters={handleClearFilters}
                                 collection={collection}

@@ -1,9 +1,9 @@
 // @ts-nocheck
 import React from "react";
 
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
-const Loader: React.FC<{ full?: boolean }> = ({ full }) => {
+const Loader: React.FC<{ fullScreen?: boolean }> = ({ fullScreen }) => {
     const getHeight = () => {
         const headerHeight = document.getElementById("header") && document.getElementById("header").offsetHeight;
         const footerHeight = document.getElementById("footer") && document.getElementById("footer").offsetHeight;
@@ -11,8 +11,8 @@ const Loader: React.FC<{ full?: boolean }> = ({ full }) => {
     };
 
     return (
-        <div className="loader" style={full && { height: getHeight() }}>
-            <div className="loader__items">
+        <div className={styles.loader} style={fullScreen && { height: getHeight() }}>
+            <div className={styles.loader__items}>
                 <span />
                 <span />
                 <span />

@@ -1,4 +1,6 @@
-import { gql, useMutation } from "@apollo/client";
+// @ts-nocheck
+import gql from "graphql-tag";
+import { useMutation } from "react-apollo";
 
 import { AccountConfirm, AccountConfirmVariables } from "./gqlTypes/AccountConfirm";
 

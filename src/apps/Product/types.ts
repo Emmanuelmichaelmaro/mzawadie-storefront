@@ -1,5 +1,5 @@
-import { ProductDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
-import { ICheckoutModelLine } from "@mzawadie/sdk/lib/src/helpers";
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
+import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 
 export interface IProps {
     product: ProductDetails;

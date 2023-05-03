@@ -101,7 +101,7 @@
                     font-weight: $bold-font-weight;
 
                     &:after {
-                        content: url("../../../images/carousel-arrow.svg");
+                        content: url("../../../../public/images/carousel-arrow.svg");
                         display: inline-block;
                         transform: rotate(180deg);
                         margin-left: 1rem;

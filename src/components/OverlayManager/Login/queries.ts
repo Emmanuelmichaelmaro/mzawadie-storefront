@@ -1,5 +1,5 @@
-import { gql } from "@apollo/client";
 import { TypedMutation } from "@mzawadie/core/mutations";
+import gql from "graphql-tag";
 
 import { RegisterAccount, RegisterAccountVariables } from "./gqlTypes/RegisterAccount";
 

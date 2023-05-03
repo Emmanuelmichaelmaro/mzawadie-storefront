@@ -1,12 +1,12 @@
 import { checkoutMessages, paths } from "@mzawadie/core";
-import { useAuth, useCart, useCheckout } from "@mzawadie/sdk/lib/src";
-import { IItems } from "@mzawadie/sdk/lib/src/api/Cart/types";
-import { UserDetails_me } from "@mzawadie/sdk/lib/src/queries/gqlTypes/UserDetails";
 import { Button, CartFooter, CartHeader, Loader } from "@mzawadie/ui-kit/atoms";
 import { TaxedMoney } from "@mzawadie/ui-kit/containers";
 import { CartRow } from "@mzawadie/ui-kit/organisms";
 import { Cart, CartEmpty } from "@mzawadie/ui-kit/templates";
 import { ITaxedMoney } from "@next/types";
+import { useAuth, useCart, useCheckout } from "@saleor/sdk";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
+import { UserDetails_me } from "@saleor/sdk/lib/queries/gqlTypes/UserDetails";
 import { NextPage } from "next";
 import Link from "next/link";
 import React from "react";

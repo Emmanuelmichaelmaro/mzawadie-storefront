@@ -1,9 +1,9 @@
 import ShopProvider from "@mzawadie/components/ShopProvider";
 import { demoMode } from "@mzawadie/core";
-import { useAuth } from "@mzawadie/sdk/lib/src";
 import { Loader } from "@mzawadie/ui-kit/atoms";
 import { useDynamicRouteRedirect } from "@mzawadie/ui-kit/hooks";
 import { ShopConfig } from "@mzawadie/ui-kit/utils/ssr";
+import { useAuth } from "@saleor/sdk";
 import { useRouter } from "next/router";
 import React from "react";
 

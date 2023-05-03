@@ -1,17 +1,17 @@
 @import "../../../globalStyles/scss/variables.scss";
 
-.side-nav {
+.side__nav {
     $item-height: 3.7rem;
     max-width: calc(100vw - 5rem);
     width: 30rem;
 
-    &__menu-item {
+    &__menu__item {
         border-bottom: 1px solid $gray-light;
         display: grid;
         height: $item-height;
 
-        &-link,
-        &-back span {
+        &__link,
+        &__back span {
             align-items: center;
             color: $base-font-color;
             display: flex;
@@ -26,7 +26,7 @@
             }
         }
 
-        &-logo {
+        &__logo {
             align-self: center;
             padding: 0.75rem $spacer;
 
@@ -35,10 +35,10 @@
             }
         }
 
-        &-link,
-        &-more,
-        &-back,
-        &-close {
+        &__link,
+        &__more,
+        &__back,
+        &__close {
             transition: 0.3s;
 
             &:hover {
@@ -50,26 +50,26 @@
             }
         }
 
-        &-close,
-        &-more,
-        &-back {
+        &__close,
+        &__more,
+        &__back {
             &:hover {
                 cursor: pointer;
             }
         }
 
-        &-more {
+        &__more {
             align-self: center;
             padding: 1.25rem 1.75rem;
         }
 
-        &-back {
+        &__back {
             svg {
                 margin-right: 1rem;
             }
         }
 
-        &-close {
+        &__close {
             align-items: center;
             display: flex;
             height: $item-height;
@@ -87,7 +87,7 @@
             }
         }
 
-        &__has-subnavigation,
+        &__has__subnavigation,
         &--parent {
             grid-template-columns: 1fr $item-height;
         }

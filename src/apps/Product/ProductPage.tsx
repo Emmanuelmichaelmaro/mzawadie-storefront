@@ -1,14 +1,12 @@
 // @ts-nocheck
-import { MetaWrapper } from "@mzawadie/components/Meta";
-import NotFound from "@mzawadie/components/NotFound";
-import { useCart } from "@mzawadie/sdk/lib/src";
-import { ProductDetails } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/ProductDetails";
-import { Loader, OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
+import { useCart } from "@saleor/sdk";
+import { ProductDetails } from "@saleor/sdk/lib/fragments/gqlTypes/ProductDetails";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import queryString from "query-string";
 import React, { useEffect, useState } from "react";
 
+import { Loader, MetaWrapper, NotFound, OfflinePlaceholder } from "../../components";
 import NetworkStatus from "../../components/NetworkStatus";
 import Page from "./Page";
 import { IProps } from "./types";
@@ -83,7 +81,7 @@ const PageWithQueryAttributes: React.FC<IProps> = (props) => {
 };
 
 export type ProductPageProps = {
-    params: { id: number; slug: string } | undefined;
+    params: { id: string; slug: string } | undefined;
     data: ProductDetails | undefined | null;
 };
 

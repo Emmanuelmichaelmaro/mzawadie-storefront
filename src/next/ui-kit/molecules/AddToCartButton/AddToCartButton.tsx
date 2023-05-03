@@ -9,7 +9,14 @@ export interface IAddToCartButton {
 
 export const AddToCartButton: React.FC<IAddToCartButton> = ({ onSubmit, disabled }) => {
     return (
-        <Button fullWidth testingContext="addProductToCartButton" onClick={onSubmit} color="primary" disabled={disabled}>
+        <Button
+            fullWidth
+            testingContext="addProductToCartButton"
+            onClick={onSubmit}
+            color="primary"
+            disabled={disabled}
+            style={{ width: "-webkit-fill-available" }}
+        >
             <FormattedMessage defaultMessage="Add to basket" />
         </Button>
     );

@@ -4,9 +4,10 @@ import Link from "next/link";
 import React from "react";
 
 import { SearchResults_products_edges } from "./gqlTypes/SearchResults";
+import styles from "./scss/index.module.scss";
 
 const ProductItem: React.FC<SearchResults_products_edges> = ({ node: product }) => (
-    <li className="search__products__item">
+    <li className={styles.search__products__item}>
         <Link href={generateProductUrl(product.id, product.name)}>
             <a>
                 <Thumbnail source={product} />

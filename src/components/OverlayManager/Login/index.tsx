@@ -1,14 +1,15 @@
 // @ts-nocheck
+import closeImg from "@images/x.svg";
 import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 import { ReactSVG } from "react-svg";
 
 import { LoginForm, Offline, Online, Overlay, OverlayContextInterface, OverlayTheme, OverlayType } from "../..";
-import closeImg from "../../../images/x.svg";
+import overlayStyles from "../../Overlay/scss/index.module.scss";
 import ForgottenPassword from "./ForgottenPassword";
 import RegisterForm from "./RegisterForm";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 class Login extends React.Component<
     { overlay: OverlayContextInterface; active?: "login" | "register" },
@@ -35,17 +36,21 @@ class Login extends React.Component<
 
         return (
             <Overlay testingContext="loginOverlay" context={overlay}>
-                <div className="login">
+                <div className={styles.login}>
                     <Online>
-                        <div className="overlay__header">
-                            <p className="overlay__header-text">
+                        <div className={overlayStyles.overlay__header}>
+                            <p className={overlayStyles.overlay__header__text}>
                                 <FormattedMessage defaultMessage="Mzawadie account" />
                             </p>
 
-                            <ReactSVG src={closeImg} onClick={hide} className="overlay__header__close-icon" />
+                            <ReactSVG
+                                src={closeImg}
+                                onClick={hide}
+                                className={overlayStyles.overlay__header__close__icon}
+                            />
                         </div>
 
-                        <div className="login__tabs">
+                        <div className={styles.login__tabs}>
                             <span
                                 data-test="loginTab"
                                 onClick={() => this.changeActiveTab("login")}
@@ -63,7 +68,7 @@ class Login extends React.Component<
                             </span>
                         </div>
 
-                        <div className="login__content">
+                        <div className={styles.login__content}>
                             {this.state.active === "login" ? (
                                 <>
                                     <LoginForm hide={hide} />

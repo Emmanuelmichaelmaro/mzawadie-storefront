@@ -1,11 +1,11 @@
 // @ts-nocheck
-import { IItems } from "@mzawadie/sdk/lib/src/api/Cart/types";
+import cartImg from "@images/cart.svg";
 import { Button, CartCostsSummary, Loader, OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import { TaxedMoney } from "@mzawadie/ui-kit/containers";
 import { useHandlerWhenClickedOutside, useNetworkStatus } from "@mzawadie/ui-kit/hooks";
 import { CardHeader } from "@mzawadie/ui-kit/molecules";
 import { ITaxedMoney } from "@next/types";
-import cartImg from "images/cart.svg";
+import { IItems } from "@saleor/sdk/lib/api/Cart/types";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import { ReactSVG } from "react-svg";

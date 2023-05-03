@@ -1,6 +1,6 @@
-import { mediumScreen } from "@mzawadie/ui-kit/styles/constants";
 // @ts-ignore
-import LogoSmall from "images/logo-small.svg";
+import LogoSmall from "@images/logo-small.svg";
+import { mediumScreen } from "@mzawadie/ui-kit/styles/constants";
 import React from "react";
 import { FormattedMessage } from "react-intl";
 import Media from "react-responsive";

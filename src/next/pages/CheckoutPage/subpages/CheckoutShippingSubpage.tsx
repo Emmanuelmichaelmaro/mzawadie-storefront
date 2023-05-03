@@ -1,6 +1,6 @@
-import { useCheckout } from "@mzawadie/sdk/lib/src";
 import { CheckoutShipping } from "@mzawadie/ui-kit/organisms";
 import { IFormError } from "@next/types";
+import { useCheckout } from "@saleor/sdk";
 import React, { forwardRef, RefForwardingComponent, useImperativeHandle, useRef, useState } from "react";
 
 import { CheckoutStep, SubpageBaseProps, SubpageCompleteHandler } from "../utils";

@@ -1,40 +1,38 @@
 // @ts-nocheck
+import { structuredData } from "@mzawadie/core/SEO/Homepage/structuredData";
 import { generateCategoryUrl } from "@mzawadie/core/utils";
+import { FeaturedProducts } from "@mzawadie/ui-kit/utils/ssr";
 import classNames from "classnames";
 import Link from "next/link";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 
+import noPhotoImg from "../../../public/images/no-photo.svg";
 import { Button, ProductsFeatured } from "../../components";
-import noPhotoImg from "../../images/no-photo.svg";
 import { HomePageProducts_categories, HomePageProducts_shop } from "./gqlTypes/HomePageProducts";
 import styles from "./scss/index.module.scss";
 
 const Page: React.FC<{
     categories: HomePageProducts_categories | null;
-    featuredProducts: any;
+    featuredProducts: FeaturedProducts;
     shop: HomePageProducts_shop;
-}> = ({ categories, featuredProducts }) => {
+}> = ({ categories, featuredProducts, shop }) => {
     const categoriesExist = () => {
         return categories && categories.edges && categories.edges.length > 0;
-    };
-
-    const productsExist = () => {
-        return (
-            featuredProducts.collection &&
-            featuredProducts.collection.products.edges &&
-            featuredProducts.collection.products.edges.length > 0
-        );
     };
 
     const intl = useIntl();
 
     return (
         <>
+            <script className="structured-data-list" type="application/ld+json">
+                {structuredData(shop)}
+            </script>
+
             <div
                 className={styles.home__page__hero}
                 style={
-                    featuredProducts.collection.backgroundImage
+                    featuredProducts.collection?.backgroundImage
                         ? {
                               backgroundImage: `url(${featuredProducts.collection.backgroundImage.url})`,
                           }
@@ -61,7 +59,7 @@ const Page: React.FC<{
 
                 <div className={styles.home__page__hero__action}>
                     {categoriesExist() && (
-                        <Link href={generateCategoryUrl(categories?.edges[0].node.id, categories?.edges[0].node.slug)}>
+                        <Link href={generateCategoryUrl(categories?.edges[0]?.node?.id, categories?.edges[0].node.slug)}>
                             <a>
                                 <Button testingContext="homepageHeroActionButton">
                                     <FormattedMessage defaultMessage="Shop sale" />
@@ -72,12 +70,10 @@ const Page: React.FC<{
                 </div>
             </div>
 
-            {productsExist() && (
-                <ProductsFeatured
-                    products={featuredProducts.collection.products}
-                    title={intl.formatMessage({ defaultMessage: "Featured" })}
-                />
-            )}
+            <ProductsFeatured
+                products={featuredProducts.collection?.products}
+                title={intl.formatMessage({ defaultMessage: "Featured" })}
+            />
 
             {categoriesExist() && (
                 <div className={styles.home__page__categories}>

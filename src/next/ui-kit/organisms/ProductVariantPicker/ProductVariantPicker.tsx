@@ -1,6 +1,6 @@
-import { ProductDetails_product_variants } from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
 import { useProductVariantsAttributes, useProductVariantsAttributesValuesSelection } from "@mzawadie/ui-kit/hooks";
 import { IProductVariantsAttributesSelectedValues } from "@next/types";
+import { ProductDetails_product_variants } from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import React, { useEffect } from "react";
 
 import { ProductVariantAttributeSelect } from "./ProductVariantAttributeSelect";

@@ -1,5 +1,5 @@
-import { CountryCode } from "@mzawadie/sdk/lib/gqlTypes/globalTypes";
-import { useCreateUserAddress, useUpdateUserAddress } from "@mzawadie/sdk/lib/src";
+import { useCreateUserAddress, useUpdateUserAddress } from "@saleor/sdk";
+import { CountryCode } from "@saleor/sdk/lib/gqlTypes/globalTypes";
 import React from "react";
 
 import { AddressForm } from "../AddressForm";

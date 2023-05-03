@@ -1,5 +1,5 @@
-import { useAuth } from "@mzawadie/sdk/lib/src";
 import { ServiceWorkerContext } from "@mzawadie/ui-kit/containers/ServiceWorkerProvider";
+import { useAuth } from "@saleor/sdk";
 import React from "react";
 import { useAlert } from "react-alert";
 import { useIntl } from "react-intl";

@@ -7,6 +7,9 @@
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * An enumeration.
+ */
 export enum CountryCode {
     AD = "AD",
     AE = "AE",
@@ -268,11 +271,14 @@ export enum OrderDirection {
 export enum ProductOrderField {
     COLLECTION = "COLLECTION",
     DATE = "DATE",
+    LAST_MODIFIED = "LAST_MODIFIED",
+    LAST_MODIFIED_AT = "LAST_MODIFIED_AT",
     MINIMAL_PRICE = "MINIMAL_PRICE",
     NAME = "NAME",
     PRICE = "PRICE",
     PUBLICATION_DATE = "PUBLICATION_DATE",
     PUBLISHED = "PUBLISHED",
+    PUBLISHED_AT = "PUBLISHED_AT",
     RANK = "RANK",
     RATING = "RATING",
     TYPE = "TYPE",
@@ -280,7 +286,7 @@ export enum ProductOrderField {
 
 export interface AttributeInput {
     slug: string;
-    values?: (string | null)[] | null;
+    values?: string[] | null;
     valuesRange?: IntRangeInput | null;
     dateTime?: DateTimeRangeInput | null;
     date?: DateRangeInput | null;

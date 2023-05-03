@@ -1,26 +1,30 @@
 // @ts-nocheck
 import { ShopContext } from "@mzawadie/components/ShopProvider/context";
 import { checkoutMessages, commonMessages } from "@mzawadie/core";
-import { AccountErrorCode, AddressTypeEnum, useDefaultUserAddress, useDeleteUserAddresss } from "@mzawadie/sdk/lib/src";
-import { User } from "@mzawadie/sdk/lib/src/fragments/gqlTypes/User";
-import { getUserDetailsQuery } from "@mzawadie/sdk/lib/src/queries/user";
 import { AddressFormModal, AddressGrid } from "@mzawadie/ui-kit/organisms";
+import { AccountErrorCode, AddressTypeEnum, useDefaultUserAddress, useDeleteUserAddresss } from "@saleor/sdk";
+import { User } from "@saleor/sdk/lib/fragments/gqlTypes/User";
+import { getUserDetailsQuery } from "@saleor/sdk/lib/queries/user";
 import React from "react";
 import { useIntl } from "react-intl";
 
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 const AddressBook: React.FC<{
     user: User;
 }> = ({ user }) => {
     const { defaultCountry, countries } = React.useContext(ShopContext);
+
     const [displayNewModal, setDisplayNewModal] = React.useState(false);
+
     const [displayEditModal, setDisplayEditModal] = React.useState(false);
+
     const [addressData, setAddressData] = React.useState(null);
+
     const [setDefaultUserAddress] = useDefaultUserAddress(undefined, {
         refetchQueries: (result) => {
-            if (result.data.accountSetDefaultAddress.errors.length > 0) {
-                if (result.data.accountSetDefaultAddress.errors.find((err) => err.code === AccountErrorCode.NOT_FOUND)) {
+            if (result.data?.accountSetDefaultAddress.errors.length > 0) {
+                if (result.data?.accountSetDefaultAddress.errors.find((err) => err.code === AccountErrorCode.NOT_FOUND)) {
                     return [
                         {
                             query: getUserDetailsQuery,
@@ -30,10 +34,11 @@ const AddressBook: React.FC<{
             }
         },
     });
+
     const [setDeleteUserAddress] = useDeleteUserAddresss(undefined, {
         refetchQueries: (result) => {
-            if (result.data.accountAddressDelete.errors.length > 0) {
-                if (result.data.accountAddressDelete.errors.find((err) => err.code === AccountErrorCode.NOT_FOUND)) {
+            if (result.data?.accountAddressDelete.errors.length > 0) {
+                if (result.data?.accountAddressDelete.errors.find((err) => err.code === AccountErrorCode.NOT_FOUND)) {
                     return [
                         {
                             query: getUserDetailsQuery,
@@ -43,6 +48,7 @@ const AddressBook: React.FC<{
             }
         },
     });
+
     const intl = useIntl();
 
     const userAddresses = user.addresses?.map((address) => {
@@ -67,11 +73,12 @@ const AddressBook: React.FC<{
                 type: type === "BILLING" ? AddressTypeEnum.BILLING : AddressTypeEnum.SHIPPING,
             });
         };
+
         return addressToDisplay;
     });
 
     return (
-        <div className="address-book-container">
+        <div className={styles.address__book__container}>
             <AddressGrid
                 addresses={userAddresses}
                 addNewAddress={() => {

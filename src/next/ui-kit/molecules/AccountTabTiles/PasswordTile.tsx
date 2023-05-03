@@ -1,6 +1,6 @@
 import { commonMessages } from "@mzawadie/core";
-import { usePasswordChange } from "@mzawadie/sdk/lib/src";
 import { Attribute, IconButton, Tile } from "@mzawadie/ui-kit/atoms";
+import { usePasswordChange } from "@saleor/sdk";
 import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 

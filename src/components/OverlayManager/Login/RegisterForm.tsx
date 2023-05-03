@@ -7,7 +7,7 @@ import { IntlShape, useIntl } from "react-intl";
 import { Button, Form, TextField } from "../..";
 import { RegisterAccount } from "./gqlTypes/RegisterAccount";
 import { TypedAccountRegisterMutation } from "./queries";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 const showSuccessNotification = (data: RegisterAccount, hide: () => void, alert: AlertManager, intl: IntlShape) => {
     const successful = maybe(() => !data.accountRegister.errors.length);
@@ -57,6 +57,7 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
                             type="email"
                             required
                         />
+                        
                         <TextField
                             name="password"
                             autoComplete="password"
@@ -64,7 +65,8 @@ const RegisterForm: React.FC<{ hide: () => void }> = ({ hide }) => {
                             type="password"
                             required
                         />
-                        <div className="login__content__button">
+                        
+                        <div className={styles.login__content__button}>
                             <Button
                                 testingContext="submitRegisterFormButton"
                                 type="submit"

@@ -1,10 +1,10 @@
 // @ts-nocheck
 import { apiUrl, channelSlug } from "@mzawadie/core";
-import { ConnectResult, MzawadieManager } from "@mzawadie/sdk/lib/src";
-import BaseList, { BaseListVariables } from "@mzawadie/sdk/lib/src/helpers/BaseList";
-import { GetShop } from "@mzawadie/sdk/lib/src/queries/gqlTypes/GetShop";
-import { getShop } from "@mzawadie/sdk/lib/src/queries/shop";
 import { RequireOnlyOne } from "@mzawadie/ui-kit/utils/tsUtils";
+import { ConnectResult, SaleorManager } from "@saleor/sdk";
+import BaseList, { BaseListVariables } from "@saleor/sdk/lib/helpers/BaseList";
+import { GetShop } from "@saleor/sdk/lib/queries/gqlTypes/GetShop";
+import { getShop } from "@saleor/sdk/lib/queries/shop";
 
 import { Attribute } from "../gqlTypes/Attribute";
 import {
@@ -19,12 +19,13 @@ import { featuredProductsQuery, shopAttributesQuery, shopMenusQuery } from "../q
 
 let CONNECTION: ConnectResult | null = null;
 
-export const getMzawadieApi = async () => {
+export const getSaleorApi = async () => {
     if (!CONNECTION) {
-        const manager = new MzawadieManager(
+        const manager = new SaleorManager(
             { apiUrl, channel: channelSlug },
             { options: { ssrMode: true, connectToDevTools: true } }
         );
+
         CONNECTION = await manager.connect();
     }
 
@@ -63,7 +64,7 @@ export type FeaturedProducts = {
 } & Partial<Pick<FeaturedProductsQuery_collection, "name" | "backgroundImage">>;
 
 export const getFeaturedProducts = async (): Promise<FeaturedProducts> => {
-    const { apolloClient } = await getMzawadieApi();
+    const { apolloClient } = await getSaleorApi();
 
     const { data } = await apolloClient.query<FeaturedProductsQuery, FeaturedProductsQueryVariables>({
         query: featuredProductsQuery,
@@ -83,7 +84,7 @@ export const getShopAttributes = async ({
     categoryId: string | null;
     collectionId: string | null;
 }>): Promise<Attribute[]> => {
-    const { apolloClient } = await getMzawadieApi();
+    const { apolloClient } = await getSaleorApi();
 
     const { data } = await apolloClient.query<ShopAttributesQuery, ShopAttributesQueryVariables>({
         query: shopAttributesQuery,
@@ -98,7 +99,7 @@ export const getShopAttributes = async ({
 };
 
 export const getShopMenus = async (): Promise<ShopMenusQuery> => {
-    const { apolloClient } = await getMzawadieApi();
+    const { apolloClient } = await getSaleorApi();
 
     const { data } = await apolloClient.query<ShopMenusQuery, ShopMenusQueryVariables>({
         query: shopMenusQuery,
@@ -116,7 +117,7 @@ export const getShopMenus = async (): Promise<ShopMenusQuery> => {
 export type ShopConfig = ShopMenusQuery & { shopConfig: GetShop["shop"] };
 
 export const getShopConfig = async (): Promise<any> => {
-    const { apolloClient } = await getMzawadieApi();
+    const { apolloClient } = await getSaleorApi();
 
     const [{ footer, mainMenu }, shopConfig] = await Promise.all([
         apolloClient

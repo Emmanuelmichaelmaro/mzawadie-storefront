@@ -1,4 +1,4 @@
-import { OrdersByUser_me_orders_edges_node } from "@mzawadie/sdk/lib/src/queries/gqlTypes/OrdersByUser";
+import { OrdersByUser_me_orders_edges_node } from "@saleor/sdk/lib/queries/gqlTypes/OrdersByUser";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { IntlProvider } from "react-intl";

@@ -1,4 +1,6 @@
 // @ts-nocheck
+import searchImg from "@images/search.svg";
+import closeImg from "@images/x.svg";
 import { maybe, commonMessages, channelSlug, paths } from "@mzawadie/core";
 import { OfflinePlaceholder } from "@mzawadie/ui-kit/atoms";
 import classNames from "classnames";
@@ -9,8 +11,6 @@ import { FormattedMessage, injectIntl, WrappedComponentProps } from "react-intl"
 import { ReactSVG } from "react-svg";
 
 import { Button, Loader, Overlay, OverlayContextInterface, OverlayType } from "../..";
-import searchImg from "../../../images/search.svg";
-import closeImg from "../../../images/x.svg";
 import { DebouncedTextField } from "../../Debounce";
 import { Error } from "../../Error";
 import NetworkStatus from "../../NetworkStatus";
@@ -18,7 +18,7 @@ import NothingFound from "./NothingFound";
 import ProductItem from "./ProductItem";
 import { SearchResults } from "./gqlTypes/SearchResults";
 import { TypedSearchResults } from "./queries";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 
 interface SearchProps extends WrappedComponentProps {
     overlay: OverlayContextInterface;
@@ -48,7 +48,7 @@ class Search extends React.Component<SearchProps, SearchState> {
         return stringify({ q: this.state.search });
     }
 
-    hasResults = (data: SearchResults) => maybe(() => !!data.products.edges.length);
+    hasResults = (data: SearchResults) => maybe(() => !!data.products?.edges.length);
 
     handleSubmit = (evt: React.FormEvent) => {
         if (this.hasSearchPhrase && this.submitBtnRef.current) {
@@ -67,7 +67,7 @@ class Search extends React.Component<SearchProps, SearchState> {
 
     render() {
         return (
-            <Overlay testingContext="searchOverlay" context={this.props.overlay} className="overlay--no-background">
+            <Overlay testingContext="searchOverlay" context={this.props.overlay} className={styles.overlay__no__background}>
                 <form
                     className={classNames("search", {
                         "search--has-results": this.hasSearchPhrase,
@@ -75,7 +75,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                     onClick={(e) => e.stopPropagation()}
                     onSubmit={this.handleSubmit}
                 >
-                    <div className="search__input">
+                    <div className={styles.search__input}>
                         <DebouncedTextField
                             onChange={(evt) => this.setState({ search: evt.target.value })}
                             value={this.state.search}
@@ -124,7 +124,7 @@ class Search extends React.Component<SearchProps, SearchState> {
                                                                 )}
                                                             </ul>
 
-                                                            <div className="search__products__footer">
+                                                            <div className={styles.search__products__footer}>
                                                                 {loading ? (
                                                                     <Loader />
                                                                 ) : (

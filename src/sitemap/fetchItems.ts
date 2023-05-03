@@ -1,13 +1,17 @@
-import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
+// @ts-nocheck
+import { InMemoryCache } from "apollo-cache-inmemory";
+import { ApolloClient } from "apollo-client";
+import { createHttpLink } from "apollo-link-http";
+import fetch from "isomorphic-fetch";
 
 import { generateCategoryUrl, generateCollectionUrl, generateProductUrl } from "../core/utils";
 import { getCategoriesQuery, getCollectionsQuery, getProductsQuery } from "./queries";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URI || "/graphql/";
 
-const DEFAULT_CHANNEL = process.env.NEXT_PUBLIC_SALEOR_CHANNEL_SLUG || "default-channel";
+const DEFAULT_CHANNEL = process.env.NEXT_PUBLIC_MZAWADIE_CHANNEL_SLUG || "default-channel";
 
-const fetchItems = async ({ query, perPage = 100 }: any, callback: any) => {
+const fetchItems = async ({ query, perPage = 100 }, callback: any) => {
     const client = new ApolloClient({
         cache: new InMemoryCache(),
         link: createHttpLink({ uri: API_URL, fetch }),
@@ -21,7 +25,7 @@ const fetchItems = async ({ query, perPage = 100 }: any, callback: any) => {
 
         const data = response.data[query.definitions[0].selectionSet.selections[0].name.value];
 
-        data.edges.map(({ node }: any) => callback(node));
+        data.edges.map(({ node }) => callback(node));
 
         if (data.pageInfo.hasNextPage) {
             await next(data.pageInfo.endCursor);
@@ -32,19 +36,19 @@ const fetchItems = async ({ query, perPage = 100 }: any, callback: any) => {
 };
 
 export const getCategories = async (callback: any) => {
-    await fetchItems({ query: getCategoriesQuery }, ({ id, name }: any) => {
+    await fetchItems({ query: getCategoriesQuery }, ({ id, name }) => {
         callback({ url: generateCategoryUrl(id, name) });
     });
 };
 
 export const getCollections = async (callback: any) => {
-    await fetchItems({ query: getCollectionsQuery }, ({ id, name }: any) => {
+    await fetchItems({ query: getCollectionsQuery }, ({ id, name }) => {
         callback({ url: generateCollectionUrl(id, name) });
     });
 };
 
 export const getProducts = async (callback: any) => {
-    await fetchItems({ query: getProductsQuery }, ({ id, name }: any) => {
+    await fetchItems({ query: getProductsQuery }, ({ id, name }) => {
         callback({ url: generateProductUrl(id, name) });
     });
 };

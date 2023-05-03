@@ -9,7 +9,7 @@ const OtherProducts: React.FC<{
     products: ProductDetails_product_category_products_edges[];
 }> = ({ products }) => (
     <div className={styles.product__page__other__products}>
-        <div className={styles.container}>
+        <div className="container">
             <h4 className={styles.product__page__other__products__title}>
                 <FormattedMessage defaultMessage="Other products in this category" />
             </h4>

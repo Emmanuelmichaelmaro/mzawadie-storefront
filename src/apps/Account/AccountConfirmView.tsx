@@ -1,5 +1,6 @@
+// @ts-nocheck
+import Loader from "@mzawadie/components/Loader";
 import { paths } from "@mzawadie/core";
-import { Loader } from "@mzawadie/ui-kit/atoms";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
@@ -7,20 +8,22 @@ import { useAlert } from "react-alert";
 import { StringParam, useQueryParams } from "use-query-params";
 
 import { useAccountConfirmMutation } from "./mutations";
-import "./scss/index.module.scss";
 
 export const AccountConfirmView: NextPage = () => {
     const [query] = useQueryParams({
         email: StringParam,
         token: StringParam,
     });
+
     const { push } = useRouter();
+
     const alert = useAlert();
-    // @ts-ignore
+
     const [mutation] = useAccountConfirmMutation(query);
 
     const displayConfirmationAlert = (errors: { message: string }[]) => {
         const hasErrors = errors.length > 0;
+
         alert.show(
             {
                 content: hasErrors ? errors.map(({ message }) => message).join(" ") : "You can now log in",
@@ -43,7 +46,6 @@ export const AccountConfirmView: NextPage = () => {
             }
 
             if (data?.confirmAccount?.errors.length) {
-                // @ts-ignore
                 displayConfirmationAlert(data?.confirmAccount?.errors);
             }
 

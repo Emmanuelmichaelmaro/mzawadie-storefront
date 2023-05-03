@@ -1,3 +1,3 @@
-import { NotFound } from "@mzawadie/components/index";
+import NotFound from "@mzawadie/components/NotFound";
 
 export default NotFound;

@@ -1,5 +1,5 @@
 {
-    "extends": ["next", "next/core-web-vitals"],
+    "extends": [],
     "rules": {
         "prettier/prettier": ["error"],
         "react/jsx-one-expression-per-line": "off",
@@ -7,8 +7,8 @@
         "react/jsx-wrap-multilines": "off",
         "react/prop-types": "off",
         "react-hooks/exhaustive-deps": "off",
-        "scss.lint.unknownAtRules": "ignore",
-        "css.lint.unknownAtRules": "ignore",
+        "scss.lint.unknownAtRules": "off",
+        "css.lint.unknownAtRules": "off",
         "import/no-cycle": "off",
         "import/no-extraneous-dependencies": [
             "error",

@@ -1,11 +1,11 @@
 // @ts-nocheck
-import { useAuth, useOrderDetails } from "@mzawadie/sdk/lib/src";
 import { Loader } from "@mzawadie/ui-kit/atoms";
+import { useAuth, useOrderDetails } from "@saleor/sdk";
 import { NextPage } from "next";
 import * as React from "react";
 
 import Page from "./Page";
-import "./scss/index.module.scss";
+import styles from "./scss/index.module.scss";
 import { IProps } from "./types";
 
 const View: NextPage<IProps> = ({ query: { token } }) => {
@@ -29,7 +29,7 @@ const View: NextPage<IProps> = ({ query: { token } }) => {
     return loading ? (
         <Loader />
     ) : (
-        <div className="order-details container">
+        <div className={`${styles.order__details} container`}>
             <Page guest={guest} order={order} downloadInvoice={handleDownloadInvoice} />
         </div>
     );

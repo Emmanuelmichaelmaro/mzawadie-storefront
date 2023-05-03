@@ -1,9 +1,11 @@
 import * as React from "react";
 import { FormattedMessage } from "react-intl";
 
+import styles from "./scss/index.module.scss";
+
 export const NothingFound: React.FC<{ search: string }> = ({ search }) => {
     return (
-        <div className="search__products--not-found">
+        <div className={styles.search__products__notfound}>
             <p className="u-lead u-lead--bold u-uppercase">
                 <FormattedMessage
                     defaultMessage="Sorry, but we couldn’t match any search results for: {search}"

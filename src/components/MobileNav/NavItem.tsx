@@ -4,7 +4,7 @@ import * as React from "react";
 import { ReactSVG } from "react-svg";
 
 import { NavLink } from "..";
-import subcategoriesImg from "../../images/subcategories.svg";
+import subcategoriesImg from "@images/subcategories.svg";
 import { MainMenuSubItem } from "../MainMenu/types/MainMenuSubItem";
 import styles from "./scss/index.module.scss";
 
@@ -23,16 +23,16 @@ const NavItem: React.FC<NavItemProps> = ({ hideOverlay, showSubItems, ...item })
     return (
         <li
             className={classNames({
-                [`${styles.side - nav__menu - item}`]: true,
-                [`${styles.side - nav__menu - item__has - subnavigation}`]: hasSubNavigation,
+                [`${styles.side__nav__menu__item}`]: true,
+                [`${styles.side__nav__menu__item__has__subnavigation}`]: hasSubNavigation,
             })}
         >
-            <NavLink item={item} className={styles.side - nav__menu - item - link} onClick={hideOverlay} />
+            <NavLink item={item} className={styles.side__nav__menu__item__link} onClick={hideOverlay} />
 
             {hasSubNavigation && (
                 <ReactSVG
                     src={subcategoriesImg}
-                    className={styles.side - nav__menu - item - more}
+                    className={styles.side__nav__menu__item__more}
                     onClick={() => showSubItems(item)}
                 />
             )}

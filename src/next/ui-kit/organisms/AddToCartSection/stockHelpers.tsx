@@ -1,8 +1,8 @@
-import { ICheckoutModelLine } from "@mzawadie/sdk/lib/src/helpers";
+import { ICheckoutModelLine } from "@saleor/sdk/lib/helpers";
 import {
     ProductDetails_product_pricing,
     ProductDetails_product_variants_pricing,
-} from "@mzawadie/sdk/lib/src/queries/gqlTypes/ProductDetails";
+} from "@saleor/sdk/lib/queries/gqlTypes/ProductDetails";
 import isEqual from "lodash/isEqual";
 import * as React from "react";
 

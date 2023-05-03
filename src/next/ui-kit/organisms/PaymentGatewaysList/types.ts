@@ -1,5 +1,5 @@
-import { CompleteCheckout_checkoutComplete_order } from "@mzawadie/sdk/lib/src/mutations/gqlTypes/CompleteCheckout";
 import { ICardData, IFormError, IPaymentGateway, IPaymentSubmitResult } from "@next/types";
+import { CompleteCheckout_checkoutComplete_order } from "@saleor/sdk/lib/mutations/gqlTypes/CompleteCheckout";
 import React from "react";
 
 export interface IPaymentGatewaysListProps {

@@ -1,5 +1,5 @@
-import { gql } from "@apollo/client";
 import { TypedQuery } from "@mzawadie/core";
+import gql from "graphql-tag";
 
 import { basicProductFragment, productPricingFragment } from "../Product/queries";
 import { Collection, CollectionVariables } from "./gqlTypes/Collection";

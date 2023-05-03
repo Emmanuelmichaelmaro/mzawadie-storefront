@@ -1,29 +1,7 @@
-import { gql } from "@apollo/client";
-import { TypedQuery } from "@mzawadie/core/queries";
+import gql from "graphql-tag";
 
-import { Article, ArticleVariables } from "./gqlTypes/Article";
-
-export const articleQuery = gql`
-    query Article($slug: String!, $channel: String) {
-        page(slug: $slug) {
-            contentJson
-            id
-            seoDescription
-            seoTitle
-            slug
-            title
-        }
-        collection(slug: "featured-products", channel: $channel) {
-            id
-            backgroundImage {
-                url
-            }
-        }
-    }
-`;
-
-export const articlesQuery = gql`
-    query Articles {
+export const pagesQuery = gql`
+    query Pages {
         pages(first: 50) {
             edges {
                 node {
@@ -35,4 +13,15 @@ export const articlesQuery = gql`
     }
 `;
 
-export const TypedArticleQuery = TypedQuery<Article, ArticleVariables>(articleQuery);
+export const articleQuery = gql`
+    query Article($slug: String!) {
+        page(slug: $slug) {
+            content
+            id
+            seoDescription
+            seoTitle
+            slug
+            title
+        }
+    }
+`;
